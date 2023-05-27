@@ -1,1 +1,1 @@
-.test{color:red}/*# sourceMappingURL=module.css.map */
+:root{--combatant-portrait-size: 100px}#combat-dock .combatant-portrait{width:var(--combatant-portrait-size);height:calc(var(--combatant-portrait-size)*1.5);margin:0 1rem;border:1px solid #000}#combat-dock .combatant-wrapper{width:100%;height:100%;background-repeat:no-repeat;background-size:cover;background-position:center}#combat-dock{display:flex;justify-content:center}#combat-dock #combatants{display:flex}/*# sourceMappingURL=module.css.map */

@@ -1,0 +1,10 @@
+#combat-dock{
+
+    display: flex;
+    justify-content: center;
+
+    & #combatants{
+        display: flex;
+    }
+
+}
