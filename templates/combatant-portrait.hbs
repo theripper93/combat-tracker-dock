@@ -1,4 +1,8 @@
 <div class="combatant-wrapper" style="background-image: url('{{img}}');">
+
+    <i {{#if hasRolled}}style="display: none;"{{/if}} class="fa-regular fa-dice-d20 roll-initiative"></i>
+
+
     {{#if resource.max}}
     <div class="tracked-attribute-bar">
         <div class="tracked-attribute-bar-max"></div>

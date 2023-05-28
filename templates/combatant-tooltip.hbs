@@ -1,22 +1,25 @@
-<div>
-    {{#if name}}
-    <h3>{{name}}</h3>
+<div class="combat-dock-tooltip-wrapper">
+    <div class="portrait-header">
+    <h2>{{name}}</h2>
+    <div class="initiative">
+    <i class="fa-regular fa-dice-d20 icon"></i><i class="spacer"></i><i>{{initiative}}</i>
+    </div>
+    </div>
+    {{#if description}}
+    <p>{{ description}}</p>
     {{/if}}
-    <ul>
-        {{#if description}}
-        <p>{{ description}}</p>
-        {{/if}}
+    <ul {{#unless hasAttributes}}style="display:none;"{{/unless}}>
         {{#if hasPermission}}
         {{#each attributes as |attribute|}}
-        <li>{{{attribute.icon}}}: {{#if
+        <li>{{{attribute.icon}}}<i class="spacer"></i>{{#if
             attribute.max}}{{attribute.value}}/{{attribute.max}}{{else}}{{attribute.value}}{{/if}} {{attribute.units}}
         </li>
         {{/each}}
         {{/if}}
     </ul>
-    <ul>
+    <ul {{#unless hasEffects}}style="display:none;"{{/unless}}>
         {{#each effects as |effect|}}
-        <li><img src="{{effect.icon}}" alt="">: {{{localize effect.label}}}</li>
+        <li><img src="{{effect.icon}}" alt=""><i class="spacer"></i>{{{localize effect.label}}}</li>
         {{/each}}
     </ul>
 </div>

@@ -13,11 +13,11 @@ export function registerSettings() {
             },
             {
                 attr: "attributes.ac.value",
-                icon: "icons/svg/shield.svg",
+                icon: "fa-solid fa-shield",
             },
             {
                 attr: "attributes.movement.walk",
-                icon: "icons/svg/thrust.svg",
+                icon: "fa-solid fa-person-running-fast",
                 units: "ft.",
             },
         ],

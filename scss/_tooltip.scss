@@ -1,16 +1,64 @@
-.combat-dock-tooltip{
+#tooltip.combat-dock-tooltip{
 
-    & ul{
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        text-align: left;
-    }
+    border: 1px solid var(--carousel-tooltip-color);
+    border-radius: 0px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.873);
+    background: rgb(43, 43, 43);
+    padding: 0;
+    opacity: 0.8;
 
-    & img{
-        width: 1em;
-        height: 1em;
-        object-fit: contain;
+    & .combat-dock-tooltip-wrapper{   
+
+        box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 0.873);
+        border-radius: 0px;
+        padding: 1rem ;
+        
+            font-family: 'Amiri';
+
+            & .portrait-header{
+                display: flex;
+                justify-content: space-between;
+            }
+
+            & h2{
+                border:none;
+                text-align: left;
+            }
+
+            & .spacer{
+                min-width: 0.5rem;
+            }
+        
+            & p{
+                color: var(--carousel-tooltip-color);
+                filter: saturate(50%)
+            }
+        
+            & ul{
+                list-style: none;
+                padding: 0;
+                padding-top: 1rem;
+                margin: 0;
+                text-align: left;
+            }
+
+            & li{
+                display: flex;
+                align-items: center;
+                margin-bottom: 0.3rem;
+            }
+        
+            & img{
+                width: 1.2em;
+                height: 1.2em;
+                object-fit: contain;
+                border:none;
+            }
+
+            & li i.icon{
+                font-size: 1.2em;
+                text-shadow: 0px 0px 3px;
+            }
     }
 
 }

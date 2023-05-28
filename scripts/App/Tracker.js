@@ -26,7 +26,8 @@ export class CombatDock extends Application {
     }
 
     get sortedCombatants() {
-        return Array.from(this.combat.combatants).sort((a, b) => b.initiative - a.initiative);
+        this.combat.setupTurns();
+        return Array.from(this.combat.turns);
     }
 
     setHooks() {
@@ -86,7 +87,10 @@ export class CombatDock extends Application {
     }
 
     updateCombatant(combatant, updates = {}) {
-        if("initiative" in updates) return this.setupCombatants();
+        if ("initiative" in updates) {
+                this.setupCombatants();
+            return
+        }
         const portrait = this.portraits.find(p => p.combatant === combatant);
         if (portrait) portrait.renderInner();
     }

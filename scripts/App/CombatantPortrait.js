@@ -65,6 +65,13 @@ export class CombatantPortrait {
         this.element.classList.toggle("visible", data.css.includes("hidden"));
         this.element.classList.toggle("defeated", data.css.includes("defeated"));
         this.element.style.borderBottomColor = this.getBorderColor(this.token.document);
+        this.element.querySelector(".roll-initiative").addEventListener("click", async (event) => {
+            event.preventDefault();
+            Hooks.once("renderCombatTracker", () => { 
+                ui.combatDock.updateOrder()
+            });
+            await this.combatant.combat.rollInitiative([this.combatant.id]);
+        });
     }
 
     getResource(resource = null) {
@@ -93,7 +100,7 @@ export class CombatantPortrait {
             const iconHasExtension = a.icon.includes(".");
             return {
                 ...resourceData,
-                icon: iconHasExtension ? `<img src="${a.icon}" />` : `<i class="${a.icon}"></i>`,
+                icon: iconHasExtension ? `<img src="${a.icon}" />` : `<i class="${a.icon} icon"></i>`,
                 units: a.units || "",
             };
         });
@@ -116,6 +123,7 @@ export class CombatantPortrait {
             resource: resource,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
             attributes: trackedAttributes,
+            description: getDescription(combatant.actor),
         };
         if (turn.initiative !== null && !Number.isInteger(turn.initiative)) hasDecimals = true;
         turn.css = [turn.active ? "active" : "", turn.hidden ? "hidden" : "", turn.defeated ? "defeated" : ""].join(" ").trim();
@@ -131,6 +139,8 @@ export class CombatantPortrait {
             );
             if (combatant.token.overlayEffect) turn.effects.add(combatant.token.overlayEffect);
         }
+        turn.hasEffects = turn.effects.size > 0;
+        turn.hasAttributes = trackedAttributes.length > 0;
         if (combatant.actor) {
             for (const effect of combatant.actor.temporaryEffects) {
                 if (effect.statuses.has(CONFIG.specialStatusEffects.DEFEATED)) turn.defeated = true;
@@ -163,5 +173,25 @@ export class CombatantPortrait {
 
     destroy() {
         this.element?.remove();
+    }
+}
+
+function getDescription(actor) {
+    const system = game.system.id;
+
+    switch (system) {
+        case "dnd5e":
+            const isNPC = actor.type === "npc";
+            const isPC = actor.type === "character";
+            if (isNPC) {
+                const creatureType = game.i18n.localize(CONFIG.DND5E.creatureTypes[actor.system.details.type.value] ?? actor.system.details.type.custom);
+                const cr = actor.system.details.cr >= 1 ? actor.system.details.cr : `1/${1/actor.system.details.cr}`
+                return `CR ${cr} ${creatureType}`
+            } else if (isPC) {
+                const classes = Object.values(actor.classes).map(c => c.name).join(" / ");
+                return `Level ${actor.system.details.level} ${classes} (${actor.system.details.race})`
+            } else {
+                return null;
+            }
     }
 }
