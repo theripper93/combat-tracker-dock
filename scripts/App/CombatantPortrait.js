@@ -72,6 +72,24 @@ export class CombatantPortrait {
             });
             await this.combatant.combat.rollInitiative([this.combatant.id]);
         });
+        this.element.querySelectorAll(".action").forEach((action) => {
+            action.addEventListener("click", async (event) => {
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                const dataAction = action.dataset.action;
+                switch (dataAction) {
+                    case "toggle-hidden":
+                        await this.combatant.update({hidden: !this.combatant.hidden})
+                        break;
+                    case "toggle-defeated":
+                        await ui.combat._onToggleDefeatedStatus(this.combatant);
+                        break;
+                    case "ping":
+                        await ui.combat._onPingCombatant(this.combatant);
+                        break;
+                }
+            });
+        });
     }
 
     getResource(resource = null) {
@@ -113,6 +131,7 @@ export class CombatantPortrait {
             img: this.img,
             active: this.combat.turns.indexOf(combatant) === this.combat.turn,
             owner: combatant.isOwner,
+            isGM: game.user.isGM,
             defeated: combatant.isDefeated,
             hidden: combatant.hidden,
             initiative: combatant.initiative,

@@ -15,6 +15,24 @@
             "showDispositionColor": {
                 "name": "Show Disposition Color",
                 "hint": "Show the disposition in the bottom border of the portrait."
+            },
+            "attributesMenu": {
+                "name": "Tooltip Attributes",
+                "label": "Configure Attributes",
+                "hint": "Configure custom attributes to show in the tooltip.",
+                "form": {
+                    "attr": {
+                        "name": "Attribute"
+                    },
+                    "icon": {
+                        "name": "Icon"
+                    },
+                    "units": {
+                        "name": "Units"
+                    },
+                    "save": "Save & Close",
+                    "add": "Add Attribute"
+                }
             }
         }
     }

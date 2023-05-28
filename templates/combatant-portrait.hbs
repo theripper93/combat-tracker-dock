@@ -1,4 +1,4 @@
-<div class="combatant-wrapper" style="background-image: url('{{img}}');">
+<div class="combatant-wrapper" style="background-image: url('{{img}}');{{#if defeated}}filter: grayscale(1);{{/if}}">
 
     <i {{#if hasRolled}}style="display: none;"{{/if}} class="fa-regular fa-dice-d20 roll-initiative"></i>
     
@@ -14,12 +14,23 @@
         <div class="tracked-attribute-bar-current" style="height: {{resource.percentage}}%;"></div>
     </div>
     {{/if}}
+    <div class="bottom-ui-container">
+
+        <div class="combatant-buttons">
+            {{#if isGM}}
+            <i class="fas fa-eye-slash action" data-action="toggle-hidden"></i>
+            <i class="fas fa-skull action" data-action="toggle-defeated"></i>
+            {{/if}}
+            <i class="fas fa-bullseye-arrow action" data-action="ping"></i>
+        </div>
+
     <div class="tracked-attribute-text-container">
         <i class="tracked-attribute-text-value">{{resource.value}}</i>
         {{#if resource.max}}
         <i>/</i>
         <i>{{resource.max}}</i>
         {{/if}}
+    </div>
     </div>
     {{#if hasPlayerOwner}}
     <div class="image-border"></div>

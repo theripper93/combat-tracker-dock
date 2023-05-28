@@ -12,6 +12,9 @@
 
         &:hover{
             border-color: rgba(255, 255, 255, 0.616);
+            & .combatant-buttons{
+                opacity: 0.7;
+            }
         }
 
         &.visible{
@@ -105,13 +108,35 @@
             }
         }
 
-        & .tracked-attribute-text-container {
+        & .bottom-ui-container{
             position: absolute;
             bottom: 5%;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
             color: var(--color-text-light-7);
+        }
+
+        & .combatant-buttons{
+            font-size: calc(var(--combatant-portrait-size) * 0.15);
+            color: var(--color-text-light-0);
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 0.3rem;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+
+            & i:hover{
+                cursor: pointer;
+                text-shadow: 0px 0px 5px;
+            }
+        }
+
+        & .tracked-attribute-text-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
             text-shadow: 0px 0px 2px black;
             font-size: calc(var(--combatant-portrait-size) * 0.15);
             font-family: monospace;
@@ -145,7 +170,7 @@
                 width: 100%;
                 bottom: 0px;
                 position: absolute;
-                background-color: black;
+                background-color: rgba(0, 0, 0, 0.838);
             }
             & .tracked-attribute-bar-current {
                 width: 100%;

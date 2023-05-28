@@ -1,4 +1,5 @@
-import { MODULE_ID } from "./main.js";
+import {MODULE_ID} from "./main.js";
+import {AttributesConfig} from "./attributesConfig.js";
 
 export function registerSettings() {
     game.settings.register(MODULE_ID, "attributes", {
@@ -22,6 +23,16 @@ export function registerSettings() {
             },
         ],
     });
+
+    game.settings.registerMenu(MODULE_ID, "attributesMenu", {
+        name: game.i18n.localize(`${MODULE_ID}.settings.attributesMenu.name`),
+        label: game.i18n.localize(`${MODULE_ID}.settings.attributesMenu.label`),
+        hint: game.i18n.localize(`${MODULE_ID}.settings.attributesMenu.hint`),
+        icon: "fas fa-cogs",
+        scope: "world",
+        restricted: true,
+        type: AttributesConfig,
+    });    
 
     game.settings.register(MODULE_ID, "portraitSize", {
         name: "combat-tracker-dock.settings.portraitSize.name",
