@@ -18,17 +18,24 @@
 
             & .initiative{
                 display: flex;
+                align-items: center;
                 gap:0.2rem;
             }
 
             & .portrait-header{
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
             }
 
             & h2{
                 border:none;
                 text-align: left;
+                margin: 0;
+            }
+
+            & h3{
+                margin: 0;
             }
 
             & .spacer{
@@ -38,6 +45,7 @@
             & p{
                 color: var(--carousel-tooltip-color);
                 margin: 0;
+                margin-top: 0.5rem;
                 text-align: left;
                 filter: saturate(50%)
             }
