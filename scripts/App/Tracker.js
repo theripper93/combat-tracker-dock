@@ -1,8 +1,14 @@
-import { CombatantPortrait } from "./CombatantPortrait.js";
-
 export class CombatDock extends Application {
     constructor (combat) {
         super();
+        ui.combatDock?.close();
+        ui.combatDock = this;
+        if (!document.getElementById("navigation").classList.contains("collapsed")) {
+            setTimeout(() => {
+                document.getElementById("nav-toggle").click();
+            }, 1000);
+        }
+        this.portraits = [];
         this.combat = combat ?? game.combat;
         this.hooks = [];
         this.setHooks();
@@ -19,11 +25,51 @@ export class CombatDock extends Application {
         };
     }
 
-    setHooks() {
-
+    get sortedCombatants() {
+        return Array.from(this.combat.combatants).sort((a, b) => b.initiative - a.initiative);
     }
 
-    removeHooks() { }
+    setHooks() {
+        this.hooks = [
+            {
+                hook: "renderCombatTracker",
+                fn: this._onRenderCombatTracker.bind(this),
+            },
+            {
+                hook: "createCombatant",
+                fn: this.setupCombatants.bind(this),
+            },
+            {
+                hook: "deleteCombatant",
+                fn: this.setupCombatants.bind(this),
+            },
+            {
+                hook: "updateCombatant",
+                fn: this.updateCombatant.bind(this),
+            },
+            {
+                hook: "combatTurn",
+                fn: this._onCombatTurn.bind(this),
+            },
+            {
+                hook: "combatRound",
+                fn: this._onCombatTurn.bind(this),
+            },
+            {
+                hook: "deleteCombat",
+                fn: this._onDeleteCombat.bind(this),
+            }
+        ]
+        for (let hook of this.hooks) {
+            hook.id = Hooks.on(hook.hook, hook.fn);
+        }
+    }
+
+    removeHooks() {
+        for (let hook of this.hooks) {
+            Hooks.off(hook.hook, hook.id);
+        }
+    }
 
     getData() {
         return {};
@@ -31,13 +77,17 @@ export class CombatDock extends Application {
 
     setupCombatants() {
         this.portraits = [];
-        this.combat.combatants.forEach(combatant => this.portraits.push(new CombatantPortrait(combatant)));
+        this.sortedCombatants.forEach(combatant => this.portraits.push(new CONFIG.combatTrackerDock.CombatantPortrait(combatant)));
         const combatantsContainer = this.element[0].querySelector("#combatants");
         combatantsContainer.innerHTML = "";
         this.portraits.forEach(p => combatantsContainer.appendChild(p.element));
+        const isEven = this.portraits.length % 2 === 0;
+        this.element[0].classList.toggle("even", isEven);
+        this.updateOrder();
     }
 
-    updateCombatant(combatant) {
+    updateCombatant(combatant, updates = {}) {
+        if("initiative" in updates) return this.setupCombatants();
         const portrait = this.portraits.find(p => p.combatant === combatant);
         if (portrait) portrait.renderInner();
     }
@@ -46,14 +96,56 @@ export class CombatDock extends Application {
         this.portraits.forEach(p => p.renderInner());
     }
 
+    updateOrder() {
+        //order combatants so that the current combatant is at the center
+        const currentCombatant = this.combat.combatant;
+        const combatants = this.sortedCombatants;
+        const currentCombatantIndex = combatants.findIndex(c => c === currentCombatant) + combatants.length;
+        const tempCombatantList = [...combatants, ...combatants, ...combatants];
+        const halfLength = Math.floor(combatants.length / 2);
+        const orderedCombatants = tempCombatantList.slice(currentCombatantIndex - halfLength, currentCombatantIndex + halfLength + 1);
+        
+
+        this.portraits.forEach(p => {
+            const combatant = orderedCombatants.find(c => c === p.combatant);
+            const index = orderedCombatants.findIndex(c => c === combatant);
+            p.element.style.setProperty("order", index * 100);
+        });
+    }
+
     activateListeners(html) {
+        if(this._closed) return this.close();
         super.activateListeners(html);
         this.setupCombatants();
         document.querySelector("#ui-top").prepend(this.element[0]);
     }
 
+    _onRenderCombatTracker() {
+        this.portraits.forEach(p => p.renderInner());
+    }
+
+    _onCombatTurn(combat, turn, update) {
+        const combatantsContainer = this.element[0].querySelector("#combatants");
+        //find combatant with lowest order
+        const first = Array.from(combatantsContainer.children).reduce((a, b) => a.style.order < b.style.order ? a : b, combatantsContainer.children[0]);
+        const last = Array.from(combatantsContainer.children).reduce((a, b) => a.style.order > b.style.order ? a : b, combatantsContainer.children[0]);
+
+        const el = update.direction === 1 ? first : last;
+        el.classList.add("collapsed");
+        setTimeout(() => {
+            this.updateOrder();
+            el.classList.remove("collapsed")
+        }, 200);
+    }
+
+    _onDeleteCombat(combat) {
+        if(combat === this.combat) this.close();
+    }
+
     async close(...args) {
         this.removeHooks();
+        if (this.element) this.element[0].remove();
+        this._closed = true;
         return super.close(...args);
     }
 }

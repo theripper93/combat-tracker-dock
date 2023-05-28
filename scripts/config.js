@@ -22,4 +22,32 @@ export function registerSettings() {
             },
         ],
     });
+
+    game.settings.register(MODULE_ID, "portraitSize", {
+        name: "combat-tracker-dock.settings.portraitSize.name",
+        hint: "combat-tracker-dock.settings.portraitSize.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            "30px": "combat-tracker-dock.settings.portraitSize.choices.30px",
+            "50px": "combat-tracker-dock.settings.portraitSize.choices.50px",
+            "70px": "combat-tracker-dock.settings.portraitSize.choices.70px",
+            "90px": "combat-tracker-dock.settings.portraitSize.choices.90px",
+            "110px": "combat-tracker-dock.settings.portraitSize.choices.110px",
+        },
+        default: "70px",
+        onChange: () => setPortraitSize(),
+
+    });
+
+    setPortraitSize();
+}
+
+function setPortraitSize() {
+    const portraitSize = game.settings.get(MODULE_ID, "portraitSize");
+    document.documentElement.style.setProperty(
+        "--combatant-portrait-size",
+        portraitSize
+    );
 }

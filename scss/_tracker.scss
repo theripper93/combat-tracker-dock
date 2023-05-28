@@ -3,6 +3,9 @@
     display: flex;
     justify-content: center;
     pointer-events: all;
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
 
     & #combatants{
         display: flex;

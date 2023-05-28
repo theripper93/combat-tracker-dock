@@ -1,3 +1,17 @@
 {
-    "MODULE.hello": "hello"
+    "combat-tracker-dock": {
+        "settings": {
+            "portraitSize": {
+                "name": "Portrait Size",
+                "hint": "The size of the portrait in the combat tracker.",
+                "choices": {
+                    "30px": "Tiny",
+                    "50px": "Small",
+                    "70px": "Normal",
+                    "90px": "Large",
+                    "110px": "Huge"
+                }
+            }
+        }
+    }
 }

@@ -4,11 +4,13 @@ export class CombatantPortrait {
     constructor(combatant) {
         this.combatant = combatant;
         this.actor = combatant.actor;
+        this.token = combatant.token.object;
         this.combat = combatant.combat;
         this.element = document.createElement("div");
         this.element.classList.add("combatant-portrait");
         this.element.setAttribute("data-combatant-id", combatant.id);
         this.element.setAttribute("data-tooltip-class", "combat-dock-tooltip");
+        this.activateListeners();
         this.renderInner();
     }
 
@@ -17,12 +19,46 @@ export class CombatantPortrait {
         return useActor ? this.combatant.actor.img : this.combatant.img;
     }
 
+    activateListeners() {
+        //add left and right click and double click listeners
+        this.element.addEventListener("click", this._onClick.bind(this));
+        this.element.addEventListener("dblclick", this._onDoubleClick.bind(this));
+        //add hover in and out listeners
+        this.element.addEventListener("mouseenter", this._onHoverIn.bind(this));
+        this.element.addEventListener("mouseleave", this._onHoverOut.bind(this));
+    }
+
+    _onClick(event) {
+        const isLeftClick = event.button === 0;
+        const isRightClick = event.button === 2;
+        if (isLeftClick) this.token._onClickLeft(event);
+        else if (isRightClick) this.token._onClickRight(event);
+    }
+
+    _onDoubleClick(event) {
+        const isLeftClick = event.button === 0;
+        const isRightClick = event.button === 2;
+        if (isLeftClick) this.token._onClickLeft2(event);
+        else if (isRightClick) this.token._onClickRight2(event);
+    }
+
+    _onHoverIn(event) {
+        this.token._onHoverIn(event);
+    }
+
+    _onHoverOut(event) {
+        this.token._onHoverOut(event);
+    }
+
     async renderInner() {
         const data = await this.getData();
         const template = await renderTemplate("modules/combat-tracker-dock/templates/combatant-portrait.hbs", {...data});
         const tooltip = await renderTemplate("modules/combat-tracker-dock/templates/combatant-tooltip.hbs", {...data});
         this.element.innerHTML = template;
         this.element.setAttribute("data-tooltip", tooltip);
+        this.element.classList.toggle("active", data.css.includes("active"));
+        this.element.classList.toggle("hidden", data.css.includes("hidden"));
+        this.element.classList.toggle("defeated", data.css.includes("defeated"));
     }
 
     getResource(resource = null) {
@@ -95,7 +131,7 @@ export class CombatantPortrait {
 
         // Format initiative numeric precision
         const precision = CONFIG.Combat.initiative.decimals;
-        turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);
+        if(turn.hasRolled) turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);
 
         return turn;
     }

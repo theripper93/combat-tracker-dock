@@ -1,5 +1,11 @@
 <div>
+    {{#if name}}
+        <h3>{{name}}</h3>
+    {{/if}}
     <ul>
+    {{#if description}}
+        <p>{{ description}}</p>
+    {{/if}}
     {{#each attributes as |attribute|}}
         <li>{{{attribute.icon}}}: {{#if attribute.max}}{{attribute.value}}/{{attribute.max}}{{else}}{{attribute.value}}{{/if}}  {{attribute.units}}</li>
     {{/each}}

@@ -2,9 +2,23 @@
     & .combatant-portrait{
         width: var(--combatant-portrait-size);
         height: calc( var(--combatant-portrait-size) * 1.5);
-        margin: 0 1rem;
+        margin: 0 calc( var(--combatant-portrait-size) * 0.1 );
         background: url('/ui/denim075.png') repeat;
         border: 1px solid black;
+        opacity: 1;
+        position: relative;
+        transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out, margin 0.2s ease-in-out, left 0.2s ease-in-out;
+
+        &.active{
+            width: calc( var(--combatant-portrait-size) * 1.2);
+            height: calc( var(--combatant-portrait-size) * 1.8);
+        }
+
+        &.collapsed{
+            width: 0px;
+            opacity: 0px;
+            margin: 0;
+        }
     }
     
     & .combatant-wrapper{
