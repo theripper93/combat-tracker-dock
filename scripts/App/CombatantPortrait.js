@@ -8,6 +8,7 @@ export class CombatantPortrait {
         this.element = document.createElement("div");
         this.element.classList.add("combatant-portrait");
         this.element.setAttribute("data-combatant-id", combatant.id);
+        this.element.setAttribute("data-tooltip-class", "combat-dock-tooltip");
         this.renderInner();
     }
 
