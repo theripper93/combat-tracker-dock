@@ -69,7 +69,9 @@ export class CombatDock extends Application {
     }
 
     getData() {
-        return {};
+        return {
+            isGM: game.user.isGM,
+        };
     }
 
     setupCombatants() {
