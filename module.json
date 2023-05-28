@@ -1,6 +1,6 @@
 {
-    "title": "Combat Tracker Dock (Placeholder)",
-    "description": "Carusel style combat tracker.",
+    "title": "Carousel Combat Tracker",
+    "description": "Carousel style combat tracker. Spiritual successor of Combat Carousel",
     "id": "combat-tracker-dock",
     "version": "1.0",
     "authors": [
