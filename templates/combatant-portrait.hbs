@@ -1,7 +1,12 @@
 <div class="combatant-wrapper" style="background-image: url('{{img}}');">
 
     <i {{#if hasRolled}}style="display: none;"{{/if}} class="fa-regular fa-dice-d20 roll-initiative"></i>
-
+    
+    <ul class="effects-container" {{#unless hasEffects}}style="display:none;"{{/unless}}>
+        {{#each effects as |effect|}}
+        <li style="background-image: url('{{effect.icon}}');"></li>
+        {{/each}}
+    </ul>
 
     {{#if resource.max}}
     <div class="tracked-attribute-bar">

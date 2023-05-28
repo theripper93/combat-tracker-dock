@@ -19,13 +19,21 @@ Hooks.on('createCombat', (combat) => {
 });
 
 Hooks.on('canvasReady', () => {
-    if(game.combat) {
-        new CONFIG.combatTrackerDock.CombatDock(game.combat).render(true);
-    }
+    let hook;
+    hook = Hooks.on("renderSidebarTab", (tab) => {
+        if (tab instanceof CombatTracker) {
+            Hooks.off("renderSidebarTab", hook);
+            if(game.combat?.active) {
+                new CONFIG.combatTrackerDock.CombatDock(game.combat).render(true);
+            } else {
+                ui.combatDock?.close();
+            }
+        }
+    })
 });
 
 Hooks.on('ready', () => {
-    if(game.combat && !ui.combatDock) {
+    if(game.combat?.active && !ui.combatDock && game.settings.get("core", "noCanvas")) {
         new CONFIG.combatTrackerDock.CombatDock(game.combat).render(true);
     }
 });

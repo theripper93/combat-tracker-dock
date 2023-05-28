@@ -6,6 +6,7 @@
     background: rgb(43, 43, 43);
     padding: 0;
     opacity: 0.8;
+    min-width: 200px;
 
     & .combat-dock-tooltip-wrapper{   
 
@@ -14,6 +15,11 @@
         padding: 1rem ;
         
             font-family: 'Amiri';
+
+            & .initiative{
+                display: flex;
+                gap:0.2rem;
+            }
 
             & .portrait-header{
                 display: flex;
@@ -31,6 +37,8 @@
         
             & p{
                 color: var(--carousel-tooltip-color);
+                margin: 0;
+                text-align: left;
                 filter: saturate(50%)
             }
         
@@ -44,7 +52,7 @@
 
             & li{
                 display: flex;
-                align-items: center;
+                align-items: flex-end;
                 margin-bottom: 0.3rem;
             }
         

@@ -2,7 +2,7 @@
     <div class="portrait-header">
     <h2>{{name}}</h2>
     <div class="initiative">
-    <i class="fa-regular fa-dice-d20 icon"></i><i class="spacer"></i><i>{{initiative}}</i>
+    <i class="fa-regular fa-dice-d20 icon"></i><h3>{{initiative}}</h3>
     </div>
     </div>
     {{#if description}}
@@ -11,15 +11,15 @@
     <ul {{#unless hasAttributes}}style="display:none;"{{/unless}}>
         {{#if hasPermission}}
         {{#each attributes as |attribute|}}
-        <li>{{{attribute.icon}}}<i class="spacer"></i>{{#if
-            attribute.max}}{{attribute.value}}/{{attribute.max}}{{else}}{{attribute.value}}{{/if}} {{attribute.units}}
+        <li>{{{attribute.icon}}}<i class="spacer"></i><span>{{#if
+            attribute.max}}{{attribute.value}}/{{attribute.max}}{{else}}{{attribute.value}}{{/if}} {{attribute.units}}</span>
         </li>
         {{/each}}
         {{/if}}
     </ul>
     <ul {{#unless hasEffects}}style="display:none;"{{/unless}}>
         {{#each effects as |effect|}}
-        <li><img src="{{effect.icon}}" alt=""><i class="spacer"></i>{{{localize effect.label}}}</li>
+        <li><img src="{{effect.icon}}" alt=""><i class="spacer"></i><span>{{{localize effect.label}}}</span></li>
         {{/each}}
     </ul>
 </div>

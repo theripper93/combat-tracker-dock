@@ -139,15 +139,15 @@ export class CombatantPortrait {
             );
             if (combatant.token.overlayEffect) turn.effects.add(combatant.token.overlayEffect);
         }
-        turn.hasEffects = turn.effects.size > 0;
         turn.hasAttributes = trackedAttributes.length > 0;
         if (combatant.actor) {
             for (const effect of combatant.actor.temporaryEffects) {
                 if (effect.statuses.has(CONFIG.specialStatusEffects.DEFEATED)) turn.defeated = true;
-                else if (effect.icon) turn.effects.add({ icon: effect.icon, label: effect.label });
+                else if (effect.icon) turn.effects.add({ icon: effect.icon, label: effect.name });
             }
         }
-
+        
+        turn.hasEffects = turn.effects.size > 0;
         // Format initiative numeric precision
         const precision = CONFIG.Combat.initiative.decimals;
         if (turn.hasRolled) turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);

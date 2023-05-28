@@ -128,6 +128,43 @@ export class CombatDock extends Application {
         super.activateListeners(html);
         this.setupCombatants();
         document.querySelector("#ui-top").prepend(this.element[0]);
+        this.element[0].querySelectorAll(".buttons-container i").forEach(i => {
+            i.addEventListener("click", (e) => {
+                const action = e.currentTarget.dataset.action;
+                switch (action) {
+                    case "previous-turn":
+                        this.combat.previousTurn();
+                        break;
+                    case "next-turn":
+                        this.combat.nextTurn();
+                        break;
+                    case "previous-round":
+                        this.combat.previousRound();
+                        break;
+                    case "next-round":
+                        this.combat.nextRound();
+                        break;
+                    case "end-combat":
+                        this.combat.endCombat();
+                        break;
+                    case "roll-all":
+                        this.combat.rollAll();
+                        break;
+                    case "roll-npc":
+                        this.combat.rollNPC();
+                        break;
+                    case "reset":
+                        this.combat.resetAll();
+                        break;
+                    case "configure":
+                        new CombatTrackerConfig().render(true);
+                        break;
+                    case "start-combat":
+                        this.combat.startCombat();
+                        break;
+                }
+            });
+        });
     }
 
     _onRenderCombatTracker() {
@@ -137,6 +174,9 @@ export class CombatDock extends Application {
     _onCombatTurn(combat, updates, update) {
         if(!("turn" in updates) && !("round" in updates)) return;
         const combatantsContainer = this.element[0].querySelector("#combatants");
+        const currentSize = combatantsContainer.getBoundingClientRect();
+        combatantsContainer.style.minWidth = currentSize.width + "px";
+        combatantsContainer.style.minHeight = currentSize.height + "px";
         //find combatant with lowest order
         const first = Array.from(combatantsContainer.children).reduce((a, b) => a.style.order < b.style.order ? a : b, combatantsContainer.children[0]);
         const last = Array.from(combatantsContainer.children).reduce((a, b) => a.style.order > b.style.order ? a : b, combatantsContainer.children[0]);
@@ -146,6 +186,10 @@ export class CombatDock extends Application {
         setTimeout(() => {
             this.updateOrder();
             el.classList.remove("collapsed")
+            setTimeout(() => {
+                combatantsContainer.style.minWidth = "";
+                combatantsContainer.style.minHeight = "";
+            }, 200);
         }, 200);
     }
 
@@ -155,7 +199,7 @@ export class CombatDock extends Application {
 
     async close(...args) {
         this.removeHooks();
-        if (this.element) this.element[0].remove();
+        if (this.element[0]) this.element[0].remove();
         this._closed = true;
         return super.close(...args);
     }

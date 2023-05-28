@@ -8,7 +8,11 @@
         border-top-width: 0;
         opacity: 1;
         position: relative;
-        transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out, margin 0.2s ease-in-out, left 0.2s ease-in-out;
+        transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out, margin 0.2s ease-in-out, left 0.2s ease-in-out, border-color 0.1s ease-in-out;
+
+        &:hover{
+            border-color: rgba(255, 255, 255, 0.616);
+        }
 
         &.visible{
             opacity: 0.5;
@@ -74,6 +78,32 @@
         background-size: cover;
         background-position: center;
         position: relative;
+
+        & .effects-container{
+            position: absolute;
+            top: 0;
+            right: 0;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            width: 20%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+            padding: 0.1rem;
+            opacity: 0.85;
+
+            & li{
+                width: 100%;
+                aspect-ratio: 1;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 10%;
+            }
+        }
 
         & .tracked-attribute-text-container {
             position: absolute;
