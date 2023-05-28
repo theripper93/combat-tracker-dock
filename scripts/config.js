@@ -26,7 +26,7 @@ export function registerSettings() {
     game.settings.register(MODULE_ID, "portraitSize", {
         name: "combat-tracker-dock.settings.portraitSize.name",
         hint: "combat-tracker-dock.settings.portraitSize.hint",
-        scope: "world",
+        scope: "client",
         config: true,
         type: String,
         choices: {
@@ -38,7 +38,6 @@ export function registerSettings() {
         },
         default: "70px",
         onChange: () => setPortraitSize(),
-
     });
 
     setPortraitSize();
