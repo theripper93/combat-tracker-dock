@@ -5,10 +5,19 @@
     pointer-events: all;
     position: absolute;
     width: 100%;
-    overflow: hidden;
+    overflow-x: visible;
+    overflow-y: visible;
 
     & #combatants{
         display: flex;
+    }
+
+    & .separator{
+        height: 100%;
+        border: 1px solid white;
+        opacity: 0.7;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
     }
 
 }

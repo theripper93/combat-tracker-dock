@@ -1,1 +1,18 @@
-<div class="combatant-wrapper {{css}}" style="background-image: url('{{img}}');"></div>
+<div class="combatant-wrapper" style="background-image: url('{{img}}');">
+    {{#if resource.max}}
+    <div class="tracked-attribute-bar">
+        <div class="tracked-attribute-bar-max"></div>
+        <div class="tracked-attribute-bar-current" style="height: {{resource.percentage}}%;"></div>
+    </div>
+    {{/if}}
+    <div class="tracked-attribute-text-container">
+        <i class="tracked-attribute-text-value">{{resource.value}}</i>
+        {{#if resource.max}}
+        <i>/</i>
+        <i>{{resource.max}}</i>
+        {{/if}}
+    </div>
+    {{#if hasPlayerOwner}}
+    <div class="image-border"></div>
+    {{/if}}
+</div>

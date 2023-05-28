@@ -11,6 +11,10 @@
                     "90px": "Large",
                     "110px": "Huge"
                 }
+            },
+            "showDispositionColor": {
+                "name": "Show Disposition Color",
+                "hint": "Show the disposition in the bottom border of the portrait."
             }
         }
     }

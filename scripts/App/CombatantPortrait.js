@@ -52,48 +52,54 @@ export class CombatantPortrait {
 
     async renderInner() {
         const data = await this.getData();
-        const template = await renderTemplate("modules/combat-tracker-dock/templates/combatant-portrait.hbs", {...data});
-        const tooltip = await renderTemplate("modules/combat-tracker-dock/templates/combatant-tooltip.hbs", {...data});
+        this.element.classList.toggle("hidden", !data);
+        if (!data) {
+            this.element.innerHTML = "";
+            return;
+        }
+        const template = await renderTemplate("modules/combat-tracker-dock/templates/combatant-portrait.hbs", { ...data });
+        const tooltip = await renderTemplate("modules/combat-tracker-dock/templates/combatant-tooltip.hbs", { ...data });
         this.element.innerHTML = template;
         this.element.setAttribute("data-tooltip", tooltip);
         this.element.classList.toggle("active", data.css.includes("active"));
-        this.element.classList.toggle("hidden", data.css.includes("hidden"));
+        this.element.classList.toggle("visible", data.css.includes("hidden"));
         this.element.classList.toggle("defeated", data.css.includes("defeated"));
+        this.element.style.borderBottomColor = this.getBorderColor(this.token.document);
     }
 
     getResource(resource = null) {
         if (!this.actor || !this.combat) return null;
-        
+
         resource = resource ?? this.combat.settings.resource;
 
         let max, value, percentage;
-        
-        max = foundry.utils.getProperty(this.actor.system, resource+".max") ?? foundry.utils.getProperty(this.actor.system, resource.replace("value", "")+"max")
 
-        value = foundry.utils.getProperty(this.actor.system, resource) ?? foundry.utils.getProperty(this.actor.system, resource+".value")
+        max = foundry.utils.getProperty(this.actor.system, resource + ".max") ?? foundry.utils.getProperty(this.actor.system, resource.replace("value", "") + "max");
 
-        if(max !== undefined && value !== undefined) percentage = Math.round((value / max) * 100);
+        value = foundry.utils.getProperty(this.actor.system, resource) ?? foundry.utils.getProperty(this.actor.system, resource + ".value");
 
-        return {max, value, percentage};
+        if (max !== undefined && value !== undefined) percentage = Math.round((value / max) * 100);
+
+        return { max, value, percentage };
     }
 
     getData() {
         // Format information about each combatant in the encounter
         let hasDecimals = false;
         const combatant = this.combatant;
-        if (!combatant.visible) return null;
+        if (!combatant.visible && !game.user.isGM) return null;
         const trackedAttributes = game.settings.get(MODULE_ID, "attributes").map((a) => {
-
             const resourceData = this.getResource(a.attr);
             const iconHasExtension = a.icon.includes(".");
             return {
                 ...resourceData,
                 icon: iconHasExtension ? `<img src="${a.icon}" />` : `<i class="${a.icon}"></i>`,
                 units: a.units || "",
-            }
+            };
         });
         // Prepare turn data
-        const resource = combatant.permission >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER ? this.getResource() : null;
+        const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
+        const resource = hasPermission ? this.getResource() : null;
         const turn = {
             id: combatant.id,
             name: combatant.name,
@@ -105,6 +111,8 @@ export class CombatantPortrait {
             initiative: combatant.initiative,
             hasRolled: combatant.initiative !== null,
             hasResource: resource !== null,
+            hasPlayerOwner: combatant.actor?.hasPlayerOwner,
+            hasPermission: hasPermission,
             resource: resource,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
             attributes: trackedAttributes,
@@ -115,25 +123,42 @@ export class CombatantPortrait {
         // Actor and Token status effects
         turn.effects = new Set();
         if (combatant.token) {
-            combatant.token.effects.forEach((e) => turn.effects.add(
-                {
+            combatant.token.effects.forEach((e) =>
+                turn.effects.add({
                     icon: e,
-                    label: CONFIG.statusEffects.find((s) => s.icon === e)?.label ?? "",
-                }));
+                    label: CONFIG.statusEffects.find((s) => s.icon === e)?.name ?? "",
+                }),
+            );
             if (combatant.token.overlayEffect) turn.effects.add(combatant.token.overlayEffect);
         }
         if (combatant.actor) {
             for (const effect of combatant.actor.temporaryEffects) {
                 if (effect.statuses.has(CONFIG.specialStatusEffects.DEFEATED)) turn.defeated = true;
-                else if (effect.icon) turn.effects.add({icon: effect.icon, label: effect.label});
+                else if (effect.icon) turn.effects.add({ icon: effect.icon, label: effect.label });
             }
         }
 
         // Format initiative numeric precision
         const precision = CONFIG.Combat.initiative.decimals;
-        if(turn.hasRolled) turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);
+        if (turn.hasRolled) turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);
 
         return turn;
+    }
+
+    getBorderColor(tokenDocument) {
+        if(!game.settings.get(MODULE_ID, "showDispositionColor")) return "#000";
+        let color;
+        const d = tokenDocument.disposition;
+        const colors = CONFIG.Canvas.dispositionColors;
+        if (!game.user.isGM && this.isOwner) color = colors.CONTROLLED;
+        else if (this.actor?.hasPlayerOwner) color = colors.PARTY;
+        else if (d === CONST.TOKEN_DISPOSITIONS.FRIENDLY) color = colors.FRIENDLY;
+        else if (d === CONST.TOKEN_DISPOSITIONS.NEUTRAL) color =  colors.NEUTRAL;
+        else if (d === CONST.TOKEN_DISPOSITIONS.HOSTILE) color =  colors.HOSTILE;
+        else if (d === CONST.TOKEN_DISPOSITIONS.SECRET && this.isOwner) color =  colors.SECRET;
+        else color = colors.NEUTRAL;
+        color = new Color(color).toString();
+        return color;
     }
 
     destroy() {

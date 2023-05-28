@@ -1,18 +1,22 @@
 <div>
     {{#if name}}
-        <h3>{{name}}</h3>
+    <h3>{{name}}</h3>
     {{/if}}
     <ul>
-    {{#if description}}
+        {{#if description}}
         <p>{{ description}}</p>
-    {{/if}}
-    {{#each attributes as |attribute|}}
-        <li>{{{attribute.icon}}}: {{#if attribute.max}}{{attribute.value}}/{{attribute.max}}{{else}}{{attribute.value}}{{/if}}  {{attribute.units}}</li>
-    {{/each}}
+        {{/if}}
+        {{#if hasPermission}}
+        {{#each attributes as |attribute|}}
+        <li>{{{attribute.icon}}}: {{#if
+            attribute.max}}{{attribute.value}}/{{attribute.max}}{{else}}{{attribute.value}}{{/if}} {{attribute.units}}
+        </li>
+        {{/each}}
+        {{/if}}
     </ul>
     <ul>
         {{#each effects as |effect|}}
-            <li><img src="{{effect.icon}}" alt="">: {{{localize effect.label}}}</li>
+        <li><img src="{{effect.icon}}" alt="">: {{{localize effect.label}}}</li>
         {{/each}}
     </ul>
 </div>

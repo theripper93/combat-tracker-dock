@@ -42,6 +42,15 @@ export function registerSettings() {
     });
 
     setPortraitSize();
+
+    game.settings.register(MODULE_ID, "showDispositionColor", {
+        name: "combat-tracker-dock.settings.showDispositionColor.name",
+        hint: "combat-tracker-dock.settings.showDispositionColor.hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true,
+    });
 }
 
 function setPortraitSize() {

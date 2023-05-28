@@ -48,11 +48,7 @@ export class CombatDock extends Application {
                 fn: this.updateCombatant.bind(this),
             },
             {
-                hook: "combatTurn",
-                fn: this._onCombatTurn.bind(this),
-            },
-            {
-                hook: "combatRound",
+                hook: "updateCombat",
                 fn: this._onCombatTurn.bind(this),
             },
             {
@@ -83,6 +79,9 @@ export class CombatDock extends Application {
         this.portraits.forEach(p => combatantsContainer.appendChild(p.element));
         const isEven = this.portraits.length % 2 === 0;
         this.element[0].classList.toggle("even", isEven);
+        const separator = document.createElement("div");
+        separator.classList.add("separator");
+        combatantsContainer.appendChild(separator);
         this.updateOrder();
     }
 
@@ -105,12 +104,19 @@ export class CombatDock extends Application {
         const halfLength = Math.floor(combatants.length / 2);
         const orderedCombatants = tempCombatantList.slice(currentCombatantIndex - halfLength, currentCombatantIndex + halfLength + 1);
         
+        const lastCombatant = this.sortedCombatants[this.sortedCombatants.length - 1];
 
         this.portraits.forEach(p => {
             const combatant = orderedCombatants.find(c => c === p.combatant);
             const index = orderedCombatants.findIndex(c => c === combatant);
-            p.element.style.setProperty("order", index * 100);
+            p.element.style.setProperty("order", index*100);
         });
+
+        //get last combatant's order
+        const lastCombatantOrder = this.portraits.find(p => p.combatant === lastCombatant).element.style.order;
+        //set separator's order to last combatant's order + 1
+        const separator = this.element[0].querySelector(".separator");
+        separator.style.setProperty("order", parseInt(lastCombatantOrder) + 1);
     }
 
     activateListeners(html) {
@@ -124,7 +130,8 @@ export class CombatDock extends Application {
         this.portraits.forEach(p => p.renderInner());
     }
 
-    _onCombatTurn(combat, turn, update) {
+    _onCombatTurn(combat, updates, update) {
+        if(!("turn" in updates) && !("round" in updates)) return;
         const combatantsContainer = this.element[0].querySelector("#combatants");
         //find combatant with lowest order
         const first = Array.from(combatantsContainer.children).reduce((a, b) => a.style.order < b.style.order ? a : b, combatantsContainer.children[0]);
