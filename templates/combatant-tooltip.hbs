@@ -1,0 +1,12 @@
+<div class="combat-dock-tooltip">
+    <ul>
+    {{#each attributes as |attribute|}}
+        <li>{{{attribute.icon}}}: {{#if attribute.max}}{{attribute.value}}/{{attribute.max}}{{else}}{{attribute.value}}{{/if}}  {{attribute.units}}</li>
+    {{/each}}
+    </ul>
+    <ul>
+        {{#each effects as |effect|}}
+            <li><img src="{{effect.icon}}" alt="">: {{{localize effect.label}}}</li>
+        {{/each}}
+    </ul>
+</div>
