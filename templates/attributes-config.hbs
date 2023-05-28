@@ -1,20 +1,23 @@
 <form action="">
+    <p class="notes">
+        {{{localize "combat-tracker-dock.settings.attributesMenu.form.notes"}}}
+    </p>
     <ul style="list-style: none; padding: 0; margin: 0;">
     {{#each attributes}}
     <li>
     <fieldset style="border-radius: 5px; margin-bottom: 0.2rem;">
         <div class="form-group">
-            <label for="attr">{{{localize "combat-tracker-dock.settings.attributesMenu.form.attr.name"}}}</label>
-            <input type="text" name="attr" placeholder="" value="{{attr}}">
+            <label for="{{@index}}.attr">{{{localize "combat-tracker-dock.settings.attributesMenu.form.attr.name"}}}</label>
+            <input type="text" class="attr" name="{{@index}}.attr" placeholder="" value="{{attr}}">
         </div>
         <div class="form-group">
-            <label for="icon">{{{localize "combat-tracker-dock.settings.attributesMenu.form.icon.name"}}}</label>
-            <input type="text" name="icon" placeholder="" value="{{icon}}">
-            {{filePicker type="image" target="icon"}}
+            <label for="{{@index}}.icon">{{{localize "combat-tracker-dock.settings.attributesMenu.form.icon.name"}}}</label>
+            <input type="text" class="icon" name="{{@index}}.icon" placeholder="" value="{{icon}}">
+            {{filePicker type="image" target=(concat @index ".icon")}}
         </div>
         <div class="form-group">
-            <label for="units">{{{localize "combat-tracker-dock.settings.attributesMenu.form.units.name"}}}</label>
-            <input type="text" name="units" placeholder="" value="{{units}}">
+            <label for="{{@index}}.units">{{{localize "combat-tracker-dock.settings.attributesMenu.form.units.name"}}}</label>
+            <input type="text" class="units" name="{{@index}}.units" placeholder="" value="{{units}}">
         </div>
     </fieldset>
     </li>

@@ -31,7 +31,8 @@
                         "name": "Units"
                     },
                     "save": "Save & Close",
-                    "add": "Add Attribute"
+                    "add": "Add Attribute",
+                    "notes": "Leave the Attribute field blank to remove it."
                 }
             }
         }
