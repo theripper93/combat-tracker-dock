@@ -176,23 +176,52 @@ export class CombatDock extends Application {
     _onCombatTurn(combat, updates, update) {
         if(!("turn" in updates) && !("round" in updates)) return;
         const combatantsContainer = this.element[0].querySelector("#combatants");
+        const filteredChildren = Array.from(combatantsContainer.children).filter(c => !c.classList.contains("separator"));
         const currentSize = combatantsContainer.getBoundingClientRect();
         combatantsContainer.style.minWidth = currentSize.width + "px";
         combatantsContainer.style.minHeight = currentSize.height + "px";
         //find combatant with lowest order
-        const first = Array.from(combatantsContainer.children).reduce((a, b) => a.style.order < b.style.order ? a : b, combatantsContainer.children[0]);
-        const last = Array.from(combatantsContainer.children).reduce((a, b) => a.style.order > b.style.order ? a : b, combatantsContainer.children[0]);
 
-        const el = update.direction === 1 ? first : last;
-        el.classList.add("collapsed");
-        setTimeout(() => {
-            this.updateOrder();
-            el.classList.remove("collapsed")
+        const childrenByHighestOrder = [...filteredChildren].sort((a, b) => b.style.order - a.style.order);
+        const childrenByLowestOrder = [...filteredChildren].sort((a, b) => a.style.order - b.style.order);
+
+        const currentCombatant = this.combat.combatant;
+        const currentIndex = this.sortedCombatants.findIndex(c => c === currentCombatant);
+        let nextDefeatedCount = 0;
+        let previousDefeatedCount = 0;
+        const sortedCombatants = this.sortedCombatants;
+        for (let i = 0 + 1; i < sortedCombatants.length; i++) {
+            const index = (currentIndex + i) % sortedCombatants.length;
+            const combatant = sortedCombatants[index];
+            if(combatant.defeated) previousDefeatedCount++;
+            else break;
+        }
+
+        for (let i = 0 + 1; i < sortedCombatants.length; i++) {
+            const index = (currentIndex - i + sortedCombatants.length) % sortedCombatants.length;
+            const combatant = sortedCombatants[index];
+            if (combatant.defeated) nextDefeatedCount++;
+            else break;
+        }
+
+        const nextDefeatedCombatants = childrenByLowestOrder.slice(0, nextDefeatedCount+1);
+        const previousDefeatedCombatants = childrenByHighestOrder.slice(0, previousDefeatedCount+1);
+        
+        const first = nextDefeatedCount != 0 ? nextDefeatedCombatants : [[...filteredChildren].reduce((a, b) => a.style.order < b.style.order ? a : b, combatantsContainer.children[0])];
+        const last = previousDefeatedCount != 0 ? previousDefeatedCombatants : [[...filteredChildren].reduce((a, b) => a.style.order > b.style.order ? a : b, combatantsContainer.children[0])];
+
+        const els = update.direction === 1 ? first : last;
+        for (const el of els) {
+            el.classList.add("collapsed");
             setTimeout(() => {
-                combatantsContainer.style.minWidth = "";
-                combatantsContainer.style.minHeight = "";
+                this.updateOrder();
+                el.classList.remove("collapsed")
+                setTimeout(() => {
+                    combatantsContainer.style.minWidth = "";
+                    combatantsContainer.style.minHeight = "";
+                }, 200);
             }, 200);
-        }, 200);
+        }
     }
 
     _onDeleteCombat(combat) {
