@@ -5,19 +5,21 @@ export class CombatantPortrait {
     constructor(combatant) {
         this.combatant = combatant;
         this.actor = combatant.actor;
-        this.token = combatant.token.object;
+        this.token = combatant.token?.object;
         this.combat = combatant.combat;
         this.element = document.createElement("div");
         this.element.classList.add("combatant-portrait");
         this.element.setAttribute("data-combatant-id", combatant.id);
         this.element.setAttribute("data-tooltip-class", "combat-dock-tooltip");
+        this.resolve = null;
+        this.ready = new Promise((res) => (this.resolve = res));
         this.activateListeners();
         this.renderInner();
     }
 
     get img() {
-        const useActor = true;
-        return useActor ? this.combatant.actor.img : this.combatant.img;
+        const useActor = game.settings.get(MODULE_ID, "portraitImage") === "actor";
+        return (useActor ? this.combatant.actor?.img : this.combatant.img) ?? this.combatant.img;
     }
 
     activateListeners() {
@@ -30,6 +32,7 @@ export class CombatantPortrait {
     }
 
     _onClick(event) {
+        if(!this.token) return;
         const isLeftClick = event.button === 0;
         const isRightClick = event.button === 2;
         if (isLeftClick) this.token._onClickLeft(event);
@@ -37,6 +40,7 @@ export class CombatantPortrait {
     }
 
     _onDoubleClick(event) {
+        if(!this.token) return;
         const isLeftClick = event.button === 0;
         const isRightClick = event.button === 2;
         if (isLeftClick) this.token._onClickLeft2(event);
@@ -44,10 +48,12 @@ export class CombatantPortrait {
     }
 
     _onHoverIn(event) {
+        if(!this.token) return;
         this.token._onHoverIn(event);
     }
 
     _onHoverOut(event) {
+        if(!this.token) return;
         this.token._onHoverOut(event);
     }
 
@@ -91,6 +97,7 @@ export class CombatantPortrait {
                 }
             });
         });
+        this.resolve(true);
     }
 
     getResource(resource = null) {

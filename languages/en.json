@@ -3,7 +3,7 @@
         "settings": {
             "portraitSize": {
                 "name": "Portrait Size",
-                "hint": "The size of the portrait in the combat tracker.",
+                "hint": "The maximum size of the portrait in the combat tracker. Note that the size of the portraits will be automatically reduced if there are too many combatants to fit on the screen.",
                 "choices": {
                     "30px": "Tiny",
                     "50px": "Small",
@@ -15,6 +15,26 @@
             "showDispositionColor": {
                 "name": "Show Disposition Color",
                 "hint": "Show the disposition in the bottom border of the portrait."
+            },
+            "portraitImageBorder": {
+                "name": "Player Border",
+                "hint": "Special border that will be shown for player characters. Leave blank to disable. If you wish to make a custom image, it's suggested you use the default one as reference for correct sizing."
+            },
+            "attributeColor": {
+                "name": "Attribute Color",
+                "hint": "The color of the main tracked attribute text and bar in the combat tracker. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #41AA7D."
+            },
+            "tooltipColor": {
+                "name": "Tooltip Color",
+                "hint": "The color scheme of the tooltip. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #888888."
+            },
+            "portraitImage": {
+                "name": "Portrait Image",
+                "hint": "Whether to use the Actor or Token image as the portrait.",
+                "choices": {
+                    "actor": "Actor",
+                    "token": "Token"
+                }
             },
             "attributesMenu": {
                 "name": "Tooltip Attributes",

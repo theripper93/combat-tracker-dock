@@ -9,6 +9,8 @@ Hooks.once('init', function () {
     CONFIG.combatTrackerDock = {
         CombatDock,
         CombatantPortrait,
+        INTRO_ANIMATION_DURATION: 1000,
+        INTRO_ANIMATION_DELAY: 0.25,
     }
 });
 

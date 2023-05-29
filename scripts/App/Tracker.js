@@ -1,3 +1,5 @@
+import { MODULE_ID } from "../main.js";
+
 export class CombatDock extends Application {
     constructor (combat) {
         super();
@@ -11,7 +13,9 @@ export class CombatDock extends Application {
         this.portraits = [];
         this.combat = combat ?? game.combat;
         this.hooks = [];
+        this._playAnimation = true;
         this.setHooks();
+        window.addEventListener("resize", this.autosize.bind(this));
     }
 
     static get defaultOptions() {
@@ -55,6 +59,10 @@ export class CombatDock extends Application {
             {
                 hook: "deleteCombat",
                 fn: this._onDeleteCombat.bind(this),
+            },
+            {
+                hook: "combatStart",
+                fn: this._onCombatStart.bind(this),
             }
         ]
         for (let hook of this.hooks) {
@@ -86,6 +94,61 @@ export class CombatDock extends Application {
         separator.classList.add("separator");
         combatantsContainer.appendChild(separator);
         this.updateOrder();
+        this.autosize();
+        if (this._playAnimation && this.sortedCombatants.length > 0) {
+            this._playAnimation = false;
+            const promises = this.portraits.map(p => p.ready);
+            Promise.all(promises).then(() => {
+                this.playIntroAnimation();
+            });
+        }
+    }
+
+    playIntroAnimation(easing = "cubic-bezier(0.22, 1, 0.36, 1)") {
+
+        const duration = CONFIG.combatTrackerDock.INTRO_ANIMATION_DURATION;
+        const delayMultiplier = CONFIG.combatTrackerDock.INTRO_ANIMATION_DELAY;
+
+        const playSlideInAnimation = (el, delay = 0) => {
+            el.style.transform = "translateY(-150%)";
+            const anim = el.animate(
+                [
+                    {transform: "translateY(-150%)"},
+                    {transform: "translateY(0)"},
+                ],
+                {
+                    duration: duration,
+                    easing: easing,
+                    //fill: "forwards",
+                    delay: delay,
+
+                },
+            );
+
+            anim.finished.then(() => {
+                el.style.transform = "";
+            });
+        }
+        
+        Array.from(this.element[0].querySelector("#combatants").children).forEach((el, index) => {
+            const order = parseInt(el.style.order);
+            const delay = (order / 100) * duration * delayMultiplier;
+            playSlideInAnimation(el, delay);
+        });
+        
+    }
+
+    autosize() {
+        const max = parseInt(game.settings.get(MODULE_ID, "portraitSize"));
+        const maxSpace = document.getElementById("ui-top").getBoundingClientRect().width * 0.9;
+        const combatantCount = this.sortedCombatants.length;
+        const portraitSize = Math.min(max, Math.floor((maxSpace / combatantCount)));
+
+
+        document.documentElement.style.setProperty(
+            "--combatant-portrait-size",
+            portraitSize/1.2 + "px"
+        );
     }
 
     updateCombatant(combatant, updates = {}) {
@@ -119,7 +182,7 @@ export class CombatDock extends Application {
         });
 
         //get last combatant's order
-        const lastCombatantOrder = this.portraits.find(p => p.combatant === lastCombatant).element.style.order;
+        const lastCombatantOrder = this.portraits.find(p => p.combatant === lastCombatant)?.element?.style?.order ?? 999999;
         //set separator's order to last combatant's order + 1
         const separator = this.element[0].querySelector(".separator");
         separator.style.setProperty("order", parseInt(lastCombatantOrder) + 1);
@@ -167,6 +230,7 @@ export class CombatDock extends Application {
                 }
             });
         });
+        this.autosize();
     }
 
     _onRenderCombatTracker() {
@@ -211,10 +275,19 @@ export class CombatDock extends Application {
         const last = previousDefeatedCount != 0 ? previousDefeatedCombatants : [[...filteredChildren].reduce((a, b) => a.style.order > b.style.order ? a : b, combatantsContainer.children[0])];
 
         const els = update.direction === 1 ? first : last;
+
+        if (this._playAnimation && this.sortedCombatants.length > 0) {
+            this._playAnimation = false;
+            this.updateOrder();
+            this.playIntroAnimation();
+            return;
+        }
+
+        setTimeout(() => this.updateOrder(), 200);
+
         for (const el of els) {
             el.classList.add("collapsed");
             setTimeout(() => {
-                this.updateOrder();
                 el.classList.remove("collapsed")
                 setTimeout(() => {
                     combatantsContainer.style.minWidth = "";
@@ -228,8 +301,13 @@ export class CombatDock extends Application {
         if(combat === this.combat) this.close();
     }
 
+    _onCombatStart(combat) {
+        if(combat === this.combat) this._playAnimation = true;
+    }
+
     async close(...args) {
         this.removeHooks();
+        window.removeEventListener("resize", this.autosize.bind(this));
         if (this.element[0]) this.element[0].remove();
         this._closed = true;
         return super.close(...args);
