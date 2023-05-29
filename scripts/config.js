@@ -1,27 +1,13 @@
 import {MODULE_ID} from "./main.js";
 import {AttributesConfig} from "./attributesConfig.js";
+import { defaultAttributesConfig } from "./systems.js";
 
 export function registerSettings() {
     game.settings.register(MODULE_ID, "attributes", {
         scope: "world",
         config: false,
         type: Array,
-        default: [
-            {
-                attr: "attributes.hp.value",
-                icon: "fa-solid fa-heart",
-                units: "HP",
-            },
-            {
-                attr: "attributes.ac.value",
-                icon: "fa-solid fa-shield",
-            },
-            {
-                attr: "attributes.movement.walk",
-                icon: "fa-solid fa-person-running-fast",
-                units: "ft.",
-            },
-        ],
+        default: defaultAttributesConfig[game.system.id] ?? [],
     });
 
     game.settings.registerMenu(MODULE_ID, "attributesMenu", {
