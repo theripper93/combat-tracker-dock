@@ -82,6 +82,15 @@
         background-position: center;
         position: relative;
 
+        & .portrait-initiative{
+            font-size: calc(var(--combatant-portrait-size) * 0.2);
+            position: absolute;
+            left: calc(var(--combatant-portrait-size) * 0.1);
+            color: var(--color-text-light-0);
+            opacity: 0.7;
+            text-shadow: 0px 0px 5px black;
+        }
+
         & .effects-container{
             position: absolute;
             top: 0;

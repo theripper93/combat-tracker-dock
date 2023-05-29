@@ -2,6 +2,8 @@
 
     <i {{#if hasRolled}}style="display: none;"{{/if}} class="fa-regular fa-dice-d20 roll-initiative"></i>
     
+    <span class="portrait-initiative" {{#unless showInitiative}}style="display: none;"{{/unless}}>{{initiative}}</span>
+
     <ul class="effects-container" {{#unless hasEffects}}style="display:none;"{{/unless}}>
         {{#each effects as |effect|}}
         <li style="background-image: url('{{effect.icon}}');"></li>
@@ -18,10 +20,10 @@
 
         <div class="combatant-buttons">
             {{#if isGM}}
-            <i class="fas fa-eye-slash action" data-action="toggle-hidden"></i>
-            <i class="fas fa-skull action" data-action="toggle-defeated"></i>
+            <i class="fas fa-eye-slash action" data-tooltip="COMBAT.ToggleVis" data-action="toggle-hidden"></i>
+            <i class="fas fa-skull action" data-tooltip="COMBAT.ToggleDead" data-action="toggle-defeated"></i>
             {{/if}}
-            <i class="fas fa-bullseye-arrow action" data-action="ping"></i>
+            <i class="fas fa-bullseye-arrow action" data-tooltip="COMBAT.PingCombatant" data-action="ping"></i>
         </div>
 
     <div class="tracked-attribute-text-container">

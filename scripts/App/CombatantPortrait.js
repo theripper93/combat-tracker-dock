@@ -147,6 +147,7 @@ export class CombatantPortrait {
             hasResource: resource !== null,
             hasPlayerOwner: combatant.actor?.hasPlayerOwner,
             hasPermission: hasPermission,
+            showInitiative: true,
             resource: resource,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
             attributes: trackedAttributes,
