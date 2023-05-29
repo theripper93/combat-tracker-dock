@@ -77,6 +77,15 @@ export function registerSettings() {
         default: true,
     });
 
+    game.settings.register(MODULE_ID, "showInitiativeOnPortrait", {
+        name: "combat-tracker-dock.settings.showInitiativeOnPortrait.name",
+        hint: "combat-tracker-dock.settings.showInitiativeOnPortrait.hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true,
+    });
+
     game.settings.register(MODULE_ID, "portraitImage", {
         name: "combat-tracker-dock.settings.portraitImage.name",
         hint: "combat-tracker-dock.settings.portraitImage.hint",

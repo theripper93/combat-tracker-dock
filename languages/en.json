@@ -16,6 +16,10 @@
                 "name": "Show Disposition Color",
                 "hint": "Show the disposition in the bottom border of the portrait."
             },
+            "showInitiativeOnPortrait": {
+                "name": "Show Initiative on Portrait",
+                "hint": "Show the initiative value in the top left corner of the portrait. You can always see the initiative in the Tooltip!"
+            },
             "portraitImageBorder": {
                 "name": "Player Border",
                 "hint": "Special border that will be shown for player characters. Leave blank to disable. If you wish to make a custom image, it's suggested you use the default one as reference for correct sizing."
