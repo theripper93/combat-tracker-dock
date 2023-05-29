@@ -1,0 +1,64 @@
+{
+    "combat-tracker-dock": {
+        "settings": {
+            "attributeColor": {
+                "hint": "Die Farbe des Hauptattributtextes und der Leiste im Kampf-Tracker. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
+                "name": "Attributfarbe"
+            },
+            "attributesMenu": {
+                "form": {
+                    "add": "Attribute hinzufügen",
+                    "attr": {
+                        "name": "Attribut"
+                    },
+                    "icon": {
+                        "name": "Symbol"
+                    },
+                    "notes": "Lassen Sie das Feld „Attribut“ leer, um es zu entfernen.",
+                    "save": "Speichern",
+                    "units": {
+                        "name": "Einheiten"
+                    }
+                },
+                "hint": "Konfigurieren Sie benutzerdefinierte Attribute, die im Tooltip angezeigt werden sollen.",
+                "label": "Attribute konfigurieren",
+                "name": "Tooltip-Attribute"
+            },
+            "portraitImage": {
+                "choices": {
+                    "actor": "Schauspieler",
+                    "token": "Zeichen"
+                },
+                "hint": "Ob das Schauspieler- oder Token-Bild als Porträt verwendet werden soll.",
+                "name": "Porträtbild"
+            },
+            "portraitImageBorder": {
+                "hint": "Spezieller Rahmen, der für Spielercharaktere angezeigt wird. \nZum Deaktivieren leer lassen. \nWenn Sie ein benutzerdefiniertes Bild erstellen möchten, wird empfohlen, das Standardbild als Referenz für die richtige Größe zu verwenden.",
+                "name": "Spielergrenze"
+            },
+            "portraitSize": {
+                "choices": {
+                    "110px": "Riesig",
+                    "30px": "Winzig",
+                    "50px": "Klein",
+                    "70px": "Normal",
+                    "90px": "Groß"
+                },
+                "hint": "Die maximale Größe des Porträts im Kampf-Tracker. \nBeachten Sie, dass die Größe der Porträts automatisch reduziert wird, wenn zu viele Kämpfer vorhanden sind, um auf den Bildschirm zu passen.",
+                "name": "Porträtgröße"
+            },
+            "showDispositionColor": {
+                "hint": "Zeigen Sie die Disposition am unteren Rand des Porträts an.",
+                "name": "Dispositionsfarbe anzeigen"
+            },
+            "showInitiativeOnPortrait": {
+                "hint": "Zeigen Sie den Initiativewert in der oberen linken Ecke des Porträts an. \nSie können die Initiative immer im Tooltip sehen!",
+                "name": "Zeigen Sie Initiative im Porträt"
+            },
+            "tooltipColor": {
+                "hint": "Das Farbschema des Tooltips. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
+                "name": "Tooltip-Farbe"
+            }
+        }
+    }
+}

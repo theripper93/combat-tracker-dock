@@ -1,0 +1,64 @@
+{
+    "combat-tracker-dock": {
+        "settings": {
+            "attributeColor": {
+                "hint": "Il colore del testo e della barra dell'attributo tracciato principale nel tracciatore di combattimento. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
+                "name": "Colore attributo"
+            },
+            "attributesMenu": {
+                "form": {
+                    "add": "Aggiungi attributo",
+                    "attr": {
+                        "name": "Attributo"
+                    },
+                    "icon": {
+                        "name": "Icona"
+                    },
+                    "notes": "Lascia vuoto il campo Attributo per rimuoverlo.",
+                    "save": "Salva",
+                    "units": {
+                        "name": "Unità"
+                    }
+                },
+                "hint": "Configura gli attributi personalizzati da mostrare nella descrizione comando.",
+                "label": "Configura attributi",
+                "name": "Attributi descrizione comando"
+            },
+            "portraitImage": {
+                "choices": {
+                    "actor": "Attore",
+                    "token": "Gettone"
+                },
+                "hint": "Se utilizzare l'immagine dell'attore o del token come ritratto.",
+                "name": "Immagine ritratto"
+            },
+            "portraitImageBorder": {
+                "hint": "Bordo speciale che verrà mostrato per i personaggi dei giocatori. \nLascia vuoto per disabilitare. \nSe desideri creare un'immagine personalizzata, ti suggeriamo di utilizzare quella predefinita come riferimento per il corretto dimensionamento.",
+                "name": "Bordo del giocatore"
+            },
+            "portraitSize": {
+                "choices": {
+                    "110px": "Enorme",
+                    "30px": "Minuscolo",
+                    "50px": "Piccolo",
+                    "70px": "Normale",
+                    "90px": "Grande"
+                },
+                "hint": "La dimensione massima del ritratto nell'indicatore di combattimento. \nTieni presente che le dimensioni dei ritratti verranno automaticamente ridotte se ci sono troppi combattenti per adattarsi allo schermo.",
+                "name": "Dimensione verticale"
+            },
+            "showDispositionColor": {
+                "hint": "Mostra la disposizione nel bordo inferiore del ritratto.",
+                "name": "Mostra colore disposizione"
+            },
+            "showInitiativeOnPortrait": {
+                "hint": "Mostra il valore dell'iniziativa nell'angolo in alto a sinistra del ritratto. \nPuoi sempre vedere l'iniziativa nel Tooltip!",
+                "name": "Mostra Iniziativa su Ritratto"
+            },
+            "tooltipColor": {
+                "hint": "La combinazione di colori della descrizione comandi. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
+                "name": "Colore descrizione comandi"
+            }
+        }
+    }
+}

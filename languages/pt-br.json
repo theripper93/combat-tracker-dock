@@ -1,0 +1,64 @@
+{
+    "combat-tracker-dock": {
+        "settings": {
+            "attributeColor": {
+                "hint": "A cor do texto e da barra do atributo rastreado principal no rastreador de combate. \nVocê pode usar qualquer valor de cor CSS válido (por exemplo.",
+                "name": "Cor do atributo"
+            },
+            "attributesMenu": {
+                "form": {
+                    "add": "Adicionar atributo",
+                    "attr": {
+                        "name": "Atributo"
+                    },
+                    "icon": {
+                        "name": "Ícone"
+                    },
+                    "notes": "Deixe o campo Atributo em branco para removê-lo.",
+                    "save": "Salvar",
+                    "units": {
+                        "name": "Unidades"
+                    }
+                },
+                "hint": "Configure atributos personalizados para mostrar na dica de ferramenta.",
+                "label": "Configurar atributos",
+                "name": "Atributos de dica de ferramenta"
+            },
+            "portraitImage": {
+                "choices": {
+                    "actor": "Ator",
+                    "token": "Símbolo"
+                },
+                "hint": "Se deve usar a imagem Actor ou Token como o retrato.",
+                "name": "Imagem de retrato"
+            },
+            "portraitImageBorder": {
+                "hint": "Borda especial que será mostrada para os personagens dos jogadores. \nDeixe em branco para desativar. \nSe você deseja fazer uma imagem personalizada, sugerimos que você use o padrão como referência para dimensionamento correto.",
+                "name": "borda do jogador"
+            },
+            "portraitSize": {
+                "choices": {
+                    "110px": "Enorme",
+                    "30px": "Pequeno",
+                    "50px": "Pequeno",
+                    "70px": "Normal",
+                    "90px": "Grande"
+                },
+                "hint": "O tamanho máximo do retrato no rastreador de combate. \nObserve que o tamanho dos retratos será reduzido automaticamente se houver muitos combatentes para caber na tela.",
+                "name": "Tamanho retrato"
+            },
+            "showDispositionColor": {
+                "hint": "Mostre a disposição na borda inferior do retrato.",
+                "name": "Mostrar cor de disposição"
+            },
+            "showInitiativeOnPortrait": {
+                "hint": "Mostre o valor da iniciativa no canto superior esquerdo do retrato. \nVocê sempre pode ver a iniciativa na dica de ferramenta!",
+                "name": "Mostrar Iniciativa no Retrato"
+            },
+            "tooltipColor": {
+                "hint": "O esquema de cores da dica de ferramenta. \nVocê pode usar qualquer valor de cor CSS válido (por exemplo.",
+                "name": "Cor da dica de ferramenta"
+            }
+        }
+    }
+}

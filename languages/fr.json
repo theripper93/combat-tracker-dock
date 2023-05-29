@@ -1,0 +1,64 @@
+{
+    "combat-tracker-dock": {
+        "settings": {
+            "attributeColor": {
+                "hint": "La couleur du texte et de la barre des principaux attributs suivis dans le suivi des combats. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
+                "name": "Couleur d'attribut"
+            },
+            "attributesMenu": {
+                "form": {
+                    "add": "Ajouter un attribut",
+                    "attr": {
+                        "name": "Attribut"
+                    },
+                    "icon": {
+                        "name": "Icône"
+                    },
+                    "notes": "Laissez le champ Attribut vide pour le supprimer.",
+                    "save": "Sauvegarder",
+                    "units": {
+                        "name": "Unités"
+                    }
+                },
+                "hint": "Configurez les attributs personnalisés à afficher dans l'info-bulle.",
+                "label": "Configurer les attributs",
+                "name": "Attributs d'info-bulle"
+            },
+            "portraitImage": {
+                "choices": {
+                    "actor": "Acteur",
+                    "token": "Jeton"
+                },
+                "hint": "S'il faut utiliser l'image de l'acteur ou du jeton comme portrait.",
+                "name": "Portrait"
+            },
+            "portraitImageBorder": {
+                "hint": "Bordure spéciale qui sera affichée pour les personnages joueurs. \nLaissez vide pour désactiver. \nSi vous souhaitez créer une image personnalisée, il est suggéré d'utiliser celle par défaut comme référence pour un dimensionnement correct.",
+                "name": "Bordure du joueur"
+            },
+            "portraitSize": {
+                "choices": {
+                    "110px": "Énorme",
+                    "30px": "Minuscule",
+                    "50px": "Petit",
+                    "70px": "Normal",
+                    "90px": "Grand"
+                },
+                "hint": "La taille maximale du portrait dans le suivi des combats. \nNotez que la taille des portraits sera automatiquement réduite s'il y a trop de combattants pour tenir sur l'écran.",
+                "name": "Taille du portrait"
+            },
+            "showDispositionColor": {
+                "hint": "Montrez la disposition dans la bordure inférieure du portrait.",
+                "name": "Afficher la couleur de disposition"
+            },
+            "showInitiativeOnPortrait": {
+                "hint": "Affichez la valeur d'initiative dans le coin supérieur gauche du portrait. \nVous pouvez toujours voir l'initiative dans l'info-bulle !",
+                "name": "Afficher l'initiative sur le portrait"
+            },
+            "tooltipColor": {
+                "hint": "Le jeu de couleurs de l'info-bulle. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
+                "name": "Couleur de l'info-bulle"
+            }
+        }
+    }
+}
