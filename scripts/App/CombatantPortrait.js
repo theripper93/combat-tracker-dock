@@ -107,6 +107,8 @@ export class CombatantPortrait {
 
         let max, value, percentage;
 
+        if(!resource) { max, value, percentage };
+
         max = foundry.utils.getProperty(this.actor.system, resource + ".max") ?? foundry.utils.getProperty(this.actor.system, resource.replace("value", "") + "max");
 
         value = foundry.utils.getProperty(this.actor.system, resource) ?? foundry.utils.getProperty(this.actor.system, resource + ".value");
