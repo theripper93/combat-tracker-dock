@@ -150,6 +150,7 @@ export class CombatantPortrait {
             hasPlayerOwner: combatant.actor?.hasPlayerOwner,
             hasPermission: hasPermission,
             showInitiative: game.settings.get(MODULE_ID, "showInitiativeOnPortrait"),
+            isInitiativeNaN: isNaN(combatant.initiative) || combatant.initiative === null || combatant.initiative === undefined,
             resource: resource,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
             attributes: trackedAttributes,

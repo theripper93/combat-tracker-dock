@@ -2,7 +2,7 @@
 
     <i {{#if hasRolled}}style="display: none;"{{/if}} class="fa-regular fa-dice-d20 roll-initiative"></i>
     
-    <div class="portrait-initiative" {{#unless showInitiative}}style="display: none;"{{/unless}}>
+    <div class="portrait-initiative" {{#unless showInitiative}}style="display: none;"{{/unless}} {{#if isInitiativeNaN}}style="display:none;"{{/if}}>
         <i class="fa-regular fa-dice-d20"></i>
         <span class="portrait-initiative-text">{{initiative}}</span>
     </div>

@@ -1,7 +1,7 @@
 <div class="combat-dock-tooltip-wrapper">
     <div class="portrait-header">
         <h2>{{name}}</h2>
-        <div class="initiative">
+        <div class="initiative" {{#if isInitiativeNaN}}style="display:none;"{{/if}}>
             <i class="fa-regular fa-dice-d20 icon"></i>
             <h3>{{initiative}}</h3>
         </div>
