@@ -133,7 +133,7 @@ function setPortraitImageBorder() {
 }
 
 function setAttributeColor() {
-    const attributeColor = game.settings.get(MODULE_ID, "attributeColor");
+    const attributeColor = game.settings.get(MODULE_ID, "attributeColor") || "#41AA7D";
     document.documentElement.style.setProperty(
         "--attribute-bar-primary-color",
         attributeColor
@@ -149,7 +149,7 @@ function setAttributeColor() {
 }
 
 function setTooltipColor() {
-    const tooltipColor = game.settings.get(MODULE_ID, "tooltipColor");
+    const tooltipColor = game.settings.get(MODULE_ID, "tooltipColor") || "#888888";
     document.documentElement.style.setProperty(
         "--carousel-tooltip-color",
         tooltipColor
