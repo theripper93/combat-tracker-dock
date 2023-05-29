@@ -58,6 +58,33 @@
             "tooltipColor": {
                 "hint": "Le jeu de couleurs de l'info-bulle. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
                 "name": "Couleur de l'info-bulle"
+            },
+            "alignment": {
+                "choices": {
+                    "center": "Centre",
+                    "left": "Gauche",
+                    "right": "Droite"
+                },
+                "hint": "L'alignement du carrousel. \nNotez que le carrousel est destiné à être centré, vous devez utiliser ce paramètre uniquement pour la compatibilité avec d'autres modules.",
+                "name": "Alignement"
+            },
+            "portraitAspect": {
+                "choices": {
+                    "long": "Long",
+                    "portrait": "Portrait",
+                    "square": "Carré"
+                },
+                "hint": "Le rapport d'aspect du portrait. \nL'image sera recadrée si elle ne correspond pas au format d'image du portrait.",
+                "name": "Format portrait"
+            },
+            "roundness": {
+                "choices": {
+                    "round": "Rond",
+                    "sharp": "Pointu",
+                    "soft": "Doux"
+                },
+                "hint": "La rondeur des portraits et des infobulles.",
+                "name": "Rondeur"
             }
         }
     }

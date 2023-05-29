@@ -1,13 +1,15 @@
 #combat-dock {
     & .combatant-portrait {
         width: var(--combatant-portrait-size);
-        height: calc(var(--combatant-portrait-size) * 1.5);
+        height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect));
         margin: 0 calc(var(--combatant-portrait-size) * 0.1);
         background: url("/ui/denim075.png") repeat;
         border: 1px solid black;
         border-top-width: 0;
         opacity: 1;
         position: relative;
+        border-bottom-right-radius: var(--combatant-portrait-border-radius);
+        border-bottom-left-radius: var(--combatant-portrait-border-radius);
         transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out, margin 0.2s ease-in-out, left 0.2s ease-in-out, border-color 0.1s ease-in-out;
 
         &:hover{
@@ -36,7 +38,7 @@
 
         &.active {
             width: calc(var(--combatant-portrait-size) * 1.2);
-            height: calc(var(--combatant-portrait-size) * 1.8);
+            height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect) * 1.2);
             animation: border-blink 0.5s ease-in-out infinite alternate;
         }
 
@@ -82,8 +84,10 @@
         height: 100%;
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: center;
+        background-position: top;
         position: relative;
+        border-bottom-right-radius: var(--combatant-portrait-border-radius);
+        border-bottom-left-radius: var(--combatant-portrait-border-radius);
 
         & .portrait-initiative{
             font-size: calc(var(--combatant-portrait-size) * 0.15);
@@ -183,7 +187,8 @@
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-            width: 100%;
+            width: calc( 100% - ( var(--combatant-portrait-border-radius) * 2 ) );
+            left: calc( var(--combatant-portrait-border-radius) );
             height: 40%;
             bottom: -20%;
             opacity: 0.8;
@@ -191,19 +196,22 @@
 
         & .tracked-attribute-bar {
             height: 100%;
-            width: 5%;
+            width: 100%;
             position: relative;
             left: 0px;
+            overflow: hidden;
+            border-bottom-right-radius: var(--combatant-portrait-border-radius);
+            border-bottom-left-radius: var(--combatant-portrait-border-radius);
 
             & .tracked-attribute-bar-max {
                 height: 100%;
-                width: 100%;
+                width: 5%;
                 bottom: 0px;
                 position: absolute;
                 background-color: rgba(0, 0, 0, 0.838);
             }
             & .tracked-attribute-bar-current {
-                width: 100%;
+                width: 5%;
                 bottom: 0px;
                 position: absolute;
                 background: linear-gradient(180deg, var(--attribute-bar-primary-color) 0%, var(--attribute-bar-secondary-color) 100%);

@@ -58,6 +58,33 @@
             "tooltipColor": {
                 "hint": "O esquema de cores da dica de ferramenta. \nVocê pode usar qualquer valor de cor CSS válido (por exemplo.",
                 "name": "Cor da dica de ferramenta"
+            },
+            "alignment": {
+                "choices": {
+                    "center": "Centro",
+                    "left": "Esquerda",
+                    "right": "Certo"
+                },
+                "hint": "O alinhamento do carrossel. \nObserve que o carrossel deve ser centralizado, você deve usar esta configuração apenas para compatibilidade com outros módulos.",
+                "name": "Alinhamento"
+            },
+            "portraitAspect": {
+                "choices": {
+                    "long": "Longo",
+                    "portrait": "Retrato",
+                    "square": "Quadrado"
+                },
+                "hint": "A proporção do retrato. \nA imagem será cortada se não corresponder à proporção do retrato.",
+                "name": "Proporção Retrato"
+            },
+            "roundness": {
+                "choices": {
+                    "round": "Redondo",
+                    "sharp": "Afiado",
+                    "soft": "Macio"
+                },
+                "hint": "A redondeza dos retratos e dicas de ferramentas.",
+                "name": "Arredondamento"
             }
         }
     }

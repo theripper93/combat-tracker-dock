@@ -1,7 +1,7 @@
 #combat-dock{
 
     display: flex;
-    justify-content: center;
+    justify-content: var(--carousel-alignment);
     pointer-events: all;
     position: absolute;
     width: 100%;
@@ -14,7 +14,7 @@
 
     & .separator{
         height: 100%;
-        max-height: calc(var(--combatant-portrait-size)*1.8);
+        max-height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect) * 1.2);
         border: 1px solid white;
         opacity: 0.7;
         border-bottom-left-radius: 50%;

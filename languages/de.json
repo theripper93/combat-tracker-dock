@@ -58,6 +58,33 @@
             "tooltipColor": {
                 "hint": "Das Farbschema des Tooltips. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
                 "name": "Tooltip-Farbe"
+            },
+            "alignment": {
+                "choices": {
+                    "center": "Center",
+                    "left": "Links",
+                    "right": "Rechts"
+                },
+                "hint": "Die Ausrichtung des Karussells. \nBeachten Sie, dass das Karussell zentriert sein soll. Sie sollten diese Einstellung nur aus Kompatibilitätsgründen mit anderen Modulen verwenden.",
+                "name": "Ausrichtung"
+            },
+            "portraitAspect": {
+                "choices": {
+                    "long": "Lang",
+                    "portrait": "Porträt",
+                    "square": "Quadrat"
+                },
+                "hint": "Das Seitenverhältnis des Porträts. \nDas Bild wird zugeschnitten, wenn es nicht dem Seitenverhältnis des Porträts entspricht.",
+                "name": "Porträt-Seitenverhältnis"
+            },
+            "roundness": {
+                "choices": {
+                    "round": "Runden",
+                    "sharp": "Scharf",
+                    "soft": "Weich"
+                },
+                "hint": "Die Rundheit der Porträts und Tooltips.",
+                "name": "Rundheit"
             }
         }
     }

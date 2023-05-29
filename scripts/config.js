@@ -40,10 +40,69 @@ export function registerSettings() {
         },
     });
 
+    game.settings.register(MODULE_ID, "portraitAspect", {
+        name: "combat-tracker-dock.settings.portraitAspect.name",
+        hint: "combat-tracker-dock.settings.portraitAspect.hint",
+        scope: "world",
+        config: true,
+        type: Number,
+        choices: {
+            1: "combat-tracker-dock.settings.portraitAspect.choices.square",
+            1.5: "combat-tracker-dock.settings.portraitAspect.choices.portrait",
+            2: "combat-tracker-dock.settings.portraitAspect.choices.long",
+        },
+        default: 1.5,
+        onChange: () => {
+            setPortraitAspect();
+        },
+    });
+
+    setPortraitAspect();
+
+    game.settings.register(MODULE_ID, "roundness", {
+        name: "combat-tracker-dock.settings.roundness.name",
+        hint: "combat-tracker-dock.settings.roundness.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            "0%": "combat-tracker-dock.settings.roundness.choices.sharp",
+            "10%": "combat-tracker-dock.settings.roundness.choices.soft",
+            "20%": "combat-tracker-dock.settings.roundness.choices.round",
+        },
+        default: "0%",
+        onChange: () => {
+            setRoundness();
+        },
+    });
+
+    setRoundness();
+
+    game.settings.register(MODULE_ID, "alignment", {
+        name: "combat-tracker-dock.settings.alignment.name",
+        hint: "combat-tracker-dock.settings.alignment.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            "left": "combat-tracker-dock.settings.alignment.choices.left",
+            "center": "combat-tracker-dock.settings.alignment.choices.center",
+            "right": "combat-tracker-dock.settings.alignment.choices.right",
+        },
+        default: "center",
+        onChange: () => {
+            setAlignment();
+        },
+    });
+
+    setAlignment();
+
+
+
     game.settings.register(MODULE_ID, "attributeColor", {
         name: "combat-tracker-dock.settings.attributeColor.name",
         hint: "combat-tracker-dock.settings.attributeColor.hint",
-        scope: "client",
+        scope: "world",
         config: true,
         type: String,
         default: "#41AA7D",
@@ -57,7 +116,7 @@ export function registerSettings() {
     game.settings.register(MODULE_ID, "tooltipColor", {
         name: "combat-tracker-dock.settings.tooltipColor.name",
         hint: "combat-tracker-dock.settings.tooltipColor.hint",
-        scope: "client",
+        scope: "world",
         config: true,
         type: String,
         default: "#888888",
@@ -123,12 +182,36 @@ function setPortraitSize() {
     );
 }
 
+function setPortraitAspect() {
+    const portraitAspect = game.settings.get(MODULE_ID, "portraitAspect");
+    document.documentElement.style.setProperty(
+        "--combatant-portrait-aspect",
+        portraitAspect
+    );
+}
+
+function setAlignment() {
+    const alignment = game.settings.get(MODULE_ID, "alignment");
+    document.documentElement.style.setProperty(
+        "--carousel-alignment",
+        alignment
+    );
+}
+
 function setPortraitImageBorder() {
     let portraitImageBorder = game.settings.get(MODULE_ID, "portraitImageBorder");
     if(!portraitImageBorder.startsWith("/")) portraitImageBorder = `/${portraitImageBorder}`;
     document.documentElement.style.setProperty(
         "--combatant-portrait-image-border",
         `url('${portraitImageBorder}')`
+    );
+}
+
+function setRoundness() {
+    const roundness = game.settings.get(MODULE_ID, "roundness");
+    document.documentElement.style.setProperty(
+        "--combatant-portrait-border-radius",
+        roundness
     );
 }
 

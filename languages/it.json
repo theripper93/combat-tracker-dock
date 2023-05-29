@@ -58,6 +58,33 @@
             "tooltipColor": {
                 "hint": "La combinazione di colori della descrizione comandi. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
                 "name": "Colore descrizione comandi"
+            },
+            "alignment": {
+                "choices": {
+                    "center": "Centro",
+                    "left": "Sinistra",
+                    "right": "Giusto"
+                },
+                "hint": "L'allineamento della giostra. \nSi noti che il carosello deve essere centrato, è necessario utilizzare questa impostazione solo per compatibilità con altri moduli.",
+                "name": "Allineamento"
+            },
+            "portraitAspect": {
+                "choices": {
+                    "long": "Lungo",
+                    "portrait": "Ritratto",
+                    "square": "Piazza"
+                },
+                "hint": "Le proporzioni del ritratto. \nL'immagine verrà ritagliata se non corrisponde alle proporzioni del ritratto.",
+                "name": "Proporzioni ritratto"
+            },
+            "roundness": {
+                "choices": {
+                    "round": "Girare",
+                    "sharp": "Affilato",
+                    "soft": "Morbido"
+                },
+                "hint": "La rotondità dei ritratti e dei tooltip.",
+                "name": "Rotondità"
             }
         }
     }

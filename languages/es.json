@@ -58,6 +58,33 @@
             "tooltipColor": {
                 "hint": "El esquema de color de la información sobre herramientas. \nPuede usar cualquier valor de color CSS válido (p.",
                 "name": "Color de información sobre herramientas"
+            },
+            "alignment": {
+                "choices": {
+                    "center": "Centro",
+                    "left": "Izquierda",
+                    "right": "Bien"
+                },
+                "hint": "La alineación del carrusel. \nTenga en cuenta que el carrusel está diseñado para estar centrado, debe usar esta configuración solo para compatibilidad con otros módulos.",
+                "name": "Alineación"
+            },
+            "portraitAspect": {
+                "choices": {
+                    "long": "Largo",
+                    "portrait": "Retrato",
+                    "square": "Cuadrado"
+                },
+                "hint": "La relación de aspecto del retrato. \nLa imagen se recortará si no coincide con la relación de aspecto del retrato.",
+                "name": "Relación de aspecto de retrato"
+            },
+            "roundness": {
+                "choices": {
+                    "round": "Redondo",
+                    "sharp": "Afilado",
+                    "soft": "Suave"
+                },
+                "hint": "La redondez de los retratos y la información sobre herramientas.",
+                "name": "Redondez"
             }
         }
     }
