@@ -6,9 +6,5 @@ Carousel style combat tracker. Spiritual successor of Combat Carousel after it w
 
 ## You can find the documentation on the [WIKI](https://api.theripper93.com/modulewiki/combat-tracker-dock/free)
 
-![image](https://github.com/theripper93/combat-tracker-dock/assets/1346839/1172178a-4a94-41e1-b946-f1064128f01d)
-
-![image](https://github.com/theripper93/combat-tracker-dock/assets/1346839/424a9026-5ddc-401f-8f59-f737f8753625)
-
-![image](https://github.com/theripper93/combat-tracker-dock/assets/1346839/60092b28-2a9d-4587-92bb-c166d13b5877)
+![image](https://github.com/theripper93/combat-tracker-dock/assets/1346839/db438779-3784-427b-b096-e41d95998dca)
 
