@@ -15,6 +15,33 @@ export const defaultAttributesConfig = {
             units: "ft.",
         },
     ],
+    "cyberpunk-red-core": [
+        {
+            attr: "derivedStats.hp.value",
+            icon: "fa-solid fa-heart",
+            units: "HP",
+        },
+        {
+            attr: "derivedStats.walk.value",
+            icon: "fa-solid fa-person-running",
+            units: "m/ft",
+        },
+        {
+            attr: "derivedStats.run.value",
+            icon: "fa-solid fa-person-running-fast",
+            units: "m/ft",
+        },
+        {
+            attr: "externalData.currentArmorHead.value",
+            icon: "fa-solid fa-helmet-safety",
+            units: "SP",
+        },
+        {
+            attr: "externalData.currentArmorBody.value",
+            icon: "fa-solid fa-shirt-tank-top",
+            units: "SP",
+        },
+    ],
 }
 
 export function generateDescription(actor) {
