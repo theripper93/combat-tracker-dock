@@ -24,7 +24,7 @@ export class CombatantPortrait {
 
     activateListeners() {
         //add left and right click and double click listeners
-        this.element.addEventListener("click", this._onClick.bind(this));
+        this.element.addEventListener("mouseup", this._onClick.bind(this));
         this.element.addEventListener("dblclick", this._onDoubleClick.bind(this));
         //add hover in and out listeners
         this.element.addEventListener("mouseenter", this._onHoverIn.bind(this));
@@ -36,7 +36,7 @@ export class CombatantPortrait {
         const isLeftClick = event.button === 0;
         const isRightClick = event.button === 2;
         if (isLeftClick) this.token._onClickLeft(event);
-        else if (isRightClick) this.token._onClickRight(event);
+        else if (isRightClick) this.combatant.sheet.render(true)
     }
 
     _onDoubleClick(event) {
