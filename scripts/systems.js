@@ -9,12 +9,18 @@ export function defaultAttributesConfig() {
             {
                 attr: "attributes.ac.value",
                 icon: "fa-solid fa-shield",
+                units: "AC",
             },
             {
                 attr: "attributes.movement.walk",
                 icon: "fa-solid fa-person-running-fast",
                 units: "ft.",
             },
+            {
+                attr: "attributes.spelldc",
+                icon: "fa-solid fa-hand-holding-magic",
+                units: "Spell DC",
+            }
         ],
         "cyberpunk-red-core": [
             {
@@ -41,6 +47,32 @@ export function defaultAttributesConfig() {
                 attr: "externalData.currentArmorBody.value",
                 icon: "fa-solid fa-shirt-tank-top",
                 units: "SP",
+            },
+        ],
+        swade: [
+            {
+                attr: "wildcard",
+                icon: "fa-solid fa-cards",
+            },
+            {
+                attr: "wounds.value",
+                icon: "fa-solid fa-heart",
+            },
+            {
+                attr: "fatigue.value",
+                icon: "fa-solid fa-face-hand-yawn",
+            },
+            {
+                attr: "stats.speed.value",
+                icon: "fa-solid fa-person-running",
+            },
+            {
+                attr: "stats.toughness.value",
+                icon: "fa-solid fa-shield",
+            },
+            {
+                attr: "stats.parry.value",
+                icon: "fa-solid fa-swords",
             },
         ],
     }

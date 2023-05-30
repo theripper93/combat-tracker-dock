@@ -122,6 +122,8 @@ export class CombatantPortrait {
 
         if (max !== undefined && value !== undefined) percentage = Math.round((value / max) * 100);
 
+        if(typeof value === "boolean") value = value ? "✓" : "✗"   //'<i class="fas fa-check" style="display: flex;"></i>' : '<i class="fas fa-times" style="display: flex;"></i>';
+
         return { max, value, percentage };
     }
 
