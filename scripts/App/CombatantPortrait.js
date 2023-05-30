@@ -147,13 +147,13 @@ export class CombatantPortrait {
             isGM: game.user.isGM,
             defeated: combatant.isDefeated,
             hidden: combatant.hidden,
-            initiative: initiativeData.value,
-            hasRolled: initiativeData.value !== null && initiativeData.value !== undefined,
+            initiative: combatant.initiative,
+            hasRolled: combatant.initiative !== null && combatant.initiative !== undefined,
             hasResource: resource !== null,
             hasPlayerOwner: combatant.actor?.hasPlayerOwner,
             hasPermission: hasPermission,
             showInitiative: game.settings.get(MODULE_ID, "showInitiativeOnPortrait"),
-            isInitiativeNaN: initiativeData.value === null || initiativeData.value === undefined,
+            isInitiativeNaN: combatant.initiative === null || combatant.initiative === undefined,
             initiativeData: initiativeData,
             resource: resource,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
@@ -161,6 +161,7 @@ export class CombatantPortrait {
             description: getDescription(combatant.actor),
         };
         if (turn.initiative !== null && !Number.isInteger(turn.initiative)) hasDecimals = true;
+        if (turn.initiativeData.value !== null && !Number.isInteger(turn.initiativeData.value)) hasDecimals = true;
         turn.css = [turn.active ? "active" : "", turn.hidden ? "hidden" : "", turn.defeated ? "defeated" : ""].join(" ").trim();
 
         // Actor and Token status effects
@@ -185,7 +186,8 @@ export class CombatantPortrait {
         turn.hasEffects = turn.effects.size > 0;
         // Format initiative numeric precision
         const precision = CONFIG.Combat.initiative.decimals;
-        if (turn.hasRolled) turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);
+        if (turn.hasRolled && (typeof turn.initiative == 'number')) turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);
+        if (turn.hasRolled && (typeof turn.initiativeData.value == 'number')) turn.initiativeData.value = turn.initiativeData.value.toFixed(hasDecimals ? precision : 0);
 
         return turn;
     }

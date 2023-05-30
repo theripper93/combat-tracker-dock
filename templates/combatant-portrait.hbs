@@ -4,7 +4,7 @@
     
     <div class="portrait-initiative" {{#unless showInitiative}}style="display: none;"{{/unless}} {{#if isInitiativeNaN}}style="display:none;"{{/if}}>
         <i {{#if initiativeData.isIconImg}}style="background-image: url('{{initiativeData.icon}}');"{{else}}class="{{initiativeData.icon}}"{{/if}}></i>
-        <span class="portrait-initiative-text">{{initiative}}</span>
+        <span class="portrait-initiative-text">{{initiativeData.value}}</span>
     </div>
 
     <ul class="effects-container" {{#unless hasEffects}}style="display:none;"{{/unless}}>
