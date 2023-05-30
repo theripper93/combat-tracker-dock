@@ -9,12 +9,18 @@ export function defaultAttributesConfig() {
             {
                 attr: "attributes.ac.value",
                 icon: "fa-solid fa-shield",
+                units: "AC",
             },
             {
                 attr: "attributes.movement.walk",
                 icon: "fa-solid fa-person-running-fast",
                 units: "ft.",
             },
+            {
+                attr: "attributes.spelldc",
+                icon: "fa-solid fa-hand-holding-magic",
+                units: "Spell DC",
+            }
         ],
         "cyberpunk-red-core": [
             {

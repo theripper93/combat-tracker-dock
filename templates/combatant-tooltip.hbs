@@ -15,16 +15,16 @@
     {{#if hasPermission}}
     <ul {{#unless hasAttributes}}style="display:none;" {{/unless}}>
         {{#each attributes as |attribute|}}
-        <li>{{{attribute.icon}}}<i class="spacer"></i><span>{{#if
-                attribute.max}}{{attribute.value}}/{{attribute.max}}{{else}}{{attribute.value}}{{/if}}
-                {{attribute.units}}</span>
+        <li>{{{attribute.icon}}}<span>{{#if
+                attribute.max}}{{attribute.value}}/{{attribute.max}}{{else}}{{{attribute.value}}}{{/if}}
+                <i>{{attribute.units}}</i></span>
         </li>
         {{/each}}
     </ul>
     {{/if}}
     <ul {{#unless hasEffects}}style="display:none;" {{/unless}}>
         {{#each effects as |effect|}}
-        <li><img src="{{effect.icon}}" alt=""><i class="spacer"></i><span>{{{localize effect.label}}}</span></li>
+        <li><img src="{{effect.icon}}" alt=""><span>{{{localize effect.label}}}</span></li>
         {{/each}}
     </ul>
 </div>
