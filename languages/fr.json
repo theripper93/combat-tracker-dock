@@ -85,6 +85,24 @@
                 },
                 "hint": "La rondeur des portraits et des infobulles.",
                 "name": "Rondeur"
+            },
+            "carouselStyle": {
+                "choices": {
+                    "basic": "Pas de carrousel",
+                    "centerCarousel": "Carrousel - Centré",
+                    "leftCarousel": "Carrousel - Gauche"
+                },
+                "hint": "La façon dont les portraits sont placés et se déplacent dans le carrousel : Carrousel - Centré : Le combattant actif est au centre du carrousel, les autres combattants tournent autour de lui.\n\n- Carrousel - Gauche : Le Combattant Actif est à Gauche du carrousel, les autres combattants tournent autour de lui.\n\n- Pas de carrousel : Les combattants sont toujours affichés dans l'ordre d'initiative et le combattant actif se déplace tandis que les combattants restent dans la même position.",
+                "name": "Style de carrousel"
+            },
+            "overflowStyle": {
+                "choices": {
+                    "autofit": "Réduire les portraits",
+                    "hidden": "Caché",
+                    "scroll": "Faire défiler"
+                },
+                "hint": "La façon dont le carrousel se comporte lorsqu'il y a trop de combattants pour tenir sur l'écran.",
+                "name": "Style de débordement"
             }
         }
     }

@@ -6,6 +6,7 @@
         background: url("/ui/denim075.png") repeat;
         border: 1px solid black;
         border-top-width: 0;
+        flex-shrink: 0;
         opacity: 1;
         position: relative;
         border-bottom-right-radius: var(--combatant-portrait-border-radius);

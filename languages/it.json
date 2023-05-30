@@ -85,6 +85,24 @@
                 },
                 "hint": "La rotondità dei ritratti e dei tooltip.",
                 "name": "Rotondità"
+            },
+            "carouselStyle": {
+                "choices": {
+                    "basic": "Nessun carosello",
+                    "centerCarousel": "Carosello - Centrato",
+                    "leftCarousel": "Carosello - Sinistra"
+                },
+                "hint": "Il modo in cui i ritratti sono posizionati e si muovono nel carosello: Carosello - Centrato: Il Combattente Attivo è al centro del carosello, gli altri combattenti ruotano attorno ad esso.\n\n- Carosello - Sinistra: Il Combattente Attivo è a sinistra del carosello, gli altri combattenti ruotano attorno ad esso.\n\n- Nessun carosello: i combattenti sono sempre visualizzati in ordine di iniziativa e il combattente attivo si sposta mentre i combattenti rimangono nella stessa posizione.",
+                "name": "Stile carosello"
+            },
+            "overflowStyle": {
+                "choices": {
+                    "autofit": "Riduci i ritratti",
+                    "hidden": "Nascosto",
+                    "scroll": "Scorrere"
+                },
+                "hint": "Il modo in cui si comporta il carosello quando ci sono troppi combattenti per stare sullo schermo.",
+                "name": "Stile overflow"
             }
         }
     }

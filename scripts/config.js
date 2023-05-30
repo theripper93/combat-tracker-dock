@@ -39,6 +39,26 @@ export function registerSettings() {
         },
     });
 
+    game.settings.register(MODULE_ID, "overflowStyle", {
+        name: "combat-tracker-dock.settings.overflowStyle.name",
+        hint: "combat-tracker-dock.settings.overflowStyle.hint",
+        scope: "client",
+        config: true,
+        type: String,
+        choices: {
+            "autofit": "combat-tracker-dock.settings.overflowStyle.choices.autofit",
+            "hidden": "combat-tracker-dock.settings.overflowStyle.choices.hidden",
+            "scroll": "combat-tracker-dock.settings.overflowStyle.choices.scroll",
+        },
+        default: "autofit",
+        onChange: () => {
+            setOverflowStyle();
+            ui.combatDock?.autosize();
+        },
+    });
+
+    setOverflowStyle();
+
     game.settings.register(MODULE_ID, "carouselStyle", {
         name: "combat-tracker-dock.settings.carouselStyle.name",
         hint: "combat-tracker-dock.settings.carouselStyle.hint",
@@ -257,5 +277,14 @@ function setTooltipColor() {
     document.documentElement.style.setProperty(
         "--carousel-tooltip-bg-color",
         darkened.toString()
+    );
+}
+
+function setOverflowStyle() {
+    let overflowStyle = game.settings.get(MODULE_ID, "overflowStyle");
+    if(overflowStyle === "autofit") overflowStyle = "hidden";
+    document.documentElement.style.setProperty(
+        "--carousel-overflow",
+        overflowStyle
     );
 }

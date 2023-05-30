@@ -42,6 +42,10 @@ export class CombatDock extends Application {
         return game.settings.get(MODULE_ID, "carouselStyle") == 1;
     }
 
+    get autoFit() {
+        return game.settings.get(MODULE_ID, "overflowStyle") == "autofit";
+    }
+
     setHooks() {
         this.hooks = [
             {
@@ -139,6 +143,7 @@ export class CombatDock extends Application {
 
     autosize() {
         const max = parseInt(game.settings.get(MODULE_ID, "portraitSize"));
+        if(!this.autoFit) return document.documentElement.style.setProperty("--combatant-portrait-size", max + "px");;
         const maxSpace = document.getElementById("ui-top").getBoundingClientRect().width * 0.9;
         const combatantCount = this.sortedCombatants.length;
         const portraitSize = Math.min(max, Math.floor(maxSpace / combatantCount));

@@ -21,6 +21,15 @@
                     "basic": "No Carousel"
                 }
             },
+            "overflowStyle": {
+                "name": "Overflow Style",
+                "hint": "The way the carousel behaves when there are too many combatants to fit on the screen.",
+                "choices": {
+                    "hidden": "Hidden",
+                    "scroll": "Scroll",
+                    "autofit": "Shrink Portraits"
+                }
+            },
             "portraitAspect": {
                 "name": "Portrait Aspect Ratio",
                 "hint": "The aspect ratio of the portrait. The image will be cropped if it doesn't match the aspect ratio of the portrait.",
