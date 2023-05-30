@@ -9,7 +9,9 @@
                     "50px": "Small",
                     "70px": "Normal",
                     "90px": "Large",
-                    "110px": "Huge"
+                    "110px": "X-Large",
+                    "150px": "XX-Large",
+                    "180px": "XXX-Large"
                 }
             },
             "carouselStyle": {

@@ -31,6 +31,8 @@ export function registerSettings() {
             "70px": "combat-tracker-dock.settings.portraitSize.choices.70px",
             "90px": "combat-tracker-dock.settings.portraitSize.choices.90px",
             "110px": "combat-tracker-dock.settings.portraitSize.choices.110px",
+            "150px": "combat-tracker-dock.settings.portraitSize.choices.150px",
+            "180px": "combat-tracker-dock.settings.portraitSize.choices.180px",
         },
         default: "70px",
         onChange: () => {

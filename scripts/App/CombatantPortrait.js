@@ -126,6 +126,8 @@ export class CombatantPortrait {
 
         if(typeof value === "boolean") value = value ? "✓" : "✗"   //'<i class="fas fa-check" style="display: flex;"></i>' : '<i class="fas fa-times" style="display: flex;"></i>';
 
+        if(Array.isArray(value)) value = value.join(", ");
+
         return { max, value, percentage };
     }
 
