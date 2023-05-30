@@ -80,7 +80,7 @@ export function getInitiativeDisplay(combatant) {
             if (cardString.includes("♠")) suit = "fa-solid fa-spade";
 
             return {
-                value: cardString.replace("♥", "").replace("♦", "").replace("♣", "").replace("♠", ""),
+                value: useImg ? cardString : cardString.replace("♥", "").replace("♦", "").replace("♣", "").replace("♠", ""),
                 icon: getCardImage(cardString) ?? suit,
                 rollIcon: "fa-regular fa-cards-blank",
             } 
