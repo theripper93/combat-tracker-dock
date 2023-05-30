@@ -51,34 +51,39 @@ export function defaultAttributesConfig() {
         ],
         swade: [
             {
-                attr: "wildcard",
-                icon: "fa-solid fa-cards",
-                units: `(${game.i18n.localize("SWADE.WildCard")})`,
-            },
-            {
-            attr: "wounds.value",
-            icon: "fa-solid fa-heart",
-            units: `(${game.i18n.localize("SWADE.Wounds")})`,
+                attr: "wounds.value",
+                icon: "fas fa-heart",
+                units: game.i18n.localize("SWADE.Wounds"),
             },
             {
                 attr: "fatigue.value",
-                icon: "fa-solid fa-face-hand-yawn",
-                units: `(${game.i18n.localize("SWADE.Fatigue")})`,
+                icon: "fas fa-face-hand-yawn",
+                units: game.i18n.localize("SWADE.Fatigue"),
+            },
+            {
+                attr: "bennies.value",
+                icon: "fas fa-bullseye",
+                units: game.i18n.localize("SWADE.Bennies"),
             },
             {
                 attr: "stats.speed.value",
-                icon: "fa-solid fa-person-running",
-                units: `(${game.i18n.localize("SWADE.Pace")})`,
-            },
-            {
-                attr: "stats.toughness.value",
-                icon: "fa-solid fa-shield",
-                units: `(${game.i18n.localize("SWADE.Tough")})`,
+                icon: "fas fa-person-running",
+                units: game.i18n.localize("SWADE.Pace"),
             },
             {
                 attr: "stats.parry.value",
-                icon: "fa-solid fa-swords",
-                units: `(${game.i18n.localize("SWADE.Parry")})`,
+                icon: "fas fa-swords",
+                units: game.i18n.localize("SWADE.Parry"),
+            },
+            {
+                attr: "stats.toughness.value",
+                icon: "fas fa-shield",
+                units: game.i18n.localize("SWADE.Tough"),
+            },
+            {
+                attr: "stats.toughness.armor",
+                icon: "fas fa-helmet-battle",
+                units: game.i18n.localize("SWADE.Armor"),
             },
         ],
     };
@@ -102,9 +107,14 @@ export function generateDescription(actor) {
                 return null;
             }
         case "swade":
-            if (actor.type !== "character") return;
-            const { system } = actor;
-            return `${system.details.archetype} ${system.details.species.name}, ${game.i18n.localize("SWADE.Rank")}: ${system.advances.rank}`;
+            const { type, system } = actor;
+            if (system?.wildcard) {
+                return `${game.i18n.localize("SWADE.WildCard")}`;
+            } else if (type === "character" || type === "npc") {
+                return `${game.i18n.localize("SWADE.Extra")}`;
+            } else if (type === "vehicle") {
+                return game.i18n.localize("TYPES.Actor.vehicle");
+            } else return null;
     }
 }
 
@@ -112,20 +122,21 @@ export function getInitiativeDisplay(combatant) {
     switch (game.system.id) {
         case "swade": {
             let suit = "";
-            const useImg = true;
             const getCardImage = (cardstr) => {
-                if (!useImg) return null;
-                return Array.from(game.cards.get(game.settings.get("swade", "actionDeck")).cards).find((c) => c.description === cardstr)?.img;
+                return Array.from(game.cards.get(game.settings.get("swade", "actionDeck")).cards).find(
+                    (c) => c.description === cardstr
+                )?.img;
             };
-            const cardString = combatant?.cardString ?? "";
+            let cardString = combatant?.cardString ?? "";
             if (cardString.includes("♥")) suit = "fa-solid fa-heart";
-            if (cardString.includes("♦")) suit = "fa-solid fa-diamond";
-            if (cardString.includes("♣")) suit = "fa-solid fa-club";
-            if (cardString.includes("♠")) suit = "fa-solid fa-spade";
+            else if (cardString.includes("♦")) suit = "fa-solid fa-diamond";
+            else if (cardString.includes("♣")) suit = "fa-solid fa-club";
+            else if (cardString.includes("♠")) suit = "fa-solid fa-spade";
+            else if (cardString === "Red J" || cardString === "Blk J") cardString = "JK";
 
             return {
-                value: useImg ? cardString : cardString.replace("♥", "").replace("♦", "").replace("♣", "").replace("♠", ""),
-                icon: getCardImage(cardString) ?? suit,
+                value: cardString,
+                icon: getCardImage(combatant?.cardString ?? "") ?? suit,
                 rollIcon: "fa-regular fa-cards-blank",
             };
         }
