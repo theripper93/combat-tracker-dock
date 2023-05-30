@@ -107,6 +107,7 @@ export function defaultAttributesConfig() {
 }
 
 export function generateDescription(actor) {
+    const { type, system } = actor;
     switch (game.system.id) {
         case "dnd5e":
             const isNPC = type === "npc";
