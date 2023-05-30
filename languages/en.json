@@ -43,7 +43,7 @@
             },
             "alignment": { 
                 "name": "Alignment",
-                "hint": "The alignment of the carousel. Note that the Carousel is intended to be centered, you should use this setting only for compatibility with other modules.",
+                "hint": "The alignment of the carousel.",
                 "choices": {
                     "left": "Left",
                     "center": "Center",
