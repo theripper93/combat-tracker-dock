@@ -20,7 +20,17 @@
             & .initiative{
                 display: flex;
                 align-items: center;
-                gap:0.2rem;
+
+                & i{
+                    height: 1.5rem;
+                    aspect-ratio: 1;
+                    background-position: center;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
             }
 
             & .portrait-header{

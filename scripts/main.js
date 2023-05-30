@@ -5,7 +5,6 @@ import { CombatantPortrait } from './App/CombatantPortrait.js';
 export const MODULE_ID = 'combat-tracker-dock';
 
 Hooks.once('init', function () {
-    registerSettings();
     CONFIG.combatTrackerDock = {
         CombatDock,
         CombatantPortrait,
@@ -13,6 +12,8 @@ Hooks.once('init', function () {
         INTRO_ANIMATION_DELAY: 0.25,
     }
 });
+
+Hooks.once('setup', registerSettings);
 
 Hooks.on('createCombat', (combat) => {
     if (game.combat === combat) {

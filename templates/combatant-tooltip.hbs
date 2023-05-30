@@ -2,7 +2,8 @@
     <div class="portrait-header">
         <h2>{{name}}</h2>
         <div class="initiative" {{#if isInitiativeNaN}}style="display:none;"{{/if}}>
-            <i class="fa-regular fa-dice-d20 icon"></i>
+
+            <i {{#if initiativeData.isIconImg}}style="background-image: url('{{initiativeData.icon}}');"{{else}}class="{{initiativeData.icon}}"{{/if}}></i>        
             <h3>{{initiative}}</h3>
         </div>
     </div>

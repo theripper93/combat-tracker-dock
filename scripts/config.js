@@ -7,7 +7,7 @@ export function registerSettings() {
         scope: "world",
         config: false,
         type: Array,
-        default: defaultAttributesConfig[game.system.id] ?? [],
+        default: defaultAttributesConfig()[game.system.id] ?? [],
     });
 
     game.settings.registerMenu(MODULE_ID, "attributesMenu", {

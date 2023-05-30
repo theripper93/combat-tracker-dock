@@ -1,5 +1,5 @@
 import {MODULE_ID} from "../main.js";
-import { generateDescription } from "../systems.js";
+import { generateDescription, getInitiativeDisplay } from "../systems.js";
 
 export class CombatantPortrait {
     constructor(combatant) {
@@ -135,6 +135,9 @@ export class CombatantPortrait {
         // Prepare turn data
         const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
         const resource = hasPermission ? this.getResource() : null;
+        const initiativeData = getInitiativeDisplay(combatant);
+        initiativeData.isIconImg = initiativeData.icon.includes(".");
+        initiativeData.isRollIconImg = initiativeData.rollIcon.includes(".");
         const turn = {
             id: combatant.id,
             name: combatant.name,
@@ -144,13 +147,14 @@ export class CombatantPortrait {
             isGM: game.user.isGM,
             defeated: combatant.isDefeated,
             hidden: combatant.hidden,
-            initiative: combatant.initiative,
-            hasRolled: combatant.initiative !== null,
+            initiative: initiativeData.value,
+            hasRolled: initiativeData.value !== null && initiativeData.value !== undefined,
             hasResource: resource !== null,
             hasPlayerOwner: combatant.actor?.hasPlayerOwner,
             hasPermission: hasPermission,
             showInitiative: game.settings.get(MODULE_ID, "showInitiativeOnPortrait"),
-            isInitiativeNaN: isNaN(combatant.initiative) || combatant.initiative === null || combatant.initiative === undefined,
+            isInitiativeNaN: initiativeData.value === null || initiativeData.value === undefined,
+            initiativeData: initiativeData,
             resource: resource,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
             attributes: trackedAttributes,

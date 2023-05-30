@@ -1,9 +1,9 @@
 <div class="combatant-wrapper" style="background-image: url('{{img}}');{{#if defeated}}filter: grayscale(1);{{/if}}">
 
-    <i {{#if hasRolled}}style="display: none;"{{/if}} class="fa-regular fa-dice-d20 roll-initiative"></i>
+    <i {{#if hasRolled}}style="display: none;"{{/if}} {{#if initiativeData.isRollIconImg}}style="background-image: url('{{initiativeData.rollIcon}}');" class="roll-initiative"{{else}}class="{{initiativeData.rollIcon}} roll-initiative"{{/if}}></i>
     
     <div class="portrait-initiative" {{#unless showInitiative}}style="display: none;"{{/unless}} {{#if isInitiativeNaN}}style="display:none;"{{/if}}>
-        <i class="fa-regular fa-dice-d20"></i>
+        <i {{#if initiativeData.isIconImg}}style="background-image: url('{{initiativeData.icon}}');"{{else}}class="{{initiativeData.icon}}"{{/if}}></i>
         <span class="portrait-initiative-text">{{initiative}}</span>
     </div>
 
