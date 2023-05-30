@@ -78,7 +78,7 @@ export class CombatantPortrait {
         this.element.classList.toggle("active", data.css.includes("active"));
         this.element.classList.toggle("visible", data.css.includes("hidden"));
         this.element.classList.toggle("defeated", data.css.includes("defeated"));
-        this.element.style.borderBottomColor = this.getBorderColor(this.token.document);
+        this.element.style.borderBottomColor = this.getBorderColor(this.token?.document);
         this.element.querySelector(".roll-initiative").addEventListener("click", async (event) => {
             event.preventDefault();
             Hooks.once("renderCombatTracker", () => {
@@ -142,7 +142,7 @@ export class CombatantPortrait {
         // Prepare turn data
         const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
         const resource = hasPermission ? this.getResource() : null;
-        const initiativeData = getInitiativeDisplay(combatant);
+        const initiativeData = this.getInitiativeDisplay();
         initiativeData.isIconImg = initiativeData.icon.includes(".");
         initiativeData.isRollIconImg = initiativeData.rollIcon.includes(".");
         const turn = {
@@ -165,7 +165,7 @@ export class CombatantPortrait {
             resource: resource,
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
             attributes: trackedAttributes,
-            description: getDescription(combatant.actor),
+            description: this.getDescription(),
         };
         if (turn.initiative !== null && !Number.isInteger(turn.initiative)) hasDecimals = true;
         if (turn.initiativeData.value !== null && !Number.isInteger(turn.initiativeData.value)) hasDecimals = true;
@@ -199,8 +199,26 @@ export class CombatantPortrait {
         return turn;
     }
 
+    getDescription() {
+        const actor = this.actor;
+        if(!actor) return null;
+        let description = null;
+    
+        try {
+            description = generateDescription(actor);
+        } catch (e) {
+            console.error(e);
+        }
+    
+        return description;
+    }
+
+    getInitiativeDisplay() {
+        return getInitiativeDisplay(this.combatant);
+    }
+
     getBorderColor(tokenDocument) {
-        if (!game.settings.get(MODULE_ID, "showDispositionColor")) return "#000";
+        if (!game.settings.get(MODULE_ID, "showDispositionColor") || !tokenDocument) return "#000";
         let color;
         const d = tokenDocument.disposition;
         const colors = CONFIG.Canvas.dispositionColors;
@@ -220,14 +238,4 @@ export class CombatantPortrait {
     }
 }
 
-function getDescription(actor) {
-    let description = null;
 
-    try {
-        description = generateDescription(actor);
-    } catch (e) {
-        console.error(e);
-    }
-
-    return description;
-}

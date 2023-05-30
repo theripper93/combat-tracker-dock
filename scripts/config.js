@@ -1,13 +1,12 @@
 import {MODULE_ID} from "./main.js";
 import {AttributesConfig} from "./attributesConfig.js";
-import { defaultAttributesConfig } from "./systems.js";
 
 export function registerSettings() {
     game.settings.register(MODULE_ID, "attributes", {
         scope: "world",
         config: false,
         type: Array,
-        default: defaultAttributesConfig()[game.system.id] ?? [],
+        default: CONFIG.combatTrackerDock.defaultAttributesConfig()[game.system.id] ?? [],
     });
 
     game.settings.registerMenu(MODULE_ID, "attributesMenu", {
@@ -18,8 +17,8 @@ export function registerSettings() {
         scope: "world",
         restricted: true,
         type: AttributesConfig,
-    });    
-
+    });  
+    
     game.settings.register(MODULE_ID, "portraitSize", {
         name: "combat-tracker-dock.settings.portraitSize.name",
         hint: "combat-tracker-dock.settings.portraitSize.hint",
@@ -39,6 +38,39 @@ export function registerSettings() {
             ui.combatDock?.autosize();
         },
     });
+
+    game.settings.register(MODULE_ID, "carouselStyle", {
+        name: "combat-tracker-dock.settings.carouselStyle.name",
+        hint: "combat-tracker-dock.settings.carouselStyle.hint",
+        scope: "world",
+        config: true,
+        type: Number,
+        choices: {
+            0: "combat-tracker-dock.settings.carouselStyle.choices.centerCarousel",
+            1: "combat-tracker-dock.settings.carouselStyle.choices.leftCarousel",
+            2: "combat-tracker-dock.settings.carouselStyle.choices.basic",
+        },
+        default: 0,
+    });
+
+    game.settings.register(MODULE_ID, "alignment", {
+        name: "combat-tracker-dock.settings.alignment.name",
+        hint: "combat-tracker-dock.settings.alignment.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            "left": "combat-tracker-dock.settings.alignment.choices.left",
+            "center": "combat-tracker-dock.settings.alignment.choices.center",
+            "right": "combat-tracker-dock.settings.alignment.choices.right",
+        },
+        default: "center",
+        onChange: () => {
+            setAlignment();
+        },
+    });
+
+    setAlignment();
 
     game.settings.register(MODULE_ID, "portraitAspect", {
         name: "combat-tracker-dock.settings.portraitAspect.name",
@@ -77,25 +109,6 @@ export function registerSettings() {
     });
 
     setRoundness();
-
-    game.settings.register(MODULE_ID, "alignment", {
-        name: "combat-tracker-dock.settings.alignment.name",
-        hint: "combat-tracker-dock.settings.alignment.hint",
-        scope: "world",
-        config: true,
-        type: String,
-        choices: {
-            "left": "combat-tracker-dock.settings.alignment.choices.left",
-            "center": "combat-tracker-dock.settings.alignment.choices.center",
-            "right": "combat-tracker-dock.settings.alignment.choices.right",
-        },
-        default: "center",
-        onChange: () => {
-            setAlignment();
-        },
-    });
-
-    setAlignment();
 
 
 

@@ -2,14 +2,23 @@
     "combat-tracker-dock": {
         "settings": {
             "portraitSize": {
-                "name": "Portrait Size",
-                "hint": "The maximum size of the portrait in the combat tracker. Note that the size of the portraits will be automatically reduced if there are too many combatants to fit on the screen.",
+                "name": "Carousel Size",
+                "hint": "The maximum size of the portraits in the carousel. Note that the size of the portraits will be automatically reduced if there are too many combatants to fit on the screen.",
                 "choices": {
                     "30px": "Tiny",
                     "50px": "Small",
                     "70px": "Normal",
                     "90px": "Large",
                     "110px": "Huge"
+                }
+            },
+            "carouselStyle": {
+                "name": "Carousel Style",
+                "hint": "The way portraits are placed and move in the carousel: Carousel - Centered: The Active Combatant is at the Center of the carousel, the other combatants rotate around it.\n- Carousel - Left: The Active Combatant is at the Left of the carousel, the other combatants rotate around it.\n- No Carousel: Combatants are always displayed in initiative order and the active combatant moves around while combatants remain in the same position.",
+                "choices": {
+                    "centerCarousel": "Carousel - Centered",
+                    "leftCarousel": "Carousel - Left",
+                    "basic": "No Carousel"
                 }
             },
             "portraitAspect": {
