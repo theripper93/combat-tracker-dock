@@ -43,32 +43,7 @@ export function defaultAttributesConfig() {
                 units: "SP",
             },
         ],
-        swade: [
-            {
-                attr: "wildcard",
-                icon: "fa-solid fa-cards",
-            },
-            {
-                attr: "wounds.value",
-                icon: "fa-solid fa-heart",
-            },
-            {
-                attr: "fatigue.value",
-                icon: "fa-solid fa-face-hand-yawn",
-            },
-            {
-                attr: "stats.speed.value",
-                icon: "fa-solid fa-person-running",
-            },
-            {
-                attr: "stats.toughness.value",
-                icon: "fa-solid fa-shield",
-            },
-            {
-                attr: "stats.parry.value",
-                icon: "fa-solid fa-swords",
-            },
-        ],
+        "swade": _getSwadeAttributes(),
     }
 }
 
@@ -87,6 +62,8 @@ export function generateDescription(actor) {
             } else {
                 return null;
             }
+        case "swade":
+            return _generateSwadeDescription(actor)
     }
 }
 
@@ -118,4 +95,47 @@ export function getInitiativeDisplay(combatant) {
                 rollIcon: "fa-regular fa-dice-d20",
             }
     }
+}
+
+function _getSwadeAttributes() {
+    return [
+        {
+            attr: "wildcard",
+            icon: "fa-solid fa-cards",
+            units: `(${game.i18n.localize("SWADE.WildCard")})`,
+        },
+        {
+        attr: "wounds.value",
+        icon: "fa-solid fa-heart",
+        units: `(${game.i18n.localize("SWADE.Wounds")})`,
+        },
+        {
+            attr: "fatigue.value",
+            icon: "fa-solid fa-face-hand-yawn",
+            units: `(${game.i18n.localize("SWADE.Fatigue")})`,
+        },
+        {
+            attr: "stats.speed.value",
+            icon: "fa-solid fa-person-running",
+            units: `(${game.i18n.localize("SWADE.Pace")})`,
+        },
+        {
+            attr: "stats.toughness.value",
+            icon: "fa-solid fa-shield",
+            units: `(${game.i18n.localize("SWADE.Tough")})`,
+        },
+        {
+            attr: "stats.parry.value",
+            icon: "fa-solid fa-swords",
+            units: `(${game.i18n.localize("SWADE.Parry")})`,
+        },
+    ]
+}
+
+function _generateSwadeDescription(actor) {
+    if (actor.type !== "character") return
+    const { system } = actor;
+    return `${system.details.archetype} ${
+        system.details.species.name
+    }, ${game.i18n.localize("SWADE.Rank")}: ${system.advances.rank}`
 }
