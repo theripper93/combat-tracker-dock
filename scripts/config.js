@@ -75,6 +75,26 @@ export function registerSettings() {
         default: 0,
     });
 
+    game.settings.register(MODULE_ID, "direction", {
+        name: "combat-tracker-dock.settings.direction.name",
+        hint: "combat-tracker-dock.settings.direction.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            "row": "combat-tracker-dock.settings.direction.choices.row",
+            "column": "combat-tracker-dock.settings.direction.choices.column",
+        },
+        default: "row",
+        onChange: () => {
+            setDirection();
+            setFlex();
+            ui.combatDock?.autosize();
+        },
+    });
+
+    setDirection();
+
     game.settings.register(MODULE_ID, "alignment", {
         name: "combat-tracker-dock.settings.alignment.name",
         hint: "combat-tracker-dock.settings.alignment.hint",
@@ -89,10 +109,12 @@ export function registerSettings() {
         default: "center",
         onChange: () => {
             setAlignment();
+            setFlex();
         },
     });
 
     setAlignment();
+    setFlex();
 
     game.settings.register(MODULE_ID, "portraitAspect", {
         name: "combat-tracker-dock.settings.portraitAspect.name",
@@ -288,5 +310,26 @@ function setOverflowStyle() {
     document.documentElement.style.setProperty(
         "--carousel-overflow",
         overflowStyle
+    );
+}
+
+function setDirection() {
+    const direction = game.settings.get(MODULE_ID, "direction");
+    document.documentElement.style.setProperty(
+        "--carousel-direction",
+        direction
+    );
+}
+
+function setFlex() {
+    const alignment = game.settings.get(MODULE_ID, "alignment");
+    const direction = game.settings.get(MODULE_ID, "direction");
+    let flexD = "flex-start";
+    if (direction == "column" && alignment == "right") flexD = "flex-end";
+    if (direction == "column" && alignment == "center") flexD = "center";
+
+    document.documentElement.style.setProperty(
+        "--carousel-align-items",
+        flexD
     );
 }

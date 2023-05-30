@@ -11,7 +11,7 @@
         position: relative;
         border-bottom-right-radius: var(--combatant-portrait-border-radius);
         border-bottom-left-radius: var(--combatant-portrait-border-radius);
-        transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out, margin 0.2s ease-in-out, left 0.2s ease-in-out, border-color 0.1s ease-in-out;
+        transition: width 0.2s ease-in-out, height 0.2s ease-in-out, opacity 0.2s ease-in-out, margin 0.2s ease-in-out, left 0.2s ease-in-out, border-color 0.1s ease-in-out, top 0.2s ease-in-out;
 
         &:hover {
             border-color: rgba(255, 255, 255, 0.616);
@@ -47,8 +47,14 @@
             display: none;
         }
 
-        &.collapsed {
+        &.collapsed-horizontal {
             width: 0px;
+            opacity: 0px;
+            margin: 0;
+        }
+
+        &.collapsed-vertical {
+            height: 0px;
             opacity: 0px;
             margin: 0;
         }

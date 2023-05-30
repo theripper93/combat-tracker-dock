@@ -2,11 +2,16 @@
     --combatant-portrait-size: 100px;
     --combatant-portrait-aspect: 1.5;
     --combatant-portrait-border-radius: 0%;
+    --carousel-direction: row;
     --carousel-overflow: hidden;
     --carousel-alignment: center;
+    --carousel-align-items: "flex-end";
     --attribute-bar-primary-color: #41AA7D;
     --attribute-bar-secondary-color: rgba(53,94,77,1);
     --carousel-tooltip-color: rgba(136, 136, 136, 0.873);
     --carousel-tooltip-bg-color: rgb(43, 43, 43);
     --combatant-portrait-image-border: url("/modules/combat-tracker-dock/assets/border.png")
+}
+#ui-top{
+    position: relative;
 }

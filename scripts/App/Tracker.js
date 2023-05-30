@@ -46,6 +46,10 @@ export class CombatDock extends Application {
         return game.settings.get(MODULE_ID, "overflowStyle") == "autofit";
     }
 
+    get isVertical() {
+        return game.settings.get(MODULE_ID, "direction") == "column";
+    }
+
     setHooks() {
         this.hooks = [
             {
@@ -120,9 +124,15 @@ export class CombatDock extends Application {
         const duration = CONFIG.combatTrackerDock.INTRO_ANIMATION_DURATION;
         const delayMultiplier = CONFIG.combatTrackerDock.INTRO_ANIMATION_DELAY;
 
+        const isVertical = this.isVertical;
+        const alignment = game.settings.get(MODULE_ID, "alignment");
+
+        let transformAxis = isVertical ? "X" : "Y";
+        const transformDirection = isVertical && alignment == "right" ? "" : "-";
+
         const playSlideInAnimation = (el, delay = 0) => {
-            el.style.transform = "translateY(-150%)";
-            const anim = el.animate([{ transform: "translateY(-150%)" }, { transform: "translateY(0)" }], {
+            el.style.transform = `translate${transformAxis}(${transformDirection}150%)`;
+            const anim = el.animate([{ transform: `translate${transformAxis}(${transformDirection}150%)` }, { transform: `translate${transformAxis}(0)` }], {
                 duration: duration,
                 easing: easing,
                 //fill: "forwards",
@@ -139,16 +149,30 @@ export class CombatDock extends Application {
             const delay = order * duration * delayMultiplier;
             playSlideInAnimation(el, delay);
         });
+
+        setTimeout(() => {
+            this.element[0].classList.remove("hidden");
+        }, 10);
     }
 
     autosize() {
         const max = parseInt(game.settings.get(MODULE_ID, "portraitSize"));
-        if(!this.autoFit) return document.documentElement.style.setProperty("--combatant-portrait-size", max + "px");;
-        const maxSpace = document.getElementById("ui-top").getBoundingClientRect().width * 0.9;
-        const combatantCount = this.sortedCombatants.length;
-        const portraitSize = Math.min(max, Math.floor(maxSpace / combatantCount));
+        const aspect = game.settings.get(MODULE_ID, "portraitAspect");
+        const verticalSize = max*aspect;
+        if (!this.autoFit) return document.documentElement.style.setProperty("--combatant-portrait-size", max + "px");
+        if (this.isVertical) {
+            const maxSpace = document.getElementById("ui-middle").getBoundingClientRect().height * 0.9;
+            const combatantCount = this.sortedCombatants.length;
+            const portraitSize = Math.min(verticalSize, Math.floor(maxSpace / combatantCount)) / aspect;
 
-        document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize / 1.2 + "px");
+            document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize + "px");
+        } else {            
+            const maxSpace = document.getElementById("ui-top").getBoundingClientRect().width * 0.9;
+            const combatantCount = this.sortedCombatants.length;
+            const portraitSize = Math.min(max, Math.floor(maxSpace / combatantCount));
+    
+            document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize / 1.2 + "px");
+        }
     }
 
     updateCombatant(combatant, updates = {}) {
@@ -168,6 +192,8 @@ export class CombatDock extends Application {
         const separator = this.element[0].querySelector(".separator");
         const isTrueCarousel = this.trueCarousel;
         separator.style.display = isTrueCarousel ? "" : "none";
+        separator.classList.remove("vertical", "horizontal");
+        separator.classList.add(this.isVertical ? "vertical" : "horizontal");
         if (!this.trueCarousel) return;
 
         const isLeftAligned = this.leftAligned;
@@ -295,9 +321,9 @@ export class CombatDock extends Application {
         if (!this.trueCarousel) return;
 
         for (const el of els) {
-            el.classList.add("collapsed");
+            el.classList.add(`collapsed-${this.isVertical ? "vertical" : "horizontal"}`);
             setTimeout(() => {
-                el.classList.remove("collapsed");
+                el.classList.remove(`collapsed-${this.isVertical ? "vertical" : "horizontal"}`);
                 setTimeout(() => {
                     combatantsContainer.style.minWidth = "";
                     combatantsContainer.style.minHeight = "";

@@ -77,6 +77,15 @@ export class CombatantPortrait {
         const tooltip = await renderTemplate("modules/combat-tracker-dock/templates/combatant-tooltip.hbs", { ...data });
         this.element.innerHTML = template;
         this.element.setAttribute("data-tooltip", tooltip);
+        const direction = game.settings.get(MODULE_ID, "direction");
+        if (direction == "column") {
+            const alignment = game.settings.get(MODULE_ID, "alignment");
+            this.element.setAttribute("data-tooltip-direction", alignment == "left" ? TooltipManager.TOOLTIP_DIRECTIONS.RIGHT : TooltipManager.TOOLTIP_DIRECTIONS.LEFT);
+        } else {
+            this.element.setAttribute("data-tooltip-direction", "");
+        }
+
+
         this.element.classList.toggle("active", data.css.includes("active"));
         this.element.classList.toggle("visible", data.css.includes("hidden"));
         this.element.classList.toggle("defeated", data.css.includes("defeated"));

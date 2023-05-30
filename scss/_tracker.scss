@@ -1,6 +1,6 @@
 #combat-dock{
 
-    display: flex;
+    display: flex !important;
     justify-content: var(--carousel-alignment);
     pointer-events: none;
     position: absolute;
@@ -8,23 +8,37 @@
     overflow-x: visible;
     overflow-y: visible;
 
+    &.hidden{
+        display: none !important;
+    }
+
     & #combatants{
         pointer-events: all;
         display: flex;
+        flex-direction: var(--carousel-direction);
+        align-items: var(--carousel-align-items);
         padding: 0 0.5rem;  
         max-width: 100%;
-        height: calc(var(--combatant-portrait-size)*var(--combatant-portrait-aspect)*1.2*1.2);
+        min-height: calc(var(--combatant-portrait-size)*var(--combatant-portrait-aspect)*1.2*1.2);
         overflow: hidden;
         overflow-x: var(--carousel-overflow);
     }
 
     & .separator{
-        height: 100%;
-        max-height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect) * 1.2);
         border: 1px solid white;
         opacity: 0.7;
-        border-bottom-left-radius: 50%;
-        border-bottom-right-radius: 50%;
+        &.horizontal{
+            height: 100%;
+            max-height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect) * 1.2);
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+        }
+        &.vertical{
+            width: 100%;
+            max-width: calc(var(--combatant-portrait-size) * 1.2);
+            border-radius: 50%;
+            margin: 0.1rem 0;
+        }
     }
 
     &:hover{

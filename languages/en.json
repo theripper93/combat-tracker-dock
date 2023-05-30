@@ -50,6 +50,14 @@
                     "right": "Right"
                 }
             },
+            "direction": {
+                "name": "Direction",
+                "hint": "The direction of the carousel.",
+                "choices": {
+                    "row": "Horizontal",
+                    "column": "Vertical"
+                }
+            },
             "roundness": {
                 "name": "Roundness",
                 "hint": "The roundness of the portraits and tooltips.",
