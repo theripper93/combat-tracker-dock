@@ -7,6 +7,10 @@
         <span class="portrait-initiative-text">{{initiativeData.value}}</span>
     </div>
 
+    <div class="portrait-pass" {{#unless showPass}}style="display: none;"{{/unless}} {{#unless hasRolled}}style="display: none;"{{/unless}}>
+        <i data-action="player-pass" class="fa-solid fa-chevrons-right"></i>
+    </div>
+
     <ul class="effects-container" {{#unless hasEffects}}style="display:none;"{{/unless}}>
         {{#each effects as |effect|}}
         <li style="background-image: url('{{effect.icon}}');"></li>

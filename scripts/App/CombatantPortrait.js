@@ -35,6 +35,8 @@ export class CombatantPortrait {
 
         if (event.button === 2) return this.combatant.sheet.render(true);
 
+        if(event.target.dataset.action === "player-pass") return this.combat.nextTurn();
+
         const combatant = this.combatant;
         const token = combatant.token;
         if (!combatant.actor?.testUserPermission(game.user, "OBSERVER")) return;
@@ -154,6 +156,7 @@ export class CombatantPortrait {
             active: this.combat.turns.indexOf(combatant) === this.combat.turn,
             owner: combatant.isOwner,
             isGM: game.user.isGM,
+            showPass: combatant.isOwner && !game.user.isGM,
             defeated: combatant.isDefeated,
             hidden: combatant.hidden,
             initiative: combatant.initiative,
