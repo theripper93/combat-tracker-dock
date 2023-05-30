@@ -126,7 +126,9 @@ export class CombatantPortrait {
 
         if(typeof value === "boolean") value = value ? "✓" : "✗"   //'<i class="fas fa-check" style="display: flex;"></i>' : '<i class="fas fa-times" style="display: flex;"></i>';
 
-        if(Array.isArray(value)) value = value.join(", ");
+        if (Array.isArray(value)) value = value.join(", ");
+        
+        if (value == "") value = null;
 
         return { max, value, percentage };
     }
@@ -144,7 +146,7 @@ export class CombatantPortrait {
                 icon: iconHasExtension ? `<img src="${a.icon}" />` : `<i class="${a.icon} icon"></i>`,
                 units: a.units || "",
             };
-        });
+        }).filter((a) => a.value !== null && a.value !== undefined);
         // Prepare turn data
         const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
         const resource = hasPermission ? this.getResource() : null;
