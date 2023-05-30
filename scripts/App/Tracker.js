@@ -1,7 +1,7 @@
 import { MODULE_ID } from "../main.js";
 
 export class CombatDock extends Application {
-    constructor (combat) {
+    constructor(combat) {
         super();
         ui.combatDock?.close();
         ui.combatDock = this;
@@ -34,6 +34,18 @@ export class CombatDock extends Application {
         return Array.from(this.combat.turns);
     }
 
+    get trueCarousel() {
+        return game.settings.get(MODULE_ID, "carouselStyle") < 2;
+    }
+
+    get leftAligned() {
+        return game.settings.get(MODULE_ID, "carouselStyle") == 1;
+    }
+
+    get autoFit() {
+        return game.settings.get(MODULE_ID, "overflowStyle") == "autofit";
+    }
+
     setHooks() {
         this.hooks = [
             {
@@ -63,8 +75,8 @@ export class CombatDock extends Application {
             {
                 hook: "combatStart",
                 fn: this._onCombatStart.bind(this),
-            }
-        ]
+            },
+        ];
         for (let hook of this.hooks) {
             hook.id = Hooks.on(hook.hook, hook.fn);
         }
@@ -84,10 +96,10 @@ export class CombatDock extends Application {
 
     setupCombatants() {
         this.portraits = [];
-        this.sortedCombatants.forEach(combatant => this.portraits.push(new CONFIG.combatTrackerDock.CombatantPortrait(combatant)));
+        this.sortedCombatants.forEach((combatant) => this.portraits.push(new CONFIG.combatTrackerDock.CombatantPortrait(combatant)));
         const combatantsContainer = this.element[0].querySelector("#combatants");
         combatantsContainer.innerHTML = "";
-        this.portraits.forEach(p => combatantsContainer.appendChild(p.element));
+        this.portraits.forEach((p) => combatantsContainer.appendChild(p.element));
         const isEven = this.portraits.length % 2 === 0;
         this.element[0].classList.toggle("even", isEven);
         const separator = document.createElement("div");
@@ -97,7 +109,7 @@ export class CombatDock extends Application {
         this.autosize();
         if (this._playAnimation && this.sortedCombatants.length > 0) {
             this._playAnimation = false;
-            const promises = this.portraits.map(p => p.ready);
+            const promises = this.portraits.map((p) => p.ready);
             Promise.all(promises).then(() => {
                 this.playIntroAnimation();
             });
@@ -105,95 +117,90 @@ export class CombatDock extends Application {
     }
 
     playIntroAnimation(easing = "cubic-bezier(0.22, 1, 0.36, 1)") {
-
         const duration = CONFIG.combatTrackerDock.INTRO_ANIMATION_DURATION;
         const delayMultiplier = CONFIG.combatTrackerDock.INTRO_ANIMATION_DELAY;
 
         const playSlideInAnimation = (el, delay = 0) => {
             el.style.transform = "translateY(-150%)";
-            const anim = el.animate(
-                [
-                    {transform: "translateY(-150%)"},
-                    {transform: "translateY(0)"},
-                ],
-                {
-                    duration: duration,
-                    easing: easing,
-                    //fill: "forwards",
-                    delay: delay,
-
-                },
-            );
+            const anim = el.animate([{ transform: "translateY(-150%)" }, { transform: "translateY(0)" }], {
+                duration: duration,
+                easing: easing,
+                //fill: "forwards",
+                delay: delay,
+            });
 
             anim.finished.then(() => {
                 el.style.transform = "";
             });
-        }
-        
+        };
+
         Array.from(this.element[0].querySelector("#combatants").children).forEach((el, index) => {
-            const order = parseInt(el.style.order);
-            const delay = (order / 100) * duration * delayMultiplier;
+            const order = this.trueCarousel ? parseInt(el.style.order) / 100 : index;
+            const delay = order * duration * delayMultiplier;
             playSlideInAnimation(el, delay);
         });
-        
     }
 
     autosize() {
         const max = parseInt(game.settings.get(MODULE_ID, "portraitSize"));
+        if(!this.autoFit) return document.documentElement.style.setProperty("--combatant-portrait-size", max + "px");;
         const maxSpace = document.getElementById("ui-top").getBoundingClientRect().width * 0.9;
         const combatantCount = this.sortedCombatants.length;
-        const portraitSize = Math.min(max, Math.floor((maxSpace / combatantCount)));
+        const portraitSize = Math.min(max, Math.floor(maxSpace / combatantCount));
 
-
-        document.documentElement.style.setProperty(
-            "--combatant-portrait-size",
-            portraitSize/1.2 + "px"
-        );
+        document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize / 1.2 + "px");
     }
 
     updateCombatant(combatant, updates = {}) {
         if ("initiative" in updates) {
-                this.setupCombatants();
-            return
+            this.setupCombatants();
+            return;
         }
-        const portrait = this.portraits.find(p => p.combatant === combatant);
+        const portrait = this.portraits.find((p) => p.combatant === combatant);
         if (portrait) portrait.renderInner();
     }
 
     updateCombatants() {
-        this.portraits.forEach(p => p.renderInner());
+        this.portraits.forEach((p) => p.renderInner());
     }
 
     updateOrder() {
+        const separator = this.element[0].querySelector(".separator");
+        const isTrueCarousel = this.trueCarousel;
+        separator.style.display = isTrueCarousel ? "" : "none";
+        if (!this.trueCarousel) return;
+
+        const isLeftAligned = this.leftAligned;
+
         //order combatants so that the current combatant is at the center
         const currentCombatant = this.combat.combatant;
         const combatants = this.sortedCombatants;
-        const currentCombatantIndex = combatants.findIndex(c => c === currentCombatant) + combatants.length;
+        const currentCombatantIndex = combatants.findIndex((c) => c === currentCombatant) + combatants.length;
         const tempCombatantList = [...combatants, ...combatants, ...combatants];
-        const halfLength = Math.floor(combatants.length / 2);
+        const halfLength = isLeftAligned ? combatants.length : Math.floor(combatants.length / 2);
         const orderedCombatants = tempCombatantList.slice(currentCombatantIndex - halfLength, currentCombatantIndex + halfLength + 1);
-        
+
         const lastCombatant = this.sortedCombatants[this.sortedCombatants.length - 1];
 
-        this.portraits.forEach(p => {
-            const combatant = orderedCombatants.find(c => c === p.combatant);
-            const index = orderedCombatants.findIndex(c => c === combatant);
-            p.element.style.setProperty("order", index*100);
+        this.portraits.forEach((p) => {
+            const combatant = orderedCombatants.find((c) => c === p.combatant);
+            const index = orderedCombatants.findIndex((c) => c === combatant);
+            p.element.style.setProperty("order", index * 100);
         });
 
         //get last combatant's order
-        const lastCombatantOrder = this.portraits.find(p => p.combatant === lastCombatant)?.element?.style?.order ?? 999999;
+        const lastCombatantOrder = this.portraits.find((p) => p.combatant === lastCombatant)?.element?.style?.order ?? 999999;
         //set separator's order to last combatant's order + 1
-        const separator = this.element[0].querySelector(".separator");
+
         separator.style.setProperty("order", parseInt(lastCombatantOrder) + 1);
     }
 
     activateListeners(html) {
-        if(this._closed) return this.close();
+        if (this._closed) return this.close();
         super.activateListeners(html);
         this.setupCombatants();
         document.querySelector("#ui-top").prepend(this.element[0]);
-        this.element[0].querySelectorAll(".buttons-container i").forEach(i => {
+        this.element[0].querySelectorAll(".buttons-container i").forEach((i) => {
             i.addEventListener("click", (e) => {
                 const action = e.currentTarget.dataset.action;
                 switch (action) {
@@ -234,13 +241,13 @@ export class CombatDock extends Application {
     }
 
     _onRenderCombatTracker() {
-        this.portraits.forEach(p => p.renderInner());
+        this.portraits.forEach((p) => p.renderInner());
     }
 
     _onCombatTurn(combat, updates, update) {
-        if(!("turn" in updates) && !("round" in updates)) return;
+        if (!("turn" in updates) && !("round" in updates)) return;
         const combatantsContainer = this.element[0].querySelector("#combatants");
-        const filteredChildren = Array.from(combatantsContainer.children).filter(c => !c.classList.contains("separator"));
+        const filteredChildren = Array.from(combatantsContainer.children).filter((c) => !c.classList.contains("separator"));
         const currentSize = combatantsContainer.getBoundingClientRect();
         combatantsContainer.style.minWidth = currentSize.width + "px";
         combatantsContainer.style.minHeight = currentSize.height + "px";
@@ -250,14 +257,14 @@ export class CombatDock extends Application {
         const childrenByLowestOrder = [...filteredChildren].sort((a, b) => a.style.order - b.style.order);
 
         const currentCombatant = this.combat.combatant;
-        const currentIndex = this.sortedCombatants.findIndex(c => c === currentCombatant);
+        const currentIndex = this.sortedCombatants.findIndex((c) => c === currentCombatant);
         let nextDefeatedCount = 0;
         let previousDefeatedCount = 0;
         const sortedCombatants = this.sortedCombatants;
         for (let i = 0 + 1; i < sortedCombatants.length; i++) {
             const index = (currentIndex + i) % sortedCombatants.length;
             const combatant = sortedCombatants[index];
-            if(combatant.defeated) previousDefeatedCount++;
+            if (combatant.defeated) previousDefeatedCount++;
             else break;
         }
 
@@ -268,11 +275,11 @@ export class CombatDock extends Application {
             else break;
         }
 
-        const nextDefeatedCombatants = childrenByLowestOrder.slice(0, nextDefeatedCount+1);
-        const previousDefeatedCombatants = childrenByHighestOrder.slice(0, previousDefeatedCount+1);
-        
-        const first = nextDefeatedCount != 0 ? nextDefeatedCombatants : [[...filteredChildren].reduce((a, b) => a.style.order < b.style.order ? a : b, combatantsContainer.children[0])];
-        const last = previousDefeatedCount != 0 ? previousDefeatedCombatants : [[...filteredChildren].reduce((a, b) => a.style.order > b.style.order ? a : b, combatantsContainer.children[0])];
+        const nextDefeatedCombatants = childrenByLowestOrder.slice(0, nextDefeatedCount + 1);
+        const previousDefeatedCombatants = childrenByHighestOrder.slice(0, previousDefeatedCount + 1);
+
+        const first = nextDefeatedCount != 0 ? nextDefeatedCombatants : [[...filteredChildren].reduce((a, b) => (a.style.order < b.style.order ? a : b), combatantsContainer.children[0])];
+        const last = previousDefeatedCount != 0 ? previousDefeatedCombatants : [[...filteredChildren].reduce((a, b) => (a.style.order > b.style.order ? a : b), combatantsContainer.children[0])];
 
         const els = update.direction === 1 ? first : last;
 
@@ -285,10 +292,12 @@ export class CombatDock extends Application {
 
         setTimeout(() => this.updateOrder(), 200);
 
+        if (!this.trueCarousel) return;
+
         for (const el of els) {
             el.classList.add("collapsed");
             setTimeout(() => {
-                el.classList.remove("collapsed")
+                el.classList.remove("collapsed");
                 setTimeout(() => {
                     combatantsContainer.style.minWidth = "";
                     combatantsContainer.style.minHeight = "";
@@ -298,11 +307,11 @@ export class CombatDock extends Application {
     }
 
     _onDeleteCombat(combat) {
-        if(combat === this.combat) this.close();
+        if (combat === this.combat) this.close();
     }
 
     _onCombatStart(combat) {
-        if(combat === this.combat) this._playAnimation = true;
+        if (combat === this.combat) this._playAnimation = true;
     }
 
     async close(...args) {

@@ -85,6 +85,24 @@
                 },
                 "hint": "La redondez de los retratos y la información sobre herramientas.",
                 "name": "Redondez"
+            },
+            "carouselStyle": {
+                "choices": {
+                    "basic": "Sin carrusel",
+                    "centerCarousel": "Carrusel - Centrado",
+                    "leftCarousel": "Carrusel - Izquierda"
+                },
+                "hint": "La forma en que se colocan los retratos y se mueven en el carrusel: Carrusel - Centrado: El Combatiente Activo está en el Centro del carrusel, los otros combatientes giran a su alrededor.\n\n- Carrusel - Izquierda: El Combatiente Activo está a la Izquierda del carrusel, los otros combatientes rotan a su alrededor.\n\n- Sin carrusel: los combatientes siempre se muestran en orden de iniciativa y el combatiente activo se mueve mientras los combatientes permanecen en la misma posición.",
+                "name": "Estilo carrusel"
+            },
+            "overflowStyle": {
+                "choices": {
+                    "autofit": "Reducir retratos",
+                    "hidden": "Oculto",
+                    "scroll": "Desplazarse"
+                },
+                "hint": "La forma en que se comporta el carrusel cuando hay demasiados combatientes para caber en la pantalla.",
+                "name": "Estilo de desbordamiento"
             }
         }
     }

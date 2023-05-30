@@ -45,11 +45,6 @@
         "lang": "it",
         "name": "Italiano",
         "path": "languages/it.json"
-      },
-      {
-        "lang": "ru",
-        "name": "Русский",
-        "path": "languages/ru.json"
       }
     ],
     "scripts": [

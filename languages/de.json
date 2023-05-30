@@ -85,6 +85,24 @@
                 },
                 "hint": "Die Rundheit der Porträts und Tooltips.",
                 "name": "Rundheit"
+            },
+            "carouselStyle": {
+                "choices": {
+                    "basic": "Kein Karussell",
+                    "centerCarousel": "Karussell – zentriert",
+                    "leftCarousel": "Karussell – Links"
+                },
+                "hint": "Die Art und Weise, wie Porträts im Karussell platziert und bewegt werden: Karussell – zentriert: Der aktive Kämpfer befindet sich in der Mitte des Karussells, die anderen Kämpfer drehen sich um ihn herum.\n\n- Karussell – Links: Der aktive Kämpfer befindet sich links vom Karussell, die anderen Kämpfer rotieren um ihn herum.\n\n- Kein Karussell: Die Kämpfer werden immer in der Reihenfolge ihrer Initiative angezeigt und der aktive Kämpfer bewegt sich, während die Kämpfer an derselben Position bleiben.",
+                "name": "Karussell-Stil"
+            },
+            "overflowStyle": {
+                "choices": {
+                    "autofit": "Porträts verkleinern",
+                    "hidden": "Versteckt",
+                    "scroll": "Scrollen"
+                },
+                "hint": "Die Art und Weise, wie sich das Karussell verhält, wenn zu viele Kämpfer vorhanden sind, um auf den Bildschirm zu passen.",
+                "name": "Überlaufstil"
             }
         }
     }

@@ -85,6 +85,24 @@
                 },
                 "hint": "A redondeza dos retratos e dicas de ferramentas.",
                 "name": "Arredondamento"
+            },
+            "carouselStyle": {
+                "choices": {
+                    "basic": "Sem carrossel",
+                    "centerCarousel": "Carrossel - Centrado",
+                    "leftCarousel": "Carrossel - Esquerda"
+                },
+                "hint": "A forma como os retratos são colocados e se movem no carrossel: Carrossel - Centrado: O Combatente Ativo está no centro do carrossel, os outros combatentes giram em torno dele.\n\n- Carrossel - Esquerda: O Combatente Ativo fica à Esquerda do carrossel, os demais combatentes giram em torno dele.\n\n- Sem carrossel: os combatentes são sempre exibidos em ordem de iniciativa e o combatente ativo se move enquanto os combatentes permanecem na mesma posição.",
+                "name": "Estilo carrossel"
+            },
+            "overflowStyle": {
+                "choices": {
+                    "autofit": "Encolher retratos",
+                    "hidden": "Escondido",
+                    "scroll": "Rolagem"
+                },
+                "hint": "A maneira como o carrossel se comporta quando há muitos combatentes para caber na tela.",
+                "name": "Estilo de estouro"
             }
         }
     }
