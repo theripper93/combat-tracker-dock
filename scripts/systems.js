@@ -43,6 +43,32 @@ export function defaultAttributesConfig() {
                 units: "SP",
             },
         ],
+        swade: [
+            {
+                attr: "wildcard",
+                icon: "fa-solid fa-cards",
+            },
+            {
+                attr: "wounds.value",
+                icon: "fa-solid fa-heart",
+            },
+            {
+                attr: "fatigue.value",
+                icon: "fa-solid fa-face-hand-yawn",
+            },
+            {
+                attr: "stats.speed.value",
+                icon: "fa-solid fa-person-running",
+            },
+            {
+                attr: "stats.toughness.value",
+                icon: "fa-solid fa-shield",
+            },
+            {
+                attr: "stats.parry.value",
+                icon: "fa-solid fa-swords",
+            },
+        ],
     }
 }
 
@@ -83,7 +109,7 @@ export function getInitiativeDisplay(combatant) {
                 value: cardString.replace("♥", "").replace("♦", "").replace("♣", "").replace("♠", ""),
                 icon: getCardImage(cardString) ?? suit,
                 rollIcon: "fa-regular fa-cards-blank",
-            } 
+            }
         }
         default:
             return {
