@@ -68,6 +68,9 @@ export function getInitiativeDisplay(combatant) {
     switch (game.system.id) {
         case "swade": {
             let suit = "";
+            const getCardImage = (cardstr) => {
+                return Array.from(game.cards.get(game.settings.get('swade', 'actionDeck')).cards).find(c => c.description === cardstr)?.img;
+            }
             const cardString = combatant?.cardString ?? "";
             if (cardString.includes("♥")) suit = "fa-solid fa-heart";
             if (cardString.includes("♦")) suit = "fa-solid fa-diamond";
@@ -76,7 +79,7 @@ export function getInitiativeDisplay(combatant) {
 
             return {
                 value: cardString.replace("♥", "").replace("♦", "").replace("♣", "").replace("♠", ""),
-                icon: suit,
+                icon: getCardImage(cardString) ?? suit,
                 rollIcon: "fa-regular fa-cards-blank",
             } 
         }

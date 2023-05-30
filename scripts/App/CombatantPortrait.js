@@ -1,4 +1,4 @@
-import {MODULE_ID} from "../main.js";
+import { MODULE_ID } from "../main.js";
 import { generateDescription, getInitiativeDisplay } from "../systems.js";
 
 export class CombatantPortrait {
@@ -24,36 +24,43 @@ export class CombatantPortrait {
 
     activateListeners() {
         //add left and right click and double click listeners
-        this.element.addEventListener("mouseup", this._onClick.bind(this));
-        this.element.addEventListener("dblclick", this._onDoubleClick.bind(this));
+        this.element.addEventListener("mousedown", this._onCombatantMouseDown.bind(this));
         //add hover in and out listeners
         this.element.addEventListener("mouseenter", this._onHoverIn.bind(this));
         this.element.addEventListener("mouseleave", this._onHoverOut.bind(this));
     }
 
-    _onClick(event) {
-        if(!this.token) return;
-        const isLeftClick = event.button === 0;
-        const isRightClick = event.button === 2;
-        if (isLeftClick) this.token._onClickLeft(event);
-        else if (isRightClick) this.combatant.sheet.render(true)
-    }
+    async _onCombatantMouseDown(event) {
+        event.preventDefault();
 
-    _onDoubleClick(event) {
-        if(!this.token) return;
-        const isLeftClick = event.button === 0;
-        const isRightClick = event.button === 2;
-        if (isLeftClick) this.token._onClickLeft2(event);
-        else if (isRightClick) this.token._onClickRight2(event);
+        if (event.button === 2) return this.combatant.sheet.render(true);
+
+        const combatant = this.combatant;
+        const token = combatant.token;
+        if (!combatant.actor?.testUserPermission(game.user, "OBSERVER")) return;
+        const now = Date.now();
+
+        // Handle double-left click to open sheet
+        const dt = now - this._clickTime;
+        this._clickTime = now;
+        if (dt <= 250) {
+            return combatant.actor?.sheet.render(true);
+        }
+
+        // Control and pan to Token object
+        if (token?.object) {
+            token.object?.control({ releaseOthers: true });
+            return canvas.animatePan(token.object.center);
+        }
     }
 
     _onHoverIn(event) {
-        if(!this.token) return;
+        if (!this.token) return;
         this.token._onHoverIn(event);
     }
 
     _onHoverOut(event) {
-        if(!this.token) return;
+        if (!this.token) return;
         this.token._onHoverOut(event);
     }
 
@@ -74,8 +81,8 @@ export class CombatantPortrait {
         this.element.style.borderBottomColor = this.getBorderColor(this.token.document);
         this.element.querySelector(".roll-initiative").addEventListener("click", async (event) => {
             event.preventDefault();
-            Hooks.once("renderCombatTracker", () => { 
-                ui.combatDock.updateOrder()
+            Hooks.once("renderCombatTracker", () => {
+                ui.combatDock.updateOrder();
             });
             await this.combatant.combat.rollInitiative([this.combatant.id]);
         });
@@ -86,7 +93,7 @@ export class CombatantPortrait {
                 const dataAction = action.dataset.action;
                 switch (dataAction) {
                     case "toggle-hidden":
-                        await this.combatant.update({hidden: !this.combatant.hidden})
+                        await this.combatant.update({ hidden: !this.combatant.hidden });
                         break;
                     case "toggle-defeated":
                         await ui.combat._onToggleDefeatedStatus(this.combatant);
@@ -107,7 +114,7 @@ export class CombatantPortrait {
 
         let max, value, percentage;
 
-        if(!resource) return { max, value, percentage };
+        if (!resource) return { max, value, percentage };
 
         max = foundry.utils.getProperty(this.actor.system, resource + ".max") ?? foundry.utils.getProperty(this.actor.system, resource.replace("value", "") + "max");
 
@@ -182,27 +189,27 @@ export class CombatantPortrait {
                 else if (effect.icon) turn.effects.add({ icon: effect.icon, label: effect.name });
             }
         }
-        
+
         turn.hasEffects = turn.effects.size > 0;
         // Format initiative numeric precision
         const precision = CONFIG.Combat.initiative.decimals;
-        if (turn.hasRolled && (typeof turn.initiative == 'number')) turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);
-        if (turn.hasRolled && (typeof turn.initiativeData.value == 'number')) turn.initiativeData.value = turn.initiativeData.value.toFixed(hasDecimals ? precision : 0);
+        if (turn.hasRolled && typeof turn.initiative == "number") turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);
+        if (turn.hasRolled && typeof turn.initiativeData.value == "number") turn.initiativeData.value = turn.initiativeData.value.toFixed(hasDecimals ? precision : 0);
 
         return turn;
     }
 
     getBorderColor(tokenDocument) {
-        if(!game.settings.get(MODULE_ID, "showDispositionColor")) return "#000";
+        if (!game.settings.get(MODULE_ID, "showDispositionColor")) return "#000";
         let color;
         const d = tokenDocument.disposition;
         const colors = CONFIG.Canvas.dispositionColors;
         if (!game.user.isGM && this.isOwner) color = colors.CONTROLLED;
         else if (this.actor?.hasPlayerOwner) color = colors.PARTY;
         else if (d === CONST.TOKEN_DISPOSITIONS.FRIENDLY) color = colors.FRIENDLY;
-        else if (d === CONST.TOKEN_DISPOSITIONS.NEUTRAL) color =  colors.NEUTRAL;
-        else if (d === CONST.TOKEN_DISPOSITIONS.HOSTILE) color =  colors.HOSTILE;
-        else if (d === CONST.TOKEN_DISPOSITIONS.SECRET && this.isOwner) color =  colors.SECRET;
+        else if (d === CONST.TOKEN_DISPOSITIONS.NEUTRAL) color = colors.NEUTRAL;
+        else if (d === CONST.TOKEN_DISPOSITIONS.HOSTILE) color = colors.HOSTILE;
+        else if (d === CONST.TOKEN_DISPOSITIONS.SECRET && this.isOwner) color = colors.SECRET;
         else color = colors.NEUTRAL;
         color = new Color(color).toString();
         return color;
@@ -214,12 +221,11 @@ export class CombatantPortrait {
 }
 
 function getDescription(actor) {
-
     let description = null;
 
     try {
         description = generateDescription(actor);
-    }catch(e) {
+    } catch (e) {
         console.error(e);
     }
 
