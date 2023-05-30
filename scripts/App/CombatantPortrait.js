@@ -133,6 +133,17 @@ export class CombatantPortrait {
         const trackedAttributes = game.settings.get(MODULE_ID, "attributes").map((a) => {
             const resourceData = this.getResource(a.attr);
             const iconHasExtension = a.icon.includes(".");
+
+            if (typeof resourceData.value === "boolean") {
+                if (!resourceData.value) return
+
+                return {
+                  icon: iconHasExtension
+                    ? `<img src="${a.icon}" />`
+                    : `<i class="${a.icon} icon"></i>`,
+                }
+            }
+
             return {
                 ...resourceData,
                 icon: iconHasExtension ? `<img src="${a.icon}" />` : `<i class="${a.icon} icon"></i>`,
