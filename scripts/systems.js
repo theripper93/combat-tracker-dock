@@ -3,49 +3,49 @@ export function defaultAttributesConfig() {
         dnd5e: [
             {
                 attr: "attributes.hp.value",
-                icon: "fa-solid fa-heart",
+                icon: "fas fa-heart",
                 units: "HP",
             },
             {
                 attr: "attributes.ac.value",
-                icon: "fa-solid fa-shield",
+                icon: "fas fa-shield",
                 units: "AC",
             },
             {
                 attr: "attributes.movement.walk",
-                icon: "fa-solid fa-person-running-fast",
+                icon: "fas fa-person-running-fast",
                 units: "ft.",
             },
             {
                 attr: "attributes.spelldc",
-                icon: "fa-solid fa-hand-holding-magic",
+                icon: "fas fa-hand-holding-magic",
                 units: "Spell DC",
             },
         ],
         "cyberpunk-red-core": [
             {
                 attr: "derivedStats.hp.value",
-                icon: "fa-solid fa-heart",
+                icon: "fas fa-heart",
                 units: "HP",
             },
             {
                 attr: "derivedStats.walk.value",
-                icon: "fa-solid fa-person-running",
+                icon: "fas fa-person-running",
                 units: "m/ft",
             },
             {
                 attr: "derivedStats.run.value",
-                icon: "fa-solid fa-person-running-fast",
+                icon: "fas fa-person-running-fast",
                 units: "m/ft",
             },
             {
                 attr: "externalData.currentArmorHead.value",
-                icon: "fa-solid fa-helmet-safety",
+                icon: "fas fa-helmet-safety",
                 units: "SP",
             },
             {
                 attr: "externalData.currentArmorBody.value",
-                icon: "fa-solid fa-shirt-tank-top",
+                icon: "fas fa-shirt-tank-top",
                 units: "SP",
             },
         ],
@@ -86,35 +86,67 @@ export function defaultAttributesConfig() {
                 units: game.i18n.localize("SWADE.Armor"),
             },
         ],
+        "pirateborg": [
+            {
+                attr: "attributes.hp.value",
+                icon: "fas fa-heart",
+                units: "HP",
+            },
+            {
+                attr: "attributes.luck.value",
+                icon: "fas fa-clover",
+                units: "Devil's Luck",
+            },
+            {
+                attr: "attributes.rituals.value",
+                icon: "fas fa-ankh",
+                units: "Rituals",
+            },
+        ]
     };
 }
 
 export function generateDescription(actor) {
+    const { type, system } = actor;
     switch (game.system.id) {
         case "dnd5e":
-            const isNPC = actor.type === "npc";
-            const isPC = actor.type === "character";
+            const isNPC = type === "npc";
+            const isPC = type === "character";
             if (isNPC) {
                 const creatureType = game.i18n.localize(CONFIG.DND5E.creatureTypes[actor.system.details.type.value] ?? actor.system.details.type.custom);
-                const cr = actor.system.details.cr >= 1 ? actor.system.details.cr : `1/${1 / actor.system.details.cr}`;
+                const cr = system.details.cr >= 1 ? system.details.cr : `1/${1 / system.details.cr}`;
                 return `CR ${cr} ${creatureType}`;
             } else if (isPC) {
                 const classes = Object.values(actor.classes)
                     .map((c) => c.name)
                     .join(" / ");
-                return `Level ${actor.system.details.level} ${classes} (${actor.system.details.race})`;
+                return `Level ${system.details.level} ${classes} (${system.details.race})`;
             } else {
                 return null;
             }
         case "swade":
-            const { type, system } = actor;
-            if (system?.wildcard) {
-                return `${game.i18n.localize("SWADE.WildCard")}`;
-            } else if (type === "character" || type === "npc") {
-                return `${game.i18n.localize("SWADE.Extra")}`;
-            } else if (type === "vehicle") {
-                return game.i18n.localize("TYPES.Actor.vehicle");
-            } else return null;
+            if (system?.wildcard) return `${game.i18n.localize("SWADE.WildCard")}`;
+            switch (type) {
+                case "character":
+                case "npc":
+                    return `${game.i18n.localize("SWADE.Extra")}`;
+                case "vehicle":
+                    return game.i18n.localize("TYPES.Actor.vehicle");
+                default:
+                    return null;
+            }
+        case "pirateborg":
+            switch (type) {
+                case "character":
+                    return "Character";
+                case "creature":
+                    return "Creature";
+                case "vehicle":
+                case "vehicle_npc":
+                    return "Ship";
+                default:
+                    return null;
+            }
     }
 }
 
@@ -128,23 +160,23 @@ export function getInitiativeDisplay(combatant) {
                 )?.img;
             };
             let cardString = combatant?.cardString ?? "";
-            if (cardString.includes("♥")) suit = "fa-solid fa-heart";
-            else if (cardString.includes("♦")) suit = "fa-solid fa-diamond";
-            else if (cardString.includes("♣")) suit = "fa-solid fa-club";
-            else if (cardString.includes("♠")) suit = "fa-solid fa-spade";
+            if (cardString.includes("♥")) suit = "fas fa-heart";
+            else if (cardString.includes("♦")) suit = "fas fa-diamond";
+            else if (cardString.includes("♣")) suit = "fas fa-club";
+            else if (cardString.includes("♠")) suit = "fas fa-spade";
             else if (cardString === "Red J" || cardString === "Blk J") cardString = "JK";
 
             return {
                 value: cardString,
                 icon: getCardImage(combatant?.cardString ?? "") ?? suit,
-                rollIcon: "fa-regular fa-cards-blank",
+                rollIcon: "far fa-cards-blank",
             };
         }
         default:
             return {
                 value: combatant?.initiative,
-                icon: "fa-regular fa-dice-d20",
-                rollIcon: "fa-regular fa-dice-d20",
+                icon: "far fa-dice-d20",
+                rollIcon: "far fa-dice-d20",
             };
     }
 }
