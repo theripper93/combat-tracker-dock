@@ -68,7 +68,9 @@ export function getInitiativeDisplay(combatant) {
     switch (game.system.id) {
         case "swade": {
             let suit = "";
+            const useImg = true;
             const getCardImage = (cardstr) => {
+                if(!useImg) return null;
                 return Array.from(game.cards.get(game.settings.get('swade', 'actionDeck')).cards).find(c => c.description === cardstr)?.img;
             }
             const cardString = combatant?.cardString ?? "";
