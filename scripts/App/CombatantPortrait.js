@@ -196,7 +196,7 @@ activateListeners() {
         initiativeData.isRollIconImg = initiativeData.rollIcon.includes(".");
         const turn = {
             id: combatant.id,
-            name: combatant.name,
+            name: this.name,
             img: this.img,
             active: this.combat.turns.indexOf(combatant) === this.combat.turn,
             owner: combatant.isOwner,
