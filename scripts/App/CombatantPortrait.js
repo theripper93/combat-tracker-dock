@@ -191,23 +191,27 @@ export class CombatantPortrait {
 
         // Actor and Token status effects
         turn.effects = new Set();
-        if (combatant.token) {
-            combatant.token.effects.forEach((e) =>
-                turn.effects.add({
-                    icon: e,
-                    label: CONFIG.statusEffects.find((s) => s.icon === e)?.label ?? "",
-                }),
-            );
-            if (combatant.token.overlayEffect) turn.effects.add(combatant.token.overlayEffect);
-        }
-        turn.hasAttributes = trackedAttributes.length > 0;
-        if (combatant.actor) {
-            for (const effect of combatant.actor.temporaryEffects) {
-                if (effect.statuses.has(CONFIG.specialStatusEffects.DEFEATED)) turn.defeated = true;
-                else if (effect.icon) turn.effects.add({ icon: effect.icon, label: effect.label });
+        try {            
+            if (combatant.token) {
+                combatant.token.effects.forEach((e) =>
+                    turn.effects.add({
+                        icon: e,
+                        label: CONFIG.statusEffects.find((s) => s.icon === e)?.label ?? "",
+                    }),
+                );
+                if (combatant.token.overlayEffect) turn.effects.add({icon: combatant.token.overlayEffect, label: CONFIG.statusEffects.find((s) => s.icon === combatant.token.overlayEffect)?.label ?? ""});
             }
+            if (combatant.actor) {
+                for (const effect of combatant.actor.temporaryEffects) {
+                    if ( effect.getFlag("core", "statusId") === CONFIG.specialStatusEffects.DEFEATED ) turn.defeated = true;
+                    else if (effect.icon) turn.effects.add({ icon: effect.icon, label: effect.label });
+                }
+            }
+        } catch(e) {
+            // Do nothing
         }
-
+        
+        turn.hasAttributes = trackedAttributes.length > 0;
         turn.hasEffects = turn.effects.size > 0;
         // Format initiative numeric precision
         const precision = CONFIG.Combat.initiative.decimals;
