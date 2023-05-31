@@ -22,6 +22,14 @@ export class CombatantPortrait {
         return (useActor ? this.combatant.actor?.img : this.combatant.img) ?? this.combatant.img;
     }
 
+    get name() {
+        if(this.combatant.isOwner) return this.combatant.name;
+        const displayName = game.settings.get(MODULE_ID, "displayName");
+        if(displayName === "owner") return this.combatant.isOwner ? this.combatant.name : "???";
+        if (displayName === "default") return this.combatant.name;
+        return [CONST.TOKEN_DISPLAY_MODES.HOVER, CONST.TOKEN_DISPLAY_MODES.ALWAYS].includes(this.token?.document?.displayName) ? this.combatant.name : "???";
+    }
+
     activateCoreListeners() {
         //add left and right click and double click listeners
         //this.element.addEventListener("mousedown", this._onCombatantMouseDown.bind(this));
