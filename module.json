@@ -65,7 +65,7 @@
       ]
     },
     "compatibility": {
-      "minimum": "11",
-      "verified": "11"
+      "minimum": "10",
+      "verified": "10"
     }
   }
