@@ -137,7 +137,7 @@ export class CombatantPortrait {
 
         if (Array.isArray(value)) value = value.join(", ");
         
-        if (value == "") value = null;
+        if (value === "") value = null;
 
         return { max, value, percentage };
     }
