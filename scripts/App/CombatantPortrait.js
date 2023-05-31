@@ -1,5 +1,5 @@
 import { MODULE_ID } from "../main.js";
-import { generateDescription, getInitiativeDisplay } from "../systems.js";
+import { generateDescription, getInitiativeDisplay, getSystemIcons } from "../systems.js";
 
 export class CombatantPortrait {
     constructor(combatant) {
@@ -156,6 +156,9 @@ export class CombatantPortrait {
                 units: a.units || "",
             };
         }).filter((a) => a.value !== null && a.value !== undefined);
+
+        const systemIcons = this.getSystemIcons();
+
         // Prepare turn data
         const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
         const resource = hasPermission ? this.getResource() : null;
@@ -184,6 +187,8 @@ export class CombatantPortrait {
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
             attributes: trackedAttributes,
             description: this.getDescription(),
+            resSystemIcons: systemIcons.resource,
+            tooltipSystemIcons: systemIcons.tooltip,
         };
         if (turn.initiative !== null && !Number.isInteger(turn.initiative)) hasDecimals = true;
         if (turn.initiativeData.value !== null && !Number.isInteger(turn.initiativeData.value)) hasDecimals = true;
@@ -229,6 +234,21 @@ export class CombatantPortrait {
         }
     
         return description;
+    }
+
+    getSystemIcons() {
+        try {
+            const sett = game.settings.get(MODULE_ID, "showSystemIcons");
+            const icons = sett > 0 ? getSystemIcons(this.actor) : [];
+            if (!icons || !icons?.length) return { resource: null, tooltip: null}
+            return {
+                resource: sett >= 2 ? icons : null,
+                tooltip: sett == 1 || sett == 3 ? icons : null,
+            }
+        }catch(e) {
+            console.error(e);
+            return { resource: null, tooltip: null}
+        }
     }
 
     getInitiativeDisplay() {

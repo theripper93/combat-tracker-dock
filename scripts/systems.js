@@ -1,3 +1,9 @@
+/**
+ * Returns the default attributes configuration for different game systems.
+ *
+ * @returns {Object} The default attributes configuration.
+ */
+
 export function defaultAttributesConfig() {
     return {
         dnd5e: [
@@ -20,6 +26,21 @@ export function defaultAttributesConfig() {
                 attr: "attributes.spelldc",
                 icon: "fas fa-hand-holding-magic",
                 units: "Spell DC",
+            },
+            {
+                attr: "resources.legact.value",
+                icon: "far fa-bolt-lightning",
+                units: "",
+            },
+            {
+                attr: "resources.legres.value",
+                icon: "fas fa-shield-cross",
+                units: "",
+            },
+            {
+                attr: "resources.lair.value",
+                icon: "fa-solid fa-dungeon",
+                units: "",
             },
         ],
         "cyberpunk-red-core": [
@@ -106,6 +127,14 @@ export function defaultAttributesConfig() {
     };
 }
 
+/**
+ * Generates a description for the given actor based on its data.
+ * This description is shown in the Tooltip under the actor's name.
+ *
+ * @param {Object} actor - The actor object.
+ * @returns {string|null} The generated description or null if no description is available.
+ */
+
 export function generateDescription(actor) {
     const { type, system } = actor;
     switch (game.system.id) {
@@ -150,6 +179,14 @@ export function generateDescription(actor) {
     }
 }
 
+/**
+ * Retrieves the display information for the initiative of a combatant based on the game system.
+ * The icon can be both a font-awesome icon or an image.
+ *
+ * @param {Object} combatant - The combatant object.
+ * @returns {Object} The initiative display information, including value, icon, and roll icon.
+ */
+
 export function getInitiativeDisplay(combatant) {
     switch (game.system.id) {
         case "swade": {
@@ -178,5 +215,41 @@ export function getInitiativeDisplay(combatant) {
                 icon: "far fa-dice-d20",
                 rollIcon: "far fa-dice-d20",
             };
+    }
+}
+
+/**
+ * Retrieves system icons for the given actor based on the game system.
+ * These icons can be shown both at the bottom of the tooltip and
+ * in the portrait under the tracked resource.
+ *
+ * @param {Object} actor - The actor object.
+ * @returns {Array} An array of system icons with their respective properties.
+ */
+
+export function getSystemIcons(actor) {
+    switch (game.system.id) {
+        case "dnd5e": {
+            return [
+                {
+                    icon: "fas fa-circle",
+                    color: "green",
+                    enabled: Math.random() > 0.5,
+                },
+                {
+                    icon: "fas fa-triangle",
+                    color: "#ff9f4c",
+                    enabled: Math.random() > 0.5,
+                },
+                {
+                    icon: "fas fa-sparkle",
+                    color: "#e16de1",
+                    enabled: Math.random() > 0.5,
+                }
+            ]
+        }
+        default: {
+            return [];
+        }
     }
 }

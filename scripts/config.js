@@ -196,6 +196,21 @@ export function registerSettings() {
         default: true,
     });
 
+    game.settings.register(MODULE_ID, "showSystemIcons", {
+        name: "combat-tracker-dock.settings.showSystemIcons.name",
+        hint: "combat-tracker-dock.settings.showSystemIcons.hint",
+        scope: "world",
+        config: true,
+        type: Number,
+        choices: {
+            0: "combat-tracker-dock.settings.showSystemIcons.choices.none",
+            1: "combat-tracker-dock.settings.showSystemIcons.choices.tooltip",
+            2: "combat-tracker-dock.settings.showSystemIcons.choices.resource",
+            3: "combat-tracker-dock.settings.showSystemIcons.choices.both",
+        },
+        default: 1,
+    });
+
     game.settings.register(MODULE_ID, "portraitImage", {
         name: "combat-tracker-dock.settings.portraitImage.name",
         hint: "combat-tracker-dock.settings.portraitImage.hint",

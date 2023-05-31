@@ -27,4 +27,15 @@
         <li><img src="{{effect.icon}}" alt=""><span>{{{localize effect.label}}}</span></li>
         {{/each}}
     </ul>
+
+    {{#if owner}}
+    {{#if tooltipSystemIcons}}
+    <div class="system-icons">
+        {{#each tooltipSystemIcons}}
+        <i class="{{icon}}" style="color: {{color}};{{#unless enabled}}filter: grayscale(1);{{/unless}}"></i>
+        {{/each}}
+    </div>
+    {{/if}}
+    {{/if}}
+
 </div>

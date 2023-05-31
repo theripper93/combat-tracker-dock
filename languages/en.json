@@ -75,6 +75,16 @@
                 "name": "Show Initiative on Portrait",
                 "hint": "Show the initiative value in the top left corner of the portrait. You can always see the initiative in the Tooltip!"
             },
+            "showSystemIcons": {
+                "name": "Show System Icons",
+                "hint": "Show the system icons below the tracked resource, tooltip or both. Keep in mind that this requires a system specific implementation and will only work on select systems.",
+                "choices": {
+                    "none": "None",
+                    "tooltip": "Tooltip",
+                    "resource": "Portrait",
+                    "both": "Both"
+                }
+            },
             "portraitImageBorder": {
                 "name": "Player Border",
                 "hint": "Special border that will be shown for player characters. Leave blank to disable. If you wish to make a custom image, it's suggested you use the default one as reference for correct sizing."

@@ -1,17 +1,22 @@
 <div class="combatant-wrapper" style="background-image: url('{{img}}');{{#if defeated}}filter: grayscale(1);{{/if}}">
 
-    <i {{#if hasRolled}}style="display: none;"{{/if}} {{#if initiativeData.isRollIconImg}}style="background-image: url('{{initiativeData.rollIcon}}');" class="roll-initiative"{{else}}class="{{initiativeData.rollIcon}} roll-initiative"{{/if}}></i>
-    
-    <div class="portrait-initiative" {{#unless showInitiative}}style="display: none;"{{/unless}} {{#if isInitiativeNaN}}style="display:none;"{{/if}}>
-        <i {{#if initiativeData.isIconImg}}style="background-image: url('{{initiativeData.icon}}');"{{else}}class="{{initiativeData.icon}}"{{/if}}></i>
+    <i {{#if hasRolled}}style="display: none;" {{/if}} {{#if
+        initiativeData.isRollIconImg}}style="background-image: url('{{initiativeData.rollIcon}}');"
+        class="roll-initiative" {{else}}class="{{initiativeData.rollIcon}} roll-initiative" {{/if}}></i>
+
+    <div class="portrait-initiative" {{#unless showInitiative}}style="display: none;" {{/unless}} {{#if
+        isInitiativeNaN}}style="display:none;" {{/if}}>
+        <i {{#if initiativeData.isIconImg}}style="background-image: url('{{initiativeData.icon}}');"
+            {{else}}class="{{initiativeData.icon}}" {{/if}}></i>
         <span class="portrait-initiative-text">{{initiativeData.value}}</span>
     </div>
 
-    <div class="portrait-pass" {{#unless showPass}}style="display: none;"{{/unless}} {{#unless hasRolled}}style="display: none;"{{/unless}}>
+    <div class="portrait-pass" {{#unless showPass}}style="display: none;" {{/unless}} {{#unless
+        hasRolled}}style="display: none;" {{/unless}}>
         <i data-action="player-pass" class="fa-solid fa-chevrons-right"></i>
     </div>
 
-    <ul class="effects-container" {{#unless hasEffects}}style="display:none;"{{/unless}}>
+    <ul class="effects-container" {{#unless hasEffects}}style="display:none;" {{/unless}}>
         {{#each effects as |effect|}}
         <li style="background-image: url('{{effect.icon}}');"></li>
         {{/each}}
@@ -33,13 +38,26 @@
             <i class="fas fa-bullseye-arrow action" data-action="ping"></i>
         </div>
 
-    <div class="tracked-attribute-text-container">
-        <i class="tracked-attribute-text-value">{{resource.value}}</i>
-        {{#if resource.max}}
-        <i>/</i>
-        <i>{{resource.max}}</i>
+
+
+        <div class="tracked-attribute-text-container">
+            <i class="tracked-attribute-text-value">{{resource.value}}</i>
+            {{#if resource.max}}
+            <i>/</i>
+            <i>{{resource.max}}</i>
+            {{/if}}
+        </div>
+
+        {{#if owner}}
+        {{#if resSystemIcons}}
+        <div class="system-icons">
+            {{#each resSystemIcons}}
+            <i class="{{icon}}" style="color: {{color}};{{#unless enabled}}filter: grayscale(1);{{/unless}}"></i>
+            {{/each}}
+        </div>
         {{/if}}
-    </div>
+        {{/if}}
+
     </div>
     {{#if hasPlayerOwner}}
     <div class="image-border"></div>

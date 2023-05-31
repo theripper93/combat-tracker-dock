@@ -105,6 +105,17 @@
                 width: 1.2em;
                 margin-right: 0.5rem;
             }
+
+            & .system-icons{
+                font-size: 0.5rem;
+                opacity: 1;
+                display: flex;
+                width: 100%;
+                justify-content: flex-end;
+                gap: calc(var(--combatant-portrait-size)*.1);
+                margin-top: calc(var(--combatant-portrait-size)*.05);
+                text-shadow: 0 0 5px, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
+            }
     }
 
 }
