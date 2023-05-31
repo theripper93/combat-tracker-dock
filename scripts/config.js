@@ -59,7 +59,7 @@ export function registerSettings() {
         },
     });
 
-    setOverflowStyle();
+
 
     game.settings.register(MODULE_ID, "carouselStyle", {
         name: "combat-tracker-dock.settings.carouselStyle.name",
@@ -88,12 +88,12 @@ export function registerSettings() {
         default: "row",
         onChange: () => {
             setDirection();
+            setOverflowStyle();
             setFlex();
             ui.combatDock?.autosize();
         },
     });
 
-    setDirection();
 
     game.settings.register(MODULE_ID, "alignment", {
         name: "combat-tracker-dock.settings.alignment.name",
@@ -113,8 +113,6 @@ export function registerSettings() {
         },
     });
 
-    setAlignment();
-    setFlex();
 
     game.settings.register(MODULE_ID, "portraitAspect", {
         name: "combat-tracker-dock.settings.portraitAspect.name",
@@ -133,7 +131,6 @@ export function registerSettings() {
         },
     });
 
-    setPortraitAspect();
 
     game.settings.register(MODULE_ID, "roundness", {
         name: "combat-tracker-dock.settings.roundness.name",
@@ -152,7 +149,6 @@ export function registerSettings() {
         },
     });
 
-    setRoundness();
 
 
 
@@ -168,7 +164,6 @@ export function registerSettings() {
         },
     });
 
-    setAttributeColor();
 
     game.settings.register(MODULE_ID, "tooltipColor", {
         name: "combat-tracker-dock.settings.tooltipColor.name",
@@ -182,7 +177,6 @@ export function registerSettings() {
         },
     });
 
-    setTooltipColor();
 
     game.settings.register(MODULE_ID, "showDispositionColor", {
         name: "combat-tracker-dock.settings.showDispositionColor.name",
@@ -227,7 +221,20 @@ export function registerSettings() {
             setPortraitImageBorder();
         },
     });
-    
+
+    setAllSettings();
+
+}
+
+function setAllSettings() {
+    setDirection();
+    setOverflowStyle();
+    setAlignment();
+    setFlex();
+    setPortraitAspect();
+    setRoundness();
+    setAttributeColor();
+    setTooltipColor();
     setPortraitImageBorder();
 }
 
@@ -253,6 +260,7 @@ function setAlignment() {
         "--carousel-alignment",
         alignment
     );
+    ui.combatDock?.setControlsOrder();
 }
 
 function setPortraitImageBorder() {
@@ -306,7 +314,12 @@ function setTooltipColor() {
 
 function setOverflowStyle() {
     let overflowStyle = game.settings.get(MODULE_ID, "overflowStyle");
-    if(overflowStyle === "autofit") overflowStyle = "hidden";
+    if (overflowStyle === "autofit") overflowStyle = "hidden";
+    if (overflowStyle === "scroll") {
+        const direction = game.settings.get(MODULE_ID, "direction");
+        if (direction === "row") overflowStyle = "visible hidden";
+        else overflowStyle = "hidden visible";
+    }
     document.documentElement.style.setProperty(
         "--carousel-overflow",
         overflowStyle
@@ -319,6 +332,11 @@ function setDirection() {
         "--carousel-direction",
         direction
     );
+    document.documentElement.style.setProperty(
+        "--combatant-portrait-margin",
+        direction === "row" ? "0 calc(var(--combatant-portrait-size) * 0.1)" : "0"
+    );
+    ui.combatDock?.setControlsOrder();
 }
 
 function setFlex() {
