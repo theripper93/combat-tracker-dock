@@ -95,6 +95,15 @@
                     "token": "Token"
                 }
             },
+            "displayName": {
+                "name": "Display Name",
+                "hint": "Whether or not to display the name of the combatant in the tooltip. 'Based on Token' will display the name only if the player can see the name of the token.",
+                "choices": {
+                    "default": "Always",
+                    "token": "Based on Token",
+                    "owner": "Based on Ownership"
+                }
+            },
             "attributesMenu": {
                 "name": "Tooltip Attributes",
                 "label": "Configure Attributes",

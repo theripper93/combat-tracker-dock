@@ -209,6 +209,20 @@ export function registerSettings() {
         default: "actor",
     });
 
+    game.settings.register(MODULE_ID, "displayName", {
+        name: "combat-tracker-dock.settings.displayName.name",
+        hint: "combat-tracker-dock.settings.displayName.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            "default": "combat-tracker-dock.settings.displayName.choices.default",
+            "token": "combat-tracker-dock.settings.displayName.choices.token",
+            "owner": "combat-tracker-dock.settings.displayName.choices.owner",
+        },
+        default: "default",
+    });
+
     game.settings.register(MODULE_ID, "portraitImageBorder", {
         name: "combat-tracker-dock.settings.portraitImageBorder.name",
         hint: "combat-tracker-dock.settings.portraitImageBorder.hint",
