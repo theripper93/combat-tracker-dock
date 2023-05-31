@@ -1,4 +1,4 @@
-#tooltip.combat-dock-tooltip{
+#tooltip.combat-dock-tooltip, #tooltip:has(.combat-dock-tooltip-wrapper){
 
     border: 1px solid var(--carousel-tooltip-color);
     border-radius: var(--combatant-portrait-border-radius);
