@@ -13,6 +13,8 @@ Hooks.once('init', function () {
         INTRO_ANIMATION_DURATION: 1000,
         INTRO_ANIMATION_DELAY: 0.25,
     }
+
+    Hooks.callAll(`${MODULE_ID}-init`, CONFIG.combatTrackerDock);
 });
 
 Hooks.once('setup', registerSettings);

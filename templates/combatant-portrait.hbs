@@ -52,7 +52,7 @@
         {{#if resSystemIcons}}
         <div class="system-icons">
             {{#each resSystemIcons}}
-            <i class="{{icon}}" style="color: {{color}};{{#unless enabled}}filter: grayscale(1);{{/unless}}"></i>
+            <i data-index="{{@index}}" data-id="{{id}}" class="system-icon {{icon}} {{#if hasCallback}}{{#if enabled}}callback{{/if}}{{/if}}" style="color: {{color}};{{#unless enabled}}filter: grayscale(1);{{/unless}}{{#if fontSize}}font-size: {{fontSize}};{{/if}}"></i>
             {{/each}}
         </div>
         {{/if}}

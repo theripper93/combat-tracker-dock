@@ -144,6 +144,7 @@
             height: calc(var(--combatant-portrait-size) * 0.25);
             transition: opacity 0.2s ease-in-out;
             opacity: 0.75;
+            pointer-events: none;
 
             & i {
                 position: absolute;
@@ -178,6 +179,7 @@
             gap: 0.1rem;
             padding: 0.1rem;
             opacity: 0.85;
+            pointer-events: none;
 
             & li {
                 width: 100%;
@@ -208,9 +210,14 @@
             gap: calc(var(--combatant-portrait-size)*.1);
             margin-top: calc(var(--combatant-portrait-size)*.05);
             text-shadow: 0 0 5px, 0 0 2px black, 0 0 2px black, 0 0 2px black;
+            align-items: center;
+            flex-wrap: wrap;
 
             & i{
                 font-size: calc(var(--combatant-portrait-size)*.05);
+                &.callback:hover{
+                    cursor: pointer;
+                }
             }
         }
 
@@ -253,6 +260,7 @@
             height: 40%;
             bottom: -20%;
             opacity: 0.8;
+            pointer-events: none;
         }
 
         & .tracked-attribute-bar {
@@ -263,6 +271,7 @@
             overflow: hidden;
             border-bottom-right-radius: var(--combatant-portrait-border-radius);
             border-bottom-left-radius: var(--combatant-portrait-border-radius);
+            pointer-events: none;
 
             & .tracked-attribute-bar-max {
                 height: 100%;

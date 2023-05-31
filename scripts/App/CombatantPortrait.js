@@ -13,7 +13,7 @@ export class CombatantPortrait {
         this.element.setAttribute("data-tooltip-class", "combat-dock-tooltip");
         this.resolve = null;
         this.ready = new Promise((res) => (this.resolve = res));
-        this.activateListeners();
+        this.activateCoreListeners();
         this.renderInner();
     }
 
@@ -22,20 +22,38 @@ export class CombatantPortrait {
         return (useActor ? this.combatant.actor?.img : this.combatant.img) ?? this.combatant.img;
     }
 
-    activateListeners() {
+    activateCoreListeners() {
         //add left and right click and double click listeners
-        this.element.addEventListener("mousedown", this._onCombatantMouseDown.bind(this));
+        //this.element.addEventListener("mousedown", this._onCombatantMouseDown.bind(this));
         //add hover in and out listeners
         this.element.addEventListener("mouseenter", this._onHoverIn.bind(this));
         this.element.addEventListener("mouseleave", this._onHoverOut.bind(this));
+    }
+activateListeners() {
+    
+        this.element.querySelector(".combatant-wrapper").addEventListener("mousedown", this._onCombatantMouseDown.bind(this));
+
+        (this.element.querySelectorAll(".system-icon") ?? []).forEach((iconEl, index) => {
+            const systemIcons = this._systemIcons;
+            const icon = systemIcons[index];
+            if (icon.callback && icon.enabled) {
+                iconEl.addEventListener("click", async (event) => {
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    icon.callback(event, this.combatant, index, icon.id);
+                });
+            }
+        });
     }
 
     async _onCombatantMouseDown(event) {
         event.preventDefault();
 
+        if(!event.target.classList.contains("combatant-wrapper")) return;
+
         if (event.button === 2) return this.combatant.sheet.render(true);
 
-        if(event.target.dataset.action === "player-pass") return this.combat.nextTurn();
+        if (event.target.dataset.action === "player-pass") return this.combat.nextTurn();
 
         const combatant = this.combatant;
         const token = combatant.token;
@@ -85,7 +103,6 @@ export class CombatantPortrait {
             this.element.setAttribute("data-tooltip-direction", "");
         }
 
-
         this.element.classList.toggle("active", data.css.includes("active"));
         this.element.classList.toggle("visible", data.css.includes("hidden"));
         this.element.classList.toggle("defeated", data.css.includes("defeated"));
@@ -115,6 +132,7 @@ export class CombatantPortrait {
                 }
             });
         });
+        this.activateListeners();
         this.resolve(true);
     }
 
@@ -133,10 +151,10 @@ export class CombatantPortrait {
 
         if (max !== undefined && value !== undefined) percentage = Math.round((value / max) * 100);
 
-        if(typeof value === "boolean") value = value ? "✓" : "✗"   //'<i class="fas fa-check" style="display: flex;"></i>' : '<i class="fas fa-times" style="display: flex;"></i>';
+        if (typeof value === "boolean") value = value ? "✓" : "✗"; //'<i class="fas fa-check" style="display: flex;"></i>' : '<i class="fas fa-times" style="display: flex;"></i>';
 
         if (Array.isArray(value)) value = value.join(", ");
-        
+
         if (value === "") value = null;
 
         return { max, value, percentage };
@@ -147,15 +165,18 @@ export class CombatantPortrait {
         let hasDecimals = false;
         const combatant = this.combatant;
         if (!combatant.visible && !game.user.isGM) return null;
-        const trackedAttributes = game.settings.get(MODULE_ID, "attributes").map((a) => {
-            const resourceData = this.getResource(a.attr);
-            const iconHasExtension = a.icon.includes(".");
-            return {
-                ...resourceData,
-                icon: iconHasExtension ? `<img src="${a.icon}" />` : `<i class="${a.icon} icon"></i>`,
-                units: a.units || "",
-            };
-        }).filter((a) => a.value !== null && a.value !== undefined);
+        const trackedAttributes = game.settings
+            .get(MODULE_ID, "attributes")
+            .map((a) => {
+                const resourceData = this.getResource(a.attr);
+                const iconHasExtension = a.icon.includes(".");
+                return {
+                    ...resourceData,
+                    icon: iconHasExtension ? `<img src="${a.icon}" />` : `<i class="${a.icon} icon"></i>`,
+                    units: a.units || "",
+                };
+            })
+            .filter((a) => a.value !== null && a.value !== undefined);
 
         const systemIcons = this.getSystemIcons();
 
@@ -224,30 +245,34 @@ export class CombatantPortrait {
 
     getDescription() {
         const actor = this.actor;
-        if(!actor) return null;
+        if (!actor) return null;
         let description = null;
-    
+
         try {
             description = generateDescription(actor);
         } catch (e) {
             console.error(e);
         }
-    
+
         return description;
     }
 
     getSystemIcons() {
         try {
             const sett = game.settings.get(MODULE_ID, "showSystemIcons");
-            const icons = sett > 0 ? getSystemIcons(this.actor) : [];
-            if (!icons || !icons?.length) return { resource: null, tooltip: null}
+            const icons = sett > 0 ? getSystemIcons(this.combatant) : [];
+            icons.forEach((icon) => {
+                if (icon.callback) icon.hasCallback = true;
+            });
+            this._systemIcons = icons;
+            if (!icons || !icons?.length) return { resource: null, tooltip: null };
             return {
                 resource: sett >= 2 ? icons : null,
                 tooltip: sett == 1 || sett == 3 ? icons : null,
-            }
-        }catch(e) {
+            };
+        } catch (e) {
             console.error(e);
-            return { resource: null, tooltip: null}
+            return { resource: null, tooltip: null };
         }
     }
 
