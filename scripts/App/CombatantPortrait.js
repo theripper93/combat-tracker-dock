@@ -204,7 +204,7 @@ export class CombatantPortrait {
                 combatant.token.effects.forEach((e) =>
                     turn.effects.add({
                         icon: e,
-                        label: CONFIG.statusEffects.find((s) => s.icon === e)?.label ?? "",
+                        label: CONFIG.statusEffects.find((s) => s.icon === e)?.label ?? CONFIG.statusEffects.find((s) => s.icon === e)?.name ?? "",
                     }),
                 );
                 if (combatant.token.overlayEffect) turn.effects.add({icon: combatant.token.overlayEffect, label: CONFIG.statusEffects.find((s) => s.icon === combatant.token.overlayEffect)?.label ?? ""});
@@ -212,7 +212,7 @@ export class CombatantPortrait {
             if (combatant.actor) {
                 for (const effect of combatant.actor.temporaryEffects) {
                     if ( effect.getFlag("core", "statusId") === CONFIG.specialStatusEffects.DEFEATED ) turn.defeated = true;
-                    else if (effect.icon) turn.effects.add({ icon: effect.icon, label: effect.label });
+                    else if (effect.icon) turn.effects.add({ icon: effect.icon, label: effect.label ?? effect.name });
                 }
             }
         } catch(e) {
