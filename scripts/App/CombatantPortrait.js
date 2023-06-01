@@ -78,6 +78,7 @@ export class CombatantPortrait {
         const data = await this.getData();
         this.element.classList.toggle("hidden", !data);
         if (!data) {
+            this.resolve(true);
             this.element.innerHTML = "";
             return;
         }
