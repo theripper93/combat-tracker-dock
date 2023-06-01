@@ -118,6 +118,7 @@ export class CombatDock extends Application {
         if (this._playAnimation && this.sortedCombatants.length > 0) {
             this._playAnimation = false;
             const promises = this.portraits.map((p) => p.ready);
+            this._promises = promises;
             Promise.all(promises).then(() => {
                 this.playIntroAnimation();
             });
