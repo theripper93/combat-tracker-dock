@@ -42,7 +42,9 @@
                     "30px": "Diminuto",
                     "50px": "Pequeño",
                     "70px": "Normal",
-                    "90px": "Grande"
+                    "90px": "Grande",
+                    "150px": "XX-Grande",
+                    "180px": "XXX-Grande"
                 },
                 "hint": "El tamaño máximo del retrato en el rastreador de combate. \nTenga en cuenta que el tamaño de los retratos se reducirá automáticamente si hay demasiados combatientes para caber en la pantalla.",
                 "name": "Tamaño vertical"
@@ -103,7 +105,52 @@
                 },
                 "hint": "La forma en que se comporta el carrusel cuando hay demasiados combatientes para caber en la pantalla.",
                 "name": "Estilo de desbordamiento"
+            },
+            "attributeColor2": {
+                "hint": "El color del texto del atributo seguido secundario y la barra en el carrusel. \nPuede usar cualquier valor de color CSS válido (p.",
+                "name": "Color de atributo secundario"
+            },
+            "attributeVisibility": {
+                "choices": {
+                    "bars": "Solo barras",
+                    "both": "Texto",
+                    "text": "Solo texto"
+                },
+                "hint": "La visibilidad de los atributos rastreados en el carrusel.",
+                "name": "Visibilidad de atributos"
+            },
+            "direction": {
+                "choices": {
+                    "column": "Vertical",
+                    "row": "Horizontal"
+                },
+                "hint": "La dirección del carrusel.",
+                "name": "Dirección"
+            },
+            "displayName": {
+                "choices": {
+                    "default": "Siempre",
+                    "owner": "Basado en la propiedad",
+                    "token": "Basado en token"
+                },
+                "hint": "Mostrar o no el nombre del combatiente en la información sobre herramientas. \n'Basado en token' mostrará el nombre solo si el jugador puede ver el nombre del token.",
+                "name": "Nombre para mostrar"
+            },
+            "portraitImageBackground": {
+                "hint": "La imagen de fondo detrás del retrato que será visible si el retrato es transparente o no llena el espacio.",
+                "name": "Fondo de retrato"
+            },
+            "showSystemIcons": {
+                "choices": {
+                    "both": "Ambos",
+                    "none": "Ninguno",
+                    "resource": "Retrato",
+                    "tooltip": "Información sobre herramientas"
+                },
+                "hint": "Muestre los íconos del sistema debajo del recurso rastreado, información sobre herramientas o ambos. \nTenga en cuenta que esto requiere una implementación específica del sistema y solo funcionará en sistemas seleccionados.",
+                "name": "Mostrar iconos del sistema"
             }
-        }
+        },
+        "configureCarousel": "Configurar carrusel"
     }
 }

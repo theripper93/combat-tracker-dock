@@ -42,7 +42,9 @@
                     "30px": "Minuscolo",
                     "50px": "Piccolo",
                     "70px": "Normale",
-                    "90px": "Grande"
+                    "90px": "Grande",
+                    "150px": "XX-Grande",
+                    "180px": "XXX-Grande"
                 },
                 "hint": "La dimensione massima del ritratto nell'indicatore di combattimento. \nTieni presente che le dimensioni dei ritratti verranno automaticamente ridotte se ci sono troppi combattenti per adattarsi allo schermo.",
                 "name": "Dimensione verticale"
@@ -103,7 +105,52 @@
                 },
                 "hint": "Il modo in cui si comporta il carosello quando ci sono troppi combattenti per stare sullo schermo.",
                 "name": "Stile overflow"
+            },
+            "attributeColor2": {
+                "hint": "Il colore del testo e della barra dell'attributo tracciato secondario nel carosello. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
+                "name": "Colore attributo secondario"
+            },
+            "attributeVisibility": {
+                "choices": {
+                    "bars": "Solo bar",
+                    "both": "Testo",
+                    "text": "Solo testo"
+                },
+                "hint": "La visibilità degli attributi tracciati nel carosello.",
+                "name": "Attributo Visibilità"
+            },
+            "direction": {
+                "choices": {
+                    "column": "Verticale",
+                    "row": "Orizzontale"
+                },
+                "hint": "La direzione della giostra.",
+                "name": "Direzione"
+            },
+            "displayName": {
+                "choices": {
+                    "default": "Sempre",
+                    "owner": "Basato sulla proprietà",
+                    "token": "Basato su Token"
+                },
+                "hint": "Se visualizzare o meno il nome del combattente nel tooltip. \n'Basato sul token' visualizzerà il nome solo se il giocatore può vedere il nome del token.",
+                "name": "Nome da visualizzare"
+            },
+            "portraitImageBackground": {
+                "hint": "L'immagine di sfondo dietro il ritratto che sarà visibile se il ritratto è trasparente o non riempie lo spazio.",
+                "name": "Sfondo ritratto"
+            },
+            "showSystemIcons": {
+                "choices": {
+                    "both": "Entrambi",
+                    "none": "Nessuno",
+                    "resource": "Ritratto",
+                    "tooltip": "Descrizione comando"
+                },
+                "hint": "Mostra le icone di sistema sotto la risorsa monitorata, il tooltip o entrambi. \nTieni presente che ciò richiede un'implementazione specifica del sistema e funzionerà solo su sistemi selezionati.",
+                "name": "Mostra icone di sistema"
             }
-        }
+        },
+        "configureCarousel": "Configura carosello"
     }
 }

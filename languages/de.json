@@ -42,7 +42,9 @@
                     "30px": "Winzig",
                     "50px": "Klein",
                     "70px": "Normal",
-                    "90px": "Groß"
+                    "90px": "Groß",
+                    "150px": "XX-Groß",
+                    "180px": "XXX-Groß"
                 },
                 "hint": "Die maximale Größe des Porträts im Kampf-Tracker. \nBeachten Sie, dass die Größe der Porträts automatisch reduziert wird, wenn zu viele Kämpfer vorhanden sind, um auf den Bildschirm zu passen.",
                 "name": "Porträtgröße"
@@ -103,7 +105,52 @@
                 },
                 "hint": "Die Art und Weise, wie sich das Karussell verhält, wenn zu viele Kämpfer vorhanden sind, um auf den Bildschirm zu passen.",
                 "name": "Überlaufstil"
+            },
+            "attributeColor2": {
+                "hint": "Die Farbe des sekundären verfolgten Attributtexts und der Leiste im Karussell. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
+                "name": "Sekundäre Attributfarbe"
+            },
+            "attributeVisibility": {
+                "choices": {
+                    "bars": "Nur Bars",
+                    "both": "Text",
+                    "text": "Nur Text"
+                },
+                "hint": "Die Sichtbarkeit der verfolgten Attribute im Karussell.",
+                "name": "Attributsichtbarkeit"
+            },
+            "direction": {
+                "choices": {
+                    "column": "Vertikal",
+                    "row": "Horizontal"
+                },
+                "hint": "Die Richtung des Karussells.",
+                "name": "Richtung"
+            },
+            "displayName": {
+                "choices": {
+                    "default": "Stets",
+                    "owner": "Basierend auf dem Eigentum",
+                    "token": "Basierend auf Token"
+                },
+                "hint": "Ob der Name des Kombattanten im Tooltip angezeigt werden soll oder nicht. \n„Basierend auf Token“ zeigt den Namen nur an, wenn der Spieler den Namen des Tokens sehen kann.",
+                "name": "Anzeigename"
+            },
+            "portraitImageBackground": {
+                "hint": "Das Hintergrundbild hinter dem Porträt, das sichtbar ist, wenn das Porträt transparent ist oder den Raum nicht ausfüllt.",
+                "name": "Porträthintergrund"
+            },
+            "showSystemIcons": {
+                "choices": {
+                    "both": "Beide",
+                    "none": "Keiner",
+                    "resource": "Porträt",
+                    "tooltip": "Tooltip"
+                },
+                "hint": "Zeigen Sie die Systemsymbole unter der verfolgten Ressource, der QuickInfo oder beiden an. \nBeachten Sie, dass dies eine systemspezifische Implementierung erfordert und nur auf ausgewählten Systemen funktioniert.",
+                "name": "Systemsymbole anzeigen"
             }
-        }
+        },
+        "configureCarousel": "Karussell konfigurieren"
     }
 }

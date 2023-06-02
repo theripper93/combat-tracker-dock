@@ -164,6 +164,32 @@ export function registerSettings() {
         },
     });
 
+    game.settings.register(MODULE_ID, "attributeColor2", {
+        name: "combat-tracker-dock.settings.attributeColor2.name",
+        hint: "combat-tracker-dock.settings.attributeColor2.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "#ffcd00",
+        onChange: () => {
+            setAttributeColor();
+        },
+    });
+
+    game.settings.register(MODULE_ID, "attributeVisibility", {
+        name: "combat-tracker-dock.settings.attributeVisibility.name",
+        hint: "combat-tracker-dock.settings.attributeVisibility.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            "text": "combat-tracker-dock.settings.attributeVisibility.choices.text",
+            "bars": "combat-tracker-dock.settings.attributeVisibility.choices.bars",
+            "both": "combat-tracker-dock.settings.attributeVisibility.choices.both",
+        },
+        default: "both",
+    });
+
 
     game.settings.register(MODULE_ID, "tooltipColor", {
         name: "combat-tracker-dock.settings.tooltipColor.name",
@@ -252,7 +278,27 @@ export function registerSettings() {
         },
     });
 
+    game.settings.register(MODULE_ID, "portraitImageBackground", {
+        name: "combat-tracker-dock.settings.portraitImageBackground.name",
+        hint: "combat-tracker-dock.settings.portraitImageBackground.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "/ui/denim075.png",
+        filePicker: "imagevideo",
+        onChange: function () {
+            setPortraitImageBackground();
+        },
+    });
+
     setAllSettings();
+
+    game.settings.register(MODULE_ID, "resource", {
+        scope: "world",
+        config: false,
+        type: String,
+        default: "",
+    });
 
 }
 
@@ -302,6 +348,15 @@ function setPortraitImageBorder() {
     );
 }
 
+function setPortraitImageBackground() {
+    let portraitImageBackground = game.settings.get(MODULE_ID, "portraitImageBackground");
+    if(!portraitImageBackground.startsWith("/")) portraitImageBackground = `/${portraitImageBackground}`;
+    document.documentElement.style.setProperty(
+        "--combatant-portrait-image-background",
+        `url('${portraitImageBackground}')`
+    );
+}
+
 function setRoundness() {
     const roundness = game.settings.get(MODULE_ID, "roundness");
     document.documentElement.style.setProperty(
@@ -323,6 +378,20 @@ function setAttributeColor() {
     document.documentElement.style.setProperty(
         "--attribute-bar-secondary-color",
         darkened.toString()
+    );
+
+    const attributeColor2 = game.settings.get(MODULE_ID, "attributeColor2") || "#ffcd00";
+    document.documentElement.style.setProperty(
+        "--attribute-bar-primary-color2",
+        attributeColor2
+    );
+
+    const color2 = Color.from(attributeColor2);
+    const darkened2 = color2.mix(Color.from("#000"), 0.5);
+
+    document.documentElement.style.setProperty(
+        "--attribute-bar-secondary-color2",
+        darkened2.toString()
     );
 }
 

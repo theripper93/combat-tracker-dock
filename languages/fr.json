@@ -42,7 +42,9 @@
                     "30px": "Minuscule",
                     "50px": "Petit",
                     "70px": "Normal",
-                    "90px": "Grand"
+                    "90px": "Grand",
+                    "150px": "XX-Grand",
+                    "180px": "XXX-Large"
                 },
                 "hint": "La taille maximale du portrait dans le suivi des combats. \nNotez que la taille des portraits sera automatiquement réduite s'il y a trop de combattants pour tenir sur l'écran.",
                 "name": "Taille du portrait"
@@ -103,7 +105,52 @@
                 },
                 "hint": "La façon dont le carrousel se comporte lorsqu'il y a trop de combattants pour tenir sur l'écran.",
                 "name": "Style de débordement"
+            },
+            "attributeColor2": {
+                "hint": "La couleur du texte et de la barre de l'attribut suivi secondaire dans le carrousel. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
+                "name": "Couleur d'attribut secondaire"
+            },
+            "attributeVisibility": {
+                "choices": {
+                    "bars": "Barres uniquement",
+                    "both": "Texte",
+                    "text": "Texte seulement"
+                },
+                "hint": "La visibilité des attributs suivis dans le carrousel.",
+                "name": "Visibilité des attributs"
+            },
+            "direction": {
+                "choices": {
+                    "column": "Vertical",
+                    "row": "Horizontal"
+                },
+                "hint": "La direction du carrousel.",
+                "name": "Direction"
+            },
+            "displayName": {
+                "choices": {
+                    "default": "Toujours",
+                    "owner": "Basé sur la propriété",
+                    "token": "Basé sur le jeton"
+                },
+                "hint": "Afficher ou non le nom du combattant dans l'infobulle. \n'Basé sur le jeton' n'affichera le nom que si le joueur peut voir le nom du jeton.",
+                "name": "Afficher un nom"
+            },
+            "portraitImageBackground": {
+                "hint": "L'image d'arrière-plan derrière le portrait qui sera visible si le portrait est transparent ou ne remplit pas l'espace.",
+                "name": "Fond d'écran"
+            },
+            "showSystemIcons": {
+                "choices": {
+                    "both": "Les deux",
+                    "none": "Aucun",
+                    "resource": "Portrait",
+                    "tooltip": "Info-bulle"
+                },
+                "hint": "Afficher les icônes système sous la ressource suivie, l'info-bulle ou les deux. \nGardez à l'esprit que cela nécessite une implémentation spécifique au système et ne fonctionnera que sur certains systèmes.",
+                "name": "Afficher les icônes du système"
             }
-        }
+        },
+        "configureCarousel": "Configurer le carrousel"
     }
 }

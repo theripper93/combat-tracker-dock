@@ -1,5 +1,6 @@
 {
     "combat-tracker-dock": {
+        "configureCarousel": "Configure Carousel",
         "settings": {
             "portraitSize": {
                 "name": "Carousel Size",
@@ -81,7 +82,20 @@
             },
             "attributeColor": {
                 "name": "Attribute Color",
-                "hint": "The color of the main tracked attribute text and bar in the combat tracker. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #41AA7D."
+                "hint": "The color of the main tracked attribute text and bar in the carousel. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #41AA7D."
+            },
+            "attributeColor2": {
+                "name": "Secondary Attribute Color",
+                "hint": "The color of the secondary tracked attribute text and bar in the carousel. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #41AA7D."
+            },
+            "attributeVisibility": {
+                "name": "Attribute Visibility",
+                "hint": "The visibility of the tracked attributes in the carousel.",
+                "choices": {
+                    "text": "Text Only",
+                    "bars": "Bars Only",
+                    "both": "Text & Bars"
+                }
             },
             "tooltipColor": {
                 "name": "Tooltip Color",
@@ -94,6 +108,10 @@
                     "actor": "Actor",
                     "token": "Token"
                 }
+            },
+            "portraitImageBackground": {
+                "name": "Portrait Background",
+                "hint": "The background image behind the portrait that will be visible if the portrait is transparent or doesn't fill the space."
             },
             "showSystemIcons": {
                 "name": "Show System Icons",

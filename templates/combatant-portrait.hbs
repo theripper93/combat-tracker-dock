@@ -4,13 +4,6 @@
         initiativeData.isRollIconImg}}style="background-image: url('{{initiativeData.rollIcon}}');"
         class="roll-initiative" {{else}}class="{{initiativeData.rollIcon}} roll-initiative" {{/if}}></i>
 
-    <div class="portrait-initiative" {{#unless showInitiative}}style="display: none;" {{/unless}} {{#if
-        isInitiativeNaN}}style="display:none;" {{/if}}>
-        <i {{#if initiativeData.isIconImg}}style="background-image: url('{{initiativeData.icon}}');"
-            {{else}}class="{{initiativeData.icon}}" {{/if}}></i>
-        <span class="portrait-initiative-text">{{initiativeData.value}}</span>
-    </div>
-
     <div class="portrait-pass" {{#unless showPass}}style="display: none;" {{/unless}} {{#unless
         hasRolled}}style="display: none;" {{/unless}}>
         <i data-action="player-pass" class="fa-solid fa-chevrons-right"></i>
@@ -22,12 +15,24 @@
         {{/each}}
     </ul>
 
-    {{#if resource.max}}
     <div class="tracked-attribute-bar">
-        <div class="tracked-attribute-bar-max"></div>
+    {{#if resource.max}}
+        <div class="tracked-attribute-bar-max" {{#unless showBars}}style="display: none;"{{/unless}}>
         <div class="tracked-attribute-bar-current" style="height: {{resource.percentage}}%;"></div>
-    </div>
+        </div>
     {{/if}}
+    {{#if resource2.max}}
+        <div class="tracked-attribute-bar-max" {{#unless showBars}}style="display: none;"{{/unless}}>
+        <div class="tracked-attribute-bar-current secondary-attribute" style="height: {{resource2.percentage}}%;"></div>
+        </div>
+    {{/if}}
+    <div class="portrait-initiative" {{#unless showInitiative}}style="display: none;" {{/unless}} {{#if
+        isInitiativeNaN}}style="display:none;" {{/if}}>
+        <i {{#if initiativeData.isIconImg}}style="background-image: url('{{initiativeData.icon}}');"
+            {{else}}class="{{initiativeData.icon}}" {{/if}}></i>
+        <span class="portrait-initiative-text">{{initiativeData.value}}</span>
+    </div>
+    </div>
     <div class="bottom-ui-container">
 
         <div class="combatant-buttons">
@@ -40,11 +45,19 @@
 
 
 
-        <div class="tracked-attribute-text-container">
+        <div class="tracked-attribute-text-container" {{#unless showText}}style="display: none;"{{/unless}}>
             <i class="tracked-attribute-text-value">{{resource.value}}</i>
             {{#if resource.max}}
             <i>/</i>
             <i>{{resource.max}}</i>
+            {{/if}}
+        </div>
+
+        <div class="tracked-attribute-text-container" {{#unless showText}}style="display: none;"{{/unless}}>
+            <i class="tracked-attribute-text-value secondary-attribute">{{resource2.value}}</i>
+            {{#if resource2.max}}
+            <i>/</i>
+            <i>{{resource2.max}}</i>
             {{/if}}
         </div>
 

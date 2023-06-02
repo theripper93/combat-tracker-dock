@@ -42,7 +42,9 @@
                     "30px": "Pequeno",
                     "50px": "Pequeno",
                     "70px": "Normal",
-                    "90px": "Grande"
+                    "90px": "Grande",
+                    "150px": "XX-Grande",
+                    "180px": "XXX-Grande"
                 },
                 "hint": "O tamanho máximo do retrato no rastreador de combate. \nObserve que o tamanho dos retratos será reduzido automaticamente se houver muitos combatentes para caber na tela.",
                 "name": "Tamanho retrato"
@@ -103,7 +105,52 @@
                 },
                 "hint": "A maneira como o carrossel se comporta quando há muitos combatentes para caber na tela.",
                 "name": "Estilo de estouro"
+            },
+            "attributeColor2": {
+                "hint": "A cor do texto do atributo rastreado secundário e da barra no carrossel. \nVocê pode usar qualquer valor de cor CSS válido (por exemplo.",
+                "name": "Cor do atributo secundário"
+            },
+            "attributeVisibility": {
+                "choices": {
+                    "bars": "Barras apenas",
+                    "both": "Texto",
+                    "text": "Somente texto"
+                },
+                "hint": "A visibilidade dos atributos rastreados no carrossel.",
+                "name": "Visibilidade do atributo"
+            },
+            "direction": {
+                "choices": {
+                    "column": "Vertical",
+                    "row": "Horizontal"
+                },
+                "hint": "A direção do carrossel.",
+                "name": "Direção"
+            },
+            "displayName": {
+                "choices": {
+                    "default": "Sempre",
+                    "owner": "Com base na propriedade",
+                    "token": "Baseado em token"
+                },
+                "hint": "Se deve ou não exibir o nome do combatente na dica de ferramenta. \n'Baseado no token' exibirá o nome apenas se o jogador puder ver o nome do token.",
+                "name": "Nome de exibição"
+            },
+            "portraitImageBackground": {
+                "hint": "A imagem de fundo atrás do retrato que ficará visível se o retrato for transparente ou não preencher o espaço.",
+                "name": "Fundo do retrato"
+            },
+            "showSystemIcons": {
+                "choices": {
+                    "both": "Ambos",
+                    "none": "Nenhum",
+                    "resource": "Retrato",
+                    "tooltip": "Dica de ferramenta"
+                },
+                "hint": "Mostre os ícones do sistema abaixo do recurso rastreado, dica de ferramenta ou ambos. \nLembre-se de que isso requer uma implementação específica do sistema e só funcionará em sistemas selecionados.",
+                "name": "Mostrar Ícones do Sistema"
             }
-        }
+        },
+        "configureCarousel": "Configurar carrossel"
     }
 }

@@ -189,9 +189,12 @@ activateListeners() {
 
         const systemIcons = this.getSystemIcons();
 
+        const attributesVisibility = game.settings.get(MODULE_ID, "attributeVisibility");
+
         // Prepare turn data
         const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
         const resource = hasPermission ? this.getResource() : null;
+        const resource2 = hasPermission ? this.getResource(game.settings.get(MODULE_ID, "resource")) : null;
         const initiativeData = this.getInitiativeDisplay();
         initiativeData.isIconImg = initiativeData.icon.includes(".");
         initiativeData.isRollIconImg = initiativeData.rollIcon.includes(".");
@@ -208,12 +211,16 @@ activateListeners() {
             initiative: combatant.initiative,
             hasRolled: combatant.initiative !== null && combatant.initiative !== undefined,
             hasResource: resource !== null,
+            hasResource2: resource2 !== null,
             hasPlayerOwner: combatant.actor?.hasPlayerOwner,
             hasPermission: hasPermission,
             showInitiative: game.settings.get(MODULE_ID, "showInitiativeOnPortrait"),
             isInitiativeNaN: combatant.initiative === null || combatant.initiative === undefined,
             initiativeData: initiativeData,
             resource: resource,
+            resource2: resource2,
+            showBars: attributesVisibility == "bars" || attributesVisibility == "both",
+            showText: attributesVisibility == "text" || attributesVisibility == "both",
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
             attributes: trackedAttributes,
             description: this.getDescription(),

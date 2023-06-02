@@ -9,9 +9,12 @@
     --carousel-align-items: "flex-end";
     --attribute-bar-primary-color: #41AA7D;
     --attribute-bar-secondary-color: rgba(53,94,77,1);
+    --attribute-bar-primary-color2: #ffcd00;
+    --attribute-bar-secondary-color2: #634f00;
     --carousel-tooltip-color: rgba(136, 136, 136, 0.873);
     --carousel-tooltip-bg-color: rgb(43, 43, 43);
-    --combatant-portrait-image-border: url("/modules/combat-tracker-dock/assets/border.png")
+    --combatant-portrait-image-border: url("/modules/combat-tracker-dock/assets/border.png");
+    --combatant-portrait-image-background: url("/ui/denim075.png");
 }
 #ui-top{
     position: relative;
