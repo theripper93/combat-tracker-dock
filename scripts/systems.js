@@ -21,6 +21,21 @@ export function defaultAttributesConfig() {
                 icon: "fas fa-hand-holding-magic",
                 units: "Spell DC",
             },
+            {
+                attr: "resources.legact.value",
+                icon: "far fa-bolt-lightning",
+                units: "",
+            },
+            {
+                attr: "resources.legres.value",
+                icon: "fas fa-shield-cross",
+                units: "",
+            },
+            {
+                attr: "resources.lair.value",
+                icon: "fa-solid fa-dungeon",
+                units: "",
+            },
         ],
         "pf2e": [
             {
