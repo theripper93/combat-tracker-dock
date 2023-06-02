@@ -109,7 +109,7 @@ export function defaultAttributesConfig() {
                 units: game.i18n.localize("SWADE.Armor"),
             },
         ],
-        "pirateborg": [
+        pirateborg: [
             {
                 attr: "attributes.hp.value",
                 icon: "fas fa-heart",
@@ -125,7 +125,29 @@ export function defaultAttributesConfig() {
                 icon: "fas fa-ankh",
                 units: "Rituals",
             },
-        ]
+        ],
+        pf2e: [
+            {
+                attr: "attributes.hp.value",
+                icon: "fas fa-heart",
+                units: "HP",
+            },
+            {
+                attr: "attributes.ac.value",
+                icon: "fas fa-shield",
+                units: "AC",
+            },
+            {
+                attr: "attributes.speed.value",
+                icon: "systems/pf2e/icons/default-icons/action.svg",
+                units: "ft.",
+            },
+            {
+                attr: "attributes.spellDC.value",
+                icon: "fas fa-hand-holding-magic",
+                units: "Spell DC",
+            },
+        ],
     };
 }
 
@@ -178,6 +200,13 @@ export function generateDescription(actor) {
                 default:
                     return null;
             }
+        case "pf2e":
+            switch (type) {
+                case "character":
+                    return `Level ${system.details.level.value} ${system.details.class.name} (${system.details.ancestry.name})`;
+                default:
+                    return null;
+            }
     }
 }
 
@@ -194,9 +223,7 @@ export function getInitiativeDisplay(combatant) {
         case "swade": {
             let suit = "";
             const getCardImage = (cardstr) => {
-                return Array.from(game.cards.get(game.settings.get("swade", "actionDeck")).cards).find(
-                    (c) => c.description === cardstr
-                )?.img;
+                return Array.from(game.cards.get(game.settings.get("swade", "actionDeck")).cards).find((c) => c.description === cardstr)?.img;
             };
             let cardString = combatant?.cardString ?? "";
             if (cardString.includes("♥")) suit = "fas fa-heart";
@@ -224,9 +251,9 @@ export function getInitiativeDisplay(combatant) {
  * Retrieves system icons for the given actor based on the game system.
  * These icons can be shown both at the bottom of the tooltip and
  * in the portrait under the tracked resource.
- * 
+ *
  * Example Icon Object:
- * 
+ *
  *  {
  *      icon: "fas fa-times",
  *      color: "#e16de1",
@@ -248,7 +275,7 @@ export function getSystemIcons(combatant) {
                     const flag = combatant.actor.getFlag("midi-qol", "actions") ?? {};
                     return flag[actionType] ?? false;
                 };
-                const toggleMidiFlag = (actionType) => { 
+                const toggleMidiFlag = (actionType) => {
                     const flag = combatant.actor.getFlag("midi-qol", "actions") ?? {};
                     flag[actionType] = !(flag[actionType] ?? false);
                     combatant.setFlag("midi-qol", "actions", flag);
@@ -264,42 +291,48 @@ export function getSystemIcons(combatant) {
                         icon: "fas fa-triangle",
                         color: getMidiFlag("bonus") ? "#888888" : "#ff9f4c",
                         enabled: true,
-                        callback: combatant.isOwner ?  () => toggleMidiFlag("bonus") : null,
+                        callback: combatant.isOwner ? () => toggleMidiFlag("bonus") : null,
                     },
                     {
                         icon: "fas fa-sparkle",
                         color: getMidiFlag("reaction") ? "#888888" : "#e16de1",
                         enabled: true,
-                        callback: combatant.isOwner ?  () => toggleMidiFlag("reaction") : null,
-                    }
-                ]
+                        callback: combatant.isOwner ? () => toggleMidiFlag("reaction") : null,
+                    },
+                ];
             }
             return [
                 {
                     icon: "fas fa-circle",
                     color: combatant.getFlag(MODULE_ID, "action") ?? true ? "green" : "#888888",
                     enabled: true,
-                    callback: combatant.isOwner ? (event, combatant, iconIndex, iconId) => {
-                        combatant.setFlag(MODULE_ID, "action", !(combatant.getFlag(MODULE_ID, "action") ?? true));
-                    } : null,
+                    callback: combatant.isOwner
+                        ? (event, combatant, iconIndex, iconId) => {
+                              combatant.setFlag(MODULE_ID, "action", !(combatant.getFlag(MODULE_ID, "action") ?? true));
+                          }
+                        : null,
                 },
                 {
                     icon: "fas fa-triangle",
-                    color: combatant.getFlag(MODULE_ID, "bonus") ?? true ?  "#ff9f4c" : "#888888",
+                    color: combatant.getFlag(MODULE_ID, "bonus") ?? true ? "#ff9f4c" : "#888888",
                     enabled: true,
-                    callback: combatant.isOwner ? (event, combatant, iconIndex, iconId) => {
-                        combatant.setFlag(MODULE_ID, "bonus", !(combatant.getFlag(MODULE_ID, "bonus") ?? true));
-                    } : null,
+                    callback: combatant.isOwner
+                        ? (event, combatant, iconIndex, iconId) => {
+                              combatant.setFlag(MODULE_ID, "bonus", !(combatant.getFlag(MODULE_ID, "bonus") ?? true));
+                          }
+                        : null,
                 },
                 {
                     icon: "fas fa-sparkle",
                     color: combatant.getFlag(MODULE_ID, "reaction") ?? true ? "#e16de1" : "#888888",
                     enabled: true,
-                    callback: combatant.isOwner ? (event, combatant, iconIndex, iconId) => {
-                        combatant.setFlag(MODULE_ID, "reaction", !(combatant.getFlag(MODULE_ID, "reaction") ?? true));
-                    } : null,
-                }
-            ]
+                    callback: combatant.isOwner
+                        ? (event, combatant, iconIndex, iconId) => {
+                              combatant.setFlag(MODULE_ID, "reaction", !(combatant.getFlag(MODULE_ID, "reaction") ?? true));
+                          }
+                        : null,
+                },
+            ];
         }
         default: {
             return [];
