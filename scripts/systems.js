@@ -1,11 +1,3 @@
-import { MODULE_ID } from "./main.js";
-
-/**
- * Returns the default attributes configuration for different game systems.
- *
- * @returns {Object} The default attributes configuration.
- */
-
 export function defaultAttributesConfig() {
     return {
         dnd5e: [
@@ -29,20 +21,27 @@ export function defaultAttributesConfig() {
                 icon: "fas fa-hand-holding-magic",
                 units: "Spell DC",
             },
+        ],
+        "pf2e": [
             {
-                attr: "resources.legact.value",
-                icon: "far fa-bolt-lightning",
-                units: "",
+                attr: "attributes.hp.value",
+                icon: "fas fa-heart",
+                units: "HP",
             },
             {
-                attr: "resources.legres.value",
-                icon: "fas fa-shield-cross",
-                units: "",
+                attr: "attributes.ac.value",
+                icon: "fas fa-shield",
+                units: "AC",
             },
             {
-                attr: "resources.lair.value",
-                icon: "fa-solid fa-dungeon",
-                units: "",
+                attr: "attributes.speed.value",
+                icon: "systems/pf2e/icons/default-icons/action.svg",
+                units: "ft.",
+            },
+            {
+                attr: "attributes.spellDC.value",
+                icon: "fas fa-hand-holding-magic",
+                units: "Spell DC",
             },
         ],
         "cyberpunk-red-core": [
@@ -129,14 +128,6 @@ export function defaultAttributesConfig() {
     };
 }
 
-/**
- * Generates a description for the given actor based on its data.
- * This description is shown in the Tooltip under the actor's name.
- *
- * @param {Object} actor - The actor object.
- * @returns {string|null} The generated description or null if no description is available.
- */
-
 export function generateDescription(actor) {
     const { type, system } = actor;
     switch (game.system.id) {
@@ -154,6 +145,13 @@ export function generateDescription(actor) {
                 return `Level ${system.details.level} ${classes} (${system.details.race})`;
             } else {
                 return null;
+            }
+        case "pf2e":
+            switch (type) {
+                case "character":
+                    return `Level ${system.details.level.value} ${system.details.class.name} (${system.details.ancestry.name})`;
+                default:
+                    return null;
             }
         case "swade":
             if (system?.wildcard) return `${game.i18n.localize("SWADE.WildCard")}`;
@@ -180,14 +178,6 @@ export function generateDescription(actor) {
             }
     }
 }
-
-/**
- * Retrieves the display information for the initiative of a combatant based on the game system.
- * The icon can be both a font-awesome icon or an image.
- *
- * @param {Object} combatant - The combatant object.
- * @returns {Object} The initiative display information, including value, icon, and roll icon.
- */
 
 export function getInitiativeDisplay(combatant) {
     switch (game.system.id) {
@@ -217,92 +207,5 @@ export function getInitiativeDisplay(combatant) {
                 icon: "far fa-dice-d20",
                 rollIcon: "far fa-dice-d20",
             };
-    }
-}
-
-/**
- * Retrieves system icons for the given actor based on the game system.
- * These icons can be shown both at the bottom of the tooltip and
- * in the portrait under the tracked resource.
- * 
- * Example Icon Object:
- * 
- *  {
- *      icon: "fas fa-times",
- *      color: "#e16de1",
- *      enabled: true,
- *      callback: (event, combatant, iconIndex, iconId) => { },
- *      id: "mybutton",
- *      fontSize: "1rem",
- *  }
- *
- * @param {Object} actor - The actor object.
- * @returns {Array} An array of system icons with their respective properties.
- */
-
-export function getSystemIcons(combatant) {
-    switch (game.system.id) {
-        case "dnd5e": {
-            if (game.modules.get("midi-qol")?.active) {
-                const getMidiFlag = (actionType) => {
-                    const flag = combatant.actor.getFlag("midi-qol", "actions") ?? {};
-                    return flag[actionType] ?? false;
-                };
-                const toggleMidiFlag = (actionType) => { 
-                    const flag = combatant.actor.getFlag("midi-qol", "actions") ?? {};
-                    flag[actionType] = !(flag[actionType] ?? false);
-                    combatant.setFlag("midi-qol", "actions", flag);
-                };
-                return [
-                    {
-                        icon: "fas fa-circle",
-                        color: getMidiFlag("action") ? "#888888" : "green",
-                        enabled: true,
-                        callback: combatant.isOwner ? () => toggleMidiFlag("action") : null,
-                    },
-                    {
-                        icon: "fas fa-triangle",
-                        color: getMidiFlag("bonus") ? "#888888" : "#ff9f4c",
-                        enabled: true,
-                        callback: combatant.isOwner ?  () => toggleMidiFlag("bonus") : null,
-                    },
-                    {
-                        icon: "fas fa-sparkle",
-                        color: getMidiFlag("reaction") ? "#888888" : "#e16de1",
-                        enabled: true,
-                        callback: combatant.isOwner ?  () => toggleMidiFlag("reaction") : null,
-                    }
-                ]
-            }
-            return [
-                {
-                    icon: "fas fa-circle",
-                    color: combatant.getFlag(MODULE_ID, "action") ?? true ? "green" : "#888888",
-                    enabled: true,
-                    callback: combatant.isOwner ? (event, combatant, iconIndex, iconId) => {
-                        combatant.setFlag(MODULE_ID, "action", !(combatant.getFlag(MODULE_ID, "action") ?? true));
-                    } : null,
-                },
-                {
-                    icon: "fas fa-triangle",
-                    color: combatant.getFlag(MODULE_ID, "bonus") ?? true ?  "#ff9f4c" : "#888888",
-                    enabled: true,
-                    callback: combatant.isOwner ? (event, combatant, iconIndex, iconId) => {
-                        combatant.setFlag(MODULE_ID, "bonus", !(combatant.getFlag(MODULE_ID, "bonus") ?? true));
-                    } : null,
-                },
-                {
-                    icon: "fas fa-sparkle",
-                    color: combatant.getFlag(MODULE_ID, "reaction") ?? true ? "#e16de1" : "#888888",
-                    enabled: true,
-                    callback: combatant.isOwner ? (event, combatant, iconIndex, iconId) => {
-                        combatant.setFlag(MODULE_ID, "reaction", !(combatant.getFlag(MODULE_ID, "reaction") ?? true));
-                    } : null,
-                }
-            ]
-        }
-        default: {
-            return [];
-        }
     }
 }
