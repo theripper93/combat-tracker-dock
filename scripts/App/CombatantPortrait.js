@@ -169,7 +169,7 @@ activateListeners() {
         return { max, value, percentage };
     }
 
-    getData() {
+    async getData() {
         // Format information about each combatant in the encounter
         let hasDecimals = false;
         const combatant = this.combatant;
@@ -239,7 +239,11 @@ activateListeners() {
         if (combatant.actor) {
             for (const effect of combatant.actor.temporaryEffects) {
                 if (effect.statuses.has(CONFIG.specialStatusEffects.DEFEATED)) turn.defeated = true;
-                else if (effect.icon) turn.effects.add({ icon: effect.icon, label: effect.name });
+                else if (effect.icon) {
+                    const description = effect.description ? await TextEditor.enrichHTML(effect.description) : "";
+                    const duration = parseInt(effect.duration?.label ?? "");
+                    turn.effects.add({icon: effect.icon, label: effect.name, description: description, duration: duration, hasDuration: !isNaN(duration)});
+                }
             }
         }
 

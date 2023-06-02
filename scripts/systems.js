@@ -243,30 +243,61 @@ export function getInitiativeDisplay(combatant) {
 export function getSystemIcons(combatant) {
     switch (game.system.id) {
         case "dnd5e": {
+            if (game.modules.get("midi-qol")?.active) {
+                const getMidiFlag = (actionType) => {
+                    const flag = combatant.actor.getFlag("midi-qol", "actions") ?? {};
+                    return flag[actionType] ?? false;
+                };
+                const toggleMidiFlag = (actionType) => { 
+                    const flag = combatant.actor.getFlag("midi-qol", "actions") ?? {};
+                    flag[actionType] = !(flag[actionType] ?? false);
+                    combatant.setFlag("midi-qol", "actions", flag);
+                };
+                return [
+                    {
+                        icon: "fas fa-circle",
+                        color: getMidiFlag("action") ? "#888888" : "green",
+                        enabled: true,
+                        callback: combatant.isOwner ? () => toggleMidiFlag("action") : null,
+                    },
+                    {
+                        icon: "fas fa-triangle",
+                        color: getMidiFlag("bonus") ? "#888888" : "#ff9f4c",
+                        enabled: true,
+                        callback: combatant.isOwner ?  () => toggleMidiFlag("bonus") : null,
+                    },
+                    {
+                        icon: "fas fa-sparkle",
+                        color: getMidiFlag("reaction") ? "#888888" : "#e16de1",
+                        enabled: true,
+                        callback: combatant.isOwner ?  () => toggleMidiFlag("reaction") : null,
+                    }
+                ]
+            }
             return [
                 {
                     icon: "fas fa-circle",
                     color: combatant.getFlag(MODULE_ID, "action") ?? true ? "green" : "#888888",
-                    enabled: combatant.isOwner,
-                    callback: (event, combatant, iconIndex, iconId) => {
+                    enabled: true,
+                    callback: combatant.isOwner ? (event, combatant, iconIndex, iconId) => {
                         combatant.setFlag(MODULE_ID, "action", !(combatant.getFlag(MODULE_ID, "action") ?? true));
-                    },
+                    } : null,
                 },
                 {
                     icon: "fas fa-triangle",
                     color: combatant.getFlag(MODULE_ID, "bonus") ?? true ?  "#ff9f4c" : "#888888",
-                    enabled: combatant.isOwner,
-                    callback: (event, combatant, iconIndex, iconId) => {
+                    enabled: true,
+                    callback: combatant.isOwner ? (event, combatant, iconIndex, iconId) => {
                         combatant.setFlag(MODULE_ID, "bonus", !(combatant.getFlag(MODULE_ID, "bonus") ?? true));
-                    }
+                    } : null,
                 },
                 {
                     icon: "fas fa-sparkle",
                     color: combatant.getFlag(MODULE_ID, "reaction") ?? true ? "#e16de1" : "#888888",
-                    enabled: combatant.isOwner,
-                    callback: (event, combatant, iconIndex, iconId) => {
+                    enabled: true,
+                    callback: combatant.isOwner ? (event, combatant, iconIndex, iconId) => {
                         combatant.setFlag(MODULE_ID, "reaction", !(combatant.getFlag(MODULE_ID, "reaction") ?? true));
-                    }
+                    } : null,
                 }
             ]
         }

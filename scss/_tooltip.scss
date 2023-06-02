@@ -67,6 +67,18 @@
                 padding-top: 1rem;
                 margin: 0;
                 text-align: left;
+
+                & .effect-description{
+
+                    margin-bottom: 0.5rem;
+
+                    & .content-link{
+                        background: transparent;
+                        border: none;
+                        padding: 0;
+                        margin: 0;
+                    }
+                }
             }
 
             & li{
@@ -88,6 +100,15 @@
                     align-self: center;
                     justify-content: center;
                 }
+
+                & .tooltip-duration{
+                    margin-left: auto;
+                    line-height: 0;
+                    & i{
+                        font-size: 0.8rem;
+                    }
+                }
+
             }
         
             & img{

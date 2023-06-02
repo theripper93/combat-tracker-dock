@@ -24,11 +24,16 @@
     {{/if}}
     <ul {{#unless hasEffects}}style="display:none;" {{/unless}}>
         {{#each effects as |effect|}}
-        <li><img src="{{effect.icon}}" alt=""><span>{{{localize effect.label}}}</span></li>
+        <li><img src="{{effect.icon}}" alt=""><span>{{{localize effect.label}}}</span>{{#if hasDuration}}{{#if ../hasPermission}}<span class="tooltip-duration"><i class="fa-duotone fa-stopwatch"></i> {{duration}}</span>{{/if}}{{/if}}</li>
+        {{#if effect.description}}
+            {{#if ../hasPermission}}
+                <div class="effect-description">{{{effect.description}}}</div>
+            {{/if}}
+        {{/if}}
         {{/each}}
     </ul>
 
-    {{#if owner}}
+    {{#if hasPermission}}
     {{#if tooltipSystemIcons}}
     <div class="system-icons">
         {{#each tooltipSystemIcons}}
