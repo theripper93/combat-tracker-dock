@@ -5,7 +5,7 @@
  *
  * This file is maintained by the community and is subject to the
  * terms of the MIT License.
- * 
+ *
  * For more information, please visit:
  * https://opensource.org/licenses/MIT
  *
@@ -243,7 +243,11 @@ export function generateDescription(actor) {
         case "pirateborg":
             switch (type) {
                 case "character":
-                    return "Character";
+                    const classes = [actor.characterClass?.name || "Character"];
+                    if (actor.characterBaseClass?.name) {
+                        classes.push(actor.characterBaseClass.name);
+                    }
+                    return classes.join(' - ');
                 case "creature":
                     return "Creature";
                 case "vehicle":
