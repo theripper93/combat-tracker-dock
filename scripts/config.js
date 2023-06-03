@@ -350,7 +350,7 @@ function setAlignment() {
 
 function setPortraitImageBorder() {
     let portraitImageBorder = game.settings.get(MODULE_ID, "portraitImageBorder");
-    if(!portraitImageBorder.startsWith("/")) portraitImageBorder = `/${portraitImageBorder}`;
+    if(!portraitImageBorder.startsWith("/") && !portraitImageBorder.includes("http")) portraitImageBorder = `/${portraitImageBorder}`;
     document.documentElement.style.setProperty(
         "--combatant-portrait-image-border",
         `url('${portraitImageBorder}')`
@@ -359,7 +359,7 @@ function setPortraitImageBorder() {
 
 function setPortraitImageBackground() {
     let portraitImageBackground = game.settings.get(MODULE_ID, "portraitImageBackground");
-    if(!portraitImageBackground.startsWith("/")) portraitImageBackground = `/${portraitImageBackground}`;
+    if(!portraitImageBackground.startsWith("/") && !portraitImageBackground.includes("http")) portraitImageBackground = `/${portraitImageBackground}`;
     document.documentElement.style.setProperty(
         "--combatant-portrait-image-background",
         `url('${portraitImageBackground}')`

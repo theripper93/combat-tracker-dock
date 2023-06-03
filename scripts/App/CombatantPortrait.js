@@ -57,11 +57,11 @@ activateListeners() {
     async _onCombatantMouseDown(event) {
         event.preventDefault();
 
-        if(!event.target.classList.contains("combatant-wrapper")) return;
-
-        if (event.button === 2) return this.combatant.sheet.render(true);
-
         if (event.target.dataset.action === "player-pass") return this.combat.nextTurn();
+        
+        if(!event.target.classList.contains("combatant-wrapper")) return;
+        
+        if (event.button === 2) return this.combatant.sheet.render(true);
 
         const combatant = this.combatant;
         const token = combatant.token;

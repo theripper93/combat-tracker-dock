@@ -270,7 +270,7 @@ export function getInitiativeDisplay(combatant) {
 export function getSystemIcons(combatant) {
     switch (game.system.id) {
         case "dnd5e": {
-            if (game.modules.get("midi-qol")?.active) {
+            if (game.modules.get("midi-qol")?.active && combatant.actor) {
                 const getMidiFlag = (actionType) => {
                     const flag = combatant.actor.getFlag("midi-qol", "actions") ?? {};
                     return flag[actionType] ?? false;
@@ -278,7 +278,7 @@ export function getSystemIcons(combatant) {
                 const toggleMidiFlag = (actionType) => {
                     const flag = combatant.actor.getFlag("midi-qol", "actions") ?? {};
                     flag[actionType] = !(flag[actionType] ?? false);
-                    combatant.setFlag("midi-qol", "actions", flag);
+                    combatant.actor.setFlag("midi-qol", "actions", flag);
                 };
                 return [
                     {
