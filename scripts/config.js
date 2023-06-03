@@ -1,15 +1,11 @@
-import {MODULE_ID} from "./main.js";
-import {AttributesConfig} from "./attributesConfig.js";
+import { MODULE_ID } from "./main.js";
+import { AttributesConfig } from "./attributesConfig.js";
 
 export function registerSettings() {
-
-
-    
-
     Hooks.on("renderSettingsConfig", (app, html, data) => {
-    colorPicker("attributeColor", html);
-    colorPicker("attributeColor2", html);
-});
+        colorPicker("attributeColor", html);
+        colorPicker("attributeColor2", html);
+    });
 
     game.settings.register(MODULE_ID, "attributes", {
         scope: "world",
@@ -26,8 +22,8 @@ export function registerSettings() {
         scope: "world",
         restricted: true,
         type: AttributesConfig,
-    });  
-    
+    });
+
     game.settings.register(MODULE_ID, "portraitSize", {
         name: "combat-tracker-dock.settings.portraitSize.name",
         hint: "combat-tracker-dock.settings.portraitSize.hint",
@@ -57,9 +53,9 @@ export function registerSettings() {
         config: true,
         type: String,
         choices: {
-            "autofit": "combat-tracker-dock.settings.overflowStyle.choices.autofit",
-            "hidden": "combat-tracker-dock.settings.overflowStyle.choices.hidden",
-            "scroll": "combat-tracker-dock.settings.overflowStyle.choices.scroll",
+            autofit: "combat-tracker-dock.settings.overflowStyle.choices.autofit",
+            hidden: "combat-tracker-dock.settings.overflowStyle.choices.hidden",
+            scroll: "combat-tracker-dock.settings.overflowStyle.choices.scroll",
         },
         default: "autofit",
         onChange: () => {
@@ -67,8 +63,6 @@ export function registerSettings() {
             ui.combatDock?.autosize();
         },
     });
-
-
 
     game.settings.register(MODULE_ID, "carouselStyle", {
         name: "combat-tracker-dock.settings.carouselStyle.name",
@@ -91,8 +85,8 @@ export function registerSettings() {
         config: true,
         type: String,
         choices: {
-            "row": "combat-tracker-dock.settings.direction.choices.row",
-            "column": "combat-tracker-dock.settings.direction.choices.column",
+            row: "combat-tracker-dock.settings.direction.choices.row",
+            column: "combat-tracker-dock.settings.direction.choices.column",
         },
         default: "row",
         onChange: () => {
@@ -103,7 +97,6 @@ export function registerSettings() {
         },
     });
 
-
     game.settings.register(MODULE_ID, "alignment", {
         name: "combat-tracker-dock.settings.alignment.name",
         hint: "combat-tracker-dock.settings.alignment.hint",
@@ -111,9 +104,9 @@ export function registerSettings() {
         config: true,
         type: String,
         choices: {
-            "left": "combat-tracker-dock.settings.alignment.choices.left",
-            "center": "combat-tracker-dock.settings.alignment.choices.center",
-            "right": "combat-tracker-dock.settings.alignment.choices.right",
+            left: "combat-tracker-dock.settings.alignment.choices.left",
+            center: "combat-tracker-dock.settings.alignment.choices.center",
+            right: "combat-tracker-dock.settings.alignment.choices.right",
         },
         default: "center",
         onChange: () => {
@@ -121,7 +114,6 @@ export function registerSettings() {
             setFlex();
         },
     });
-
 
     game.settings.register(MODULE_ID, "portraitAspect", {
         name: "combat-tracker-dock.settings.portraitAspect.name",
@@ -140,7 +132,6 @@ export function registerSettings() {
         },
     });
 
-
     game.settings.register(MODULE_ID, "roundness", {
         name: "combat-tracker-dock.settings.roundness.name",
         hint: "combat-tracker-dock.settings.roundness.hint",
@@ -157,9 +148,6 @@ export function registerSettings() {
             setRoundness();
         },
     });
-
-
-
 
     game.settings.register(MODULE_ID, "attributeColor", {
         name: "combat-tracker-dock.settings.attributeColor.name",
@@ -192,13 +180,12 @@ export function registerSettings() {
         config: true,
         type: String,
         choices: {
-            "text": "combat-tracker-dock.settings.attributeVisibility.choices.text",
-            "bars": "combat-tracker-dock.settings.attributeVisibility.choices.bars",
-            "both": "combat-tracker-dock.settings.attributeVisibility.choices.both",
+            text: "combat-tracker-dock.settings.attributeVisibility.choices.text",
+            bars: "combat-tracker-dock.settings.attributeVisibility.choices.bars",
+            both: "combat-tracker-dock.settings.attributeVisibility.choices.both",
         },
         default: "both",
     });
-
 
     game.settings.register(MODULE_ID, "tooltipColor", {
         name: "combat-tracker-dock.settings.tooltipColor.name",
@@ -211,7 +198,6 @@ export function registerSettings() {
             setTooltipColor();
         },
     });
-
 
     game.settings.register(MODULE_ID, "showDispositionColor", {
         name: "combat-tracker-dock.settings.showDispositionColor.name",
@@ -253,13 +239,12 @@ export function registerSettings() {
         config: true,
         type: String,
         choices: {
-            "actor": "combat-tracker-dock.settings.portraitImage.choices.actor",
-            "token": "combat-tracker-dock.settings.portraitImage.choices.token",
+            actor: "combat-tracker-dock.settings.portraitImage.choices.actor",
+            token: "combat-tracker-dock.settings.portraitImage.choices.token",
         },
         default: "actor",
     });
 
-    
     game.settings.register(MODULE_ID, "displayName", {
         name: "combat-tracker-dock.settings.displayName.name",
         hint: "combat-tracker-dock.settings.displayName.hint",
@@ -267,9 +252,9 @@ export function registerSettings() {
         config: true,
         type: String,
         choices: {
-            "default": "combat-tracker-dock.settings.displayName.choices.default",
-            "token": "combat-tracker-dock.settings.displayName.choices.token",
-            "owner": "combat-tracker-dock.settings.displayName.choices.owner",
+            default: "combat-tracker-dock.settings.displayName.choices.default",
+            token: "combat-tracker-dock.settings.displayName.choices.token",
+            owner: "combat-tracker-dock.settings.displayName.choices.owner",
         },
         default: "default",
     });
@@ -317,12 +302,11 @@ export function registerSettings() {
         type: String,
         default: "",
     });
-
 }
 
 export function registerWrappers() {
     if (!game.modules.get("lib-wrapper")?.active) return;
-    
+
     libWrapper.register(MODULE_ID, "Combatant.prototype.visible", function (wrapped, ...args) {
         const visible = wrapped(...args);
         if (!ui.combatDock?.rendered) return visible;
@@ -345,99 +329,63 @@ function setAllSettings() {
 
 function setPortraitSize() {
     const portraitSize = game.settings.get(MODULE_ID, "portraitSize");
-    document.documentElement.style.setProperty(
-        "--combatant-portrait-size",
-        portraitSize
-    );
+    document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize);
 }
 
 function setPortraitAspect() {
     const portraitAspect = game.settings.get(MODULE_ID, "portraitAspect");
-    document.documentElement.style.setProperty(
-        "--combatant-portrait-aspect",
-        portraitAspect
-    );
+    document.documentElement.style.setProperty("--combatant-portrait-aspect", portraitAspect);
 }
 
 function setAlignment() {
     const alignment = game.settings.get(MODULE_ID, "alignment");
-    document.documentElement.style.setProperty(
-        "--carousel-alignment",
-        alignment
-    );
+    document.documentElement.style.setProperty("--carousel-alignment", alignment);
     ui.combatDock?.setControlsOrder();
 }
 
 function setPortraitImageBorder() {
     let portraitImageBorder = game.settings.get(MODULE_ID, "portraitImageBorder");
-    if(!portraitImageBorder.startsWith("/") && !portraitImageBorder.includes("http")) portraitImageBorder = `/${portraitImageBorder}`;
-    document.documentElement.style.setProperty(
-        "--combatant-portrait-image-border",
-        `url('${portraitImageBorder}')`
-    );
+    if (!portraitImageBorder.startsWith("/") && !portraitImageBorder.includes("http")) portraitImageBorder = `/${portraitImageBorder}`;
+    document.documentElement.style.setProperty("--combatant-portrait-image-border", `url('${portraitImageBorder}')`);
 }
 
 function setPortraitImageBackground() {
     let portraitImageBackground = game.settings.get(MODULE_ID, "portraitImageBackground");
-    if(!portraitImageBackground.startsWith("/") && !portraitImageBackground.includes("http")) portraitImageBackground = `/${portraitImageBackground}`;
-    document.documentElement.style.setProperty(
-        "--combatant-portrait-image-background",
-        `url('${portraitImageBackground}')`
-    );
+    if (!portraitImageBackground.startsWith("/") && !portraitImageBackground.includes("http")) portraitImageBackground = `/${portraitImageBackground}`;
+    document.documentElement.style.setProperty("--combatant-portrait-image-background", `url('${portraitImageBackground}')`);
 }
 
 function setRoundness() {
     const roundness = game.settings.get(MODULE_ID, "roundness");
-    document.documentElement.style.setProperty(
-        "--combatant-portrait-border-radius",
-        roundness
-    );
+    document.documentElement.style.setProperty("--combatant-portrait-border-radius", roundness);
 }
 
 function setAttributeColor() {
     const attributeColor = game.settings.get(MODULE_ID, "attributeColor") || "#41AA7D";
-    document.documentElement.style.setProperty(
-        "--attribute-bar-primary-color",
-        attributeColor
-    );
+    document.documentElement.style.setProperty("--attribute-bar-primary-color", attributeColor);
 
     const color = Color.from(attributeColor);
     const darkened = color.mix(Color.from("#000"), 0.5);
 
-    document.documentElement.style.setProperty(
-        "--attribute-bar-secondary-color",
-        darkened.toString()
-    );
+    document.documentElement.style.setProperty("--attribute-bar-secondary-color", darkened.toString());
 
     const attributeColor2 = game.settings.get(MODULE_ID, "attributeColor2") || "#ffcd00";
-    document.documentElement.style.setProperty(
-        "--attribute-bar-primary-color2",
-        attributeColor2
-    );
+    document.documentElement.style.setProperty("--attribute-bar-primary-color2", attributeColor2);
 
     const color2 = Color.from(attributeColor2);
     const darkened2 = color2.mix(Color.from("#000"), 0.5);
 
-    document.documentElement.style.setProperty(
-        "--attribute-bar-secondary-color2",
-        darkened2.toString()
-    );
+    document.documentElement.style.setProperty("--attribute-bar-secondary-color2", darkened2.toString());
 }
 
 function setTooltipColor() {
     const tooltipColor = game.settings.get(MODULE_ID, "tooltipColor") || "#888888";
-    document.documentElement.style.setProperty(
-        "--carousel-tooltip-color",
-        tooltipColor
-    );
+    document.documentElement.style.setProperty("--carousel-tooltip-color", tooltipColor);
 
     const color = Color.from(tooltipColor);
     const darkened = color.mix(Color.from("#000"), 0.65);
 
-    document.documentElement.style.setProperty(
-        "--carousel-tooltip-bg-color",
-        darkened.toString()
-    );
+    document.documentElement.style.setProperty("--carousel-tooltip-bg-color", darkened.toString());
 }
 
 function setOverflowStyle() {
@@ -448,22 +396,13 @@ function setOverflowStyle() {
         if (direction === "row") overflowStyle = "visible hidden";
         else overflowStyle = "hidden visible";
     }
-    document.documentElement.style.setProperty(
-        "--carousel-overflow",
-        overflowStyle
-    );
+    document.documentElement.style.setProperty("--carousel-overflow", overflowStyle);
 }
 
 function setDirection() {
     const direction = game.settings.get(MODULE_ID, "direction");
-    document.documentElement.style.setProperty(
-        "--carousel-direction",
-        direction
-    );
-    document.documentElement.style.setProperty(
-        "--combatant-portrait-margin",
-        direction === "row" ? "0 calc(var(--combatant-portrait-size) * 0.1)" : "0"
-    );
+    document.documentElement.style.setProperty("--carousel-direction", direction);
+    document.documentElement.style.setProperty("--combatant-portrait-margin", direction === "row" ? "0 calc(var(--combatant-portrait-size) * 0.1)" : "0");
     ui.combatDock?.setControlsOrder();
 }
 
@@ -474,10 +413,7 @@ function setFlex() {
     if (direction == "column" && alignment == "right") flexD = "flex-end";
     if (direction == "column" && alignment == "center") flexD = "center";
 
-    document.documentElement.style.setProperty(
-        "--carousel-align-items",
-        flexD
-    );
+    document.documentElement.style.setProperty("--carousel-align-items", flexD);
 }
 
 //Color Picker by kaelad02
@@ -485,13 +421,13 @@ function setFlex() {
 //Documentation: https://github.com/kaelad02/adv-reminder/blob/54207ec1ef0500439e57521f15956c07e4c02af4/src/settings.js#L91-L104
 
 export function colorPicker(settingId, html) {
-	const colorPickerElement = document.createElement("input");
-	colorPickerElement.setAttribute("type", "color");
-	colorPickerElement.setAttribute("data-edit", MODULE_ID + "." + settingId);
-	colorPickerElement.value = game.settings.get(MODULE_ID, settingId);
+    const colorPickerElement = document.createElement("input");
+    colorPickerElement.setAttribute("type", "color");
+    colorPickerElement.setAttribute("data-edit", MODULE_ID + "." + settingId);
+    colorPickerElement.value = game.settings.get(MODULE_ID, settingId);
 
-	// Add color picker
-	const stringInputElement = html[0].querySelector(`input[name="${MODULE_ID}.${settingId}"]`);
-	stringInputElement.classList.add("color");
-	stringInputElement.after(colorPickerElement);
+    // Add color picker
+    const stringInputElement = html[0].querySelector(`input[name="${MODULE_ID}.${settingId}"]`);
+    stringInputElement.classList.add("color");
+    stringInputElement.after(colorPickerElement);
 }

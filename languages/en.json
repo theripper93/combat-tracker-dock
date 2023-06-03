@@ -132,6 +132,10 @@
                     "owner": "Based on Ownership"
                 }
             },
+            "hideFirstRound": {
+                "name": "Hide Until First Turn",
+                "hint": "Hide enemies until they have taken their first turn in combat."
+            },
             "attributesMenu": {
                 "name": "Tooltip Attributes",
                 "label": "Configure Attributes",
