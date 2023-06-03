@@ -274,6 +274,15 @@ export function registerSettings() {
         default: "default",
     });
 
+    game.settings.register(MODULE_ID, "hideFirstRound", {
+        name: "combat-tracker-dock.settings.hideFirstRound.name",
+        hint: "combat-tracker-dock.settings.hideFirstRound.hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+    });
+
     game.settings.register(MODULE_ID, "portraitImageBorder", {
         name: "combat-tracker-dock.settings.portraitImageBorder.name",
         hint: "combat-tracker-dock.settings.portraitImageBorder.hint",
@@ -309,6 +318,17 @@ export function registerSettings() {
         default: "",
     });
 
+}
+
+export function registerWrappers() {
+    if (!game.modules.get("lib-wrapper")?.active) return;
+    
+    libWrapper.register(MODULE_ID, "Combatant.prototype.visible", function (wrapped, ...args) {
+        const visible = wrapped(...args);
+        if (!ui.combatDock?.rendered) return visible;
+        const cDVisible = ui.combatDock.portraits.find((p) => p.combatant == this).firstTurnHidden;
+        return visible && !cDVisible;
+    });
 }
 
 function setAllSettings() {

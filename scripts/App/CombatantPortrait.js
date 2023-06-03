@@ -13,6 +13,8 @@ export class CombatantPortrait {
         this.element.setAttribute("data-tooltip-class", "combat-dock-tooltip");
         this.resolve = null;
         this.ready = new Promise((res) => (this.resolve = res));
+        this._hasTakenTurn = this.combat.round ?? 0 <= 1;
+        if(!game.settings.get(MODULE_ID, "hideFirstRound")) this._hasTakenTurn = true;
         this.activateCoreListeners();
         this.renderInner();
     }
@@ -28,6 +30,13 @@ export class CombatantPortrait {
         if(displayName === "owner") return this.combatant.isOwner ? this.combatant.name : "???";
         if (displayName === "default") return this.combatant.name;
         return [CONST.TOKEN_DISPLAY_MODES.HOVER, CONST.TOKEN_DISPLAY_MODES.ALWAYS].includes(this.token?.document?.displayName) ? this.combatant.name : "???";
+    }
+
+    get firstTurnHidden() {
+        const combatant = this.combatant;
+        const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
+        if (!hasPermission && !this._hasTakenTurn) return true;
+        return false;
     }
 
     activateCoreListeners() {
@@ -173,6 +182,10 @@ activateListeners() {
         // Format information about each combatant in the encounter
         let hasDecimals = false;
         const combatant = this.combatant;
+        const isActive = this.combat.turns.indexOf(combatant) === this.combat.turn;
+        if(isActive && this.combat.started) this._hasTakenTurn = true;
+        const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
+        if(!hasPermission && !this._hasTakenTurn) return null;
         if (!combatant.visible && !game.user.isGM) return null;
         const trackedAttributes = game.settings
             .get(MODULE_ID, "attributes")
@@ -192,7 +205,6 @@ activateListeners() {
         const attributesVisibility = game.settings.get(MODULE_ID, "attributeVisibility");
 
         // Prepare turn data
-        const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
         const resource = hasPermission ? this.getResource() : null;
         const resource2 = hasPermission ? this.getResource(game.settings.get(MODULE_ID, "resource")) : null;
         const initiativeData = this.getInitiativeDisplay();

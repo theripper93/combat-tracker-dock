@@ -20,6 +20,7 @@ export class CombatDock extends Application {
         }
         this.setHooks();
         window.addEventListener("resize", this.autosize.bind(this));
+        this._combatTrackerRefreshed = false;
     }
 
     static get defaultOptions() {
@@ -115,6 +116,10 @@ export class CombatDock extends Application {
         combatantsContainer.appendChild(separator);
         this.updateOrder();
         this.autosize();
+        if (!this._combatTrackerRefreshed) {
+            this._combatTrackerRefreshed = true;
+            ui.combat.render(true)
+        }
         if (this._playAnimation && this.sortedCombatants.length > 0) {
             this._playAnimation = false;
             const promises = this.portraits.map((p) => p.ready);
