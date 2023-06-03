@@ -149,6 +149,10 @@
                 },
                 "hint": "Muestre los íconos del sistema debajo del recurso rastreado, información sobre herramientas o ambos. \nTenga en cuenta que esto requiere una implementación específica del sistema y solo funcionará en sistemas seleccionados.",
                 "name": "Mostrar iconos del sistema"
+            },
+            "hideFirstRound": {
+                "hint": "Oculta a los enemigos hasta que hayan tomado su primer turno en combate. \n(Requiere que LibWrapper también los oculte en el rastreador de combate principal).",
+                "name": "Ocultar hasta el primer turno"
             }
         },
         "configureCarousel": "Configurar carrusel"

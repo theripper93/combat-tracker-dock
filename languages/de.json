@@ -149,6 +149,10 @@
                 },
                 "hint": "Zeigen Sie die Systemsymbole unter der verfolgten Ressource, der QuickInfo oder beiden an. \nBeachten Sie, dass dies eine systemspezifische Implementierung erfordert und nur auf ausgewählten Systemen funktioniert.",
                 "name": "Systemsymbole anzeigen"
+            },
+            "hideFirstRound": {
+                "hint": "Verstecke Feinde, bis sie zum ersten Mal im Kampf an der Reihe sind. \n(Erfordert LibWrapper, um sie auch im Kernkampf-Tracker zu verbergen.)",
+                "name": "Bis zur ersten Runde verstecken"
             }
         },
         "configureCarousel": "Karussell konfigurieren"

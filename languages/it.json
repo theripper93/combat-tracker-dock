@@ -149,6 +149,10 @@
                 },
                 "hint": "Mostra le icone di sistema sotto la risorsa monitorata, il tooltip o entrambi. \nTieni presente che ciò richiede un'implementazione specifica del sistema e funzionerà solo su sistemi selezionati.",
                 "name": "Mostra icone di sistema"
+            },
+            "hideFirstRound": {
+                "hint": "Nascondi i nemici finché non hanno svolto il loro primo turno in combattimento. \n(Richiede LibWrapper per nasconderli anche nel tracker di combattimento principale.)",
+                "name": "Nasconditi fino al primo turno"
             }
         },
         "configureCarousel": "Configura carosello"

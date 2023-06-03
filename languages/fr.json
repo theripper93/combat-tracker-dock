@@ -149,6 +149,10 @@
                 },
                 "hint": "Afficher les icônes système sous la ressource suivie, l'info-bulle ou les deux. \nGardez à l'esprit que cela nécessite une implémentation spécifique au système et ne fonctionnera que sur certains systèmes.",
                 "name": "Afficher les icônes du système"
+            },
+            "hideFirstRound": {
+                "hint": "Cachez les ennemis jusqu'à ce qu'ils aient effectué leur premier tour de combat. \n(Nécessite LibWrapper pour les cacher également dans le tracker de combat principal.)",
+                "name": "Cacher jusqu'au premier tour"
             }
         },
         "configureCarousel": "Configurer le carrousel"
