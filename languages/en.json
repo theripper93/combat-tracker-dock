@@ -134,7 +134,7 @@
             },
             "hideFirstRound": {
                 "name": "Hide Until First Turn",
-                "hint": "Hide enemies until they have taken their first turn in combat."
+                "hint": "Hide enemies until they have taken their first turn in combat. (Requires LibWrapper to hide them in the core combat tracker as well.)"
             },
             "attributesMenu": {
                 "name": "Tooltip Attributes",
