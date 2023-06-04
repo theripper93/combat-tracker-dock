@@ -328,7 +328,7 @@ export function getInitiativeDisplay(combatant) {
  *      color: "#e16de1",
  *      enabled: true,
  *      callback: (event, combatant, iconIndex, iconId) => { },
- *      id: "mybutton",
+ *      id: "my-button",
  *      fontSize: "1rem",
  *  }
  *
