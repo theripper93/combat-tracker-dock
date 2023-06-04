@@ -167,15 +167,24 @@ activateListeners() {
 
         value = foundry.utils.getProperty(this.actor.system, resource) ?? foundry.utils.getProperty(this.actor.system, resource + ".value");
 
-        if (max !== undefined && value !== undefined) percentage = Math.round((value / max) * 100);
+        if (max !== undefined && value !== undefined && Number.isNumeric(max) && Number.isNumeric(value)) percentage = Math.round((value / max) * 100);
 
-        if (typeof value === "boolean") value = value ? "✓" : "✗"; //'<i class="fas fa-check" style="display: flex;"></i>' : '<i class="fas fa-times" style="display: flex;"></i>';
+        value = this.validateValue(value);
+        max = this.validateValue(max);
+
+        return { max, value, percentage };
+    }
+
+    validateValue(value) {
+        if (typeof value === "boolean") value = value ? "✓" : "✗";
 
         if (Array.isArray(value)) value = value.join(", ");
 
         if (value === "") value = null;
 
-        return { max, value, percentage };
+        if (!Number.isNumeric(value) && Object.prototype.toString.call(value) != "[object String]") value = null;
+
+        return value;
     }
 
     async getData() {
