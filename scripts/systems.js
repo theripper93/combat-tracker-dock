@@ -126,6 +126,43 @@ export function defaultAttributesConfig() {
                 units: "Rituals",
             },
         ],
+        cyphersystem: [
+            {
+                attr: "pools.might.value",
+                icon: "fas fa-hand-fist",
+                units: "Might",
+            },
+            {
+                attr: "pools.speed.value",
+                icon: "fas fa-person-running",
+                units: "Speed",
+            },
+            {
+                attr: "pools.intellect.value",
+                icon: "fas fa-brain",
+                units: "Intellect",
+            },
+            {
+                attr: "combat.damageTrack.state",
+                icon: "fas fa-heart",
+                units: "",
+            },
+            {
+                attr: "pools.health.value",
+                icon: "fas fa-heart",
+                units: "Health",
+            },
+            {
+                attr: "combat.armor",
+                icon: "fas fa-shield",
+                units: "Armor",
+            },
+            {
+                attr: "combat.damage",
+                icon: "fas fa-axe-battle",
+                units: "Damage",
+            },
+        ],
         pf2e: [
             {
                 attr: "attributes.hp.value",
@@ -197,6 +234,23 @@ export function generateDescription(actor) {
                 case "vehicle":
                 case "vehicle_npc":
                     return "Ship";
+                default:
+                    return null;
+            }
+        case "cyphersystem":
+            switch (type) {
+                case "pc":
+                    return "Character";
+                case "npc":
+                    return "Creature";
+                case "companion":
+                    return "Companion";
+                case "community":
+                    return "Community";
+                case "vehicle":
+                    return "Vehicle";
+                case "marker":
+                    return "Marker";
                 default:
                     return null;
             }
