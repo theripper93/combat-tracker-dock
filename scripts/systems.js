@@ -1,4 +1,19 @@
-import { MODULE_ID } from "./main.js";
+/*
+ * -------------------------------------------------------------
+ * Community Maintained
+ * -------------------------------------------------------------
+ *
+ * This file is maintained by the community and is subject to the
+ * terms of the MIT License.
+ * 
+ * For more information, please visit:
+ * https://opensource.org/licenses/MIT
+ *
+ * -------------------------------------------------------------
+ */
+
+
+import {MODULE_ID} from "./main.js";
 
 /**
  * Returns the default attributes configuration for different game systems.
