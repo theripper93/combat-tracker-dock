@@ -319,7 +319,7 @@ export function getInitiativeDisplay(combatant) {
 /**
  * Retrieves system icons for the given actor based on the game system.
  * These icons can be shown both at the bottom of the tooltip and
- * in the portrait under the tracked resource.
+ * in the portrait under the tracked resource. If a callback is provided, it will be called on click.
  *
  * Example Icon Object:
  *
