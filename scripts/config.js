@@ -310,7 +310,7 @@ export function registerWrappers() {
     libWrapper.register(MODULE_ID, "Combatant.prototype.visible", function (wrapped, ...args) {
         const visible = wrapped(...args);
         if (!ui.combatDock?.rendered) return visible;
-        const cDVisible = ui.combatDock.portraits.find((p) => p.combatant == this).firstTurnHidden;
+        const cDVisible = ui.combatDock.portraits.find((p) => p.combatant == this)?.firstTurnHidden;
         return visible && !cDVisible;
     });
 }
