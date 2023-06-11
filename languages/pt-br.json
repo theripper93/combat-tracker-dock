@@ -153,6 +153,15 @@
             "hideFirstRound": {
                 "hint": "Esconda os inimigos até que eles façam seu primeiro turno de combate. \n(Requer LibWrapper para ocultá-los também no rastreador de combate principal.)",
                 "name": "Esconda-se até o primeiro turno"
+            },
+            "barsPlacement": {
+                "choices": {
+                    "left": "Esquerda",
+                    "right": "Certo",
+                    "twinned": "Geminado"
+                },
+                "hint": "A colocação das barras de atributos rastreados no carrossel.",
+                "name": "Posicionamento das Barras"
             }
         },
         "configureCarousel": "Configurar carrossel"

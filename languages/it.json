@@ -153,6 +153,15 @@
             "hideFirstRound": {
                 "hint": "Nascondi i nemici finché non hanno svolto il loro primo turno in combattimento. \n(Richiede LibWrapper per nasconderli anche nel tracker di combattimento principale.)",
                 "name": "Nasconditi fino al primo turno"
+            },
+            "barsPlacement": {
+                "choices": {
+                    "left": "Sinistra",
+                    "right": "Giusto",
+                    "twinned": "Gemellata"
+                },
+                "hint": "Il posizionamento delle barre degli attributi tracciati nel carosello.",
+                "name": "Posizionamento delle barre"
             }
         },
         "configureCarousel": "Configura carosello"

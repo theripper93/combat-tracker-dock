@@ -280,6 +280,9 @@ export function generateDescription(actor) {
                 default:
                     return null;
             }
+        case "crucible":
+            if(actor.type === "hero") return `${system.details.ancestry.name} ${system.details.background.name} (${system.details.signatureName})`;
+            if (actor.type === "adversary") return `${system.details.taxonomy.name} ${system.details.archetype.name} (${game.i18n.localize("ADVANCEMENT.Level")} ${system.details.level} ${game.i18n.localize("ADVERSARY.Threat" + system.details.threat.charAt(0).toUpperCase() + system.details.threat.slice(1))})`;
     }
 }
 
@@ -381,8 +384,8 @@ export function getSystemIcons(combatant) {
                     enabled: true,
                     callback: combatant.isOwner
                         ? (event, combatant, iconIndex, iconId) => {
-                              combatant.setFlag(MODULE_ID, "action", !(combatant.getFlag(MODULE_ID, "action") ?? true));
-                          }
+                            combatant.setFlag(MODULE_ID, "action", !(combatant.getFlag(MODULE_ID, "action") ?? true));
+                        }
                         : null,
                 },
                 {
@@ -391,8 +394,8 @@ export function getSystemIcons(combatant) {
                     enabled: true,
                     callback: combatant.isOwner
                         ? (event, combatant, iconIndex, iconId) => {
-                              combatant.setFlag(MODULE_ID, "bonus", !(combatant.getFlag(MODULE_ID, "bonus") ?? true));
-                          }
+                            combatant.setFlag(MODULE_ID, "bonus", !(combatant.getFlag(MODULE_ID, "bonus") ?? true));
+                        }
                         : null,
                 },
                 {
@@ -401,11 +404,41 @@ export function getSystemIcons(combatant) {
                     enabled: true,
                     callback: combatant.isOwner
                         ? (event, combatant, iconIndex, iconId) => {
-                              combatant.setFlag(MODULE_ID, "reaction", !(combatant.getFlag(MODULE_ID, "reaction") ?? true));
-                          }
+                            combatant.setFlag(MODULE_ID, "reaction", !(combatant.getFlag(MODULE_ID, "reaction") ?? true));
+                        }
                         : null,
                 },
             ];
+        }
+        case "crucible": {
+            const systemData = combatant.actor?.system
+            const actions = {
+                value: systemData.resources.action.value,
+                max: systemData.resources.action.max,
+            }
+            const focus = {
+                value: systemData.resources.focus.value,
+                max: systemData.resources.focus.max,
+            }
+            const systemIcons = []
+            for (let i = 0; i < actions.max; i++) {
+                systemIcons.push(                    {
+                    icon: "fas fa-square",
+                    color: "#ff6400",
+                    enabled: actions.value > 0,
+                })
+                actions.value--
+            }
+            for(let i = 0; i < focus.max; i++) {
+                systemIcons.push(                    {
+                    icon: "fas fa-sparkle",
+                    color: "#00bbff",
+                    enabled: focus.value > 0,
+                })
+                focus.value--
+            }
+            return systemIcons
+
         }
         default: {
             return [];

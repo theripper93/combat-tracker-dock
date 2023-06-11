@@ -153,6 +153,15 @@
             "hideFirstRound": {
                 "hint": "Verstecke Feinde, bis sie zum ersten Mal im Kampf an der Reihe sind. \n(Erfordert LibWrapper, um sie auch im Kernkampf-Tracker zu verbergen.)",
                 "name": "Bis zur ersten Runde verstecken"
+            },
+            "barsPlacement": {
+                "choices": {
+                    "left": "Links",
+                    "right": "Rechts",
+                    "twinned": "Zwillinge"
+                },
+                "hint": "Die Platzierung der verfolgten Attributleisten im Karussell.",
+                "name": "Platzierung der Stäbe"
             }
         },
         "configureCarousel": "Karussell konfigurieren"

@@ -153,6 +153,15 @@
             "hideFirstRound": {
                 "hint": "Cachez les ennemis jusqu'à ce qu'ils aient effectué leur premier tour de combat. \n(Nécessite LibWrapper pour les cacher également dans le tracker de combat principal.)",
                 "name": "Cacher jusqu'au premier tour"
+            },
+            "barsPlacement": {
+                "choices": {
+                    "left": "Gauche",
+                    "right": "Droite",
+                    "twinned": "Jumelée"
+                },
+                "hint": "Le placement des barres d'attributs suivis dans le carrousel.",
+                "name": "Placement des barres"
             }
         },
         "configureCarousel": "Configurer le carrousel"

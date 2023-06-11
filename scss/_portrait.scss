@@ -213,6 +213,7 @@
             text-shadow: 0 0 5px, 0 0 2px black, 0 0 2px black, 0 0 2px black;
             align-items: center;
             flex-wrap: wrap;
+            padding: 0 10%;
 
             & i{
                 font-size: calc(var(--combatant-portrait-size)*.05);

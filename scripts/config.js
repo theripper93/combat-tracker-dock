@@ -173,6 +173,20 @@ export function registerSettings() {
         },
     });
 
+    game.settings.register(MODULE_ID, "barsPlacement", {
+        name: "combat-tracker-dock.settings.barsPlacement.name",
+        hint: "combat-tracker-dock.settings.barsPlacement.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            left: "combat-tracker-dock.settings.barsPlacement.choices.left",
+            right: "combat-tracker-dock.settings.barsPlacement.choices.right",
+            twinned: "combat-tracker-dock.settings.barsPlacement.choices.twinned",
+        },
+        default: "left",
+    });
+
     game.settings.register(MODULE_ID, "attributeVisibility", {
         name: "combat-tracker-dock.settings.attributeVisibility.name",
         hint: "combat-tracker-dock.settings.attributeVisibility.hint",

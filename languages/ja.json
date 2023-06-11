@@ -153,6 +153,15 @@
             "hideFirstRound": {
                 "hint": "戦闘で最初のターンが完了するまで敵を隠します。 \n(コア戦闘トラッカーでもそれらを非表示にするには、LibWrapper が必要です。)",
                 "name": "最初のターンまで隠れる"
+            },
+            "barsPlacement": {
+                "choices": {
+                    "left": "左",
+                    "right": "右",
+                    "twinned": "双子"
+                },
+                "hint": "カルーセル内の追跡された属性バーの配置。",
+                "name": "バーの配置"
             }
         },
         "configureCarousel": "カルーセルの構成"

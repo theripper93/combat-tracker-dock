@@ -14,7 +14,7 @@ export class CombatantPortrait {
         this.resolve = null;
         this.ready = new Promise((res) => (this.resolve = res));
         this._hasTakenTurn = this.combat.round ?? 0 <= 1;
-        if(!game.settings.get(MODULE_ID, "hideFirstRound")) this._hasTakenTurn = true;
+        if (!game.settings.get(MODULE_ID, "hideFirstRound")) this._hasTakenTurn = true;
         this.activateCoreListeners();
         this.renderInner();
     }
@@ -25,9 +25,9 @@ export class CombatantPortrait {
     }
 
     get name() {
-        if(this.combatant.isOwner) return this.combatant.name;
+        if (this.combatant.isOwner) return this.combatant.name;
         const displayName = game.settings.get(MODULE_ID, "displayName");
-        if(displayName === "owner") return this.combatant.isOwner ? this.combatant.name : "???";
+        if (displayName === "owner") return this.combatant.isOwner ? this.combatant.name : "???";
         if (displayName === "default") return this.combatant.name;
         return [CONST.TOKEN_DISPLAY_MODES.HOVER, CONST.TOKEN_DISPLAY_MODES.ALWAYS].includes(this.token?.document?.displayName) ? this.combatant.name : "???";
     }
@@ -46,8 +46,7 @@ export class CombatantPortrait {
         this.element.addEventListener("mouseenter", this._onHoverIn.bind(this));
         this.element.addEventListener("mouseleave", this._onHoverOut.bind(this));
     }
-activateListeners() {
-    
+    activateListeners() {
         this.element.querySelector(".combatant-wrapper").addEventListener("mousedown", this._onCombatantMouseDown.bind(this));
 
         (this.element.querySelectorAll(".system-icon") ?? []).forEach((iconEl, index) => {
@@ -67,9 +66,9 @@ activateListeners() {
         event.preventDefault();
 
         if (event.target.dataset.action === "player-pass") return this.combat.nextTurn();
-        
-        if(!event.target.classList.contains("combatant-wrapper")) return;
-        
+
+        if (!event.target.classList.contains("combatant-wrapper")) return;
+
         if (event.button === 2) return this.combatant.sheet.render(true);
 
         const combatant = this.combatant;
@@ -187,14 +186,26 @@ activateListeners() {
         return value;
     }
 
+    getBarsOrder() {
+        const sett = game.settings.get(MODULE_ID, "barsPlacement");
+        switch (sett) {
+            case "left":
+                return {bar1: 0, bar2: 1, init: 2, bar1ML: 0, bar2ML: 0};
+            case "right": 
+                return {bar1: 1, bar2: 2, init: 0, bar1ML: "auto", bar2ML: 0};
+            case "twinned":
+                return {bar1: 0, bar2: 2, init: 1, bar1ML: 0, bar2ML: "auto"};
+        }
+    }
+
     async getData() {
         // Format information about each combatant in the encounter
         let hasDecimals = false;
         const combatant = this.combatant;
         const isActive = this.combat.turns.indexOf(combatant) === this.combat.turn;
-        if(isActive && this.combat.started) this._hasTakenTurn = true;
+        if (isActive && this.combat.started) this._hasTakenTurn = true;
         const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
-        if(!hasPermission && !this._hasTakenTurn) return null;
+        if (!hasPermission && !this._hasTakenTurn) return null;
         if (!combatant.visible && !game.user.isGM) return null;
         const trackedAttributes = game.settings
             .get(MODULE_ID, "attributes")
@@ -247,6 +258,7 @@ activateListeners() {
             description: this.getDescription(),
             resSystemIcons: systemIcons.resource,
             tooltipSystemIcons: systemIcons.tooltip,
+            barsOrder: this.getBarsOrder(),
         };
         if (turn.initiative !== null && !Number.isInteger(turn.initiative)) hasDecimals = true;
         if (turn.initiativeData.value !== null && !Number.isInteger(turn.initiativeData.value)) hasDecimals = true;
@@ -270,7 +282,7 @@ activateListeners() {
                 else if (effect.icon) {
                     const description = effect.description ? await TextEditor.enrichHTML(effect.description) : "";
                     const duration = parseInt(effect.duration?.label ?? "");
-                    turn.effects.add({icon: effect.icon, label: effect.name, description: description, duration: duration, hasDuration: !isNaN(duration)});
+                    turn.effects.add({ icon: effect.icon, label: effect.name, description: description, duration: duration, hasDuration: !isNaN(duration) });
                 }
             }
         }
@@ -341,5 +353,3 @@ activateListeners() {
         this.element?.remove();
     }
 }
-
-

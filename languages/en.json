@@ -88,6 +88,15 @@
                 "name": "Secondary Attribute Color",
                 "hint": "The color of the secondary tracked attribute text and bar in the carousel. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #41AA7D."
             },
+            "barsPlacement": {
+                "name": "Bars Placement",
+                "hint": "The placement of the tracked attributes bars in the carousel.",
+                "choices": {
+                    "left": "Left",
+                    "right": "Right",
+                    "twinned": "Twinned"
+                }
+            },
             "attributeVisibility": {
                 "name": "Attribute Visibility",
                 "hint": "The visibility of the tracked attributes in the carousel.",

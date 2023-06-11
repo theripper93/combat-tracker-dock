@@ -135,8 +135,9 @@
                 justify-content: flex-end;
                 align-items: center;
                 gap: calc(var(--combatant-portrait-size)*.1);
-                margin-top: calc(var(--combatant-portrait-size)*.05);
+                margin-top: calc(var(--combatant-portrait-size)*.1);
                 text-shadow: 0 0 5px, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000;
+                flex-wrap: wrap-reverse;
             }
     }
 
