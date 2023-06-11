@@ -200,6 +200,38 @@ export function defaultAttributesConfig() {
                 units: "Spell DC",
             },
         ],
+        crucible: [
+            {
+                "attr": "resources.health.value",
+                "icon": "fa-solid fa-heart",
+                "units": ""
+            },
+            {
+                "attr": "resources.morale.value",
+                "icon": "fa-solid fa-brain",
+                "units": ""
+            },
+            {
+                "attr": "resources.action.value",
+                "icon": "fa-solid fa-hand-fist",
+                "units": ""
+            },
+            {
+                "attr": "resources.focus.value",
+                "icon": "fa-solid fa-hand-holding-magic",
+                "units": ""
+            },
+            {
+                "attr": "resources.wounds.value",
+                "icon": "fa-solid fa-droplet",
+                "units": ""
+            },
+            {
+                "attr": "resources.madness.value",
+                "icon": "fa-solid fa-head-side-brain",
+                "units": ""
+            }
+        ]
     };
 }
 
