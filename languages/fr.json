@@ -18,11 +18,14 @@
                     "save": "Sauvegarder",
                     "units": {
                         "name": "Unités"
-                    }
+                    },
+                    "reset": "Réinitialiser par défaut"
                 },
                 "hint": "Configurez les attributs personnalisés à afficher dans l'info-bulle.",
                 "label": "Configurer les attributs",
-                "name": "Attributs d'info-bulle"
+                "name": "Attributs d'info-bulle",
+                "reset": "Réinitialiser par défaut",
+                "resetWarning": "Voulez-vous vraiment réinitialiser les attributs à leurs valeurs par défaut ?"
             },
             "portraitImage": {
                 "choices": {
@@ -162,6 +165,15 @@
                 },
                 "hint": "Le placement des barres d'attributs suivis dans le carrousel.",
                 "name": "Placement des barres"
+            },
+            "integration": "L'intégration",
+            "systems": {
+                "crucible": {
+                    "alwaysShowActions": {
+                        "hint": "Si \"Afficher les icônes du système\" est activé, affichez les points d'action aux joueurs, quelles que soient les autorisations. \nCela permettra aux joueurs de voir combien de points d'action totaux et restants ont les alliés et les ennemis.",
+                        "name": "Afficher les actions ennemies"
+                    }
+                }
             }
         },
         "configureCarousel": "Configurer le carrousel"

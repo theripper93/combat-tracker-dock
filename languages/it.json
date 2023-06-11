@@ -18,11 +18,14 @@
                     "save": "Salva",
                     "units": {
                         "name": "Unità"
-                    }
+                    },
+                    "reset": "Reimpostazione dei valori iniziali"
                 },
                 "hint": "Configura gli attributi personalizzati da mostrare nella descrizione comando.",
                 "label": "Configura attributi",
-                "name": "Attributi descrizione comando"
+                "name": "Attributi descrizione comando",
+                "reset": "Riportare alle condizioni originali",
+                "resetWarning": "Sei sicuro di voler reimpostare gli attributi sui loro valori predefiniti?"
             },
             "portraitImage": {
                 "choices": {
@@ -162,6 +165,15 @@
                 },
                 "hint": "Il posizionamento delle barre degli attributi tracciati nel carosello.",
                 "name": "Posizionamento delle barre"
+            },
+            "integration": "Integrazione",
+            "systems": {
+                "crucible": {
+                    "alwaysShowActions": {
+                        "hint": "Se \"Mostra icone di sistema\" è abilitato, mostra i punti azione ai giocatori indipendentemente dalle autorizzazioni. \nCiò consentirà ai giocatori di vedere quanti punti azione totali e rimanenti hanno alleati e nemici.",
+                        "name": "Mostra le azioni del nemico"
+                    }
+                }
             }
         },
         "configureCarousel": "Configura carosello"

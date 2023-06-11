@@ -18,11 +18,14 @@
                     "save": "Speichern",
                     "units": {
                         "name": "Einheiten"
-                    }
+                    },
+                    "reset": "Standardeinstellungen zurückzusetzen"
                 },
                 "hint": "Konfigurieren Sie benutzerdefinierte Attribute, die im Tooltip angezeigt werden sollen.",
                 "label": "Attribute konfigurieren",
-                "name": "Tooltip-Attribute"
+                "name": "Tooltip-Attribute",
+                "reset": "Zurücksetzen",
+                "resetWarning": "Sind Sie sicher, dass Sie die Attribute auf ihre Standardwerte zurücksetzen möchten?"
             },
             "portraitImage": {
                 "choices": {
@@ -162,6 +165,15 @@
                 },
                 "hint": "Die Platzierung der verfolgten Attributleisten im Karussell.",
                 "name": "Platzierung der Stäbe"
+            },
+            "integration": "Integration",
+            "systems": {
+                "crucible": {
+                    "alwaysShowActions": {
+                        "hint": "Wenn „Systemsymbole anzeigen“ aktiviert ist, werden den Spielern unabhängig von ihren Berechtigungen Aktionspunkte angezeigt. \nDadurch können Spieler sehen, wie viele Aktionspunkte ihre Verbündeten und Feinde insgesamt und noch haben.",
+                        "name": "Zeigen Sie feindliche Aktionen an"
+                    }
+                }
             }
         },
         "configureCarousel": "Karussell konfigurieren"

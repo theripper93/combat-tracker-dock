@@ -18,11 +18,14 @@
                     "save": "Ahorrar",
                     "units": {
                         "name": "Unidades"
-                    }
+                    },
+                    "reset": "Restablecer predeterminados"
                 },
                 "hint": "Configure atributos personalizados para mostrar en la información sobre herramientas.",
                 "label": "Configurar atributos",
-                "name": "Atributos de información sobre herramientas"
+                "name": "Atributos de información sobre herramientas",
+                "reset": "Restablecen a los predeterminados",
+                "resetWarning": "¿Está seguro de que desea restablecer los atributos a sus valores predeterminados?"
             },
             "portraitImage": {
                 "choices": {
@@ -162,6 +165,15 @@
                 },
                 "hint": "La ubicación de las barras de atributos rastreadas en el carrusel.",
                 "name": "Colocación de barras"
+            },
+            "integration": "Integración",
+            "systems": {
+                "crucible": {
+                    "alwaysShowActions": {
+                        "hint": "Si 'Mostrar íconos del sistema' está habilitado, muestre puntos de acción a los jugadores independientemente de los permisos. \nEsto permitirá a los jugadores ver cuántos puntos de acción totales y restantes tienen los aliados y enemigos.",
+                        "name": "Mostrar acciones enemigas"
+                    }
+                }
             }
         },
         "configureCarousel": "Configurar carrusel"
