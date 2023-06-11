@@ -337,6 +337,7 @@ export function registerSettings() {
         config: false,
         type: String,
         default: "",
+        onChange: () => ui.combatDock?.refresh(),
     });
 }
 
