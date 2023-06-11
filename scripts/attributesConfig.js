@@ -13,7 +13,7 @@ export class AttributesConfig extends FormApplication {
             id: "combat-dock-attributes-config",
             template: `modules/combat-tracker-dock/templates/attributes-config.hbs`,
             popOut: true,
-            width: 400,
+            width: 500,
         };
     }
 
@@ -24,6 +24,7 @@ export class AttributesConfig extends FormApplication {
     activateListeners(html) {
         super.activateListeners(html);
         html[0].querySelector("#add").addEventListener("click", this._onAdd.bind(this));
+        html[0].querySelector("#reset").addEventListener("click", this._onReset.bind(this));
         Sortable.create(html[0].querySelector("ul"), {
             animation: 200,
             filter: "input",
@@ -42,6 +43,19 @@ export class AttributesConfig extends FormApplication {
         });
         await game.settings.set(MODULE_ID, "attributes", attributes);
         this.render(true);
+    }
+
+    async _onReset(event) {
+        event.preventDefault();
+        Dialog.confirm({
+            title: game.i18n.localize(`${MODULE_ID}.settings.attributesMenu.reset`),
+            content: game.i18n.localize(`${MODULE_ID}.settings.attributesMenu.resetWarning`),
+            yes: async () => {
+                const defaultSett = game.settings.settings.get("combat-tracker-dock.attributes").default;
+                await game.settings.set(MODULE_ID, "attributes", defaultSett);
+                this.render(true);
+            },
+        })
     }
 
     async _saveData() {

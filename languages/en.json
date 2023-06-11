@@ -149,6 +149,8 @@
                 "name": "Tooltip Attributes",
                 "label": "Configure Attributes",
                 "hint": "Configure custom attributes to show in the tooltip.",
+                "reset": "Reset to Default",
+                "resetWarning": "Are you sure you want to reset the attributes to their default values?",
                 "form": {
                     "attr": {
                         "name": "Attribute"
@@ -161,6 +163,7 @@
                     },
                     "save": "Save & Close",
                     "add": "Add Attribute",
+                    "reset": "Reset Defaults",
                     "notes": "Leave the Attribute field blank to remove it."
                 }
             }
