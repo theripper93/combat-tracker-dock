@@ -1,5 +1,6 @@
 import { MODULE_ID } from "./main.js";
 import { AttributesConfig } from "./attributesConfig.js";
+import {registerSystemSettings} from "./systems.js";
 
 export function registerSettings() {
     Hooks.on("renderSettingsConfig", (app, html, data) => {
@@ -247,22 +248,6 @@ export function registerSettings() {
         onChange: () => ui.combatDock?.refresh(),
     });
 
-    game.settings.register(MODULE_ID, "showSystemIcons", {
-        name: "combat-tracker-dock.settings.showSystemIcons.name",
-        hint: "combat-tracker-dock.settings.showSystemIcons.hint",
-        scope: "world",
-        config: true,
-        type: Number,
-        choices: {
-            0: "combat-tracker-dock.settings.showSystemIcons.choices.none",
-            1: "combat-tracker-dock.settings.showSystemIcons.choices.tooltip",
-            2: "combat-tracker-dock.settings.showSystemIcons.choices.resource",
-            3: "combat-tracker-dock.settings.showSystemIcons.choices.both",
-        },
-        default: 1,
-        onChange: () => ui.combatDock?.refresh(),
-    });
-
     game.settings.register(MODULE_ID, "portraitImage", {
         name: "combat-tracker-dock.settings.portraitImage.name",
         hint: "combat-tracker-dock.settings.portraitImage.hint",
@@ -329,6 +314,24 @@ export function registerSettings() {
             ui.combatDock?.refresh();
         },
     });
+
+    game.settings.register(MODULE_ID, "showSystemIcons", {
+        name: "combat-tracker-dock.settings.showSystemIcons.name",
+        hint: "combat-tracker-dock.settings.showSystemIcons.hint",
+        scope: "world",
+        config: true,
+        type: Number,
+        choices: {
+            0: "combat-tracker-dock.settings.showSystemIcons.choices.none",
+            1: "combat-tracker-dock.settings.showSystemIcons.choices.tooltip",
+            2: "combat-tracker-dock.settings.showSystemIcons.choices.resource",
+            3: "combat-tracker-dock.settings.showSystemIcons.choices.both",
+        },
+        default: 1,
+        onChange: () => ui.combatDock?.refresh(),
+    });
+
+    registerSystemSettings();
 
     setAllSettings();
 
@@ -451,6 +454,23 @@ function setFlex() {
     if (direction == "column" && alignment == "center") flexD = "center";
 
     document.documentElement.style.setProperty("--carousel-align-items", flexD);
+}
+
+function l(key) {
+    return game.i18n.localize(key);
+}
+
+export function registerSystemSetting(key, data) {
+    const rootKey = MODULE_ID + ".settings.systems." + game.system.id;
+    game.settings.register(MODULE_ID, game.system.id + "." + key, {
+        ...data,
+        name: game.system.title + " " + l(MODULE_ID + ".settings.integration") + ": " + l(rootKey+"."+key+".name"),
+        hint: l(rootKey+"."+key+".hint"),
+    });
+}
+
+export function getSystemSetting(key) {
+    return game.settings.get(MODULE_ID, game.system.id + "." + key);
 }
 
 //Color Picker by kaelad02

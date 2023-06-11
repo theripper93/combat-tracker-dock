@@ -33,14 +33,12 @@
         {{/each}}
     </ul>
 
-    {{#if hasPermission}}
     {{#if tooltipSystemIcons}}
-    <div class="system-icons">
-        {{#each tooltipSystemIcons}}
-        <i class="{{icon}}" style="color: {{color}};{{#unless enabled}}filter: grayscale(1);{{/unless}}"></i>
-        {{/each}}
-    </div>
-    {{/if}}
+        <div class="system-icons">
+            {{#each resSystemIcons}}
+            <i class="system-icon {{icon}}" style="color: {{color}};{{#unless visible}}display: none;{{/unless}}{{#unless enabled}}filter: grayscale(1);{{/unless}}{{#if fontSize}}font-size: {{fontSize}};{{/if}}"></i>
+            {{/each}}
+        </div>
     {{/if}}
 
 </div>

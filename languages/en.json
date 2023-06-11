@@ -2,6 +2,15 @@
     "combat-tracker-dock": {
         "configureCarousel": "Configure Carousel",
         "settings": {
+            "systems": {
+                "crucible": {
+                    "alwaysShowActions": {
+                        "name": "Show enemy actions",
+                        "hint": "If 'Show system icons' is enabled, show action points to players regardless of permissions. This will allow players to see how many total and remaining action points allies and enemies have."
+                    }
+                }
+            },
+            "integration": "Integration",
             "portraitSize": {
                 "name": "Carousel Size",
                 "hint": "The maximum size of the portraits in the carousel. Note that the size of the portraits will be automatically reduced if there are too many combatants to fit on the screen.",

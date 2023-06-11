@@ -14,6 +14,7 @@
 
 
 import {MODULE_ID} from "./main.js";
+import {registerSystemSetting, getSystemSetting} from "./config.js";
 
 /**
  * Returns the default attributes configuration for different game systems.
@@ -366,6 +367,7 @@ export function getInitiativeDisplay(combatant) {
  *      icon: "fas fa-times",
  *      color: "#e16de1",
  *      enabled: true,
+ *      visible: true, // If not provided, defaults to combattant permissions.
  *      callback: (event, combatant, iconIndex, iconId) => { },
  *      id: "my-button",
  *      fontSize: "1rem",
@@ -444,6 +446,7 @@ export function getSystemIcons(combatant) {
         }
         case "crucible": {
             const systemData = combatant.actor?.system
+            const alwaysShowActions = getSystemSetting("alwaysShowActions") || undefined;
             const actions = {
                 value: systemData.resources.action.value,
                 max: systemData.resources.action.max,
@@ -458,6 +461,7 @@ export function getSystemIcons(combatant) {
                     icon: "fas fa-square",
                     color: "#ff6400",
                     enabled: actions.value > 0,
+                    visible: alwaysShowActions,
                 })
                 actions.value--
             }
@@ -476,4 +480,27 @@ export function getSystemIcons(combatant) {
             return [];
         }
     }
+}
+
+/**
+ * Register settings for specific game systems.
+ * This function is called once on startup.
+ * When you need to get the setting value, use `getSystemSetting(key) helper`.
+*/
+
+export function registerSystemSettings() {
+    switch (game.system.id) {
+        case "crucible":
+            registerSystemSetting("alwaysShowActions", {
+                scope: "world",
+                config: true,
+                type: Boolean,
+                default: true,
+                onChange: () => ui.combatDock?.refresh(),
+            });
+            break;
+        default:
+            break;
+    }
+
 }

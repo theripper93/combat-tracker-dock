@@ -314,8 +314,10 @@ export class CombatantPortrait {
         try {
             const sett = game.settings.get(MODULE_ID, "showSystemIcons");
             const icons = sett > 0 ? getSystemIcons(this.combatant) : [];
+            const hasPermission = (this.combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || this.combatant.isOwner;
             icons.forEach((icon) => {
                 if (icon.callback) icon.hasCallback = true;
+                icon.visible ??= hasPermission;
             });
             this._systemIcons = icons;
             if (!icons || !icons?.length) return { resource: null, tooltip: null };
