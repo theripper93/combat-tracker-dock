@@ -419,6 +419,10 @@ export class CombatDock extends Application {
         if (combat === this.combat) this._playAnimation = true;
     }
 
+    refresh() {
+        this.updateCombatants();
+    }
+
     async close(...args) {
         this.removeHooks();
         window.removeEventListener("resize", this.autosize.bind(this));

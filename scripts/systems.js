@@ -313,7 +313,7 @@ export function generateDescription(actor) {
                     return null;
             }
         case "crucible":
-            if(actor.type === "hero") return `${system.details.ancestry.name} ${system.details.background.name} (${system.details.signatureName})`;
+            if(actor.type === "hero") return `${system.details.ancestry.name} ${system.details.background.name} ${ system.details.signatureName ? `(${system.details.signatureName})` : ""}`;
             if (actor.type === "adversary") return `${system.details.taxonomy.name} ${system.details.archetype.name} (${game.i18n.localize("ADVANCEMENT.Level")} ${system.details.level} ${game.i18n.localize("ADVERSARY.Threat" + system.details.threat.charAt(0).toUpperCase() + system.details.threat.slice(1))})`;
     }
 }

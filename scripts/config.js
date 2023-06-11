@@ -5,6 +5,7 @@ export function registerSettings() {
     Hooks.on("renderSettingsConfig", (app, html, data) => {
         colorPicker("attributeColor", html);
         colorPicker("attributeColor2", html);
+        colorPicker("tooltipColor", html);
     });
 
     game.settings.register(MODULE_ID, "attributes", {
@@ -12,6 +13,7 @@ export function registerSettings() {
         config: false,
         type: Array,
         default: CONFIG.combatTrackerDock.defaultAttributesConfig()[game.system.id] ?? [],
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.registerMenu(MODULE_ID, "attributesMenu", {
@@ -43,6 +45,7 @@ export function registerSettings() {
         onChange: () => {
             setPortraitSize();
             ui.combatDock?.autosize();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -61,6 +64,7 @@ export function registerSettings() {
         onChange: () => {
             setOverflowStyle();
             ui.combatDock?.autosize();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -76,6 +80,7 @@ export function registerSettings() {
             2: "combat-tracker-dock.settings.carouselStyle.choices.basic",
         },
         default: 0,
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "direction", {
@@ -94,6 +99,7 @@ export function registerSettings() {
             setOverflowStyle();
             setFlex();
             ui.combatDock?.autosize();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -112,6 +118,7 @@ export function registerSettings() {
         onChange: () => {
             setAlignment();
             setFlex();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -129,6 +136,7 @@ export function registerSettings() {
         default: 1.5,
         onChange: () => {
             setPortraitAspect();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -146,6 +154,7 @@ export function registerSettings() {
         default: "0%",
         onChange: () => {
             setRoundness();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -158,6 +167,7 @@ export function registerSettings() {
         default: "#41AA7D",
         onChange: () => {
             setAttributeColor();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -170,6 +180,7 @@ export function registerSettings() {
         default: "#ffcd00",
         onChange: () => {
             setAttributeColor();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -185,6 +196,7 @@ export function registerSettings() {
             twinned: "combat-tracker-dock.settings.barsPlacement.choices.twinned",
         },
         default: "left",
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "attributeVisibility", {
@@ -199,6 +211,7 @@ export function registerSettings() {
             both: "combat-tracker-dock.settings.attributeVisibility.choices.both",
         },
         default: "both",
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "tooltipColor", {
@@ -210,6 +223,7 @@ export function registerSettings() {
         default: "#888888",
         onChange: () => {
             setTooltipColor();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -220,6 +234,7 @@ export function registerSettings() {
         config: true,
         type: Boolean,
         default: true,
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "showInitiativeOnPortrait", {
@@ -229,6 +244,7 @@ export function registerSettings() {
         config: true,
         type: Boolean,
         default: true,
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "showSystemIcons", {
@@ -244,6 +260,7 @@ export function registerSettings() {
             3: "combat-tracker-dock.settings.showSystemIcons.choices.both",
         },
         default: 1,
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "portraitImage", {
@@ -257,6 +274,7 @@ export function registerSettings() {
             token: "combat-tracker-dock.settings.portraitImage.choices.token",
         },
         default: "actor",
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "displayName", {
@@ -271,6 +289,7 @@ export function registerSettings() {
             owner: "combat-tracker-dock.settings.displayName.choices.owner",
         },
         default: "default",
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "hideFirstRound", {
@@ -280,6 +299,7 @@ export function registerSettings() {
         config: true,
         type: Boolean,
         default: false,
+        onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "portraitImageBorder", {
@@ -292,6 +312,7 @@ export function registerSettings() {
         filePicker: "imagevideo",
         onChange: function () {
             setPortraitImageBorder();
+            ui.combatDock?.refresh();
         },
     });
 
@@ -305,6 +326,7 @@ export function registerSettings() {
         filePicker: "imagevideo",
         onChange: function () {
             setPortraitImageBackground();
+            ui.combatDock?.refresh();
         },
     });
 

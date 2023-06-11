@@ -190,11 +190,11 @@ export class CombatantPortrait {
         const sett = game.settings.get(MODULE_ID, "barsPlacement");
         switch (sett) {
             case "left":
-                return {bar1: 0, bar2: 1, init: 2, bar1ML: 0, bar2ML: 0};
+                return {bar1: 0, bar2: 1, init: 2, effects: 3, bar1ML: 0, bar2ML: 0};
             case "right": 
-                return {bar1: 1, bar2: 2, init: 0, bar1ML: "auto", bar2ML: 0};
+                return {bar1: 2, bar2: 3, init: 0, effects: 1, bar1ML: "auto", bar2ML: 0};
             case "twinned":
-                return {bar1: 0, bar2: 2, init: 1, bar1ML: 0, bar2ML: "auto"};
+                return {bar1: 0, bar2: 3, init: 1, effects: 2, bar1ML: 0, bar2ML: "auto"};
         }
     }
 

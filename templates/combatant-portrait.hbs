@@ -9,20 +9,16 @@
         <i data-action="player-pass" class="fa-solid fa-chevrons-right"></i>
     </div>
 
-    <ul class="effects-container" {{#unless hasEffects}}style="display:none;" {{/unless}}>
-        {{#each effects as |effect|}}
-        <li style="background-image: url('{{effect.icon}}');"></li>
-        {{/each}}
-    </ul>
 
-    <div class="tracked-attribute-bar">
+
+    <div class="overlay-ui-container">
     {{#if resource.max}}
-        <div class="tracked-attribute-bar-max" style="margin-left: {{barsOrder.bar1ML}};order: {{barsOrder.bar1}};" {{#unless showBars}}style="display: none;"{{/unless}}>
+        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar1}};" {{#unless showBars}}style="display: none;"{{/unless}}>
         <div class="tracked-attribute-bar-current" style="height: {{resource.percentage}}%;"></div>
         </div>
     {{/if}}
     {{#if resource2.max}}
-        <div class="tracked-attribute-bar-max" style="margin-left: {{barsOrder.bar2ML}}; order: {{barsOrder.bar2}};" {{#unless showBars}}style="display: none;"{{/unless}}>
+        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar2}};" {{#unless showBars}}style="display: none;"{{/unless}}>
         <div class="tracked-attribute-bar-current secondary-attribute" style="height: {{resource2.percentage}}%;"></div>
         </div>
     {{/if}}
@@ -32,6 +28,11 @@
             {{else}}class="{{initiativeData.icon}}" {{/if}}></i>
         <span class="portrait-initiative-text">{{initiativeData.value}}</span>
     </div>
+        <ul class="effects-container" style="order: {{barsOrder.effects}};" {{#unless hasEffects}}style="display:none;" {{/unless}}>
+        {{#each effects as |effect|}}
+        <li style="background-image: url('{{effect.icon}}');"></li>
+        {{/each}}
+    </ul>
     </div>
     <div class="bottom-ui-container">
 
