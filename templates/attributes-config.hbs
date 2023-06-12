@@ -6,9 +6,19 @@
     {{#each attributes}}
     <li>
     <fieldset style="border-radius: 5px; margin-bottom: 0.2rem;">
-        <div class="form-group">
+        <div class="form-group" style="position: relative;">
             <label for="{{@index}}.attr">{{{localize "combat-tracker-dock.settings.attributesMenu.form.attr.name"}}}</label>
             <input type="text" class="attr" name="{{@index}}.attr" placeholder="" value="{{attr}}">
+            <select class="attributePicker" style="max-width: 1.3rem;border: none;background: transparent;position: absolute;right: 0;cursor:pointer; box-shadow: none !important;">
+                <option value="">{{{localize "combat-tracker-dock.settings.attributesMenu.form.attr.choose"}}}</option>
+                {{#each ../attributeChoices as |choices|}}
+                <optgroup label="{{@key}}">
+                    {{#each choices as |choice|}}
+                        <option value="{{choice}}">{{choice}}</option>
+                    {{/each}}
+                </optgroup>
+                {{/each}}
+            </select>
         </div>
         <div class="form-group">
             <label for="{{@index}}.icon">{{{localize "combat-tracker-dock.settings.attributesMenu.form.icon.name"}}}</label>

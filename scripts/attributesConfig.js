@@ -18,13 +18,23 @@ export class AttributesConfig extends FormApplication {
     }
 
     getData() {
-        return {attributes: game.settings.get(MODULE_ID, "attributes")};
+        const attributes = TokenDocument.implementation.getTrackedAttributes();
+        attributes.bar.forEach(a => a.push("value"));
+        const attributeChoices = TokenDocument.implementation.getTrackedAttributeChoices(attributes)
+        return {attributes: game.settings.get(MODULE_ID, "attributes"), attributeChoices};
     }
     
     activateListeners(html) {
         super.activateListeners(html);
         html[0].querySelector("#add").addEventListener("click", this._onAdd.bind(this));
         html[0].querySelector("#reset").addEventListener("click", this._onReset.bind(this));
+        html[0].querySelectorAll(".attributePicker").forEach((picker) => {
+            picker.addEventListener("change", (event) => {
+                const value = event.target.value;
+                const attributeInput = event.target.closest(".form-group").querySelector(".attr");
+                attributeInput.value = value;
+            });
+        });
         Sortable.create(html[0].querySelector("ul"), {
             animation: 200,
             filter: "input",

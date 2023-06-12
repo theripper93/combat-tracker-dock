@@ -162,7 +162,8 @@
                 "resetWarning": "Are you sure you want to reset the attributes to their default values?",
                 "form": {
                     "attr": {
-                        "name": "Attribute"
+                        "name": "Attribute",
+                        "choose": "Choose Attribute"
                     },
                     "icon": {
                         "name": "Icon"
