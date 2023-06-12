@@ -9,7 +9,8 @@
                 "form": {
                     "add": "属性の追加",
                     "attr": {
-                        "name": "属性"
+                        "name": "属性",
+                        "choose": "属性の選択"
                     },
                     "icon": {
                         "name": "アイコン"

@@ -9,7 +9,8 @@
                 "form": {
                     "add": "Aggiungi attributo",
                     "attr": {
-                        "name": "Attributo"
+                        "name": "Attributo",
+                        "choose": "Scegli Attributo"
                     },
                     "icon": {
                         "name": "Icona"
