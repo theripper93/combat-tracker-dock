@@ -63,7 +63,7 @@
         </div>
 
         {{#if resSystemIcons}}
-        <div class="system-icons">
+        <div class="system-icons" style="gap: calc(var(--combatant-portrait-size)*{{systemIconsSizeMulti}});">
             {{#each resSystemIcons}}
             <i data-index="{{@index}}" data-id="{{id}}" class="system-icon {{icon}} {{#if hasCallback}}{{#if enabled}}callback{{/if}}{{/if}}" style="color: {{color}};{{#unless visible}}display: none;{{/unless}}{{#unless enabled}}filter: grayscale(1);{{/unless}}{{#if fontSize}}font-size: {{fontSize}};{{/if}}"></i>
             {{/each}}

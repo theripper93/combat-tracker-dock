@@ -221,6 +221,7 @@ export class CombatantPortrait {
             .filter((a) => a.value !== null && a.value !== undefined);
 
         const systemIcons = this.getSystemIcons();
+        const systemIconCount = systemIcons.resource?.length ?? 0;
 
         const attributesVisibility = game.settings.get(MODULE_ID, "attributeVisibility");
 
@@ -258,6 +259,7 @@ export class CombatantPortrait {
             description: this.getDescription(),
             resSystemIcons: systemIcons.resource,
             tooltipSystemIcons: systemIcons.tooltip,
+            systemIconsSizeMulti: clamp(0.03, 1/(systemIconCount * 2) ,0.1),
             barsOrder: this.getBarsOrder(),
         };
         if (turn.initiative !== null && !Number.isInteger(turn.initiative)) hasDecimals = true;
@@ -355,3 +357,5 @@ export class CombatantPortrait {
         this.element?.remove();
     }
 }
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
