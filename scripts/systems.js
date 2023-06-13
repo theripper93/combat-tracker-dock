@@ -201,6 +201,48 @@ export function defaultAttributesConfig() {
                 units: "Spell DC",
             },
         ],
+        pf1: [
+            {
+                attr: "attributes.hp.value",
+                icon: "fas fa-heart",
+                units: "HP",
+            },
+            {
+                attr: "attributes.ac.normal.total",
+                icon: "fas fa-shield",
+                units: "AC",
+            },
+            {
+                attr: "attributes.ac.touch.total",
+                icon: "fas fa-shield-slash",
+                units: "Touch AC",
+            },
+            {
+                attr: "attributes.ac.flatFooted.total",
+                icon: "fas fa-circle-exclamation",
+                units: "Flat Footed AC",
+            },
+            {
+                attr: "attributes.cmd.total",
+                icon: "fas fa-hand-fist",
+                units: "CMD",
+            },
+            {
+                attr: "attributes.cmd.flatFootedTotal",
+                icon: "fas fa-person-circle-exclamation",
+                units: "Flat Footed CMD",
+            },
+            {
+                attr: "attributes.sr.total",
+                icon: "fas fa-hand-holding-magic",
+                units: "Spell Resistance",
+            },
+            {
+                attr: "attributes.speed.land.total",
+                icon: "fas fa-person-running",
+                units: "ft.",
+            },
+        ],
         crucible: [
             {
                 "attr": "resources.health.value",
