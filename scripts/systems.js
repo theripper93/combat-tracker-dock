@@ -427,7 +427,14 @@ export function generateDescription(actor) {
 			career = game.i18n.localize("ALIENRPG.Synthetic")
 		  else if (system.general.career.value == 12)
 			career = game.i18n.localize("ALIENRPG.Homebrew")
+		  if (actor.itemTypes.specialty.length == 0)
                     return `${career}`;
+		  else if (actor.itemTypes.specialty.length == 1) {
+			const specialties = Object.values(actor.itemTypes.specialty)
+			   .map((c) => c.name);
+			const specialty = specialties[0];
+                    return `${career}: ${specialty}`;
+		    }
                 case "synthetic":
 		  let careersynth
 		  if (system.general.career.value == 1)
@@ -454,7 +461,14 @@ export function generateDescription(actor) {
 			careersynth = game.i18n.localize("ALIENRPG.Synthetic")
 		  else if (system.general.career.value == 12)
 			careersynth = game.i18n.localize("ALIENRPG.Homebrew")
+		  if (actor.itemTypes.specialty.length == 0)
                     return `${careersynth}`;
+		  else if (actor.itemTypes.specialty.length == 1) {
+			const specialties = Object.values(actor.itemTypes.specialty)
+			   .map((c) => c.name);
+			const specialty = specialties[0];
+                    return `${careersynth}: ${specialty}`;
+		    }
                 default:
                     return null;
             }
@@ -633,7 +647,7 @@ export function getSystemIcons(combatant) {
 
         }
 	case "alienrpg": {
-            if (game.modules.get("alien-actions")?.active && combatant.actor) {
+          if (game.modules.get("alien-actions")?.active && combatant.actor) {
 	   return [
 		{
 		icon: "fas fa-play",
