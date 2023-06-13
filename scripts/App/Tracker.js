@@ -266,10 +266,10 @@ export class CombatDock extends Application {
                         this.combat.endCombat();
                         break;
                     case "roll-all":
-                        this.combat.rollAll();
+                        this.combat.rollAll({event: e});
                         break;
                     case "roll-npc":
-                        this.combat.rollNPC();
+                        this.combat.rollNPC({event: e});
                         break;
                     case "reset":
                         this.combat.resetAll();
