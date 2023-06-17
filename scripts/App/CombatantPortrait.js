@@ -129,7 +129,7 @@ export class CombatantPortrait {
             Hooks.once("renderCombatTracker", () => {
                 ui.combatDock.updateOrder();
             });
-            await this.combatant.combat.rollInitiative([this.combatant.id],{event: e});
+            await this.combatant.combat.rollInitiative([this.combatant.id],{event});
         });
         this.element.querySelectorAll(".action").forEach((action) => {
             action.addEventListener("click", async (event) => {
