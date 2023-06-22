@@ -90,3 +90,4 @@ Hooks.on("closeCombatTrackerConfig", (app, html, data) => {
     game.settings.set(MODULE_ID, "resource", resource);
 });
 
+
