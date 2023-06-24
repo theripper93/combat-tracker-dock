@@ -175,8 +175,20 @@
                         "name": "敵の行動を表示する"
                     }
                 }
+            },
+            "displayDescriptions": {
+                "hint": "アクティブなエフェクトの説明をツールチップに表示します。",
+                "name": "説明を表示"
             }
         },
-        "configureCarousel": "カルーセルの構成"
+        "configureCarousel": "カルーセルの構成",
+        "hotkeys": {
+            "combatNext": {
+                "name": "次のターン"
+            },
+            "combatPrev": {
+                "name": "前のターン"
+            }
+        }
     }
 }

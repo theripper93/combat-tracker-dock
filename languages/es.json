@@ -175,8 +175,20 @@
                         "name": "Mostrar acciones enemigas"
                     }
                 }
+            },
+            "displayDescriptions": {
+                "hint": "Muestra las descripciones de los efectos activos en la información sobre herramientas.",
+                "name": "Mostrar descripciones"
             }
         },
-        "configureCarousel": "Configurar carrusel"
+        "configureCarousel": "Configurar carrusel",
+        "hotkeys": {
+            "combatNext": {
+                "name": "Siguiente turno"
+            },
+            "combatPrev": {
+                "name": "Turno anterior"
+            }
+        }
     }
 }

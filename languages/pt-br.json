@@ -175,8 +175,20 @@
                         "name": "Mostrar ações inimigas"
                     }
                 }
+            },
+            "displayDescriptions": {
+                "hint": "Mostrar descrições de efeitos ativos na dica de ferramenta.",
+                "name": "Mostrar descrições"
             }
         },
-        "configureCarousel": "Configurar carrossel"
+        "configureCarousel": "Configurar carrossel",
+        "hotkeys": {
+            "combatNext": {
+                "name": "próxima curva"
+            },
+            "combatPrev": {
+                "name": "Turno anterior"
+            }
+        }
     }
 }

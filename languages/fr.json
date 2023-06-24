@@ -175,8 +175,20 @@
                         "name": "Afficher les actions ennemies"
                     }
                 }
+            },
+            "displayDescriptions": {
+                "hint": "Afficher les descriptions des effets actifs dans l'info-bulle.",
+                "name": "Afficher les descriptions"
             }
         },
-        "configureCarousel": "Configurer le carrousel"
+        "configureCarousel": "Configurer le carrousel",
+        "hotkeys": {
+            "combatNext": {
+                "name": "Tour suivant"
+            },
+            "combatPrev": {
+                "name": "Tour précédent"
+            }
+        }
     }
 }

@@ -175,8 +175,20 @@
                         "name": "Zeigen Sie feindliche Aktionen an"
                     }
                 }
+            },
+            "displayDescriptions": {
+                "hint": "Beschreibungen aktiver Effekte im Tooltip anzeigen.",
+                "name": "Beschreibungen anzeigen"
             }
         },
-        "configureCarousel": "Karussell konfigurieren"
+        "configureCarousel": "Karussell konfigurieren",
+        "hotkeys": {
+            "combatNext": {
+                "name": "Nächste Runde"
+            },
+            "combatPrev": {
+                "name": "Vorheriger Zug"
+            }
+        }
     }
 }

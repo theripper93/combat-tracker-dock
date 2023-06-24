@@ -175,8 +175,20 @@
                         "name": "Mostra le azioni del nemico"
                     }
                 }
+            },
+            "displayDescriptions": {
+                "hint": "Mostra le descrizioni degli effetti attivi nel tooltip.",
+                "name": "Mostra descrizioni"
             }
         },
-        "configureCarousel": "Configura carosello"
+        "configureCarousel": "Configura carosello",
+        "hotkeys": {
+            "combatNext": {
+                "name": "Prossima svolta"
+            },
+            "combatPrev": {
+                "name": "Turno precedente"
+            }
+        }
     }
 }
