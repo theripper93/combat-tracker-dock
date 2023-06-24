@@ -261,6 +261,7 @@ export class CombatantPortrait {
             tooltipSystemIcons: systemIcons.tooltip,
             systemIconsSizeMulti: clamp(0.03, 1/(systemIconCount * 2) ,0.1),
             barsOrder: this.getBarsOrder(),
+            displayDescriptions: game.settings.get(MODULE_ID, "displayDescriptions"),
         };
         if (turn.initiative !== null && !Number.isInteger(turn.initiative)) hasDecimals = true;
         if (turn.initiativeData.value !== null && !Number.isInteger(turn.initiativeData.value)) hasDecimals = true;

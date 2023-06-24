@@ -115,6 +115,10 @@
                     "both": "Text & Bars"
                 }
             },
+            "displayDescriptions": {
+                "name": "Show Descriptions",
+                "hint": "Show active effects descriptions in the tooltip."
+            },
             "tooltipColor": {
                 "name": "Tooltip Color",
                 "hint": "The color scheme of the tooltip. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #888888."

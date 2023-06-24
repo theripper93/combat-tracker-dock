@@ -228,6 +228,16 @@ export function registerSettings() {
         },
     });
 
+    game.settings.register(MODULE_ID, "displayDescriptions", {
+        name: "combat-tracker-dock.settings.displayDescriptions.name",
+        hint: "combat-tracker-dock.settings.displayDescriptions.hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true,
+        onChange: () => ui.combatDock?.refresh(),
+    });
+
     game.settings.register(MODULE_ID, "showDispositionColor", {
         name: "combat-tracker-dock.settings.showDispositionColor.name",
         hint: "combat-tracker-dock.settings.showDispositionColor.hint",
