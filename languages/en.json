@@ -181,6 +181,14 @@
                     "notes": "Leave the Attribute field blank to remove it."
                 }
             }
+        },
+        "hotkeys": {
+            "combatPrev": {
+                "name": "Previous Turn"
+            },
+            "combatNext": {
+                "name": "Next Turn"
+            }
         }
     }
 }

@@ -365,6 +365,35 @@ export function registerWrappers() {
     });
 }
 
+export function registerHotkeys() {
+    game.keybindings.register(MODULE_ID, "combatPrev", {
+        name: `${MODULE_ID}.hotkeys.combatPrev.name`,
+        editable: [{ key: "KeyN", modifiers: [KeyboardManager.MODIFIER_KEYS.SHIFT] }],
+        restricted: false,
+        onDown: () => {},
+        onUp: () => {
+            if (!game.combat) return;
+            const isOwner = game.combat.combatant?.isOwner;
+            if (!isOwner) return;
+            game.combat.previousTurn();
+        },
+    });
+
+    game.keybindings.register(MODULE_ID, "combatNext", {
+        name: `${MODULE_ID}.hotkeys.combatNext.name`,
+        editable: [{ key: "KeyM", modifiers: [KeyboardManager.MODIFIER_KEYS.SHIFT] }],
+        restricted: false,
+        onDown: () => {},
+        onUp: () => {
+            if (!game.combat) return;
+            const isOwner = game.combat.combatant?.isOwner;
+            if (!isOwner) return;
+            game.combat.nextTurn();
+        },
+    });
+
+}
+
 function setAllSettings() {
     setDirection();
     setOverflowStyle();

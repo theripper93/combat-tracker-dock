@@ -1,4 +1,4 @@
-import {registerSettings, registerWrappers} from './config.js';
+import {registerSettings, registerWrappers, registerHotkeys} from './config.js';
 import {CombatDock} from './App/Tracker.js';
 import {CombatantPortrait} from './App/CombatantPortrait.js';
 import {defaultAttributesConfig} from './systems.js';
@@ -7,6 +7,7 @@ export const MODULE_ID = 'combat-tracker-dock';
 
 Hooks.once('init', function () {
     registerWrappers();
+    registerHotkeys();
     CONFIG.combatTrackerDock = {
         CombatDock,
         CombatantPortrait,
