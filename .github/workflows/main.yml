@@ -39,8 +39,3 @@ jobs:
         artifacts: './module.json, ./module.zip'
         tag: ${{ github.event.release.tag_name }}
         body: ${{ github.event.release.body }}
-    
-    - uses: rhysd/changelog-from-release/action@v3
-      with:
-        file: CHANGELOG.md
-        github_token: ${{ secrets.GITHUB_TOKEN }}
