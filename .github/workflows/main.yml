@@ -43,7 +43,7 @@ jobs:
     # Auto generate changelog
     - name: Auto Generate Changelog
 
-      uses: BobAnkh/auto-generate-changelog@v1
+      uses: BobAnkh/auto-generate-changelog
       with:
         ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
         PATH: 'CHANGELOG.md'
