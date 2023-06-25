@@ -47,6 +47,6 @@ jobs:
     # Auto generate changelog
     - name: conventional Changelog Action
       id: changelog
-      uses: TriPSs/conventional-changelog-action@v3.1.0
+      uses: TriPSs/conventional-changelog-action@v3
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
