@@ -40,6 +40,10 @@ jobs:
         tag: ${{ github.event.release.tag_name }}
         body: ${{ github.event.release.body }}
 
+    # Checkout to a branch to enable the conventional Changelog Action
+    - name: Checkout branch
+      uses: actions/checkout@v2
+
     # Auto generate changelog
     - name: conventional Changelog Action
       id: changelog
