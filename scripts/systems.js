@@ -12,9 +12,8 @@
  * -------------------------------------------------------------
  */
 
-
-import {MODULE_ID} from "./main.js";
-import {registerSystemSetting, getSystemSetting} from "./config.js";
+import { MODULE_ID } from "./main.js";
+import { registerSystemSetting, getSystemSetting } from "./config.js";
 
 /**
  * Returns the default attributes configuration for different game systems.
@@ -245,35 +244,35 @@ export function defaultAttributesConfig() {
         ],
         crucible: [
             {
-                "attr": "resources.health.value",
-                "icon": "fa-solid fa-heart",
-                "units": ""
+                attr: "resources.health.value",
+                icon: "fa-solid fa-heart",
+                units: "",
             },
             {
-                "attr": "resources.morale.value",
-                "icon": "fa-solid fa-brain",
-                "units": ""
+                attr: "resources.morale.value",
+                icon: "fa-solid fa-brain",
+                units: "",
             },
             {
-                "attr": "resources.action.value",
-                "icon": "fa-solid fa-hand-fist",
-                "units": ""
+                attr: "resources.action.value",
+                icon: "fa-solid fa-hand-fist",
+                units: "",
             },
             {
-                "attr": "resources.focus.value",
-                "icon": "fa-solid fa-hand-holding-magic",
-                "units": ""
+                attr: "resources.focus.value",
+                icon: "fa-solid fa-hand-holding-magic",
+                units: "",
             },
             {
-                "attr": "resources.wounds.value",
-                "icon": "fa-solid fa-droplet",
-                "units": ""
+                attr: "resources.wounds.value",
+                icon: "fa-solid fa-droplet",
+                units: "",
             },
             {
-                "attr": "resources.madness.value",
-                "icon": "fa-solid fa-head-side-brain",
-                "units": ""
-            }
+                attr: "resources.madness.value",
+                icon: "fa-solid fa-head-side-brain",
+                units: "",
+            },
         ],
         wfrp4e: [
             {
@@ -296,7 +295,7 @@ export function defaultAttributesConfig() {
                 icon: "fa-thin fa-face-pouting",
                 units: game.i18n.localize("Resolve"),
             },
-	    {
+            {
                 attr: "details.move.run",
                 icon: "fa-thin fa-person-running",
                 units: game.i18n.localize("yds"),
@@ -318,22 +317,22 @@ export function defaultAttributesConfig() {
                 icon: "fas fa-shield",
                 units: game.i18n.localize("ALIENRPG.Armor"),
             },
-	    {
+            {
                 attr: "attributes.speed.value",
                 icon: "fas fa-person-running",
                 units: game.i18n.localize("ALIENRPG.Speed"),
             },
-	    {
+            {
                 attr: "general.mobility.value",
                 icon: "fas fa-user-ninja",
                 units: game.i18n.localize("ALIENRPG.Skillmobility"),
             },
-	    {
+            {
                 attr: "general.observation.value",
                 icon: "fas fa-eye",
                 units: game.i18n.localize("ALIENRPG.Skillobservation"),
             },
-	    {
+            {
                 attr: "attributes.armorrating.value",
                 icon: "fas fa-shield",
                 units: game.i18n.localize("ALIENRPG.ArmorRating"),
@@ -423,7 +422,7 @@ export function generateDescription(actor) {
                     if (actor.characterBaseClass?.name) {
                         classes.push(actor.characterBaseClass.name);
                     }
-                    return classes.join(' - ');
+                    return classes.join(" - ");
                 case "creature":
                     return "Creature";
                 case "vehicle":
@@ -457,97 +456,68 @@ export function generateDescription(actor) {
                     return null;
             }
         case "crucible":
-            if(actor.type === "hero") return `${system.details.ancestry.name} ${system.details.background.name} ${ system.details.signatureName ? `(${system.details.signatureName})` : ""}`;
+            if (actor.type === "hero") return `${system.details.ancestry.name} ${system.details.background.name} ${system.details.signatureName ? `(${system.details.signatureName})` : ""}`;
             if (actor.type === "adversary") return `${system.details.taxonomy.name} ${system.details.archetype.name} (${game.i18n.localize("ADVANCEMENT.Level")} ${system.details.level} ${game.i18n.localize("ADVERSARY.Threat" + system.details.threat.charAt(0).toUpperCase() + system.details.threat.slice(1))})`;
         case "wfrp4e":
             switch (type) {
                 case "character":
                     return `${actor.Species} ${actor.currentCareer.name}`;
                 case "npc":
-                    const length = actor.itemTypes.career.length - 1 ;
-		    if (length < 0) {
-		     return `${actor.Species}`;
-		    } else {
-			const careers = Object.values(actor.itemTypes.career)
-			   .map((c) => c.name);
-			const career = careers[length];
-                    return `${actor.Species} ${career}`;
-		    }
-		case "creature":
-		    return `${actor.Species}`;
+                    const length = actor.itemTypes.career.length - 1;
+                    if (length < 0) {
+                        return `${actor.Species}`;
+                    } else {
+                        const careers = Object.values(actor.itemTypes.career).map((c) => c.name);
+                        const career = careers[length];
+                        return `${actor.Species} ${career}`;
+                    }
+                case "creature":
+                    return `${actor.Species}`;
                 default:
                     return null;
             }
         case "alienrpg":
             switch (type) {
                 case "character":
-		  let career
-		  if (system.general.career.value == 1)
-			career = game.i18n.localize("ALIENRPG.ColonialMarine")
-		  else if (system.general.career.value == 2)
-			career = game.i18n.localize("ALIENRPG.ColonialMarshal")
-		  else if (system.general.career.value == 3)
-			career = game.i18n.localize("ALIENRPG.CompanyAgent")
-		  else if (system.general.career.value == 4)
-			career = game.i18n.localize("ALIENRPG.Kid")
-		  else if (system.general.career.value == 5)
-			career = game.i18n.localize("ALIENRPG.Medic")
-		  else if (system.general.career.value == 6)
-			career = game.i18n.localize("ALIENRPG.Mercenary")
-		  else if (system.general.career.value == 7)
-			career = game.i18n.localize("ALIENRPG.Officer")
-		  else if (system.general.career.value == 8)
-			career = game.i18n.localize("ALIENRPG.Pilot")
-		  else if (system.general.career.value == 9)
-			career = game.i18n.localize("ALIENRPG.Roughneck")
-		  else if (system.general.career.value == 10)
-			career = game.i18n.localize("ALIENRPG.Scientist")
-		  else if (system.general.career.value == 11)
-			career = game.i18n.localize("ALIENRPG.Synthetic")
-		  else if (system.general.career.value == 12)
-			career = game.i18n.localize("ALIENRPG.Homebrew")
-		  if (actor.itemTypes.specialty.length == 0)
-                    return `${career}`;
-		  else if (actor.itemTypes.specialty.length == 1) {
-			const specialties = Object.values(actor.itemTypes.specialty)
-			   .map((c) => c.name);
-			const specialty = specialties[0];
-                    return `${career}: ${specialty}`;
-		    }
+                    let career;
+                    if (system.general.career.value == 1) career = game.i18n.localize("ALIENRPG.ColonialMarine");
+                    else if (system.general.career.value == 2) career = game.i18n.localize("ALIENRPG.ColonialMarshal");
+                    else if (system.general.career.value == 3) career = game.i18n.localize("ALIENRPG.CompanyAgent");
+                    else if (system.general.career.value == 4) career = game.i18n.localize("ALIENRPG.Kid");
+                    else if (system.general.career.value == 5) career = game.i18n.localize("ALIENRPG.Medic");
+                    else if (system.general.career.value == 6) career = game.i18n.localize("ALIENRPG.Mercenary");
+                    else if (system.general.career.value == 7) career = game.i18n.localize("ALIENRPG.Officer");
+                    else if (system.general.career.value == 8) career = game.i18n.localize("ALIENRPG.Pilot");
+                    else if (system.general.career.value == 9) career = game.i18n.localize("ALIENRPG.Roughneck");
+                    else if (system.general.career.value == 10) career = game.i18n.localize("ALIENRPG.Scientist");
+                    else if (system.general.career.value == 11) career = game.i18n.localize("ALIENRPG.Synthetic");
+                    else if (system.general.career.value == 12) career = game.i18n.localize("ALIENRPG.Homebrew");
+                    if (actor.itemTypes.specialty.length == 0) return `${career}`;
+                    else if (actor.itemTypes.specialty.length == 1) {
+                        const specialties = Object.values(actor.itemTypes.specialty).map((c) => c.name);
+                        const specialty = specialties[0];
+                        return `${career}: ${specialty}`;
+                    }
                 case "synthetic":
-		  let careersynth
-		  if (system.general.career.value == 1)
-			careersynth = game.i18n.localize("ALIENRPG.ColonialMarine")
-		  else if (system.general.career.value == 2)
-			careersynth = game.i18n.localize("ALIENRPG.ColonialMarshal")
-		  else if (system.general.career.value == 3)
-			careersynth = game.i18n.localize("ALIENRPG.CompanyAgent")
-		  else if (system.general.career.value == 4)
-			careersynth = game.i18n.localize("ALIENRPG.Kid")
-		  else if (system.general.career.value == 5)
-			careersynth = game.i18n.localize("ALIENRPG.Medic")
-		  else if (system.general.career.value == 6)
-			careersynth = game.i18n.localize("ALIENRPG.Mercenary")
-		  else if (system.general.career.value == 7)
-			careersynth = game.i18n.localize("ALIENRPG.Officer")
-		  else if (system.general.career.value == 8)
-			careersynth = game.i18n.localize("ALIENRPG.Pilot")
-		  else if (system.general.career.value == 9)
-			careersynth = game.i18n.localize("ALIENRPG.Roughneck")
-		  else if (system.general.career.value == 10)
-			careersynth = game.i18n.localize("ALIENRPG.Scientist")
-		  else if (system.general.career.value == 11)
-			careersynth = game.i18n.localize("ALIENRPG.Synthetic")
-		  else if (system.general.career.value == 12)
-			careersynth = game.i18n.localize("ALIENRPG.Homebrew")
-		  if (actor.itemTypes.specialty.length == 0)
-                    return `${careersynth}`;
-		  else if (actor.itemTypes.specialty.length == 1) {
-			const specialties = Object.values(actor.itemTypes.specialty)
-			   .map((c) => c.name);
-			const specialty = specialties[0];
-                    return `${careersynth}: ${specialty}`;
-		    }
+                    let careersynth;
+                    if (system.general.career.value == 1) careersynth = game.i18n.localize("ALIENRPG.ColonialMarine");
+                    else if (system.general.career.value == 2) careersynth = game.i18n.localize("ALIENRPG.ColonialMarshal");
+                    else if (system.general.career.value == 3) careersynth = game.i18n.localize("ALIENRPG.CompanyAgent");
+                    else if (system.general.career.value == 4) careersynth = game.i18n.localize("ALIENRPG.Kid");
+                    else if (system.general.career.value == 5) careersynth = game.i18n.localize("ALIENRPG.Medic");
+                    else if (system.general.career.value == 6) careersynth = game.i18n.localize("ALIENRPG.Mercenary");
+                    else if (system.general.career.value == 7) careersynth = game.i18n.localize("ALIENRPG.Officer");
+                    else if (system.general.career.value == 8) careersynth = game.i18n.localize("ALIENRPG.Pilot");
+                    else if (system.general.career.value == 9) careersynth = game.i18n.localize("ALIENRPG.Roughneck");
+                    else if (system.general.career.value == 10) careersynth = game.i18n.localize("ALIENRPG.Scientist");
+                    else if (system.general.career.value == 11) careersynth = game.i18n.localize("ALIENRPG.Synthetic");
+                    else if (system.general.career.value == 12) careersynth = game.i18n.localize("ALIENRPG.Homebrew");
+                    if (actor.itemTypes.specialty.length == 0) return `${careersynth}`;
+                    else if (actor.itemTypes.specialty.length == 1) {
+                        const specialties = Object.values(actor.itemTypes.specialty).map((c) => c.name);
+                        const specialty = specialties[0];
+                        return `${careersynth}: ${specialty}`;
+                    }
                 default:
                     return null;
             }
@@ -555,7 +525,7 @@ export function generateDescription(actor) {
             switch (type) {
                 case "character":
                 case "npc":
-                    return `${game.i18n.localize("Ex3.Essence")} ${system.essence.value}`
+                    return `${game.i18n.localize("Ex3.Essence")} ${system.essence.value}`;
                 default:
                     return null;
             }
@@ -590,28 +560,28 @@ export function getInitiativeDisplay(combatant) {
                 rollIcon: "far fa-cards-blank",
             };
         }
-	case "wfrp4e": {
-	    return {
+        case "wfrp4e": {
+            return {
                 value: combatant?.initiative,
                 icon: "far fa-dice-d10",
                 rollIcon: "far fa-dice-d10",
             };
-	}
-	case "alienrpg": {
-	    return {
+        }
+        case "alienrpg": {
+            return {
                 value: combatant?.initiative,
                 icon: "far fa-cards-blank",
                 rollIcon: "fa-solid fa-cards-blank",
             };
-	}
-    case "exaltedthird": {
-        return {
-            value: combatant?.initiative,
-            icon: "far fa-dice-d10",
-            rollIcon: "far fa-dice-d10",
-        };
-    }
-    default:
+        }
+        case "exaltedthird": {
+            return {
+                value: combatant?.initiative,
+                icon: "far fa-dice-d10",
+                rollIcon: "far fa-dice-d10",
+            };
+        }
+        default:
             return {
                 value: combatant?.initiative,
                 icon: "far fa-dice-d20",
@@ -682,8 +652,8 @@ export function getSystemIcons(combatant) {
                     enabled: true,
                     callback: combatant.isOwner
                         ? (event, combatant, iconIndex, iconId) => {
-                            combatant.setFlag(MODULE_ID, "action", !(combatant.getFlag(MODULE_ID, "action") ?? true));
-                        }
+                              combatant.setFlag(MODULE_ID, "action", !(combatant.getFlag(MODULE_ID, "action") ?? true));
+                          }
                         : null,
                 },
                 {
@@ -692,8 +662,8 @@ export function getSystemIcons(combatant) {
                     enabled: true,
                     callback: combatant.isOwner
                         ? (event, combatant, iconIndex, iconId) => {
-                            combatant.setFlag(MODULE_ID, "bonus", !(combatant.getFlag(MODULE_ID, "bonus") ?? true));
-                        }
+                              combatant.setFlag(MODULE_ID, "bonus", !(combatant.getFlag(MODULE_ID, "bonus") ?? true));
+                          }
                         : null,
                 },
                 {
@@ -702,72 +672,71 @@ export function getSystemIcons(combatant) {
                     enabled: true,
                     callback: combatant.isOwner
                         ? (event, combatant, iconIndex, iconId) => {
-                            combatant.setFlag(MODULE_ID, "reaction", !(combatant.getFlag(MODULE_ID, "reaction") ?? true));
-                        }
+                              combatant.setFlag(MODULE_ID, "reaction", !(combatant.getFlag(MODULE_ID, "reaction") ?? true));
+                          }
                         : null,
                 },
             ];
         }
         case "crucible": {
-            const systemData = combatant.actor?.system
+            const systemData = combatant.actor?.system;
             const alwaysShowActions = getSystemSetting("alwaysShowActions") || undefined;
             const actions = {
                 value: systemData.resources.action.value,
                 max: systemData.resources.action.max,
-            }
+            };
             const focus = {
                 value: systemData.resources.focus.value,
                 max: systemData.resources.focus.max,
-            }
-            const systemIcons = []
+            };
+            const systemIcons = [];
             for (let i = 0; i < actions.max; i++) {
-                systemIcons.push(                    {
+                systemIcons.push({
                     icon: "fas fa-square",
                     color: "#ff6400",
                     enabled: actions.value > 0,
                     visible: alwaysShowActions,
-                })
-                actions.value--
+                });
+                actions.value--;
             }
-            for(let i = 0; i < focus.max; i++) {
-                systemIcons.push(                    {
+            for (let i = 0; i < focus.max; i++) {
+                systemIcons.push({
                     icon: "fas fa-sparkle",
                     color: "#00bbff",
                     enabled: focus.value > 0,
-                })
-                focus.value--
+                });
+                focus.value--;
             }
-            return systemIcons
-
+            return systemIcons;
         }
-	case "alienrpg": {
-          if (game.modules.get("alien-actions")?.active && combatant.actor) {
-	   return [
-		{
-		icon: "fas fa-play",
-		fontSize: "1rem",
-		enabled: true,
-		callback: combatant.isOwner
-                        ? (event, combatant) => {
-			const token = combatant.actor.getActiveTokens()
-			token.forEach (t=> t.toggleEffect( CONFIG.statusEffects.find(eff => eff.id === "slowAction")));
-                        }
-                        : null,
-		},
-		{
-		icon: "fas fa-forward",
-		fontSize: "1rem",
-		enabled: true,
-		callback: combatant.isOwner
-                        ? (event, combatant) => {
-			const token = combatant.actor.getActiveTokens()
-			token.forEach (t=> t.toggleEffect( CONFIG.statusEffects.find(eff => eff.id === "fastAction")));
-                        }
-                        : null,
-		},
-	    ];
-	  }
-	}
+        case "alienrpg": {
+            if (game.modules.get("alien-actions")?.active && combatant.actor) {
+                return [
+                    {
+                        icon: "fas fa-play",
+                        fontSize: "1rem",
+                        enabled: true,
+                        callback: combatant.isOwner
+                            ? (event, combatant) => {
+                                  const token = combatant.actor.getActiveTokens();
+                                  token.forEach((t) => t.toggleEffect(CONFIG.statusEffects.find((eff) => eff.id === "slowAction")));
+                              }
+                            : null,
+                    },
+                    {
+                        icon: "fas fa-forward",
+                        fontSize: "1rem",
+                        enabled: true,
+                        callback: combatant.isOwner
+                            ? (event, combatant) => {
+                                  const token = combatant.actor.getActiveTokens();
+                                  token.forEach((t) => t.toggleEffect(CONFIG.statusEffects.find((eff) => eff.id === "fastAction")));
+                              }
+                            : null,
+                    },
+                ];
+            }
+        }
         default: {
             return [];
         }
@@ -778,7 +747,7 @@ export function getSystemIcons(combatant) {
  * Register settings for specific game systems.
  * This function is called once on startup.
  * When you need to get the setting value, use `getSystemSetting(key) helper`.
-*/
+ */
 
 export function registerSystemSettings() {
     switch (game.system.id) {
@@ -794,5 +763,4 @@ export function registerSystemSettings() {
         default:
             break;
     }
-
 }
