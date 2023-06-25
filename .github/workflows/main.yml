@@ -41,11 +41,8 @@ jobs:
         body: ${{ github.event.release.body }}
 
     # Auto generate changelog
-    - name: Auto Generate Changelog
-
-      uses: BobAnkh/auto-generate-changelog
+    - name: conventional Changelog Action
+      id: changelog
+      uses: TriPSs/conventional-changelog-action@v3.7.1
       with:
-        ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PATH: 'CHANGELOG.md'
-        COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
-        TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
