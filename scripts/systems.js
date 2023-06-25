@@ -339,6 +339,43 @@ export function defaultAttributesConfig() {
                 units: game.i18n.localize("ALIENRPG.ArmorRating"),
             },
         ],
+        exaltedthird: [
+            {
+                attr: "health.value",
+                icon: "fas fa-heart",
+                units: game.i18n.localize("Ex3.Health"),
+            },
+            {
+                attr: "evasion.value",
+                icon: "fas fa-rabbit-running",
+                units: game.i18n.localize("Ex3.Evasion"),
+            },
+            {
+                attr: "parry.value",
+                icon: "fas fa-swords",
+                units: game.i18n.localize("Ex3.Parry"),
+            },
+            {
+                attr: "soak.value",
+                icon: "fas fa-shield",
+                units: game.i18n.localize("Ex3.Soak"),
+            },
+            {
+                attr: "hardness.value",
+                icon: "fas fa-heart",
+                units: game.i18n.localize("Ex3.Hardness"),
+            },
+            {
+                attr: "willpower.value",
+                icon: "fas fa-hand-fist",
+                units: game.i18n.localize("Ex3.Willpower"),
+            },
+            {
+                attr: "anima.value",
+                icon: "fas fa-sun",
+                units: game.i18n.localize("Ex3.Anima"),
+            },
+        ],
     };
 }
 
@@ -514,6 +551,14 @@ export function generateDescription(actor) {
                 default:
                     return null;
             }
+        case "exaltedthird":
+            switch (type) {
+                case "character":
+                case "npc":
+                    return `${game.i18n.localize("Ex3.Essence")} ${system.essence.value}`
+                default:
+                    return null;
+            }
     }
 }
 
@@ -559,7 +604,14 @@ export function getInitiativeDisplay(combatant) {
                 rollIcon: "fa-solid fa-cards-blank",
             };
 	}
-        default:
+    case "exaltedthird": {
+        return {
+            value: combatant?.initiative,
+            icon: "far fa-dice-d10",
+            rollIcon: "far fa-dice-d10",
+        };
+    }
+    default:
             return {
                 value: combatant?.initiative,
                 icon: "far fa-dice-d20",
