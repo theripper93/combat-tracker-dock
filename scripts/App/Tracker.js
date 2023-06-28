@@ -85,6 +85,10 @@ export class CombatDock extends Application {
                 hook: "combatStart",
                 fn: this._onCombatStart.bind(this),
             },
+            {
+                hook: "hoverToken",
+                fn: this._onHoverToken.bind(this),
+            }
         ];
         for (let hook of this.hooks) {
             hook.id = Hooks.on(hook.hook, hook.fn);
@@ -417,6 +421,12 @@ export class CombatDock extends Application {
 
     _onCombatStart(combat) {
         if (combat === this.combat) this._playAnimation = true;
+    }
+
+    _onHoverToken(token, hover) {
+        const portrait = this.portraits.find((p) => p.token === token);
+        if (!portrait) return;
+        portrait.element.classList.toggle("hovered", hover);
     }
 
     refresh() {
