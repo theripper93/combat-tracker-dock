@@ -90,5 +90,3 @@ Hooks.on("closeCombatTrackerConfig", (app, html, data) => {
     const resource = html[0].querySelector(`select[name="flags.${MODULE_ID}.resource"]`).value;
     game.settings.set(MODULE_ID, "resource", resource);
 });
-
-
