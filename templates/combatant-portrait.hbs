@@ -1,6 +1,6 @@
 <div class="combatant-wrapper" style="background-image: url('{{img}}');{{#if defeated}}filter: grayscale(1);{{/if}}">
 
-    <i {{#if hasRolled}}style="display: none;" {{/if}} {{#if
+    <i style="{{#if hasRolled}}display: none;{{/if}}"  {{#if
         initiativeData.isRollIconImg}}style="background-image: url('{{initiativeData.rollIcon}}');"
         class="roll-initiative" {{else}}class="{{initiativeData.rollIcon}} roll-initiative" {{/if}}></i>
 
@@ -13,22 +13,22 @@
 
     <div class="overlay-ui-container">
     {{#if resource.max}}
-        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar1}};" {{#unless showBars}}style="display: none;"{{/unless}}>
+        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar1}};{{#unless showBars}}display: none;{{/unless}}" >
         <div class="tracked-attribute-bar-current" style="height: {{resource.percentage}}%;"></div>
         </div>
     {{/if}}
     {{#if resource2.max}}
-        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar2}};" {{#unless showBars}}style="display: none;"{{/unless}}>
+        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar2}};{{#unless showBars}}display: none;{{/unless}}">
         <div class="tracked-attribute-bar-current secondary-attribute" style="height: {{resource2.percentage}}%;"></div>
         </div>
     {{/if}}
-    <div class="portrait-initiative"  style="order: {{barsOrder.init}};" {{#unless showInitiative}}style="display: none;" {{/unless}} {{#if
-        isInitiativeNaN}}style="display:none;" {{/if}}>
+    <div class="portrait-initiative"  style="order: {{barsOrder.init}}; {{#unless showInitiative}}display: none;{{/unless}}{{#if
+        isInitiativeNaN}}display:none;{{/if}}">
         <i {{#if initiativeData.isIconImg}}style="background-image: url('{{initiativeData.icon}}');"
             {{else}}class="{{initiativeData.icon}}" {{/if}}></i>
         <span class="portrait-initiative-text">{{initiativeData.value}}</span>
     </div>
-        <ul class="effects-container" style="order: {{barsOrder.effects}};" {{#unless hasEffects}}style="display:none;" {{/unless}}>
+        <ul class="effects-container" style="order: {{barsOrder.effects}};{{#unless hasEffects}}display:none;{{/unless}}" >
         {{#each effects as |effect|}}
         <li style="background-image: url('{{effect.icon}}');"></li>
         {{/each}}

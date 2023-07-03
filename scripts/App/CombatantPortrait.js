@@ -40,9 +40,6 @@ export class CombatantPortrait {
     }
 
     activateCoreListeners() {
-        //add left and right click and double click listeners
-        //this.element.addEventListener("mousedown", this._onCombatantMouseDown.bind(this));
-        //add hover in and out listeners
         this.element.addEventListener("mouseenter", this._onHoverIn.bind(this));
         this.element.addEventListener("mouseleave", this._onHoverOut.bind(this));
     }
