@@ -195,13 +195,20 @@ export class CombatantPortrait {
         }
     }
 
+    get hasPermission() {
+        const combatant = this.combatant;
+        const playerPlayerPermission = combatant.actor?.hasPlayerOwner && game.settings.get(MODULE_ID, "playerPlayerPermission");
+        const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner || playerPlayerPermission;
+        return hasPermission;
+    }
+
     async getData() {
         // Format information about each combatant in the encounter
         let hasDecimals = false;
         const combatant = this.combatant;
         const isActive = this.combat.turns.indexOf(combatant) === this.combat.turn;
         if (isActive && this.combat.started) this._hasTakenTurn = true;
-        const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
+        const hasPermission = this.hasPermission;
         if (!hasPermission && !this._hasTakenTurn) return null;
         if (!combatant.visible && !game.user.isGM) return null;
         const trackedAttributes = game.settings
@@ -314,7 +321,7 @@ export class CombatantPortrait {
         try {
             const sett = game.settings.get(MODULE_ID, "showSystemIcons");
             const icons = sett > 0 ? getSystemIcons(this.combatant) : [];
-            const hasPermission = (this.combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || this.combatant.isOwner;
+            const hasPermission = this.hasPermission;
             icons.forEach((icon) => {
                 if (icon.callback) icon.hasCallback = true;
                 icon.visible ??= hasPermission;

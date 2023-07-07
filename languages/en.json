@@ -115,6 +115,10 @@
                     "both": "Text & Bars"
                 }
             },
+            "playerPlayerPermission": {
+                "name": "Always Show Player Info",
+                "hint": "Allow all players to see the tracked attributes, tooltip information and system icons of other players."
+            },
             "displayDescriptions": {
                 "name": "Show Descriptions",
                 "hint": "Show active effects descriptions in the tooltip."
