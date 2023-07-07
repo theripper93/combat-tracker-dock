@@ -337,6 +337,26 @@ export function defaultAttributesConfig() {
                 icon: "fas fa-shield",
                 units: game.i18n.localize("ALIENRPG.ArmorRating"),
             },
+            {
+                attr: "attributes.hull.value",
+                icon: "fas fa-shuttle-space",
+                units: game.i18n.localize("ALIENRPG.HULL"),
+            },
+            {
+                attr: "attributes.armor.value",
+                icon: "fas fa-shield",
+                units: game.i18n.localize("ALIENRPG.SHIP-ARMOR"),
+            },
+            {
+                attr: "attributes.thrusters.value",
+                icon: "fas fa-rocket-launch",
+                units: game.i18n.localize("ALIENRPG.THRUSTERS"),
+            },
+            {
+                attr: "attributes.signature.value",
+                icon: "fas fa-satellite-dish",
+                units: game.i18n.localize("ALIENRPG.SIGNATURE"),
+            },
         ],
         exaltedthird: [
             {
@@ -560,6 +580,8 @@ export function generateDescription(actor) {
                         const specialty = specialties[0];
                         return `${careersynth}: ${specialty}`;
                     }
+                case "spacecraft":
+                    return `${game.i18n.localize("ALIENRPG.MODEL")}: ${system.attributes.model}`;
                 default:
                     return null;
             }
@@ -767,7 +789,7 @@ export function getSystemIcons(combatant) {
             return systemIcons;
         }
         case "alienrpg": {
-            if (game.modules.get("alien-actions")?.active && combatant.actor) {
+            if (game.modules.get("alien-actions")?.active && combatant.actor && combatant.actor.type !== "spacecraft") {
                 return [
                     {
                         icon: "fas fa-play",
