@@ -199,6 +199,11 @@ export function defaultAttributesConfig() {
                 icon: "fas fa-hand-holding-magic",
                 units: "Spell DC",
             },
+            {
+                attr: "attributes.shield.hp.value",
+                icon: "fas fa-shield",
+                units: "Shield HP",
+            },
         ],
         pf1: [
             {
