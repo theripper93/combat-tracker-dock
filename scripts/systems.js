@@ -380,6 +380,48 @@ export function defaultAttributesConfig() {
                 units: game.i18n.localize("Ex3.Anima"),
             },
         ],
+        exaltedessence: [
+            {
+                attr: "health.value",
+                icon: "fas fa-heart",
+                units: game.i18n.localize("ExEss.Health"),
+            },
+            {
+                attr: "evasion.value",
+                icon: "fas fa-rabbit-running",
+                units: game.i18n.localize("ExEss.Evasion"),
+            },
+            {
+                attr: "parry.value",
+                icon: "fas fa-swords",
+                units: game.i18n.localize("ExEss.Parry"),
+            },
+            {
+                attr: "soak.value",
+                icon: "fas fa-shield",
+                units: game.i18n.localize("ExEss.Soak"),
+            },
+            {
+                attr: "hardness.value",
+                icon: "fas fa-heart",
+                units: game.i18n.localize("ExEss.Hardness"),
+            },
+            {
+                attr: "power.value",
+                icon: "fas fa-hand-fist",
+                units: game.i18n.localize("ExEss.Power"),
+            },
+            {
+                attr: "will.value",
+                icon: "fas fa-hand-sparkles",
+                units: game.i18n.localize("ExEss.Will"),
+            },
+            {
+                attr: "anima.value",
+                icon: "fas fa-sun",
+                units: game.i18n.localize("ExEss.Anima"),
+            },
+        ],
     };
 }
 
@@ -534,6 +576,14 @@ export function generateDescription(actor) {
                 default:
                     return null;
             }
+        case "exaltedessence":
+            switch (type) {
+                case "character":
+                case "npc":
+                    return `${game.i18n.localize("ExEss.Essence")} ${system.essence.value}`;
+                default:
+                    return null;
+            }
     }
 }
 
@@ -580,6 +630,13 @@ export function getInitiativeDisplay(combatant) {
             };
         }
         case "exaltedthird": {
+            return {
+                value: combatant?.initiative,
+                icon: "far fa-dice-d10",
+                rollIcon: "far fa-dice-d10",
+            };
+        }
+        case "exaltedessence": {
             return {
                 value: combatant?.initiative,
                 icon: "far fa-dice-d10",

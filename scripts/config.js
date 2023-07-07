@@ -287,6 +287,16 @@ export function registerSettings() {
         onChange: () => ui.combatDock?.refresh(),
     });
 
+    game.settings.register(MODULE_ID, "playerPlayerPermission", {
+        name: "combat-tracker-dock.settings.playerPlayerPermission.name",
+        hint: "combat-tracker-dock.settings.playerPlayerPermission.hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+        onChange: () => ui.combatDock?.refresh(),
+    });
+
     game.settings.register(MODULE_ID, "hideFirstRound", {
         name: "combat-tracker-dock.settings.hideFirstRound.name",
         hint: "combat-tracker-dock.settings.hideFirstRound.hint",

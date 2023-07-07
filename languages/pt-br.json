@@ -179,6 +179,10 @@
             "displayDescriptions": {
                 "hint": "Mostrar descrições de efeitos ativos na dica de ferramenta.",
                 "name": "Mostrar descrições"
+            },
+            "playerPlayerPermission": {
+                "hint": "Permita que todos os jogadores vejam os atributos rastreados, informações de dica de ferramenta e ícones do sistema de outros jogadores.",
+                "name": "Mostrar sempre as informações do jogador"
             }
         },
         "configureCarousel": "Configurar carrossel",

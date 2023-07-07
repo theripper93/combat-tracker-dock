@@ -179,6 +179,10 @@
             "displayDescriptions": {
                 "hint": "Afficher les descriptions des effets actifs dans l'info-bulle.",
                 "name": "Afficher les descriptions"
+            },
+            "playerPlayerPermission": {
+                "hint": "Autoriser tous les joueurs à voir les attributs suivis, les info-bulles et les icônes système des autres joueurs.",
+                "name": "Toujours afficher les informations sur le joueur"
             }
         },
         "configureCarousel": "Configurer le carrousel",

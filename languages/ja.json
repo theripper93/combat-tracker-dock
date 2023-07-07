@@ -179,6 +179,10 @@
             "displayDescriptions": {
                 "hint": "アクティブなエフェクトの説明をツールチップに表示します。",
                 "name": "説明を表示"
+            },
+            "playerPlayerPermission": {
+                "hint": "すべてのプレイヤーが他のプレイヤーの追跡された属性、ツールチップ情報、システム アイコンを表示できるようにします。",
+                "name": "常にプレイヤー情報を表示"
             }
         },
         "configureCarousel": "カルーセルの構成",

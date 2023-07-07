@@ -179,6 +179,10 @@
             "displayDescriptions": {
                 "hint": "Mostra le descrizioni degli effetti attivi nel tooltip.",
                 "name": "Mostra descrizioni"
+            },
+            "playerPlayerPermission": {
+                "hint": "Consenti a tutti i giocatori di vedere gli attributi tracciati, le informazioni sui suggerimenti e le icone di sistema degli altri giocatori.",
+                "name": "Mostra sempre informazioni sul giocatore"
             }
         },
         "configureCarousel": "Configura carosello",

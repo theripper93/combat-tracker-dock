@@ -179,6 +179,10 @@
             "displayDescriptions": {
                 "hint": "Beschreibungen aktiver Effekte im Tooltip anzeigen.",
                 "name": "Beschreibungen anzeigen"
+            },
+            "playerPlayerPermission": {
+                "hint": "Erlauben Sie allen Spielern, die verfolgten Attribute, Tooltip-Informationen und Systemsymbole anderer Spieler zu sehen.",
+                "name": "Spielerinformationen immer anzeigen"
             }
         },
         "configureCarousel": "Karussell konfigurieren",
