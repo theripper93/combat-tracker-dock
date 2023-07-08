@@ -13,16 +13,16 @@
 
     <div class="overlay-ui-container">
     {{#if resource.max}}
-        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar1}};{{#unless showBars}}display: none;{{/unless}}" >
+        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar1}};margin-left: {{barsOrder.bar1ML}};{{#unless showBars}}display: none;{{/unless}}" >
         <div class="tracked-attribute-bar-current" style="height: {{resource.percentage}}%;"></div>
         </div>
     {{/if}}
     {{#if resource2.max}}
-        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar2}};{{#unless showBars}}display: none;{{/unless}}">
+        <div class="tracked-attribute-bar-max" style="order: {{barsOrder.bar2}};{{#unless showInitiative}}margin-left: {{barsOrder.bar2ML}};{{/unless}}{{#unless showBars}}display: none;{{/unless}}">
         <div class="tracked-attribute-bar-current secondary-attribute" style="height: {{resource2.percentage}}%;"></div>
         </div>
     {{/if}}
-    <div class="portrait-initiative"  style="order: {{barsOrder.init}}; {{#unless showInitiative}}display: none;{{/unless}}{{#if
+    <div class="portrait-initiative"  style="order: {{barsOrder.init}};margin-left: {{barsOrder.bar2ML}}; {{#unless showInitiative}}display: none;{{/unless}}{{#if
         isInitiativeNaN}}display:none;{{/if}}">
         <i {{#if initiativeData.isIconImg}}style="background-image: url('{{initiativeData.icon}}');"
             {{else}}class="{{initiativeData.icon}}" {{/if}}></i>

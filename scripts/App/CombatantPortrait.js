@@ -184,6 +184,7 @@ export class CombatantPortrait {
     }
 
     getBarsOrder() {
+        debugger;
         const sett = game.settings.get(MODULE_ID, "barsPlacement");
         switch (sett) {
             case "left":
