@@ -4,8 +4,6 @@ import { generateDescription, getInitiativeDisplay, getSystemIcons } from "../sy
 export class CombatantPortrait {
     constructor(combatant) {
         this.combatant = combatant;
-        this.actor = combatant.actor;
-        this.token = combatant.token?.object;
         this.combat = combatant.combat;
         this.element = document.createElement("div");
         this.element.classList.add("combatant-portrait");
@@ -17,6 +15,14 @@ export class CombatantPortrait {
         if (!game.settings.get(MODULE_ID, "hideFirstRound")) this._hasTakenTurn = true;
         this.activateCoreListeners();
         this.renderInner();
+    }
+
+    get actor() {
+        return this.combatant?.actor;
+    }
+
+    get token() {
+        return this.combatant?.token?.object;
     }
 
     get img() {
