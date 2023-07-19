@@ -27,6 +27,12 @@ Hooks.on('createCombat', (combat) => {
     }
 });
 
+Hooks.on('updateCombat', (combat, updates) => {
+    if(updates.active) {
+        new CONFIG.combatTrackerDock.CombatDock(combat).render(true);
+    }
+});
+
 Hooks.on('canvasReady', () => {
     let hook;
     hook = Hooks.on("renderSidebarTab", (tab) => {
