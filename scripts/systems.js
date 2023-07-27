@@ -461,7 +461,7 @@ export function generateDescription(actor) {
             const isPC = type === "character";
             if (isNPC) {
                 const creatureType = game.i18n.localize(CONFIG.DND5E.creatureTypes[actor.system.details.type.value] ?? actor.system.details.type.custom);
-                const cr = system.details.cr >= 1 ? system.details.cr : `1/${1 / system.details.cr}`;
+                const cr = system.details.cr >= 1 || system.details.cr <= 0 ? system.details.cr : `1/${1 / system.details.cr}`;
                 return `CR ${cr} ${creatureType}`;
             } else if (isPC) {
                 const classes = Object.values(actor.classes)
