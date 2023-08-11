@@ -434,7 +434,7 @@ function setAlignment() {
 
 function setPortraitImageBorder() {
     let portraitImageBorder = game.settings.get(MODULE_ID, "portraitImageBorder");
-    if (!portraitImageBorder.startsWith("/") && !portraitImageBorder.includes("http")) portraitImageBorder = `/${portraitImageBorder}`;
+    if (portraitImageBorder && !portraitImageBorder.startsWith("/") && !portraitImageBorder.includes("http")) portraitImageBorder = `/${portraitImageBorder}`;
     document.documentElement.style.setProperty("--combatant-portrait-image-border", `url('${portraitImageBorder}')`);
 }
 
