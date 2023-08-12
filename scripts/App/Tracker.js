@@ -216,6 +216,9 @@ export class CombatDock extends Application {
         const separator = this.element[0].querySelector(".separator");
         const isTrueCarousel = this.trueCarousel;
         separator.style.display = isTrueCarousel ? "" : "none";
+        if (this.sortedCombatants.filter(c => c?.visible)?.length === 0) {
+            separator.style.display = "none";
+        }
         separator.classList.remove("vertical", "horizontal");
         separator.classList.add(this.isVertical ? "vertical" : "horizontal");
         if (!this.trueCarousel) return;
