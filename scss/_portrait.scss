@@ -142,7 +142,7 @@
 
         & .portrait-initiative {
             font-size: calc(var(--combatant-portrait-size) * 0.15);
-            position: relative;
+            position: absolute;
             margin-left: calc(var(--combatant-portrait-size) * 0.05);
             margin-top: calc(var(--combatant-portrait-size) * 0.05);
             color: var(--color-text-light-0);
