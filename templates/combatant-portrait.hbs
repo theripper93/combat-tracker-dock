@@ -1,5 +1,9 @@
 <div class="combatant-wrapper" style="background-image: url('{{img}}');{{#if defeated}}filter: grayscale(1);{{/if}}">
 
+    {{#if hasPortraitResource}}
+    <div class="portrait-bar" style="height: calc( 100% - {{portraitResource.percentage}}% );"></div>
+    {{/if}}
+
     <i style="{{#if hasRolled}}display: none;{{/if}}"  {{#if
         initiativeData.isRollIconImg}}style="background-image: url('{{initiativeData.rollIcon}}');"
         class="roll-initiative" {{else}}class="{{initiativeData.rollIcon}} roll-initiative" {{/if}}></i>

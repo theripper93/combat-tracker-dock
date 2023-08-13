@@ -1,6 +1,12 @@
 {
     "combat-tracker-dock": {
         "configureCarousel": "Configure Carousel",
+        "combatConfig": {
+            "portraitResource": {
+                "label": "Portrait Bar",
+                "hint": "Resource bar that will be shown as a overlay on top of the portrait image, set to 'None' to disable."
+            }
+        },
         "settings": {
             "systems": {
                 "crucible": {
@@ -91,11 +97,15 @@
             },
             "attributeColor": {
                 "name": "Attribute Color",
-                "hint": "The color of the main tracked attribute text and bar in the carousel. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #41AA7D."
+                "hint": "The color of the main tracked attribute text and bar in the carousel. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc)."
             },
             "attributeColor2": {
                 "name": "Secondary Attribute Color",
-                "hint": "The color of the secondary tracked attribute text and bar in the carousel. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #41AA7D."
+                "hint": "The color of the secondary tracked attribute text and bar in the carousel. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc)."
+            },
+            "attributeColorPortrait": {
+                "name": "Portrait Attribute Color",
+                "hint": "The color of the tracked attribute portrait overlay bar. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc)."
             },
             "barsPlacement": {
                 "name": "Bars Placement",
@@ -121,7 +131,12 @@
             },
             "displayDescriptions": {
                 "name": "Show Descriptions",
-                "hint": "Show active effects descriptions in the tooltip."
+                "hint": "Show active effects descriptions in the tooltip.",
+                "choices": {
+                    "none": "None",
+                    "owner": "Owner/Observer",
+                    "all": "Everyone"
+                }
             },
             "tooltipColor": {
                 "name": "Tooltip Color",

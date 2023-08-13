@@ -178,11 +178,20 @@
             },
             "displayDescriptions": {
                 "hint": "Mostra le descrizioni degli effetti attivi nel tooltip.",
-                "name": "Mostra descrizioni"
+                "name": "Mostra descrizioni",
+                "choices": {
+                    "all": "Tutti",
+                    "none": "Nessuno",
+                    "owner": "Proprietario/Osservatore"
+                }
             },
             "playerPlayerPermission": {
                 "hint": "Consenti a tutti i giocatori di vedere gli attributi tracciati, le informazioni sui suggerimenti e le icone di sistema degli altri giocatori.",
                 "name": "Mostra sempre informazioni sul giocatore"
+            },
+            "attributeColorPortrait": {
+                "hint": "Il colore della barra di sovrapposizione verticale dell'attributo monitorato. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
+                "name": "Colore attributo ritratto"
             }
         },
         "configureCarousel": "Configura carosello",
@@ -192,6 +201,12 @@
             },
             "combatPrev": {
                 "name": "Turno precedente"
+            }
+        },
+        "combatConfig": {
+            "portraitResource": {
+                "hint": "Barra delle risorse che verrà mostrata come sovrapposizione sopra l'immagine verticale, imposta su \"Nessuno\" per disabilitare.",
+                "label": "Barra dei ritratti"
             }
         }
     }

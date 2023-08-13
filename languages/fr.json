@@ -178,11 +178,20 @@
             },
             "displayDescriptions": {
                 "hint": "Afficher les descriptions des effets actifs dans l'info-bulle.",
-                "name": "Afficher les descriptions"
+                "name": "Afficher les descriptions",
+                "choices": {
+                    "all": "Tout le monde",
+                    "none": "Aucun",
+                    "owner": "Propriétaire/Observateur"
+                }
             },
             "playerPlayerPermission": {
                 "hint": "Autoriser tous les joueurs à voir les attributs suivis, les info-bulles et les icônes système des autres joueurs.",
                 "name": "Toujours afficher les informations sur le joueur"
+            },
+            "attributeColorPortrait": {
+                "hint": "La couleur de la barre de superposition de portrait d'attribut suivi. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
+                "name": "Couleur d'attribut de portrait"
             }
         },
         "configureCarousel": "Configurer le carrousel",
@@ -192,6 +201,12 @@
             },
             "combatPrev": {
                 "name": "Tour précédent"
+            }
+        },
+        "combatConfig": {
+            "portraitResource": {
+                "hint": "Barre de ressources qui sera affichée en superposition au-dessus de l'image de portrait, définie sur \"Aucune\" pour la désactiver.",
+                "label": "Barre de portraits"
             }
         }
     }

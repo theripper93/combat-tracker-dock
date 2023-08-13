@@ -27,9 +27,7 @@
         <li><img src="{{effect.icon}}" alt=""><span>{{{localize effect.label}}}</span>{{#if hasDuration}}{{#if ../hasPermission}}<span class="tooltip-duration"><i class="fa-duotone fa-stopwatch"></i> {{duration}}</span>{{/if}}{{/if}}</li>
         {{#if effect.description}}
         {{#if ../displayDescriptions}}
-            {{#if ../hasPermission}}
-                <div class="effect-description">{{{effect.description}}}</div>
-            {{/if}}
+            <div class="effect-description">{{{effect.description}}}</div>
         {{/if}}
         {{/if}}
         {{/each}}

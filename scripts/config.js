@@ -6,6 +6,7 @@ export function registerSettings() {
     Hooks.on("renderSettingsConfig", (app, html, data) => {
         colorPicker("attributeColor", html);
         colorPicker("attributeColor2", html);
+        colorPicker("attributeColorPortrait", html);
         colorPicker("tooltipColor", html);
     });
 
@@ -184,6 +185,19 @@ export function registerSettings() {
             ui.combatDock?.refresh();
         },
     });
+    //
+    game.settings.register(MODULE_ID, "attributeColorPortrait", {
+        name: "combat-tracker-dock.settings.attributeColorPortrait.name",
+        hint: "combat-tracker-dock.settings.attributeColorPortrait.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        default: "#e62121",
+        onChange: () => {
+            setAttributeColor();
+            ui.combatDock?.refresh();
+        },
+    });
 
     game.settings.register(MODULE_ID, "barsPlacement", {
         name: "combat-tracker-dock.settings.barsPlacement.name",
@@ -228,13 +242,27 @@ export function registerSettings() {
         },
     });
 
-    game.settings.register(MODULE_ID, "displayDescriptions", {
+    /*game.settings.register(MODULE_ID, "displayDescriptions", {
         name: "combat-tracker-dock.settings.displayDescriptions.name",
         hint: "combat-tracker-dock.settings.displayDescriptions.hint",
         scope: "world",
         config: true,
         type: Boolean,
         default: true,
+        onChange: () => ui.combatDock?.refresh(),
+    });*/
+    game.settings.register(MODULE_ID, "displayDescriptions", {
+        name: "combat-tracker-dock.settings.displayDescriptions.name",
+        hint: "combat-tracker-dock.settings.displayDescriptions.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            "none": "combat-tracker-dock.settings.displayDescriptions.choices.none",
+            "owner": "combat-tracker-dock.settings.displayDescriptions.choices.owner",
+            "all": "combat-tracker-dock.settings.displayDescriptions.choices.all",
+        },
+        default: "owner",
         onChange: () => ui.combatDock?.refresh(),
     });
 
@@ -362,6 +390,14 @@ export function registerSettings() {
         default: "",
         onChange: () => ui.combatDock?.refresh(),
     });
+
+    game.settings.register(MODULE_ID, "portraitResource", {
+        scope: "world",
+        config: false,
+        type: String,
+        default: "",
+        onChange: () => ui.combatDock?.refresh(),
+    });
 }
 
 export function registerWrappers() {
@@ -465,6 +501,10 @@ function setAttributeColor() {
     const darkened2 = color2.mix(Color.from("#000"), 0.5);
 
     document.documentElement.style.setProperty("--attribute-bar-secondary-color2", darkened2.toString());
+
+    const attributeColorPortrait = game.settings.get(MODULE_ID, "attributeColorPortrait") || "#e62121";
+    document.documentElement.style.setProperty("--attribute-bar-portrait-color", attributeColorPortrait);
+
 }
 
 function setTooltipColor() {

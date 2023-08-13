@@ -235,9 +235,18 @@ export class CombatantPortrait {
 
         const attributesVisibility = game.settings.get(MODULE_ID, "attributeVisibility");
 
+        const displayDescriptionsSetting = game.settings.get(MODULE_ID, "displayDescriptions");
+
+        let displayDescriptions = false;
+
+        if (displayDescriptionsSetting === "all") displayDescriptions = true;
+        else if (displayDescriptionsSetting === "owner") displayDescriptions = hasPermission;
+
         // Prepare turn data
         const resource = hasPermission ? this.getResource() : null;
         const resource2 = hasPermission ? this.getResource(game.settings.get(MODULE_ID, "resource")) : null;
+        const portraitResourceSetting = game.settings.get(MODULE_ID, "portraitResource");
+        const portraitResource = hasPermission && portraitResourceSetting ? this.getResource(portraitResourceSetting) : null;
         const initiativeData = this.getInitiativeDisplay();
         initiativeData.isIconImg = initiativeData.icon.includes(".");
         initiativeData.isRollIconImg = initiativeData.rollIcon.includes(".");
@@ -255,6 +264,7 @@ export class CombatantPortrait {
             hasRolled: combatant.initiative !== null && combatant.initiative !== undefined,
             hasResource: resource !== null,
             hasResource2: resource2 !== null,
+            hasPortraitResource: portraitResource !== null,
             hasPlayerOwner: combatant.actor?.hasPlayerOwner,
             hasPermission: hasPermission,
             showInitiative: game.settings.get(MODULE_ID, "showInitiativeOnPortrait"),
@@ -262,6 +272,7 @@ export class CombatantPortrait {
             initiativeData: initiativeData,
             resource: resource,
             resource2: resource2,
+            portraitResource: portraitResource,
             showBars: attributesVisibility == "bars" || attributesVisibility == "both",
             showText: attributesVisibility == "text" || attributesVisibility == "both",
             canPing: combatant.sceneId === canvas.scene?.id && game.user.hasPermission("PING_CANVAS"),
@@ -271,7 +282,7 @@ export class CombatantPortrait {
             tooltipSystemIcons: systemIcons.tooltip,
             systemIconsSizeMulti: clamp(0.03, 1/(systemIconCount * 2) ,0.1),
             barsOrder: this.getBarsOrder(),
-            displayDescriptions: game.settings.get(MODULE_ID, "displayDescriptions"),
+            displayDescriptions: displayDescriptions,
         };
         if (turn.initiative !== null && !Number.isInteger(turn.initiative)) hasDecimals = true;
         if (turn.initiativeData.value !== null && !Number.isInteger(turn.initiativeData.value)) hasDecimals = true;

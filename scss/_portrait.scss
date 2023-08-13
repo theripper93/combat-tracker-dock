@@ -130,6 +130,16 @@
         border-bottom-right-radius: var(--combatant-portrait-border-radius);
         border-bottom-left-radius: var(--combatant-portrait-border-radius);
 
+        & .portrait-bar{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            bottom: 0;
+            background-color: var(--attribute-bar-portrait-color);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
         & .portrait-initiative {
             font-size: calc(var(--combatant-portrait-size) * 0.15);
             position: relative;

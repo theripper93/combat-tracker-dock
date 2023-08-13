@@ -178,11 +178,20 @@
             },
             "displayDescriptions": {
                 "hint": "Beschreibungen aktiver Effekte im Tooltip anzeigen.",
-                "name": "Beschreibungen anzeigen"
+                "name": "Beschreibungen anzeigen",
+                "choices": {
+                    "all": "Alle",
+                    "none": "Keiner",
+                    "owner": "Besitzer/Beobachter"
+                }
             },
             "playerPlayerPermission": {
                 "hint": "Erlauben Sie allen Spielern, die verfolgten Attribute, Tooltip-Informationen und Systemsymbole anderer Spieler zu sehen.",
                 "name": "Spielerinformationen immer anzeigen"
+            },
+            "attributeColorPortrait": {
+                "hint": "Die Farbe der Überlagerungsleiste für das Porträt des verfolgten Attributs. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
+                "name": "Porträtattributfarbe"
             }
         },
         "configureCarousel": "Karussell konfigurieren",
@@ -192,6 +201,12 @@
             },
             "combatPrev": {
                 "name": "Vorheriger Zug"
+            }
+        },
+        "combatConfig": {
+            "portraitResource": {
+                "hint": "Ressourcenleiste, die als Overlay über dem Porträtbild angezeigt wird. Zum Deaktivieren auf „Keine“ setzen.",
+                "label": "Porträtleiste"
             }
         }
     }
