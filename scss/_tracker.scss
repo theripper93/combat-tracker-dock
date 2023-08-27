@@ -8,7 +8,7 @@
     max-height: 100vh;
     overflow-x: visible;
     overflow-y: visible;
-
+    /*will-change: transform;*/
 
     &.hidden{
         display: none !important;
