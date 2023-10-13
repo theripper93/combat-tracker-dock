@@ -192,6 +192,10 @@
             "attributeColorPortrait": {
                 "hint": "A cor da barra de sobreposição de retrato do atributo rastreado. \nVocê pode usar qualquer valor de cor CSS válido (por exemplo.",
                 "name": "Cor do atributo retrato"
+            },
+            "hideDefeated": {
+                "hint": "Esconda os combatentes derrotados do carrossel. \nEles ainda estarão visíveis no rastreador de combate normal caso você precise interagir com eles.",
+                "name": "Esconder-se derrotado"
             }
         },
         "configureCarousel": "Configurar carrossel",

@@ -192,6 +192,10 @@
             "attributeColorPortrait": {
                 "hint": "El color de la barra de superposición de retrato de atributos rastreados. \nPuede usar cualquier valor de color CSS válido (p.",
                 "name": "Color de atributo de retrato"
+            },
+            "hideDefeated": {
+                "hint": "Oculta a los combatientes derrotados del carrusel. \nSeguirán siendo visibles en el rastreador de combate normal en caso de que necesites interactuar con ellos.",
+                "name": "Ocultar derrotado"
             }
         },
         "configureCarousel": "Configurar carrusel",

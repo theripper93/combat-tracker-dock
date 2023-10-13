@@ -192,6 +192,10 @@
             "attributeColorPortrait": {
                 "hint": "Die Farbe der Überlagerungsleiste für das Porträt des verfolgten Attributs. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
                 "name": "Porträtattributfarbe"
+            },
+            "hideDefeated": {
+                "hint": "Verstecke besiegte Kämpfer vor dem Karussell. \nSie werden weiterhin im regulären Kampf-Tracker sichtbar sein, falls Sie mit ihnen interagieren müssen.",
+                "name": "Besiegt ausblenden"
             }
         },
         "configureCarousel": "Karussell konfigurieren",

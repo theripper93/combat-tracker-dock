@@ -192,6 +192,10 @@
             "attributeColorPortrait": {
                 "hint": "Il colore della barra di sovrapposizione verticale dell'attributo monitorato. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
                 "name": "Colore attributo ritratto"
+            },
+            "hideDefeated": {
+                "hint": "Nascondi i combattenti sconfitti dalla giostra. \nSaranno comunque visibili nel normale tracker di combattimento nel caso in cui tu abbia bisogno di interagire con loro.",
+                "name": "Nascondi sconfitto"
             }
         },
         "configureCarousel": "Configura carosello",

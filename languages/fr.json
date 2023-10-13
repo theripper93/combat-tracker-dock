@@ -192,6 +192,10 @@
             "attributeColorPortrait": {
                 "hint": "La couleur de la barre de superposition de portrait d'attribut suivi. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
                 "name": "Couleur d'attribut de portrait"
+            },
+            "hideDefeated": {
+                "hint": "Cachez les combattants vaincus du carrousel. \nIls seront toujours visibles dans le suivi de combat habituel au cas où vous auriez besoin d'interagir avec eux.",
+                "name": "Masquer Vaincu"
             }
         },
         "configureCarousel": "Configurer le carrousel",

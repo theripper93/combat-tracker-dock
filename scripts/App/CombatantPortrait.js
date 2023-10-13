@@ -215,6 +215,8 @@ export class CombatantPortrait {
         // Format information about each combatant in the encounter
         let hasDecimals = false;
         const combatant = this.combatant;
+        const hideDefeated = game.settings.get(MODULE_ID, "hideDefeated");
+        if (hideDefeated && combatant.isDefeated) return null;
         const isActive = this.combat.turns.indexOf(combatant) === this.combat.turn;
         if (isActive && this.combat.started) this._hasTakenTurn = true;
         const hasPermission = this.hasPermission;
