@@ -266,6 +266,16 @@ export function registerSettings() {
         onChange: () => ui.combatDock?.refresh(),
     });
 
+    game.settings.register(MODULE_ID, "hideDefeated", {
+        name: "combat-tracker-dock.settings.hideDefeated.name",
+        hint: "combat-tracker-dock.settings.hideDefeated.hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+        onChange: () => ui.combatDock?.refresh(),
+    });    
+
     game.settings.register(MODULE_ID, "showDispositionColor", {
         name: "combat-tracker-dock.settings.showDispositionColor.name",
         hint: "combat-tracker-dock.settings.showDispositionColor.hint",

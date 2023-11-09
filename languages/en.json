@@ -87,6 +87,10 @@
                 "name": "Show Disposition Color",
                 "hint": "Show the disposition in the bottom border of the portrait."
             },
+            "hideDefeated": {
+                "name": "Hide Defeated",
+                "hint": "Hide defeated combatants from the carousel. They will still be visible in the regular combat tracker in the event that you need to interact with them."
+            },
             "showInitiativeOnPortrait": {
                 "name": "Show Initiative on Portrait",
                 "hint": "Show the initiative value in the top left corner of the portrait. You can always see the initiative in the Tooltip!"
