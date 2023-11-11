@@ -135,6 +135,9 @@ export class CombatDock extends Application {
     }
 
     playIntroAnimation(easing = "cubic-bezier(0.22, 1, 0.36, 1)") {
+
+        Hooks.callAll("combatDock:playIntroAnimation", this);
+
         const duration = CONFIG.combatTrackerDock.INTRO_ANIMATION_DURATION;
         const delayMultiplier = CONFIG.combatTrackerDock.INTRO_ANIMATION_DELAY;
 
@@ -155,6 +158,7 @@ export class CombatDock extends Application {
 
             anim.finished.then(() => {
                 el.style.transform = "";
+                Hooks.callAll("combatDock:playIntroAnimation:finished", this, el);
             });
         };
         let totalAnimationTime = 0;
