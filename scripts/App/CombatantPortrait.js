@@ -95,12 +95,12 @@ export class CombatantPortrait {
 
     _onHoverIn(event) {
         if (!this.token) return;
-        this.token._onHoverIn(event);
+        if ( this.token?.isVisible && !this.token.controlled ) this.token._onHoverIn(event);
     }
 
     _onHoverOut(event) {
         if (!this.token) return;
-        this.token._onHoverOut(event);
+        if (this.token.hover) this.token._onHoverOut(event);
     }
 
     async renderInner() {
