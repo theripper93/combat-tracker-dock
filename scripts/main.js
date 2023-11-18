@@ -1,7 +1,7 @@
 import {registerSettings, registerWrappers, registerHotkeys} from './config.js';
 import {CombatDock} from './App/Tracker.js';
 import {CombatantPortrait} from './App/CombatantPortrait.js';
-import {defaultAttributesConfig} from './systems.js';
+import {defaultAttributesConfig, generateDescription} from './systems.js';
 
 export const MODULE_ID = 'combat-tracker-dock';
 
@@ -12,6 +12,7 @@ Hooks.once('init', function () {
         CombatDock,
         CombatantPortrait,
         defaultAttributesConfig,
+        generateDescription,
         INTRO_ANIMATION_DURATION: 1000,
         INTRO_ANIMATION_DELAY: 0.25,
     }
