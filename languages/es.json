@@ -76,11 +76,11 @@
             },
             "roundness": {
                 "name": "Esquinas",
-                "hint": "La forma de las esquinas de los retratos y las burbujas",
+                "hint": "La forma de las esquinas de los retratos y los globos de información",
                 "choices": {
-                    "sharp": "Afilado",
-                    "soft": "Suave",
-                    "round": "Redondeado"
+                    "sharp": "Afilada",
+                    "soft": "Suavizada",
+                    "round": "Redondeada"
                 }
             },
             "showDispositionColor": {
@@ -93,7 +93,7 @@
             },
             "showInitiativeOnPortrait": {
                 "name": "Mostrar iniciativa en el retrato",
-                "hint": "Muestra el valor de la iniciativa en la esquina superior izquierda del retrato. Siempre podrá ver la iniciativa en la burbuja de información"
+                "hint": "Muestra el valor de la iniciativa en la esquina superior izquierda del retrato. Siempre podrá ver la iniciativa en el globo de información"
             },
             "portraitImageBorder": {
                 "name": "Borde de los jugadores",
@@ -131,11 +131,11 @@
             },
             "playerPlayerPermission": {
                 "name": "Mostrar siempre la información del jugador",
-                "hint": "Permite que todos los jugadores vean los atributos, la información de las burbujas y los iconos del sistema del resto de jugadores"
+                "hint": "Permite que todos los jugadores vean los atributos, la información del globo de información y los iconos del sistema del resto de jugadores"
             },
             "displayDescriptions": {
                 "name": "Mostrar descripciones",
-                "hint": "Muestra las descripciones de los efectos activos en la burbuja de información",
+                "hint": "Muestra las descripciones de los efectos activos en el globo de información",
                 "choices": {
                     "none": "Ninguno",
                     "owner": "Propietario/observador",
@@ -143,8 +143,8 @@
                 }
             },
             "tooltipColor": {
-                "name": "Color de información de la burbuja",
-                "hint": "El esquema de color de la burbuja. Puede usar cualquier valor de color CSS válido (p.e. #ff0000, red, rgba(255,0,0,0.5), etc.)"
+                "name": "Color de información del globo",
+                "hint": "El esquema de color de el globo de información. Puede usar cualquier valor de color CSS válido (p.e. #ff0000, red, rgba(255,0,0,0.5), etc.)"
             },
             "portraitImage": {
                 "name": "Imagen de retrato",
@@ -160,17 +160,17 @@
             },
             "showSystemIcons": {
                 "name": "Mostrar iconos del sistema",
-                "hint": "Muestre los íconos del sistema debajo de los recursos, burbujas o ambos. Tenga en cuenta que esto requiere una implementación específica del sistema y solo funcionará en algunos sistemas",
+                "hint": "Muestre los íconos del sistema debajo de los recursos, globos o ambos. Tenga en cuenta que esto requiere una implementación específica del sistema y solo funcionará en algunos sistemas",
                 "choices": {
                     "none": "Ninguno",
-                    "tooltip": "Burbuja",
+                    "tooltip": "Globo de información",
                     "resource": "Retrato",
                     "both": "Ambos"
                 }
             },
             "displayName": {
                 "name": "Nombre a mostrar",
-                "hint": "Mostrar o no el nombre del contendiente en la burbuja. 'Basado en el icono' mostrará el nombre solo si el jugador puede ver el nombre del icono",
+                "hint": "Mostrar o no el nombre del contendiente en el globo de información. 'Basado en el icono' mostrará el nombre solo si el jugador puede ver el nombre del icono",
                 "choices": {
                     "default": "Siempre",
                     "token": "Basado en el icono",
@@ -182,9 +182,9 @@
                 "hint": "Oculta a los enemigos hasta que hayan tomado su primer turno en combate. Requiere que LibWrapper también los oculte en el asistente de combate"
             },
             "attributesMenu": {
-                "name": "Atributos en la burbuja",
+                "name": "Atributos en el globo de información",
                 "label": "Configurar atributos",
-                "hint": "Configure atributos personalizados a mostrar en la burbuja",
+                "hint": "Configure atributos personalizados a mostrar en el globo de información",
                 "reset": "Restablecer valores predeterminados",
                 "resetWarning": "¿Está seguro de que desea restablecer los atributos a sus valores predeterminados?",
                 "form": {
