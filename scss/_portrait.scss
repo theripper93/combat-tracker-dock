@@ -1,5 +1,6 @@
 #combat-dock {
     & .combatant-portrait {
+        pointer-events: all;
         width: var(--combatant-portrait-size);
         height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect));
         margin: 0 calc(var(--combatant-portrait-size) * 0.1);

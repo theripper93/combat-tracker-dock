@@ -19,7 +19,7 @@
     }
 
     & #combatants{
-        pointer-events: all;
+        pointer-events: none;
         display: flex;
         flex-direction: var(--carousel-direction);
         align-items: var(--carousel-align-items);
@@ -72,7 +72,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 0.5rem;
+        gap: 0.3rem;
         align-items: center;
 
         i {
@@ -84,11 +84,12 @@
             border-radius: 50%;
             background: var(--carousel-tooltip-bg-color);
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,.873), inset 0px 0px 10px 0px rgba(0,0,0,.873);
-            width: 2rem;
-            height: 2rem;
+            width: 1.5rem;
+            height: 1.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: small;
 
             &:hover{
                 filter: brightness(1.2);
