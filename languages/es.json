@@ -1,216 +1,216 @@
 {
     "combat-tracker-dock": {
+        "configureCarousel": "Configurar carrusel",
+        "combatConfig": {
+            "portraitResource": {
+                "label": "Barra retrato",
+                "hint": "Barra de recursos que se mostrará como superposición en la parte superior del retrato, configurar a 'Ninguno' para deshabilitar"
+            }
+        },
         "settings": {
-            "attributeColor": {
-                "hint": "El color del texto y la barra del atributo rastreado principal en el rastreador de combate. \nPuede usar cualquier valor de color CSS válido (p.",
-                "name": "Color de atributo"
+            "systems": {
+                "crucible": {
+                    "alwaysShowActions": {
+                        "name": "Mostrar puntos de acción de los enemigos",
+                        "hint": "Si 'Mostrar íconos del sistema' está habilitado, muestra los puntos de acción a los jugadores independientemente de los permisos. Esto permitirá a los jugadores ver cuántos puntos de acción totales y restantes tienen los aliados y enemigos"
+                    }
+                }
             },
-            "attributesMenu": {
-                "form": {
-                    "add": "Agregar atributo",
-                    "attr": {
-                        "name": "Atributo",
-                        "choose": "Elija atributo"
-                    },
-                    "icon": {
-                        "name": "Icono"
-                    },
-                    "notes": "Deje el campo Atributo en blanco para eliminarlo.",
-                    "save": "Ahorrar",
-                    "units": {
-                        "name": "Unidades"
-                    },
-                    "reset": "Restablecer predeterminados"
-                },
-                "hint": "Configure atributos personalizados para mostrar en la información sobre herramientas.",
-                "label": "Configurar atributos",
-                "name": "Atributos de información sobre herramientas",
-                "reset": "Restablecen a los predeterminados",
-                "resetWarning": "¿Está seguro de que desea restablecer los atributos a sus valores predeterminados?"
-            },
-            "portraitImage": {
-                "choices": {
-                    "actor": "Actor",
-                    "token": "Simbólico"
-                },
-                "hint": "Ya sea para usar la imagen del actor o de la ficha como retrato.",
-                "name": "Imagen de retrato"
-            },
-            "portraitImageBorder": {
-                "hint": "Borde especial que se mostrará para los personajes jugadores. \nDejar en blanco para deshabilitar. \nSi desea crear una imagen personalizada, se sugiere que use la predeterminada como referencia para el tamaño correcto.",
-                "name": "Borde del jugador"
-            },
+            "integration": "Integración",
             "portraitSize": {
+                "name": "Tamaño del carrusel",
+                "hint": "El tamaño máximo del retrato en el carrusel. Tenga en cuenta que el tamaño de los retratos se reducirá automáticamente si no caben todos los contendientes en la pantalla",
                 "choices": {
-                    "110px": "Enorme",
                     "30px": "Diminuto",
                     "50px": "Pequeño",
                     "70px": "Normal",
                     "90px": "Grande",
-                    "150px": "XX-Grande",
-                    "180px": "XXX-Grande"
-                },
-                "hint": "El tamaño máximo del retrato en el rastreador de combate. \nTenga en cuenta que el tamaño de los retratos se reducirá automáticamente si hay demasiados combatientes para caber en la pantalla.",
-                "name": "Tamaño vertical"
-            },
-            "showDispositionColor": {
-                "hint": "Muestre la disposición en el borde inferior del retrato.",
-                "name": "Mostrar color de disposición"
-            },
-            "showInitiativeOnPortrait": {
-                "hint": "Muestra el valor de la iniciativa en la esquina superior izquierda del retrato. \n¡Siempre puedes ver la iniciativa en la información sobre herramientas!",
-                "name": "Mostrar iniciativa en retrato"
-            },
-            "tooltipColor": {
-                "hint": "El esquema de color de la información sobre herramientas. \nPuede usar cualquier valor de color CSS válido (p.",
-                "name": "Color de información sobre herramientas"
-            },
-            "alignment": {
-                "choices": {
-                    "center": "Centro",
-                    "left": "Izquierda",
-                    "right": "Bien"
-                },
-                "hint": "La alineación del carrusel. \nTenga en cuenta que el carrusel está diseñado para estar centrado, debe usar esta configuración solo para compatibilidad con otros módulos.",
-                "name": "Alineación"
-            },
-            "portraitAspect": {
-                "choices": {
-                    "long": "Largo",
-                    "portrait": "Retrato",
-                    "square": "Cuadrado"
-                },
-                "hint": "La relación de aspecto del retrato. \nLa imagen se recortará si no coincide con la relación de aspecto del retrato.",
-                "name": "Relación de aspecto de retrato"
-            },
-            "roundness": {
-                "choices": {
-                    "round": "Redondo",
-                    "sharp": "Afilado",
-                    "soft": "Suave"
-                },
-                "hint": "La redondez de los retratos y la información sobre herramientas.",
-                "name": "Redondez"
+                    "110px": "Enorme",
+                    "150px": "Gigante",
+                    "180px": "Gargantuesco"
+                }
             },
             "carouselStyle": {
+                "name": "Estilo del carrusel",
+                "hint": "La forma en que se colocan los retratos y se mueven en el carrusel: Carrusel - Centrado: El contendiente activo está en el centro del carrusel, los otros contendientes giran a su alrededor.\n- Carrusel - Izquierda: El contendiente activo está a la izquierda del carrusel, los otros contendientes rotan a su alrededor.\n- Sin carrusel: los contendientes siempre se muestran en orden de iniciativa y el contendiente activo se mueve mientras los contendientes permanecen en la misma posición",
                 "choices": {
-                    "basic": "Sin carrusel",
                     "centerCarousel": "Carrusel - Centrado",
-                    "leftCarousel": "Carrusel - Izquierda"
-                },
-                "hint": "La forma en que se colocan los retratos y se mueven en el carrusel: Carrusel - Centrado: El Combatiente Activo está en el Centro del carrusel, los otros combatientes giran a su alrededor.\n\n- Carrusel - Izquierda: El Combatiente Activo está a la Izquierda del carrusel, los otros combatientes rotan a su alrededor.\n\n- Sin carrusel: los combatientes siempre se muestran en orden de iniciativa y el combatiente activo se mueve mientras los combatientes permanecen en la misma posición.",
-                "name": "Estilo carrusel"
+                    "leftCarousel": "Carrusel - Izquierda",
+                    "basic": "Sin carrusel"
+                }
             },
             "overflowStyle": {
+                "name": "Estilo de desbordamiento",
+                "hint": "La forma en que se comporta el carrusel cuando los contendientes no caben en la pantalla",
                 "choices": {
-                    "autofit": "Reducir retratos",
-                    "hidden": "Oculto",
-                    "scroll": "Desplazarse"
-                },
-                "hint": "La forma en que se comporta el carrusel cuando hay demasiados combatientes para caber en la pantalla.",
-                "name": "Estilo de desbordamiento"
+                    "hidden": "Ocultar",
+                    "scroll": "Desplazar",
+                    "autofit": "Reducir retratos"
+                }
             },
-            "attributeColor2": {
-                "hint": "El color del texto del atributo seguido secundario y la barra en el carrusel. \nPuede usar cualquier valor de color CSS válido (p.",
-                "name": "Color de atributo secundario"
-            },
-            "attributeVisibility": {
+            "portraitAspect": {
+                "name": "Relación de aspecto del retrato",
+                "hint": "La relación de aspecto del retrato. La imagen se recortará si no coincide con la relación de aspecto del retrato",
                 "choices": {
-                    "bars": "Solo barras",
-                    "both": "Texto",
-                    "text": "Solo texto"
-                },
-                "hint": "La visibilidad de los atributos rastreados en el carrusel.",
-                "name": "Visibilidad de atributos"
+                    "square": "Cuadrado",
+                    "portrait": "Retrato",
+                    "long": "Largo"
+                }
+            },
+            "alignment": {
+                "name": "Alineación",
+                "hint": "La alineación del carrusel",
+                "choices": {
+                    "left": "Izquierda",
+                    "center": "Centro",
+                    "right": "Derecha"
+                }
             },
             "direction": {
+                "name": "Dirección",
+                "hint": "La dirección del carrusel",
                 "choices": {
-                    "column": "Vertical",
-                    "row": "Horizontal"
-                },
-                "hint": "La dirección del carrusel.",
-                "name": "Dirección"
+                    "row": "Horizontal",
+                    "column": "Vertical"
+                }
             },
-            "displayName": {
+            "roundness": {
+                "name": "Esquinas",
+                "hint": "La forma de las esquinas de los retratos y los globos de información",
                 "choices": {
-                    "default": "Siempre",
-                    "owner": "Basado en la propiedad",
-                    "token": "Basado en token"
-                },
-                "hint": "Mostrar o no el nombre del combatiente en la información sobre herramientas. \n'Basado en token' mostrará el nombre solo si el jugador puede ver el nombre del token.",
-                "name": "Nombre para mostrar"
+                    "sharp": "Afilada",
+                    "soft": "Suavizada",
+                    "round": "Redondeada"
+                }
             },
-            "portraitImageBackground": {
-                "hint": "La imagen de fondo detrás del retrato que será visible si el retrato es transparente o no llena el espacio.",
-                "name": "Fondo de retrato"
+            "showDispositionColor": {
+                "name": "Mostrar color según disposición",
+                "hint": "Muestre la disposición de los contendientes en el borde inferior del retrato"
             },
-            "showSystemIcons": {
-                "choices": {
-                    "both": "Ambos",
-                    "none": "Ninguno",
-                    "resource": "Retrato",
-                    "tooltip": "Información sobre herramientas"
-                },
-                "hint": "Muestre los íconos del sistema debajo del recurso rastreado, información sobre herramientas o ambos. \nTenga en cuenta que esto requiere una implementación específica del sistema y solo funcionará en sistemas seleccionados.",
-                "name": "Mostrar iconos del sistema"
+            "hideDefeated": {
+                "name": "Ocultar contendientes derrotados",
+                "hint": "Oculta a los contendientes derrotados del carrusel. Seguirán siendo visibles en el asistente de combate en caso de que necesite interactuar con ellos"
             },
-            "hideFirstRound": {
-                "hint": "Oculta a los enemigos hasta que hayan tomado su primer turno en combate. \n(Requiere que LibWrapper también los oculte en el rastreador de combate principal).",
-                "name": "Ocultar hasta el primer turno"
+            "showInitiativeOnPortrait": {
+                "name": "Mostrar iniciativa en el retrato",
+                "hint": "Muestra el valor de la iniciativa en la esquina superior izquierda del retrato. Siempre podrá ver la iniciativa en el globo de información"
+            },
+            "portraitImageBorder": {
+                "name": "Borde de los jugadores",
+                "hint": "Borde especial que se mostrará para los personajes jugadores. Dejar en blanco para deshabilitar. Si desea crear una imagen propia, le sugiero que use la imagen predeterminada como plantilla para que el tamaño sea el correcto"
+            },
+						"attributeColor": {
+                "name": "Color de atributo",
+                "hint": "El color del texto y la barra del atributo principal en el carrusel. Puede usar cualquier valor de color CSS válido (p.e. #ff0000, red, rgba(255,0,0,0.5), etc.)"
+            },
+            "attributeColor2": {
+                "name": "Color de atributo secundario",
+                "hint": "El color del texto y la barra del atributo secundario en el carrusel. Puede usar cualquier valor de color CSS válido (p.e. #ff0000, red, rgba(255,0,0,0.5), etc.)"
+            },
+            "attributeColorPortrait": {
+                "name": "Color de atributo del retrato",
+                "hint": "El color de la barra de superposición de atributos del retrato. Puede usar cualquier valor de color CSS válido (p.e. #ff0000, red, rgba(255,0,0,0.5), etc.)"
             },
             "barsPlacement": {
+                "name": "Colocación de las barras",
+                "hint": "La ubicación de las barras de atributos en el carrusel",
                 "choices": {
                     "left": "Izquierda",
                     "right": "Bien",
-                    "twinned": "hermanados"
-                },
-                "hint": "La ubicación de las barras de atributos rastreadas en el carrusel.",
-                "name": "Colocación de barras"
-            },
-            "integration": "Integración",
-            "systems": {
-                "crucible": {
-                    "alwaysShowActions": {
-                        "hint": "Si 'Mostrar íconos del sistema' está habilitado, muestre puntos de acción a los jugadores independientemente de los permisos. \nEsto permitirá a los jugadores ver cuántos puntos de acción totales y restantes tienen los aliados y enemigos.",
-                        "name": "Mostrar acciones enemigas"
-                    }
+                    "twinned": "Combinado"
                 }
             },
-            "displayDescriptions": {
-                "hint": "Muestra las descripciones de los efectos activos en la información sobre herramientas.",
-                "name": "Mostrar descripciones",
+            "attributeVisibility": {
+                "name": "Visibilidad de los atributos",
+                "hint": "La visibilidad de los atributos en el carrusel",
                 "choices": {
-                    "all": "Todos",
-                    "none": "Ninguno",
-                    "owner": "Propietario/Observador"
+                    "text": "Solo texto",
+                    "bars": "Solo barras",
+                    "both": "Texto y barras"
                 }
             },
             "playerPlayerPermission": {
-                "hint": "Permita que todos los jugadores vean los atributos rastreados, la información sobre herramientas y los iconos del sistema de otros jugadores.",
-                "name": "Mostrar siempre la información del jugador"
+                "name": "Mostrar siempre la información del jugador",
+                "hint": "Permite que todos los jugadores vean los atributos, la información del globo de información y los iconos del sistema del resto de jugadores"
             },
-            "attributeColorPortrait": {
-                "hint": "El color de la barra de superposición de retrato de atributos rastreados. \nPuede usar cualquier valor de color CSS válido (p.",
-                "name": "Color de atributo de retrato"
+            "displayDescriptions": {
+                "name": "Mostrar descripciones",
+                "hint": "Muestra las descripciones de los efectos activos en el globo de información",
+                "choices": {
+                    "none": "Ninguno",
+                    "owner": "Propietario/observador",
+                    "all": "Todos"
+                }
             },
-            "hideDefeated": {
-                "hint": "Oculta a los combatientes derrotados del carrusel. \nSeguirán siendo visibles en el rastreador de combate normal en caso de que necesites interactuar con ellos.",
-                "name": "Ocultar derrotado"
+            "tooltipColor": {
+                "name": "Color de información del globo",
+                "hint": "El esquema de color de el globo de información. Puede usar cualquier valor de color CSS válido (p.e. #ff0000, red, rgba(255,0,0,0.5), etc.)"
+            },
+            "portraitImage": {
+                "name": "Imagen de retrato",
+                "hint": "Para usar como retrato la imagen del actor o del icono",
+                "choices": {
+                    "actor": "Actor",
+                    "token": "Icono"
+                }
+            },
+            "portraitImageBackground": {
+                "name": "Fondo de retrato",
+                "hint": "La imagen de fondo detrás del retrato que será visible si el retrato es transparente o no llena todo el espacio"
+            },
+            "showSystemIcons": {
+                "name": "Mostrar iconos del sistema",
+                "hint": "Muestre los íconos del sistema debajo de los recursos, globos o ambos. Tenga en cuenta que esto requiere una implementación específica del sistema y solo funcionará en algunos sistemas",
+                "choices": {
+                    "none": "Ninguno",
+                    "tooltip": "Globo de información",
+                    "resource": "Retrato",
+                    "both": "Ambos"
+                }
+            },
+            "displayName": {
+                "name": "Nombre a mostrar",
+                "hint": "Mostrar o no el nombre del contendiente en el globo de información. 'Basado en el icono' mostrará el nombre solo si el jugador puede ver el nombre del icono",
+                "choices": {
+                    "default": "Siempre",
+                    "token": "Basado en el icono",
+                    "owner": "Basado en la propiedad"
+                }
+            },
+            "hideFirstRound": {
+                "name": "Ocultar hasta el primer turno",
+                "hint": "Oculta a los enemigos hasta que hayan tomado su primer turno en combate. Requiere que LibWrapper también los oculte en el asistente de combate"
+            },
+            "attributesMenu": {
+                "name": "Atributos en el globo de información",
+                "label": "Configurar atributos",
+                "hint": "Configure atributos personalizados a mostrar en el globo de información",
+                "reset": "Restablecer valores predeterminados",
+                "resetWarning": "¿Está seguro de que desea restablecer los atributos a sus valores predeterminados?",
+                "form": {
+                    "attr": {
+                        "name": "Atributo",
+                        "choose": "Escoja el atributo"
+                    },
+                    "icon": {
+                        "name": "Icono"
+                    },
+                    "units": {
+                        "name": "Unidades"
+                    },
+                    "save": "Guardar y cerrar",
+                    "add": "Añadir atributo",
+                    "reset": "Restablecer predeterminados",
+                    "notes": "Deje el campo atributo en blanco para eliminarlo"
+                }
             }
         },
-        "configureCarousel": "Configurar carrusel",
         "hotkeys": {
-            "combatNext": {
-                "name": "Siguiente turno"
-            },
             "combatPrev": {
                 "name": "Turno anterior"
-            }
-        },
-        "combatConfig": {
-            "portraitResource": {
-                "hint": "Barra de recursos que se mostrará como una superposición en la parte superior de la imagen del retrato, configurada en 'Ninguno' para deshabilitarla.",
-                "label": "Barra vertical"
+            },
+            "combatNext": {
+                "name": "Turno siguiente"
             }
         }
     }
