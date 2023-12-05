@@ -35,8 +35,7 @@ export class CombatDock extends Application {
     }
 
     get sortedCombatants() {
-        this.combat.setupTurns();
-        return Array.from(this.combat.turns);
+        return Array.from(this.combat.combatants.contents.sort(this.combat._sortCombatants));
     }
 
     get trueCarousel() {
