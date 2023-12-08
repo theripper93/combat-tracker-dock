@@ -18,6 +18,13 @@ export function registerSettings() {
         onChange: () => ui.combatDock?.refresh(),
     });
 
+    game.settings.register(MODULE_ID, "events", {
+        scope: "world",
+        config: false,
+        type: Array,
+        default: [],
+    });
+
     game.settings.registerMenu(MODULE_ID, "attributesMenu", {
         name: game.i18n.localize(`${MODULE_ID}.settings.attributesMenu.name`),
         label: game.i18n.localize(`${MODULE_ID}.settings.attributesMenu.label`),

@@ -1,4 +1,5 @@
-import { MODULE_ID } from "../main.js";
+import {MODULE_ID} from "../main.js";
+import { AddEvent } from "./AddEvent.js";
 
 export class CombatDock extends Application {
     constructor(combat) {
@@ -251,6 +252,13 @@ export class CombatDock extends Application {
         separator.style.setProperty("order", parseInt(lastCombatantOrder) + 1);
     }
 
+    updateStartEndButtons() {
+        const startButton = this.element[0].querySelector(`[data-action="start-combat"]`);
+        const endButton = this.element[0].querySelector(`[data-action="end-combat"]`);
+        startButton.style.display = this.combat.started ? "none" : "";
+        endButton.style.display = this.combat.started ? "" : "none";
+    }
+
     activateListeners(html) {
         if (this._closed) return this.close();
         super.activateListeners(html);
@@ -290,6 +298,9 @@ export class CombatDock extends Application {
                     case "start-combat":
                         this.combat.startCombat();
                         break;
+                    case "add-event":
+                        new AddEvent(this.combat).render(true);
+                        break;
                 }
             });
         });
@@ -299,10 +310,12 @@ export class CombatDock extends Application {
 
     _onRenderCombatTracker() {
         this.portraits.forEach((p) => p.renderInner());
+        this.updateStartEndButtons();
     }
 
     _onCombatTurn(combat, updates, update) {
         if (!("turn" in updates) && !("round" in updates)) return;
+        if("round" in updates) this._onRoundChange();
         const combatantsContainer = this.element[0].querySelector("#combatants");
         const filteredChildren = Array.from(combatantsContainer.children).filter((c) => !c.classList.contains("separator"));
         const currentSize = combatantsContainer.getBoundingClientRect();
@@ -361,6 +374,30 @@ export class CombatDock extends Application {
                 }, 200);
                 this.centerCurrentCombatant();
             }, 200);
+        }
+    }
+
+    async _onRoundChange() {
+        const toDelete = [];
+        for(const combatant of this.combat.combatants) {
+            const duration = combatant.getFlag(MODULE_ID, "duration");
+            if(!duration) continue;
+            const roundCreated = combatant.getFlag(MODULE_ID, "roundCreated");
+            if(!roundCreated) continue;
+            const currentRound = this.combat.round;
+            const roundsElapsed = currentRound - roundCreated;
+            if(roundsElapsed >= duration) {
+                toDelete.push(combatant.id);
+                ChatMessage.create({
+                    speaker: {alias: "Combat Tracker Dock"},
+                    content: game.i18n.localize("combat-tracker-dock.add-event.expired").replace("%n", `<strong>${combatant.name}</strong>`),
+                    type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+                    whisper: [game.user.id]
+                });
+            }
+        }
+        if(toDelete.length > 0) {
+            await this.combat.deleteEmbeddedDocuments("Combatant", toDelete);
         }
     }
 

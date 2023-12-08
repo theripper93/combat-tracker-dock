@@ -212,6 +212,12 @@
             "combatNext": {
                 "name": "Next Turn"
             }
+        },
+        "add-event": {
+            "title": "Add Event",
+            "duration": "Event Duration (Rounds)",
+            "error": "Error: You must provide a name, an image and initiative value for the event.",
+            "expired": "Event %n has expired."
         }
     }
 }

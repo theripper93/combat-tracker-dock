@@ -1,0 +1,23 @@
+.cct-recent-events{
+
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+
+    .cct-event{
+        width: 50px;
+        height: 50px;
+        background-position: center;
+        background-size: cover;
+        border-radius: 5px;
+        box-shadow: 0 0 5px black;
+        filter: brightness(1);
+        transition: filter 0.2s ease-in-out;
+
+        &:hover{
+            filter: brightness(1.2);
+            cursor: pointer;
+        }
+    }
+
+}
