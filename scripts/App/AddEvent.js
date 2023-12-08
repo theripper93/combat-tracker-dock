@@ -24,6 +24,7 @@ export class AddEvent extends FormApplication{
     }
 
     activateListeners(html) {
+        super.activateListeners(html);
         html = html[0];
         html.querySelectorAll(".cct-event").forEach(eventButton => {
             eventButton.addEventListener("click", (e) => {
