@@ -212,6 +212,14 @@
                 "hint": "Ressourcenleiste, die als Overlay über dem Porträtbild angezeigt wird. Zum Deaktivieren auf „Keine“ setzen.",
                 "label": "Porträtleiste"
             }
-        }
+        },
+        "add-event": {
+            "duration": "Eventdauer (Runden)",
+            "error": "Fehler: Sie müssen einen Namen, ein Bild und einen Initiativewert für die Veranstaltung angeben.",
+            "expired": "Ereignis %n ist abgelaufen.",
+            "title": "Ereignis hinzufügen"
+        },
+        "deleteEffectContent": "Sind Sie sicher, dass Sie den Effekt löschen möchten?",
+        "deleteEffectTitle": "Effekt löschen"
     }
 }

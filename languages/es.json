@@ -99,7 +99,7 @@
                 "name": "Borde de los jugadores",
                 "hint": "Borde especial que se mostrará para los personajes jugadores. Dejar en blanco para deshabilitar. Si desea crear una imagen propia, le sugiero que use la imagen predeterminada como plantilla para que el tamaño sea el correcto"
             },
-						"attributeColor": {
+            "attributeColor": {
                 "name": "Color de atributo",
                 "hint": "El color del texto y la barra del atributo principal en el carrusel. Puede usar cualquier valor de color CSS válido (p.e. #ff0000, red, rgba(255,0,0,0.5), etc.)"
             },
@@ -212,6 +212,14 @@
             "combatNext": {
                 "name": "Turno siguiente"
             }
-        }
+        },
+        "add-event": {
+            "duration": "Duración del evento (rondas)",
+            "error": "Error: Debes proporcionar un nombre, una imagen y un valor de iniciativa para el evento.",
+            "expired": "El evento %n ha caducado.",
+            "title": "Añadir evento"
+        },
+        "deleteEffectContent": "¿Estás seguro de que quieres eliminar el efecto?",
+        "deleteEffectTitle": "Eliminar efecto"
     }
 }

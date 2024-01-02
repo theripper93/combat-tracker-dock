@@ -212,6 +212,14 @@
                 "hint": "Barra de recursos que será mostrada como uma sobreposição na parte superior da imagem do retrato, defina como 'Nenhum' para desativar.",
                 "label": "Barra de retrato"
             }
-        }
+        },
+        "add-event": {
+            "duration": "Duração do Evento (Rodadas)",
+            "error": "Erro: Você deve fornecer um nome, uma imagem e um valor de iniciativa para o evento.",
+            "expired": "O evento %n expirou.",
+            "title": "Adicionar Evento"
+        },
+        "deleteEffectContent": "Tem certeza de que deseja excluir o efeito",
+        "deleteEffectTitle": "Excluir efeito"
     }
 }

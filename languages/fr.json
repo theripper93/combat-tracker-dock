@@ -212,6 +212,14 @@
                 "hint": "Barre de ressources qui sera affichée en superposition au-dessus de l'image de portrait, définie sur \"Aucune\" pour la désactiver.",
                 "label": "Barre de portraits"
             }
-        }
+        },
+        "add-event": {
+            "duration": "Durée de l'événement (tours)",
+            "error": "Erreur : Vous devez fournir un nom, une image et une valeur d'initiative pour l'événement.",
+            "expired": "L'événement %n a expiré.",
+            "title": "Ajouter un évènement"
+        },
+        "deleteEffectContent": "Etes-vous sûr de vouloir supprimer l'effet",
+        "deleteEffectTitle": "Supprimer l'effet"
     }
 }

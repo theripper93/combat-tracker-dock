@@ -212,6 +212,14 @@
                 "hint": "Barra delle risorse che verrà mostrata come sovrapposizione sopra l'immagine verticale, imposta su \"Nessuno\" per disabilitare.",
                 "label": "Barra dei ritratti"
             }
-        }
+        },
+        "add-event": {
+            "duration": "Durata dell'evento (round)",
+            "error": "Errore: devi fornire un nome, un'immagine e un valore di iniziativa per l'evento.",
+            "expired": "L'evento %n è scaduto.",
+            "title": "Aggiungi evento"
+        },
+        "deleteEffectContent": "Sei sicuro di voler eliminare l'effetto?",
+        "deleteEffectTitle": "Elimina effetto"
     }
 }
