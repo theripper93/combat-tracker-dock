@@ -63,6 +63,34 @@ export class CombatantPortrait {
                 });
             }
         });
+
+        if(!this.actor?.isOwner) return;
+
+        (this.element.querySelectorAll(".portrait-effect") ?? []).forEach((effectEl) => {
+            //delete on right click
+            effectEl.addEventListener("contextmenu", async (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                const uuid = effectEl.dataset.uuid;
+                const effect = await fromUuid(uuid);
+                const statusEffect = CONFIG.statusEffects.find((s) => s.icon === effect.data.icon);
+
+                const response = await Dialog.confirm({
+                    title: game.i18n.localize(`${MODULE_ID}.deleteEffectTitle`),
+                    content: game.i18n.localize(`${MODULE_ID}.deleteEffectContent`) + game.i18n.localize(effect?.label ?? statusEffect?.name ?? "") + "?",
+                    yes: () => true,
+                    no: () => false,
+                    defaultYes: false,
+                    close: () => false,
+                });
+                if(!response) return;
+                if (!effect) {
+                    this.token?.toggleEffect(uuid);
+                    return;
+                }
+                await effect.delete();
+            });
+        });
     }
 
     async _onCombatantMouseDown(event) {
@@ -300,6 +328,7 @@ export class CombatantPortrait {
                 turn.effects.add({
                     icon: e,
                     label: CONFIG.statusEffects.find((s) => s.icon === e)?.name ?? "",
+                    uuid: e,
                 }),
             );
             if (combatant.token.overlayEffect) turn.effects.add(combatant.token.overlayEffect);
@@ -312,7 +341,8 @@ export class CombatantPortrait {
                     const description = effect.description ? await TextEditor.enrichHTML(effect.description) : "";
                     const duration = parseInt(effect.duration?.label ?? "");
                     const percent = effect.duration?.remaining / effect.duration?.duration;
-                    turn.effects.add({ icon: effect.icon, label: effect.name, description: description, duration: duration, percent: isNaN(percent) ? null : percent*100, hasDuration: !isNaN(duration) });
+                    const uuid = effect.uuid;
+                    turn.effects.add({ uuid, icon: effect.icon, label: effect.name, description: description, duration: duration, percent: isNaN(percent) ? null : percent*100, hasDuration: !isNaN(duration) });
                 }
             }
         }

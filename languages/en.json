@@ -218,6 +218,8 @@
             "duration": "Event Duration (Rounds)",
             "error": "Error: You must provide a name, an image and initiative value for the event.",
             "expired": "Event %n has expired."
-        }
+        },
+        "deleteEffectTitle": "Delete Effect",
+        "deleteEffectContent": "Are you sure you want to delete the effect "
     }
 }

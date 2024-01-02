@@ -207,6 +207,8 @@
                 background-size: cover;
                 border-radius: 10%;
                 position: relative;
+                pointer-events: all;
+                
 
                 .percent-border {
                     position: absolute;
