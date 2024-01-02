@@ -24,7 +24,9 @@
     {{/if}}
     <ul {{#unless hasEffects}}style="display:none;" {{/unless}}>
         {{#each effects as |effect|}}
-        <li><img src="{{effect.icon}}" alt=""><span>{{{localize effect.label}}}</span>{{#if hasDuration}}{{#if ../hasPermission}}<span class="tooltip-duration"><i class="fa-duotone fa-stopwatch"></i> {{duration}}</span>{{/if}}{{/if}}</li>
+        <li>
+            <div class="percent-border" style="background: conic-gradient(var(--carousel-tooltip-color) {{percent}}%, var(--carousel-tooltip-bg-color) 0);"></div>
+            <img src="{{effect.icon}}" alt=""><span>{{{localize effect.label}}}</span>{{#if hasDuration}}{{#if ../hasPermission}}<span class="tooltip-duration"><i class="fa-duotone fa-stopwatch"></i> {{duration}}</span>{{/if}}{{/if}}</li>
         {{#if effect.description}}
         {{#if ../displayDescriptions}}
             <div class="effect-description">{{{effect.description}}}</div>

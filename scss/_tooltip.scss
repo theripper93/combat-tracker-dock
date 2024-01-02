@@ -88,6 +88,17 @@
                 display: flex;
                 align-items: flex-end;
                 margin-bottom: 0.3rem;
+                position: relative;
+
+                .percent-border {
+                    position: absolute;
+                    aspect-ratio: 1/1;
+                    height: calc(100% + 2px);
+                    border-radius: 10%;
+                    z-index: -1;
+                    left: -1px;
+                    top: -1px;
+                }
 
                 & span{
                     display: flex;

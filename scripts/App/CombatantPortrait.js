@@ -311,7 +311,8 @@ export class CombatantPortrait {
                 else if (effect.icon) {
                     const description = effect.description ? await TextEditor.enrichHTML(effect.description) : "";
                     const duration = parseInt(effect.duration?.label ?? "");
-                    turn.effects.add({ icon: effect.icon, label: effect.name, description: description, duration: duration, hasDuration: !isNaN(duration) });
+                    const percent = effect.duration?.remaining / effect.duration?.duration;
+                    turn.effects.add({ icon: effect.icon, label: effect.name, description: description, duration: duration, percent: isNaN(percent) ? null : percent*100, hasDuration: !isNaN(duration) });
                 }
             }
         }
