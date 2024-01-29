@@ -442,6 +442,38 @@ export function defaultAttributesConfig() {
                 units: game.i18n.localize("ExEss.Anima"),
             },
         ],
+        swnr: [
+            {
+                attr: "health.value",
+                icon: "fas fa-heart",
+                units: game.i18n.localize("swnr.sheet.hp"),
+            },
+            {
+                attr: "ac",
+                icon: "fas fa-shield",
+                units: game.i18n.localize("swnr.sheet.ac"),
+            },
+            {
+                attr: "speed",
+                icon: "fas fa-person-running-fast",
+                units: "m",
+            },
+            {
+                attr: "save.physical",
+                icon: "fas fa-hand-fist",
+                units: game.i18n.localize("swnr.sheet.vs"),
+            },
+            {
+                attr: "save.evasion",
+                icon: "fas fa-feather-pointed",
+                units: game.i18n.localize("swnr.sheet.vs"),
+            },
+            {
+                attr: "save.mental",
+                icon: "fas fa-brain",
+                units: game.i18n.localize("swnr.sheet.vs"),
+            },
+        ],
     };
 }
 
@@ -603,6 +635,23 @@ export function generateDescription(actor) {
                 case "character":
                 case "npc":
                     return `${game.i18n.localize("ExEss.Essence")} ${system.essence.value}`;
+                default:
+                    return null;
+            }
+        case "swnr":
+            switch(type) {
+                case "character":
+                    return `${game.i18n.localize("swnr.sheet.level")} ${system.level.value} ${system.background} ${system.class}`;
+                case "npc":
+                    return "NPC";
+                case "vehicle":
+                    return "Vehicle"
+                case "ship":
+                    return "Ship"
+                case "drone":
+                    return "Drone"
+                case "mech":
+                    return "Mech"
                 default:
                     return null;
             }
