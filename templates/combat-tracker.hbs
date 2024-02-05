@@ -6,7 +6,7 @@
         <i class="fas fa-chevron-left" data-tooltip="COMBAT.TurnPrev" data-action="previous-turn"></i>
         <i class="fas fa-chevrons-left" data-tooltip="COMBAT.RoundPrev" data-action="previous-round"></i>
     </div>
-<div id="combatants"></div>
+<div id="combatants" {{#if scroll}}style="pointer-events: all;"{{/if}}></div>
     <div class="buttons-container right" {{#unless isGM}}style="display: none;"{{/unless}}>
         <i class="fa-solid fa-globe" data-tooltip="combat-tracker-dock.add-event.title" data-action="add-event"></i>
         <i class="fas fa-play" data-tooltip="COMBAT.Begin" data-action="start-combat"></i>

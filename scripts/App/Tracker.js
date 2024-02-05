@@ -1,4 +1,4 @@
-import {MODULE_ID} from "../main.js";
+import { MODULE_ID } from "../main.js";
 import { AddEvent } from "./AddEvent.js";
 
 export class CombatDock extends Application {
@@ -18,7 +18,7 @@ export class CombatDock extends Application {
         this._currentPortraitSize = {
             max: parseInt(game.settings.get(MODULE_ID, "portraitSize")),
             aspect: game.settings.get(MODULE_ID, "portraitAspect"),
-        }
+        };
         this.setHooks();
         window.addEventListener("resize", this.autosize.bind(this));
         this._combatTrackerRefreshed = false;
@@ -88,7 +88,7 @@ export class CombatDock extends Application {
             {
                 hook: "hoverToken",
                 fn: this._onHoverToken.bind(this),
-            }
+            },
         ];
         for (let hook of this.hooks) {
             hook.id = Hooks.on(hook.hook, hook.fn);
@@ -102,8 +102,10 @@ export class CombatDock extends Application {
     }
 
     getData() {
+        const scroll = game.settings.get(MODULE_ID, "overflowStyle") === "scroll";
         return {
             isGM: game.user.isGM,
+            scroll,
         };
     }
 
@@ -122,7 +124,7 @@ export class CombatDock extends Application {
         this.autosize();
         if (!this._combatTrackerRefreshed) {
             this._combatTrackerRefreshed = true;
-            ui.combat.render(true)
+            ui.combat.render(true);
         }
         if (this._playAnimation && this.sortedCombatants.length > 0) {
             this._playAnimation = false;
@@ -135,7 +137,6 @@ export class CombatDock extends Application {
     }
 
     playIntroAnimation(easing = "cubic-bezier(0.22, 1, 0.36, 1)") {
-
         Hooks.callAll("combatDock:playIntroAnimation", this);
 
         const duration = CONFIG.combatTrackerDock.INTRO_ANIMATION_DURATION;
@@ -170,12 +171,12 @@ export class CombatDock extends Application {
         });
 
         setTimeout(() => {
-            if(isVertical)this.centerCurrentCombatant();
+            if (isVertical) this.centerCurrentCombatant();
         }, totalAnimationTime + duration);
 
         setTimeout(() => {
             this.element[0].classList.remove("hidden");
-            if(!isVertical) this.centerCurrentCombatant();
+            if (!isVertical) this.centerCurrentCombatant();
         }, 10);
     }
 
@@ -185,8 +186,8 @@ export class CombatDock extends Application {
         this._currentPortraitSize = {
             max: max,
             aspect: aspect,
-        }
-        const verticalSize = max*aspect;
+        };
+        const verticalSize = max * aspect;
         if (!this.autoFit) return document.documentElement.style.setProperty("--combatant-portrait-size", max + "px");
         if (this.isVertical) {
             const maxSpace = document.getElementById("ui-middle").getBoundingClientRect().height * 0.9;
@@ -194,11 +195,11 @@ export class CombatDock extends Application {
             const portraitSize = Math.min(verticalSize, Math.floor(maxSpace / combatantCount)) / aspect;
 
             document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize + "px");
-        } else {            
+        } else {
             const maxSpace = document.getElementById("ui-top").getBoundingClientRect().width * 0.9;
             const combatantCount = this.sortedCombatants.length;
             const portraitSize = Math.min(max, Math.floor(maxSpace / combatantCount));
-    
+
             document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize / 1.2 + "px");
         }
     }
@@ -220,7 +221,7 @@ export class CombatDock extends Application {
         const separator = this.element[0].querySelector(".separator");
         const isTrueCarousel = this.trueCarousel;
         separator.style.display = isTrueCarousel ? "" : "none";
-        if (this.sortedCombatants.filter(c => c?.visible)?.length === 0) {
+        if (this.sortedCombatants.filter((c) => c?.visible)?.length === 0) {
             separator.style.display = "none";
         }
         separator.classList.remove("vertical", "horizontal");
@@ -284,10 +285,10 @@ export class CombatDock extends Application {
                         this.combat.endCombat();
                         break;
                     case "roll-all":
-                        this.combat.rollAll({event: e});
+                        this.combat.rollAll({ event: e });
                         break;
                     case "roll-npc":
-                        this.combat.rollNPC({event: e});
+                        this.combat.rollNPC({ event: e });
                         break;
                     case "reset":
                         this.combat.resetAll();
@@ -315,7 +316,7 @@ export class CombatDock extends Application {
 
     _onCombatTurn(combat, updates, update) {
         if (!("turn" in updates) && !("round" in updates)) return;
-        if("round" in updates) this._onRoundChange();
+        if ("round" in updates) this._onRoundChange();
         const combatantsContainer = this.element[0].querySelector("#combatants");
         const filteredChildren = Array.from(combatantsContainer.children).filter((c) => !c.classList.contains("separator"));
         const currentSize = combatantsContainer.getBoundingClientRect();
@@ -362,8 +363,12 @@ export class CombatDock extends Application {
 
         setTimeout(() => this.updateOrder(), 200);
 
-        if (!this.trueCarousel) return this.centerCurrentCombatant();
-        
+        if (!this.trueCarousel) {
+            combatantsContainer.style.minWidth = "";
+            combatantsContainer.style.minHeight = "";
+            return this.centerCurrentCombatant();
+        }
+
         for (const el of els) {
             el.classList.add(`collapsed-${this.isVertical ? "vertical" : "horizontal"}`);
             setTimeout(() => {
@@ -379,56 +384,55 @@ export class CombatDock extends Application {
 
     async _onRoundChange() {
         const toDelete = [];
-        for(const combatant of this.combat.combatants) {
+        for (const combatant of this.combat.combatants) {
             const duration = combatant.getFlag(MODULE_ID, "duration");
-            if(!duration) continue;
+            if (!duration) continue;
             const roundCreated = combatant.getFlag(MODULE_ID, "roundCreated");
-            if(!roundCreated) continue;
+            if (!roundCreated) continue;
             const currentRound = this.combat.round;
             const roundsElapsed = currentRound - roundCreated;
-            if(roundsElapsed >= duration) {
+            if (roundsElapsed >= duration) {
                 toDelete.push(combatant.id);
                 ChatMessage.create({
-                    speaker: {alias: "Combat Tracker Dock"},
+                    speaker: { alias: "Combat Tracker Dock" },
                     content: game.i18n.localize("combat-tracker-dock.add-event.expired").replace("%n", `<strong>${combatant.name}</strong>`),
                     type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-                    whisper: [game.user.id]
+                    whisper: [game.user.id],
                 });
             }
         }
-        if(toDelete.length > 0) {
+        if (toDelete.length > 0) {
             await this.combat.deleteEmbeddedDocuments("Combatant", toDelete);
         }
     }
 
     centerCurrentCombatant() {
-
         const carouselStyle = game.settings.get(MODULE_ID, "carouselStyle");
         const combatantsEl = this.element[0].querySelector("#combatants");
         if (this.trueCarousel) {
             if (carouselStyle == 2) return;
-            
-            if (carouselStyle == 1) return combatantsEl.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: "smooth",
-            });
+
+            if (carouselStyle == 1)
+                return combatantsEl.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth",
+                });
             combatantsEl.scrollTo({
                 top: combatantsEl.scrollHeight / 2 - combatantsEl.offsetHeight / 2 + this._currentPortraitSize.max * this._currentPortraitSize.aspect,
                 left: combatantsEl.scrollWidth / 2 - combatantsEl.offsetWidth / 2 + this._currentPortraitSize.max,
                 behavior: "smooth",
             });
-        } else {            
+        } else {
             const current = this.portraits.find((p) => p.combatant === this.combat.combatants.get(this.combat?.current?.combatantId));
             if (!current) return;
             const el = current.element;
             el.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-                inline: 'center'
+                behavior: "smooth",
+                block: "center",
+                inline: "center",
             });
         }
-
     }
 
     setControlsOrder() {
@@ -450,7 +454,6 @@ export class CombatDock extends Application {
                 uiRight.style.marginLeft = "1rem";
                 combatants.style.order = 0;
             }
-            
         } else {
             uiLeft.style.order = "";
             uiRight.style.order = "";
