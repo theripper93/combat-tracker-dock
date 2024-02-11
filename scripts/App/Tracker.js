@@ -226,19 +226,21 @@ export class CombatDock extends Application {
         }
         separator.classList.remove("vertical", "horizontal");
         separator.classList.add(this.isVertical ? "vertical" : "horizontal");
-        if (!this.trueCarousel) return;
 
-        const isLeftAligned = this.leftAligned;
-
-        //order combatants so that the current combatant is at the center
-        const currentCombatant = this.combat.combatant;
-        const combatants = this.sortedCombatants;
-        const currentCombatantIndex = combatants.findIndex((c) => c === currentCombatant) + combatants.length;
-        const tempCombatantList = [...combatants, ...combatants, ...combatants];
-        const halfLength = isLeftAligned ? combatants.length : Math.floor(combatants.length / 2);
-        const orderedCombatants = tempCombatantList.slice(currentCombatantIndex - halfLength, currentCombatantIndex + halfLength + 1);
-
+        let orderedCombatants = this.sortedCombatants;    
         const lastCombatant = this.sortedCombatants[this.sortedCombatants.length - 1];
+
+        if (this.trueCarousel) {
+            const isLeftAligned = this.leftAligned;
+    
+            //order combatants so that the current combatant is at the center
+            const currentCombatant = this.combat.combatant;
+            const combatants = this.sortedCombatants;
+            const currentCombatantIndex = combatants.findIndex((c) => c === currentCombatant) + combatants.length;
+            const tempCombatantList = [...combatants, ...combatants, ...combatants];
+            const halfLength = isLeftAligned ? combatants.length : Math.floor(combatants.length / 2);
+            orderedCombatants = tempCombatantList.slice(currentCombatantIndex - halfLength, currentCombatantIndex + halfLength + 1);
+        }
 
         this.portraits.forEach((p) => {
             const combatant = orderedCombatants.find((c) => c === p.combatant);
