@@ -226,13 +226,16 @@ export class CombatDock extends Application {
         }
         separator.classList.remove("vertical", "horizontal");
         separator.classList.add(this.isVertical ? "vertical" : "horizontal");
-        if (!this.trueCarousel) return;
+
+        const combatants = this.sortedCombatants;
+
+
+        if (!this.trueCarousel) return this.portraits.forEach((p) => p.element.style.setProperty("order", combatants.indexOf(p.combatant)));
 
         const isLeftAligned = this.leftAligned;
 
         //order combatants so that the current combatant is at the center
         const currentCombatant = this.combat.combatant;
-        const combatants = this.sortedCombatants;
         const currentCombatantIndex = combatants.findIndex((c) => c === currentCombatant) + combatants.length;
         const tempCombatantList = [...combatants, ...combatants, ...combatants];
         const halfLength = isLeftAligned ? combatants.length : Math.floor(combatants.length / 2);
