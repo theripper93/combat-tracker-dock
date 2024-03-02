@@ -90,10 +90,14 @@
                 margin-bottom: 0.3rem;
                 position: relative;
 
+                &.effects-list{
+                    align-items: flex-start;
+                }
+
                 .percent-border {
                     position: absolute;
                     aspect-ratio: 1/1;
-                    height: calc(100% + 2px);
+                    height: calc(1.2em + 2px);
                     border-radius: 10%;
                     z-index: -1;
                     left: -1px;

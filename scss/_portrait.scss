@@ -48,6 +48,10 @@
             width: calc(var(--combatant-portrait-size) * 1.2);
             height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect) * 1.2);
             animation: border-blink 0.5s ease-in-out infinite alternate;
+
+            & .combatant-title {
+                display: flex;
+            }
         }
 
         &:not(.active) .portrait-pass {
@@ -138,6 +142,18 @@
         border-bottom-right-radius: var(--combatant-portrait-border-radius);
         border-bottom-left-radius: var(--combatant-portrait-border-radius);
 
+        & .combatant-title {
+            text-align: center;
+            display: none;
+            color: var(--color-text-light-highlight);
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            margin-top: 30%;
+            font-size: large;
+            border-bottom: 1px solid;
+        }
+
         & .portrait-bar {
             position: absolute;
             height: 100%;
@@ -208,7 +224,7 @@
                 border-radius: 10%;
                 position: relative;
                 pointer-events: all;
-                
+
 
                 .percent-border {
                     position: absolute;
