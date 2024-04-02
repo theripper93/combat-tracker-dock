@@ -474,6 +474,12 @@ export function defaultAttributesConfig() {
                 units: game.i18n.localize("swnr.sheet.vs"),
             },
         ],
+        lancer: [
+            { attr: "hp.value", icon: "mdi mdi-heart-outline", units: "" },
+            { attr: "structure.value", icon: "cci cci-structure", units: "" },
+            { attr: "heat.value", icon: "cci cci-heat", units: "" },
+            { attr: "stress.value", icon: "cci cci-reactor", units: "" },
+        ],
     };
 }
 
@@ -655,6 +661,8 @@ export function generateDescription(actor) {
                 default:
                     return null;
             }
+        case "lancer":
+            return game.lancer.combatTrackerDock?.generateDescription(actor);
     }
 }
 
@@ -714,6 +722,14 @@ export function getInitiativeDisplay(combatant) {
                 rollIcon: "far fa-dice-d10",
             };
         }
+        case "lancer":
+            return (
+                game.lancer.combatTrackerDock?.getInitiativeDisplay(combatant) ?? {
+                    value: combatant?.initiative,
+                    icon: "fas fa-dice-d20",
+                    rollIcon: "fas fa-dice-d20",
+                }
+            );
         default:
             return {
                 value: combatant?.initiative,
@@ -870,6 +886,8 @@ export function getSystemIcons(combatant) {
                 ];
             }
         }
+        case "lancer":
+            return game.lancer.combatTrackerDock?.getSystemIcons(combatant) ?? [];
         default: {
             return [];
         }
