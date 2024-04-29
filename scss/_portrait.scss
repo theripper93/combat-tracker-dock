@@ -4,7 +4,7 @@
         width: var(--combatant-portrait-size);
         height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect));
         margin: 0 calc(var(--combatant-portrait-size) * 0.1);
-        background: var(--combatant-portrait-image-background) no-repeat;
+        background-repeat: no-repeat;
         background-size: cover;
         border: 1px solid black;
         border-top-width: 0;
@@ -311,7 +311,6 @@
 
         & .image-border {
             position: absolute;
-            background-image: var(--combatant-portrait-image-border);
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;

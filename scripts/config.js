@@ -358,7 +358,7 @@ export function registerSettings() {
         scope: "world",
         config: true,
         type: String,
-        default: "/modules/combat-tracker-dock/assets/border.png",
+        default: "modules/combat-tracker-dock/assets/border.png",
         filePicker: "imagevideo",
         onChange: function () {
             setPortraitImageBorder();
@@ -372,7 +372,7 @@ export function registerSettings() {
         scope: "world",
         config: true,
         type: String,
-        default: "/ui/denim075.png",
+        default: "ui/denim075.png",
         filePicker: "imagevideo",
         onChange: function () {
             setPortraitImageBackground();
@@ -488,13 +488,11 @@ function setAlignment() {
 
 function setPortraitImageBorder() {
     let portraitImageBorder = game.settings.get(MODULE_ID, "portraitImageBorder");
-    if (portraitImageBorder && !portraitImageBorder.startsWith("/") && !portraitImageBorder.includes("http")) portraitImageBorder = `/${portraitImageBorder}`;
     document.documentElement.style.setProperty("--combatant-portrait-image-border", `url('${portraitImageBorder}')`);
 }
 
 function setPortraitImageBackground() {
     let portraitImageBackground = game.settings.get(MODULE_ID, "portraitImageBackground");
-    if (!portraitImageBackground.startsWith("/") && !portraitImageBackground.includes("http")) portraitImageBackground = `/${portraitImageBackground}`;
     document.documentElement.style.setProperty("--combatant-portrait-image-background", `url('${portraitImageBackground}')`);
 }
 

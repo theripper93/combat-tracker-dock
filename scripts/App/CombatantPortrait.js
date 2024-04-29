@@ -9,6 +9,7 @@ export class CombatantPortrait {
         this.element.classList.add("combatant-portrait");
         this.element.setAttribute("data-combatant-id", combatant.id);
         this.element.setAttribute("data-tooltip-class", "combat-dock-tooltip");
+        this.element.style.backgroundImage = `url("${game.settings.get(MODULE_ID, "portraitImageBackground")}")`;
         this.resolve = null;
         this.ready = new Promise((res) => (this.resolve = res));
         this._hasTakenTurn = this.combat.round ?? 0 <= 1;
@@ -180,6 +181,8 @@ export class CombatantPortrait {
                 }
             });
         });
+        const ib = this.element.querySelector(".image-border");
+        if(ib) ib.style.backgroundImage = `url("${game.settings.get(MODULE_ID, "portraitImageBorder")}")`;
         this.activateListeners();
         this.resolve(true);
     }
