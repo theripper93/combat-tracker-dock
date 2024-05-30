@@ -326,16 +326,6 @@ export class CombatantPortrait {
 
         // Actor and Token status effects
         turn.effects = new Set();
-        if (combatant.token) {
-            combatant.token.effects.forEach((e) =>
-                turn.effects.add({
-                    icon: e,
-                    label: CONFIG.statusEffects.find((s) => s.icon === e)?.name ?? "",
-                    uuid: e,
-                }),
-            );
-            if (combatant.token.overlayEffect) turn.effects.add(combatant.token.overlayEffect);
-        }
         turn.hasAttributes = trackedAttributes.length > 0;
         if (combatant.actor) {
             for (const effect of combatant.actor.temporaryEffects) {
