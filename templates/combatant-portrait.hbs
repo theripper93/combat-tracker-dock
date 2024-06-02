@@ -34,7 +34,7 @@
     </div>
         <ul class="effects-container" style="order: {{barsOrder.effects}};{{#unless hasEffects}}display:none;{{/unless}}" >
         {{#each effects as |effect|}}
-        <li class="portrait-effect" data-uuid="{{effect.uuid}}" style="background-image: url('{{effect.icon}}');">
+        <li class="portrait-effect" data-uuid="{{effect.uuid}}" style="background-image: url('{{effect.img}}');">
             <div class="percent-border" style="background: conic-gradient(var(--carousel-tooltip-color) {{percent}}%, var(--carousel-tooltip-bg-color) 0);"></div>
         </li>
         {{/each}}

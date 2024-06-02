@@ -74,7 +74,7 @@ export class CombatantPortrait {
                 event.stopPropagation();
                 const uuid = effectEl.dataset.uuid;
                 const effect = await fromUuid(uuid);
-                const statusEffect = CONFIG.statusEffects.find((s) => s.icon === effect.data.icon);
+                const statusEffect = CONFIG.statusEffects.find((s) => s.img === effect.img);
 
                 const response = await Dialog.confirm({
                     title: game.i18n.localize(`${MODULE_ID}.deleteEffectTitle`),
@@ -330,12 +330,12 @@ export class CombatantPortrait {
         if (combatant.actor) {
             for (const effect of combatant.actor.temporaryEffects) {
                 if (effect.statuses.has(CONFIG.specialStatusEffects.DEFEATED)) turn.defeated = true;
-                else if (effect.icon) {
+                else if (effect.img) {
                     const description = effect.description ? await TextEditor.enrichHTML(effect.description) : "";
                     const duration = parseInt(effect.duration?.label ?? "");
                     const percent = effect.duration?.remaining / effect.duration?.duration;
                     const uuid = effect.uuid;
-                    turn.effects.add({ uuid, icon: effect.icon, label: effect.name, description: description, duration: duration, percent: isNaN(percent) ? null : percent*100, hasDuration: !isNaN(duration) });
+                    turn.effects.add({ uuid, img: effect.img, label: effect.name, description: description, duration: duration, percent: isNaN(percent) ? null : percent*100, hasDuration: !isNaN(duration) });
                 }
             }
         }
