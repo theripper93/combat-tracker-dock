@@ -55,21 +55,22 @@ Hooks.on('ready', () => {
 });
 
 Hooks.on("renderCombatTrackerConfig", (app, html, data) => {
-    if(!game.user.isGM) return;
+    if (!game.user.isGM) return;
     const attributes = TokenDocument.implementation.getTrackedAttributes();
-    attributes.bar.forEach(a => a.push("value"));
     const attributeChoices = TokenDocument.implementation.getTrackedAttributeChoices(attributes)
-    const resource = game.settings.get(MODULE_ID, "resource");
+    attributeChoices.unshift({label: "None", value: ""})
+    const attributeBarChoices = TokenDocument.implementation.getTrackedAttributeChoices({bar: attributes.bar, value: []})
+    attributeBarChoices.unshift({label: "None", value: ""})
+    const compiled = Handlebars.compile(`<select name="flags.${MODULE_ID}.resource">{{selectOptions options selected=value}}</select>`)
+    const selectResourceHtml = compiled({options: attributeChoices, value: game.settings.get(MODULE_ID, "resource")})
     const portraitResource = game.settings.get(MODULE_ID, "portraitResource");
+    const selectPortraitResourceHtml = compiled({options: attributeBarChoices, value: portraitResource})
 
     const fg = document.createElement("div");
     fg.classList.add("form-group");
     fg.innerHTML = `
     <label>${game.i18n.localize('COMBAT.Resource')} 2</label>
-    <select name="flags.${MODULE_ID}.resource">
-    <option value="">${game.i18n.localize("None")}</option>
-        ${Object.entries(attributeChoices).map(([key, value]) => `<optgroup label="${key}">` + value.map(v => `<option ${v == resource ? "selected" : ""} value="${v}">${v}</option>`).join("") + "</optgroup>").join("")}
-    </select>
+    ${selectResourceHtml}
     <p class="notes">${game.i18n.localize('COMBAT.ResourceHint')}</p>
     `;
 
@@ -79,10 +80,7 @@ Hooks.on("renderCombatTrackerConfig", (app, html, data) => {
     portraitFg.classList.add("form-group");
     portraitFg.innerHTML = `
     <label>${game.i18n.localize(`${MODULE_ID}.combatConfig.portraitResource.label`)}</label>
-    <select name="flags.${MODULE_ID}.portraitResource">
-    <option value="">${game.i18n.localize("None")}</option>
-        ${attributes.bar.map(v => `<option ${v == portraitResource ? "selected" : ""} value="${v}">${v}</option>`).join("")}   
-    </select>
+    ${selectPortraitResourceHtml}
     <p class="notes">${game.i18n.localize(`${MODULE_ID}.combatConfig.portraitResource.hint`)}</p>
     `;
 
