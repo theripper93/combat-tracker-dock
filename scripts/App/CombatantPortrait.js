@@ -327,6 +327,7 @@ export class CombatantPortrait {
             hasPlayerOwner: combatant.actor?.hasPlayerOwner,
             hasPermission: hasPermission,
             showInitiative: game.settings.get(MODULE_ID, "showInitiativeOnPortrait"),
+            highContrast: game.settings.get(MODULE_ID, "highContrast"),
             isInitiativeNaN: combatant.initiative === null || combatant.initiative === undefined,
             initiativeData: initiativeData,
             resource: resource,
