@@ -1,4 +1,39 @@
 #combat-dock {
+
+    & .high-contrast {
+
+        &:hover,
+        &.hovered {
+           & div.combatant-buttons {
+                 opacity: 1;
+                 text-shadow: 0px 0px 3px black;
+           }
+       }
+    
+       & i.roll-initiative {
+           opacity: 1;
+           text-shadow: 0px 0px 5px black;
+           font-weight: 300;
+       }
+
+       & div.portrait-initiative{
+            opacity: 1;
+
+            & i {
+                color:black;
+            }
+       }
+       
+       & .tracked-attribute-text-container {
+           background: rgb(0,0,0,0.75);
+       }
+       
+       & .tracked-attribute-bar-max {
+           z-index:1;
+       }
+       
+    }
+
     & .combatant-portrait {
         pointer-events: all;
         width: var(--combatant-portrait-size);
@@ -29,7 +64,7 @@
         }
 
         &.visible {
-            opacity: 0.5;
+            opacity: 1;
         }
 
         //define border blink animation
@@ -358,3 +393,6 @@
         }
     }
 }
+
+
+   

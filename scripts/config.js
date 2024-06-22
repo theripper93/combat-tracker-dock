@@ -303,6 +303,16 @@ export function registerSettings() {
         onChange: () => ui.combatDock?.refresh(),
     });
 
+    game.settings.register(MODULE_ID, "highContrast", {
+        name: "combat-tracker-dock.settings.highContrast.name",
+        hint: "combat-tracker-dock.settings.highContrast.hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+        onChange: () => ui.combatDock?.refresh(),
+    });    
+
     game.settings.register(MODULE_ID, "portraitImage", {
         name: "combat-tracker-dock.settings.portraitImage.name",
         hint: "combat-tracker-dock.settings.portraitImage.hint",
