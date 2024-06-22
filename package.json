@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "sass": "^1.62.1"
+  },
+  "scripts": {
+    "sass-dev": "sass --watch --update --style=expanded styles:styles",
+    "sass-prod": "sass --no-source-map --style=compressed styles:styles"
   }
 }
