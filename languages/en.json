@@ -97,7 +97,7 @@
             },
             "highContrast": {
                 "name": "Use High Contrast on Portrait",
-                "hint": "Use high constrast UI features on the portraits. This can improve visibility"
+                "hint": "Use high contrast UI features on combatant portraits. This can improve readability for certain types of portrait art, such as black and white."
             },
             "portraitImageBorder": {
                 "name": "Player Border",
