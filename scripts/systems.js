@@ -482,7 +482,6 @@ export function defaultAttributesConfig() {
         ],
         shadowdark: [
             { attr: "attributes.hp.value", icon: "fas fa-heart", units: "HP"},
-            { attr: "attributes.ac.value", icon: "fas fa-shield", units: "AC" },
         ],
     };
 }
@@ -670,9 +669,9 @@ export function generateDescription(actor) {
         case "shadowdark":
             switch (type) {
                 case "Player":
-                    return null;
+                    return `AC: ${actor.armorClass}`;
                 case "NPC":
-                   return `${game.i18n.localize("SHADOWDARK.sheet.npc.movement")}: ${system.move} ${system.moveNote}`;
+                   return `AC: ${system.attributes.ac.value}`;
                 default:
                     return null;
             }

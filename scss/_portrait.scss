@@ -18,11 +18,16 @@
 
        & div.portrait-initiative{
             opacity: 1;
-
             & i {
                 color:black;
             }
        }
+
+       & div.portrait-pass{
+            & i {
+                text-shadow: 0px 0px 5px black;
+            }
+   }
        
        & .tracked-attribute-text-container {
            background: rgb(0,0,0,0.75);
