@@ -480,6 +480,10 @@ export function defaultAttributesConfig() {
             { attr: "heat.value", icon: "cci cci-heat", units: "" },
             { attr: "stress.value", icon: "cci cci-reactor", units: "" },
         ],
+        shadowdark: [
+            { attr: "attributes.ac.value", icon: "fas fa-shield", units: "AC"},
+            { attr: "attributes.hp.value", icon: "fas fa-heart", units: "HP"},
+        ],
     };
 }
 
@@ -663,6 +667,14 @@ export function generateDescription(actor) {
             }
         case "lancer":
             return game.lancer.combatTrackerDock?.generateDescription(actor);
+        case "shadowdark":
+            switch (type) {
+                case "Player":
+                case "NPC":
+                   return `Level: ${system.level.value}`;
+                default:
+                    return null;
+            }
     }
 }
 
