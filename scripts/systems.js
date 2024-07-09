@@ -481,6 +481,7 @@ export function defaultAttributesConfig() {
             { attr: "stress.value", icon: "cci cci-reactor", units: "" },
         ],
         shadowdark: [
+            { attr: "attributes.ac.value", icon: "fas fa-shield", units: "AC"},
             { attr: "attributes.hp.value", icon: "fas fa-heart", units: "HP"},
         ],
     };
@@ -669,9 +670,8 @@ export function generateDescription(actor) {
         case "shadowdark":
             switch (type) {
                 case "Player":
-                    return `AC: ${actor.armorClass}`;
                 case "NPC":
-                   return `AC: ${system.attributes.ac.value}`;
+                   return `Level: ${system.level.value}`;
                 default:
                     return null;
             }
