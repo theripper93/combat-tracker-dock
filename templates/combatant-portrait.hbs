@@ -1,4 +1,4 @@
-<div class="combatant-wrapper" style="background-image: url('{{img}}');{{#if defeated}}filter: grayscale(1);{{/if}}">
+<div class="combatant-wrapper{{#if highContrast}} high-contrast{{/if}}" style="background-image: url('{{img}}');{{#if defeated}}filter: grayscale(1);{{/if}}">
 
     {{#if hasPortraitResource}}
     <div class="portrait-bar" style="height: calc( 100% - {{portraitResource.percentage}}% );"></div>

@@ -95,6 +95,10 @@
                 "name": "Show Initiative on Portrait",
                 "hint": "Show the initiative value in the top left corner of the portrait. You can always see the initiative in the Tooltip!"
             },
+            "highContrast": {
+                "name": "Use High Contrast on Portrait",
+                "hint": "Use high contrast UI features on combatant portraits. This can improve readability for certain types of portrait art, such as black and white."
+            },
             "portraitImageBorder": {
                 "name": "Player Border",
                 "hint": "Special border that will be shown for player characters. Leave blank to disable. If you wish to make a custom image, it's suggested you use the default one as reference for correct sizing."
