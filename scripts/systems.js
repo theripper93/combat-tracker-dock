@@ -790,7 +790,6 @@ export function generateDescription(actor) {
         case "shadowdark":
             switch (type) {
                 case "Player":
-                    return `AC: ${actor.armorClass}`;
                 case "NPC":
                     return `Level: ${system.level.value}`;
                    return `AC: ${system.attributes.ac.value}`;
