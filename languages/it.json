@@ -30,10 +30,10 @@
             },
             "portraitImage": {
                 "choices": {
-                    "actor": "Attore",
-                    "token": "Gettone"
+                    "actor": "Personaggio",
+                    "token": "Token"
                 },
-                "hint": "Se utilizzare l'immagine dell'attore o del token come ritratto.",
+                "hint": "Se utilizzare l'immagine del personaggio o del token come ritratto.",
                 "name": "Immagine ritratto"
             },
             "portraitImageBorder": {
@@ -69,7 +69,7 @@
                 "choices": {
                     "center": "Centro",
                     "left": "Sinistra",
-                    "right": "Giusto"
+                    "right": "Destra"
                 },
                 "hint": "L'allineamento della giostra. \nSi noti che il carosello deve essere centrato, è necessario utilizzare questa impostazione solo per compatibilità con altri moduli.",
                 "name": "Allineamento"
@@ -161,7 +161,7 @@
             "barsPlacement": {
                 "choices": {
                     "left": "Sinistra",
-                    "right": "Giusto",
+                    "right": "Destra",
                     "twinned": "Gemellata"
                 },
                 "hint": "Il posizionamento delle barre degli attributi tracciati nel carosello.",
@@ -201,7 +201,7 @@
         "configureCarousel": "Configura carosello",
         "hotkeys": {
             "combatNext": {
-                "name": "Prossima svolta"
+                "name": "Prossimo Turno"
             },
             "combatPrev": {
                 "name": "Turno precedente"
