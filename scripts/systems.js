@@ -480,6 +480,38 @@ export function defaultAttributesConfig() {
             { attr: "heat.value", icon: "cci cci-heat", units: "" },
             { attr: "stress.value", icon: "cci cci-reactor", units: "" },
         ],
+        dc20rpg: [
+            {
+                attr: "resources.health.value",
+                icon: "fas fa-heart",
+                units: "HP",
+            },
+            {
+                attr: "resources.mana.value",
+                icon: "fas fa-star",
+                units: "MP",
+            },
+            {
+                attr: "resources.stamina.value",
+                icon: "fas fa-hand-fist",
+                units: "SP",
+            },
+            {
+                attr: "defences.physical.value",
+                icon: "fas fa-shield",
+                units: "PD",
+            },
+            {
+                attr: "defences.mystical.value",
+                icon: "fas fa-wand-magic-sparkles",
+                units: "MD",
+            },
+            {
+                attr: "movement.ground.value",
+                icon: "fas fa-person-walking",
+                units: "Spaces",
+            },
+        ]
     };
 }
 
