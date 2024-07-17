@@ -30,10 +30,10 @@
             },
             "portraitImage": {
                 "choices": {
-                    "actor": "Attore",
-                    "token": "Gettone"
+                    "actor": "Personaggio",
+                    "token": "Token"
                 },
-                "hint": "Se utilizzare l'immagine dell'attore o del token come ritratto.",
+                "hint": "Se utilizzare l'immagine del personaggio o del token come ritratto.",
                 "name": "Immagine ritratto"
             },
             "portraitImageBorder": {
@@ -47,8 +47,8 @@
                     "50px": "Piccolo",
                     "70px": "Normale",
                     "90px": "Grande",
-                    "150px": "XX-Grande",
-                    "180px": "XXX-Grande"
+                    "150px": "Gigantesco",
+                    "180px": "Colossale"
                 },
                 "hint": "La dimensione massima del ritratto nell'indicatore di combattimento. \nTieni presente che le dimensioni dei ritratti verranno automaticamente ridotte se ci sono troppi combattenti per adattarsi allo schermo.",
                 "name": "Dimensione verticale"
@@ -69,7 +69,7 @@
                 "choices": {
                     "center": "Centro",
                     "left": "Sinistra",
-                    "right": "Giusto"
+                    "right": "Destra"
                 },
                 "hint": "L'allineamento della giostra. \nSi noti che il carosello deve essere centrato, è necessario utilizzare questa impostazione solo per compatibilità con altri moduli.",
                 "name": "Allineamento"
@@ -78,15 +78,15 @@
                 "choices": {
                     "long": "Lungo",
                     "portrait": "Ritratto",
-                    "square": "Piazza"
+                    "square": "Quadrato"
                 },
                 "hint": "Le proporzioni del ritratto. \nL'immagine verrà ritagliata se non corrisponde alle proporzioni del ritratto.",
                 "name": "Proporzioni ritratto"
             },
             "roundness": {
                 "choices": {
-                    "round": "Girare",
-                    "sharp": "Affilato",
+                    "round": "Arrotondato",
+                    "sharp": "Squadrato",
                     "soft": "Morbido"
                 },
                 "hint": "La rotondità dei ritratti e dei tooltip.",
@@ -105,7 +105,7 @@
                 "choices": {
                     "autofit": "Riduci i ritratti",
                     "hidden": "Nascosto",
-                    "scroll": "Scorrere"
+                    "scroll": "Scorrimento"
                 },
                 "hint": "Il modo in cui si comporta il carosello quando ci sono troppi combattenti per stare sullo schermo.",
                 "name": "Stile overflow"
@@ -116,8 +116,8 @@
             },
             "attributeVisibility": {
                 "choices": {
-                    "bars": "Solo bar",
-                    "both": "Testo",
+                    "bars": "Solo barre",
+                    "both": "Entrambi",
                     "text": "Solo testo"
                 },
                 "hint": "La visibilità degli attributi tracciati nel carosello.",
@@ -135,7 +135,7 @@
                 "choices": {
                     "default": "Sempre",
                     "owner": "Basato sulla proprietà",
-                    "token": "Basato su Token"
+                    "token": "Basato sul Token"
                 },
                 "hint": "Se visualizzare o meno il nome del combattente nel tooltip. \n'Basato sul token' visualizzerà il nome solo se il giocatore può vedere il nome del token.",
                 "name": "Nome da visualizzare"
@@ -161,7 +161,7 @@
             "barsPlacement": {
                 "choices": {
                     "left": "Sinistra",
-                    "right": "Giusto",
+                    "right": "Destra",
                     "twinned": "Gemellata"
                 },
                 "hint": "Il posizionamento delle barre degli attributi tracciati nel carosello.",
@@ -201,7 +201,7 @@
         "configureCarousel": "Configura carosello",
         "hotkeys": {
             "combatNext": {
-                "name": "Prossima svolta"
+                "name": "Prossimo Turno"
             },
             "combatPrev": {
                 "name": "Turno precedente"
