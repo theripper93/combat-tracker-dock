@@ -513,8 +513,8 @@ export function defaultAttributesConfig() {
             },
         ],
         shadowdark: [
-            { attr: "attributes.ac.value", icon: "fas fa-shield", units: "AC"},
-            { attr: "attributes.hp.value", icon: "fas fa-heart", units: "HP"},
+            { attr: "attributes.ac.value", icon: "fas fa-shield", units: "AC" },
+            { attr: "attributes.hp.value", icon: "fas fa-heart", units: "HP" },
         ],
     };
 }
@@ -681,19 +681,19 @@ export function generateDescription(actor) {
                     return null;
             }
         case "swnr":
-            switch(type) {
+            switch (type) {
                 case "character":
                     return `${game.i18n.localize("swnr.sheet.level")} ${system.level.value} ${system.background} ${system.class}`;
                 case "npc":
                     return "NPC";
                 case "vehicle":
-                    return "Vehicle"
+                    return "Vehicle";
                 case "ship":
-                    return "Ship"
+                    return "Ship";
                 case "drone":
-                    return "Drone"
+                    return "Drone";
                 case "mech":
-                    return "Mech"
+                    return "Mech";
                 default:
                     return null;
             }
@@ -703,7 +703,7 @@ export function generateDescription(actor) {
             switch (type) {
                 case "Player":
                 case "NPC":
-                   return `Level: ${system.level.value}`;
+                    return `Level: ${system.level.value}`;
                 default:
                     return null;
             }
