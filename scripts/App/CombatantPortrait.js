@@ -391,18 +391,21 @@ export class CombatantPortrait {
 
     getBorderColor(tokenDocument) {
         if (!game.settings.get(MODULE_ID, "showDispositionColor") || !tokenDocument) return "#000";
-        let color;
-        const d = tokenDocument.disposition;
-        const colors = CONFIG.Canvas.dispositionColors;
-        if (!game.user.isGM && this.isOwner) color = colors.CONTROLLED;
-        else if (this.actor?.hasPlayerOwner) color = colors.PARTY;
-        else if (d === CONST.TOKEN_DISPOSITIONS.FRIENDLY) color = colors.FRIENDLY;
-        else if (d === CONST.TOKEN_DISPOSITIONS.NEUTRAL) color = colors.NEUTRAL;
-        else if (d === CONST.TOKEN_DISPOSITIONS.HOSTILE) color = colors.HOSTILE;
-        else if (d === CONST.TOKEN_DISPOSITIONS.SECRET && this.isOwner) color = colors.SECRET;
-        else color = colors.NEUTRAL;
-        color = new Color(color).toString();
-        return color;
+        
+        function getColor() {
+            const colors = CONFIG.Canvas.dispositionColors;
+            if ( tokenDocument.isOwner && !game.user.isGM ) return colors.CONTROLLED;
+            const D = CONST.TOKEN_DISPOSITIONS;
+            switch ( tokenDocument.disposition ) {
+              case D.SECRET: return colors.SECRET;
+              case D.HOSTILE: return colors.HOSTILE;
+              case D.NEUTRAL: return colors.NEUTRAL;
+              case D.FRIENDLY: return tokenDocument.actor?.hasPlayerOwner ? colors.PARTY : colors.FRIENDLY;
+              default: return colors.NEUTRAL;
+            }
+        }
+
+        return new Color(getColor()).toString();
     }
 
     destroy() {
