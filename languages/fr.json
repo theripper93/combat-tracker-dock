@@ -196,6 +196,10 @@
             "hideDefeated": {
                 "hint": "Cachez les combattants vaincus du carrousel. \nIls seront toujours visibles dans le suivi de combat habituel au cas où vous auriez besoin d'interagir avec eux.",
                 "name": "Masquer Vaincu"
+            },
+            "hideEnemyInitiative": {
+                "hint": "Masquez l'initiative ennemie dans l'infobulle et le portrait.",
+                "name": "Masquer l'initiative ennemie"
             }
         },
         "configureCarousel": "Configurer le carrousel",

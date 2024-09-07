@@ -196,6 +196,10 @@
             "hideDefeated": {
                 "hint": "Esconda os combatentes derrotados do carrossel. \nEles ainda estarão visíveis no rastreador de combate normal caso você precise interagir com eles.",
                 "name": "Esconder-se derrotado"
+            },
+            "hideEnemyInitiative": {
+                "hint": "Oculte a iniciativa inimiga na dica e no retrato.",
+                "name": "Ocultar Iniciativa Inimiga"
             }
         },
         "configureCarousel": "Configurar carrossel",

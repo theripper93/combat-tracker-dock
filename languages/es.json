@@ -203,6 +203,10 @@
                     "reset": "Restablecer predeterminados",
                     "notes": "Deje el campo atributo en blanco para eliminarlo"
                 }
+            },
+            "hideEnemyInitiative": {
+                "hint": "Oculta la iniciativa enemiga en la descripción emergente y el retrato.",
+                "name": "Ocultar iniciativa enemiga"
             }
         },
         "hotkeys": {

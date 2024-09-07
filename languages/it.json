@@ -196,6 +196,10 @@
             "hideDefeated": {
                 "hint": "Nascondi i combattenti sconfitti dalla giostra. \nSaranno comunque visibili nel normale tracker di combattimento nel caso in cui tu abbia bisogno di interagire con loro.",
                 "name": "Nascondi sconfitto"
+            },
+            "hideEnemyInitiative": {
+                "hint": "Nascondi l'iniziativa nemica nel tooltip e nel ritratto.",
+                "name": "Nascondi l'iniziativa nemica"
             }
         },
         "configureCarousel": "Configura carosello",

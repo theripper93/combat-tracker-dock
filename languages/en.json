@@ -181,6 +181,10 @@
                 "name": "Hide Until First Turn",
                 "hint": "Hide enemies until they have taken their first turn in combat. (Requires LibWrapper to hide them in the core combat tracker as well.)"
             },
+            "hideEnemyInitiative": {
+                "name": "Hide Enemy Initiative",
+                "hint": "Hide enemy initiative in the tooltip and portrait."
+            },
             "attributesMenu": {
                 "name": "Tooltip Attributes",
                 "label": "Configure Attributes",

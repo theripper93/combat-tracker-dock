@@ -46,6 +46,26 @@ export class CombatantPortrait {
         return false;
     }
 
+    get isEvent() {
+        return this.combatant.flags[MODULE_ID]?.event ?? false;
+    }
+
+    get eventResource() {
+        if (!this.isEvent) return null;
+        const flags = this.combatant.flags[MODULE_ID];
+        const {duration, roundCreated} = flags;
+        const currentRound = this.combat.round;
+        return {
+            max: duration,
+            value: duration - (currentRound - roundCreated),
+            percentage: Math.round((duration - (currentRound - roundCreated)) / duration * 100),
+        };
+    }
+
+    get eventRoundsLeft() {
+        return this.combatant.getFlag(MODULE_ID, "roundsLeft") ?? 0;
+    }
+
     activateCoreListeners() {
         this.element.addEventListener("mouseenter", this._onHoverIn.bind(this));
         this.element.addEventListener("mouseleave", this._onHoverOut.bind(this));
@@ -187,7 +207,10 @@ export class CombatantPortrait {
         this.resolve(true);
     }
 
-    getResource(resource = null) {
+    getResource(resource = null, primary = false) {
+
+        if (this.isEvent && primary) return this.eventResource;
+
         if (!this.actor || !this.combat) return null;
 
         resource = resource ?? this.combat.settings.resource;
@@ -279,7 +302,7 @@ export class CombatantPortrait {
         else if (displayDescriptionsSetting === "owner") displayDescriptions = hasPermission;
 
         // Prepare turn data
-        const resource = hasPermission ? this.getResource() : null;
+        const resource = hasPermission ? this.getResource(null, true) : null;
         const resource2 = hasPermission ? this.getResource(game.settings.get(MODULE_ID, "resource")) : null;
         const portraitResourceSetting = game.settings.get(MODULE_ID, "portraitResource");
         const portraitResource = hasPermission && portraitResourceSetting ? this.getResource(portraitResourceSetting) : null;
@@ -346,7 +369,10 @@ export class CombatantPortrait {
         const precision = CONFIG.Combat.initiative.decimals;
         if (turn.hasRolled && typeof turn.initiative == "number") turn.initiative = turn.initiative.toFixed(hasDecimals ? precision : 0);
         if (turn.hasRolled && typeof turn.initiativeData.value == "number") turn.initiativeData.value = turn.initiativeData.value.toFixed(hasDecimals ? precision : 0);
-
+        if (!game.user.isGM && !combatant.actor?.isOwner && game.settings.get(MODULE_ID, "hideEnemyInitiative")) {            
+            turn.initiative = "?";
+            turn.initiativeData.value = "?";
+        }
         return turn;
     }
 

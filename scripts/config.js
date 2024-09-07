@@ -352,6 +352,16 @@ export function registerSettings() {
         onChange: () => ui.combatDock?.refresh(),
     });
 
+    game.settings.register(MODULE_ID, "hideEnemyInitiative", {
+        name: "combat-tracker-dock.settings.hideEnemyInitiative.name",
+        hint: "combat-tracker-dock.settings.hideEnemyInitiative.hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+        onChange: () => ui.combatDock?.refresh(),
+    });
+
     game.settings.register(MODULE_ID, "portraitImageBorder", {
         name: "combat-tracker-dock.settings.portraitImageBorder.name",
         hint: "combat-tracker-dock.settings.portraitImageBorder.hint",

@@ -196,6 +196,10 @@
             "hideDefeated": {
                 "hint": "Verstecke besiegte Kämpfer vor dem Karussell. \nSie werden weiterhin im regulären Kampf-Tracker sichtbar sein, falls Sie mit ihnen interagieren müssen.",
                 "name": "Besiegt ausblenden"
+            },
+            "hideEnemyInitiative": {
+                "hint": "Verstecken Sie die Initiative des Feindes im Tooltip und im Porträt.",
+                "name": "Feindliche Initiative ausblenden"
             }
         },
         "configureCarousel": "Karussell konfigurieren",
