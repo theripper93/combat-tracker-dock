@@ -739,6 +739,17 @@ export function generateDescription(actor) {
                 default:
                     return null;
             }
+        case "wwn":
+            switch (type) {
+                case "Character":
+                    return `Level ${system.details.level} ${system..details.background} ${system.details.class}`;
+                case "Faction":
+                    return "Faction";
+                case "Monster":
+                    return `${system.hp.hd} hit dice Monster`;
+                default:
+                    return null;
+            }
         case "lancer":
             return game.lancer.combatTrackerDock?.generateDescription(actor);
         case "shadowdark":
