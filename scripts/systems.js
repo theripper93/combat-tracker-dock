@@ -474,6 +474,48 @@ export function defaultAttributesConfig() {
                 units: game.i18n.localize("swnr.sheet.vs"),
             },
         ],
+        wwn: [
+            {
+                attr: "hp.value",
+                icon: "fas fa-heart",
+                units: "Hit Points",
+            },
+            {
+                attr: "details.strain.value",
+                icon: "fas fa-ankh",
+                units: "System Strain",
+            },            
+            {
+                attr: "aac.value",
+                icon: "fas fa-shield",
+                units: "Armor Class",
+            },
+            {
+                attr: "movement.base",
+                icon: "fas fa-person-running",
+                units: "ft. Movement",
+            },
+            {
+                attr: "saves.evasion.value",
+                icon: "fas fa-bullseye",
+                units: "Evasion Save",
+            },
+            {
+                attr: "saves.mental.value",
+                icon: "fas fa-brain",
+                units: "Mental Save",                
+            },
+            {
+                attr: "saves.physical.value",
+                icon: "fas fa-hand-fist",
+                units: "Physical Save",
+            },
+            {
+                attr: "saves.luck.value",
+                icon: "fas fa-star",
+                units: "Luck Save",
+            },
+        ],        
         lancer: [
             { attr: "hp.value", icon: "mdi mdi-heart-outline", units: "" },
             { attr: "structure.value", icon: "cci cci-structure", units: "" },
@@ -694,6 +736,17 @@ export function generateDescription(actor) {
                     return "Drone";
                 case "mech":
                     return "Mech";
+                default:
+                    return null;
+            }
+        case "wwn":
+            switch (type) {
+                case "Character":
+                    return `Level ${system.details.level} ${system.details.background} ${system.details.class}`;
+                case "Faction":
+                    return "Faction";
+                case "Monster":
+                    return `${system.hp.hd} hit dice Monster`;
                 default:
                     return null;
             }
