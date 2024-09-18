@@ -742,7 +742,7 @@ export function generateDescription(actor) {
         case "wwn":
             switch (type) {
                 case "Character":
-                    return `Level ${system.details.level} ${system..details.background} ${system.details.class}`;
+                    return `Level ${system.details.level} ${system.details.background} ${system.details.class}`;
                 case "Faction":
                     return "Faction";
                 case "Monster":
