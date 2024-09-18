@@ -474,6 +474,48 @@ export function defaultAttributesConfig() {
                 units: game.i18n.localize("swnr.sheet.vs"),
             },
         ],
+        wwn: [
+            {
+                attr: "hp.value",
+                icon: "fas fa-heart",
+                units: "Hit Points",
+            },
+            {
+                attr: "details.strain.value",
+                icon: "fas fa-ankh",
+                units: "System Strain",
+            },            
+            {
+                attr: "aac.value",
+                icon: "fas fa-shield",
+                units: "Armor Class",
+            },
+            {
+                attr: "movement.base",
+                icon: "fas fa-person-running",
+                units: "ft. Movement",
+            },
+            {
+                attr: "saves.evasion.value",
+                icon: "fas fa-bullseye",
+                units: "Evasion Save",
+            },
+            {
+                attr: "saves.mental.value",
+                icon: "fas fa-brain",
+                units: "Mental Save",                
+            },
+            {
+                attr: "saves.physical.value",
+                icon: "fas fa-hand-fist",
+                units: "Physical Save",
+            },
+            {
+                attr: "saves.luck.value",
+                icon: "fas fa-star",
+                units: "Luck Save",
+            },
+        ],        
         lancer: [
             { attr: "hp.value", icon: "mdi mdi-heart-outline", units: "" },
             { attr: "structure.value", icon: "cci cci-structure", units: "" },
