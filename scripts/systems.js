@@ -772,6 +772,19 @@ export function generateDescription(actor) {
                 default:
                     return null;
             }
+        case "ars":
+            switch (type) {
+                case "Player Character":
+                    return `Level ${system.details.level} ${system.details.race} ${system.details.class}`;
+                case "Lootable":
+                    return "Loot";
+                case "NPC Merchant":
+                    return "Merchant";                    
+                case "Non-Player Character":
+                    return `${system.hp.hd} hit dice Monster`;
+                default:
+                    return null;
+            }            
         case "lancer":
             return game.lancer.combatTrackerDock?.generateDescription(actor);
         case "shadowdark":
