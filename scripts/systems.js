@@ -774,14 +774,14 @@ export function generateDescription(actor) {
             }
         case "ars":
             switch (type) {
-                case "Player Character":
-                    return `Level ${system.details.level} ${system.details.race} ${system.details.class}`;
-                case "Lootable":
+                case "character":
+                    return "Player Character";
+                case "lootable":
                     return "Loot";
-                case "NPC Merchant":
+                case "merchant":
                     return "Merchant";                    
-                case "Non-Player Character":
-                    return `${system.hp.hd} hit dice Monster`;
+                case "npc":
+                    return "Non-Player-Character";
                 default:
                     return null;
             }            
