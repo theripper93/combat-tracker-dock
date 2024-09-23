@@ -516,6 +516,28 @@ export function defaultAttributesConfig() {
                 units: "Luck Save",
             },
         ],        
+        ars: [
+            {
+                attr: "attributes.hp.value",
+                icon: "fas fa-heart",
+                units: "Hit Points",
+            },         
+            {
+                attr: "attributes.ac.value",
+                icon: "fas fa-shield",
+                units: "Armor Class",
+            },
+            {
+                attr: "attributes.movement.value",
+                icon: "fas fa-person-running",
+                units: "Movement",
+            },
+            {
+                attr: "attributes.thaco.value",
+                icon: "fas fa-swords",
+                units: "THAC0",
+            },            
+        ],                
         lancer: [
             { attr: "hp.value", icon: "mdi mdi-heart-outline", units: "" },
             { attr: "structure.value", icon: "cci cci-structure", units: "" },
@@ -750,6 +772,19 @@ export function generateDescription(actor) {
                 default:
                     return null;
             }
+        case "ars":
+            switch (type) {
+                case "character":
+                    return "Player Character";
+                case "lootable":
+                    return "Loot";
+                case "merchant":
+                    return "Merchant";                    
+                case "npc":
+                    return "Non-Player-Character";
+                default:
+                    return null;
+            }            
         case "lancer":
             return game.lancer.combatTrackerDock?.generateDescription(actor);
         case "shadowdark":
