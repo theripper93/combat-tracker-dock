@@ -516,6 +516,28 @@ export function defaultAttributesConfig() {
                 units: "Luck Save",
             },
         ],        
+        ars: [
+            {
+                attr: "attributes.hp.value",
+                icon: "fas fa-heart",
+                units: "Hit Points",
+            },         
+            {
+                attr: "attributes.ac.value",
+                icon: "fas fa-shield",
+                units: "Armor Class",
+            },
+            {
+                attr: "attributes.movement.value",
+                icon: "fas fa-person-running",
+                units: "Movement",
+            },
+            {
+                attr: "attributes.thaco.value",
+                icon: "fas fa-swords",
+                units: "THAC0",
+            },            
+        ],                
         lancer: [
             { attr: "hp.value", icon: "mdi mdi-heart-outline", units: "" },
             { attr: "structure.value", icon: "cci cci-structure", units: "" },
