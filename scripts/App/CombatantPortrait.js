@@ -121,7 +121,7 @@ export class CombatantPortrait {
 
         if (!event.target.classList.contains("combatant-wrapper")) return;
 
-        if (event.button === 2) return this.combatant.sheet.render(true);
+        if (event.button === 2) return game.user.isGM && this.combatant.sheet.render(true);
 
         const combatant = this.combatant;
         const token = combatant.token;
