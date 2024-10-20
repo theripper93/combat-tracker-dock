@@ -42,7 +42,8 @@ export class CombatantPortrait {
     get firstTurnHidden() {
         const combatant = this.combatant;
         const hasPermission = (combatant.actor?.permission ?? -10) >= CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER || combatant.isOwner;
-        if (!hasPermission && !this._hasTakenTurn) return true;
+        const isFriendly = combatant.token?.disposition === CONST.TOKEN_DISPOSITIONS.FRIENDLY;
+        if (!hasPermission && !this._hasTakenTurn && !isFriendly) return true;
         return false;
     }
 
