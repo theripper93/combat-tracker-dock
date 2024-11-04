@@ -200,6 +200,14 @@
             "hideEnemyInitiative": {
                 "hint": "Verstecken Sie die Initiative des Feindes im Tooltip und im Porträt.",
                 "name": "Feindliche Initiative ausblenden"
+            },
+            "portraitResource": {
+                "hint": "Die Ressourcenleiste, die als Overlay über dem Porträtbild angezeigt wird. \nSie sollten dies in der Kampfkonfiguration festlegen. \nDiese Option steht einigen Systemen und erfahrenen Benutzern zur manuellen Anpassung zur Verfügung.",
+                "name": "Porträtressource"
+            },
+            "resource": {
+                "hint": "Die sekundäre Ressourcenleiste. \nSie sollten dies in der Kampfkonfiguration festlegen. \nDiese Option steht einigen Systemen und erfahrenen Benutzern zur manuellen Anpassung zur Verfügung.",
+                "name": "Sekundäre Ressource"
             }
         },
         "configureCarousel": "Karussell konfigurieren",

@@ -207,6 +207,14 @@
             "hideEnemyInitiative": {
                 "hint": "Oculta la iniciativa enemiga en la descripción emergente y el retrato.",
                 "name": "Ocultar iniciativa enemiga"
+            },
+            "portraitResource": {
+                "hint": "La barra de recursos que se mostrará superpuesta encima de la imagen vertical. \nDeberías configurar esto en la configuración de combate. \nEsta opción está aquí para que algunos sistemas y usuarios experimentados la modifiquen manualmente.",
+                "name": "Recurso de retrato"
+            },
+            "resource": {
+                "hint": "La barra de recursos secundaria. \nDeberías configurar esto en la configuración de combate. \nEsta opción está aquí para que algunos sistemas y usuarios experimentados la modifiquen manualmente.",
+                "name": "Recurso secundario"
             }
         },
         "hotkeys": {

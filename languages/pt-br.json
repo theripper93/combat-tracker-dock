@@ -200,6 +200,14 @@
             "hideEnemyInitiative": {
                 "hint": "Oculte a iniciativa inimiga na dica e no retrato.",
                 "name": "Ocultar Iniciativa Inimiga"
+            },
+            "portraitResource": {
+                "hint": "A barra de recursos que será mostrada como uma sobreposição na parte superior da imagem do retrato. \nVocê deve definir isso na configuração de combate. \nEsta opção está aqui para alguns sistemas e usuários experientes ajustarem manualmente.",
+                "name": "Recurso de retrato"
+            },
+            "resource": {
+                "hint": "A barra de recursos secundária. \nVocê deve definir isso na configuração de combate. \nEsta opção está aqui para alguns sistemas e usuários experientes ajustarem manualmente.",
+                "name": "Recurso Secundário"
             }
         },
         "configureCarousel": "Configurar carrossel",

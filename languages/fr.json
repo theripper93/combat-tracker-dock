@@ -200,6 +200,14 @@
             "hideEnemyInitiative": {
                 "hint": "Masquez l'initiative ennemie dans l'infobulle et le portrait.",
                 "name": "Masquer l'initiative ennemie"
+            },
+            "portraitResource": {
+                "hint": "La barre de ressources qui sera affichée en superposition au-dessus de l'image du portrait. \nVous devez définir cela dans la configuration de combat. \nCette option est là pour que certains systèmes et utilisateurs expérimentés puissent la modifier manuellement.",
+                "name": "Ressource de portrait"
+            },
+            "resource": {
+                "hint": "La barre de ressources secondaire. \nVous devez définir cela dans la configuration de combat. \nCette option est là pour que certains systèmes et utilisateurs expérimentés puissent la modifier manuellement.",
+                "name": "Ressource secondaire"
             }
         },
         "configureCarousel": "Configurer le carrousel",

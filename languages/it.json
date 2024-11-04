@@ -200,6 +200,14 @@
             "hideEnemyInitiative": {
                 "hint": "Nascondi l'iniziativa nemica nel tooltip e nel ritratto.",
                 "name": "Nascondi l'iniziativa nemica"
+            },
+            "portraitResource": {
+                "hint": "La barra delle risorse che verrà visualizzata in sovrapposizione sopra l'immagine del ritratto. \nDovresti impostarlo nella configurazione di combattimento. \nQuesta opzione è disponibile per alcuni sistemi e utenti esperti per la modifica manuale.",
+                "name": "Risorsa per i ritratti"
+            },
+            "resource": {
+                "hint": "La barra delle risorse secondaria. \nDovresti impostarlo nella configurazione di combattimento. \nQuesta opzione è disponibile per alcuni sistemi e utenti esperti per la modifica manuale.",
+                "name": "Risorsa secondaria"
             }
         },
         "configureCarousel": "Configura carosello",
