@@ -207,6 +207,14 @@
                     "reset": "Reset Defaults",
                     "notes": "Leave the Attribute field blank to remove it."
                 }
+            },
+            "resource": {
+                "name": "Secondary Resource",
+                "hint": "The secondary resource bar. You should set this in the combat configuration. This option is here for some systems and experienced users to tweak manually."
+            },
+            "portraitResource": {
+                "name": "Portrait Resource",
+                "hint": "The resource bar that will be shown as a overlay on top of the portrait image. You should set this in the combat configuration. This option is here for some systems and experienced users to tweak manually."
             }
         },
         "hotkeys": {

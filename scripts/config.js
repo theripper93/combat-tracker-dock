@@ -411,16 +411,20 @@ export function registerSettings() {
     setAllSettings();
 
     game.settings.register(MODULE_ID, "resource", {
+        name: "combat-tracker-dock.settings.resource.name",
+        hint: "combat-tracker-dock.settings.resource.hint",
         scope: "world",
-        config: false,
+        config: true,
         type: String,
         default: "",
         onChange: () => ui.combatDock?.refresh(),
     });
 
     game.settings.register(MODULE_ID, "portraitResource", {
+        name: "combat-tracker-dock.settings.portraitResource.name",
+        hint: "combat-tracker-dock.settings.portraitResource.hint",
         scope: "world",
-        config: false,
+        config: true,
         type: String,
         default: "",
         onChange: () => ui.combatDock?.refresh(),
