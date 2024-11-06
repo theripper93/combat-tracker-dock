@@ -465,7 +465,14 @@ export class CombatDock extends Application {
     }
 
     _onDeleteCombat(combat) {
-        if (combat === this.combat) this.close();
+        if (combat === this.combat) {
+            this.close();
+            if (document.getElementById("navigation").classList.contains("collapsed")) {
+                setTimeout(() => {
+                    document.getElementById("nav-toggle").click();
+                }, 1000);
+            }
+        }
     }
 
     _onCombatStart(combat) {
