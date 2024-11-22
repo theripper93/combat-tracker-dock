@@ -60,6 +60,48 @@ export function defaultAttributesConfig() {
                 units: "",
             },
         ],
+        "dnd4e": [
+            {
+                attr: "defences.ac.value",
+                icon: "fas fa-shield",
+                units: game.i18n.localize("DND4E.DefAC"),
+            },
+            {
+                attr: "defences.fort.value",
+                icon: "fas fa-heart-pulse",
+                units: game.i18n.localize("DND4E.DefFort"),
+            },
+            {
+                attr: "defences.ref.value",
+                icon: "fas fa-rabbit-running",
+                units: game.i18n.localize("DND4E.DefRef"),
+            },
+            {
+                attr: "defences.wil.value",
+                icon: "fas fa-brain",
+                units: game.i18n.localize("DND4E.DefWil"),
+            },
+            {
+                attr: "attributes.init.value",
+                icon: "fas fa-traffic-light-go",
+                units: game.i18n.localize("DND4E.Init"),
+            },
+            {
+                attr: "movement.walk.value",
+                icon: "fas fa-person-running",
+                units: game.i18n.localize("DND4E.Speed"),
+            },
+            {
+                attr: "attributes.hp.max",
+                icon: "fas fa-heart",
+                units: game.i18n.localize("DND4E.HPShort"),
+            },
+            {
+                attr: "details.bloodied",
+                icon: "fas fa-heart-half-stroke",
+                units: null,
+            },
+		],
         "cyberpunk-red-core": [
             {
                 attr: "derivedStats.hp.value",
@@ -609,6 +651,15 @@ export function generateDescription(actor) {
             } else {
                 return null;
             }
+        case "dnd4e":
+            switch (type) {
+                case "Player Character":
+					return `${game.i18n.localize("DND4E.Level")} ${system.details.level} ${system.details.race} ${system.details.class} (${system.details.alignment})`;
+                case "NPC":
+					return `${CONFIG.DND4E.actorSizes[actor.system.details.size]?.label} ${CONFIG.DND4E.creatureOrigin[actor.system.details.origin]?.label} ${CONFIG.DND4E.creatureType[actor.system.details.type]?.label}`;
+				default:
+					return null;
+			}
         case "swade":
             if (system?.wildcard) return `${game.i18n.localize("SWADE.WildCard")}`;
             switch (type) {
@@ -862,6 +913,12 @@ export function getInitiativeDisplay(combatant) {
                     rollIcon: "fas fa-dice-d20",
                 }
             );
+        case "dnd4e":
+            return {
+				value: combatant?.initiative ? parseInt(combatant.initiative).toString() : null,
+				icon: "fas fa-dice-d20",
+				rollIcon: "fas fa-dice-d20",
+			};	
         default:
             return {
                 value: combatant?.initiative,
