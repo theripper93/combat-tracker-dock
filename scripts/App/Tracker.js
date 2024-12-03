@@ -257,6 +257,7 @@ export class CombatDock extends Application {
     }
 
     updateStartEndButtons() {
+        if(!this.element[0]) return;
         const startButton = this.element[0].querySelector(`[data-action="start-combat"]`);
         const endButton = this.element[0].querySelector(`[data-action="end-combat"]`);
         startButton.style.display = this.combat.started ? "none" : "";
