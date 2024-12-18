@@ -1,0 +1,237 @@
+{
+    "combat-tracker-dock": {
+        "configureCarousel": "Konfiguracja karuzeli",
+        "combatConfig": {
+            "portraitResource": {
+                "label": "Wskaźnik portretu",
+                "hint": "Wskaźnik zasobów, który będzie wyświetlany jako nakładka na obraz portretu, ustaw na „Brak”, aby wyłączyć."
+            }
+        },
+        "settings": {
+            "systems": {
+                "crucible": {
+                    "alwaysShowActions": {
+                        "name": "Pokaż punkty akcji przeciwnika",
+                        "hint": "Jeśli opcja „Pokaż ikony systemowe” jest włączona, wyświetla punkty akcji graczom niezależnie od uprawnień. Pozwoli to graczom zobaczyć, ile punktów akcji mają sojusznicy i przeciwnicy. Punkty skupienia nadal będą ukryte przed graczami bez uprawnień do ich wyświetlania."
+                    }
+                }
+            },
+            "integration": "Integracja",
+            "portraitSize": {
+                "name": "Rozmiar karuzeli",
+                "hint": "Maksymalny rozmiar portretów w karuzeli. Należy pamiętać, że rozmiar portretów zostanie automatycznie zmniejszony, jeśli na ekranie będzie zbyt wielu walczących.",
+                "choices": {
+                    "30px": "Malutki",
+                    "50px": "Mały",
+                    "70px": "Normalny",
+                    "90px": "Duży",
+                    "110px": "X-Duży",
+                    "150px": "XX-Duży",
+                    "180px": "XXX-Duży"
+                }
+            },
+            "carouselStyle": {
+                "name": "Styl karuzeli",
+                "hint": "Sposób umieszczania i przesuwania portretów w karuzeli: Karuzela - Wyśrodkowana: Aktywny bojownik znajduje się na środku karuzeli, a pozostali bojownicy obracają się wokół niego.\n- Karuzela - Lewa: Aktywny gracz znajduje się po lewej stronie karuzeli, a pozostali gracze obracają się wokół niego.\n- Brak karuzeli: Walczący są zawsze wyświetlani w kolejności inicjatywy, a aktywny walczący porusza się, podczas gdy walczący pozostają w tej samej pozycji.",
+                "choices": {
+                    "centerCarousel": "Karuzela - Wyśrodkowana",
+                    "leftCarousel": "Karuzela - Lewa",
+                    "basic": "Brak karuzeli"
+                }
+            },
+            "overflowStyle": {
+                "name": "Styl przepełnienia",
+                "hint": "Sposób, w jaki zachowuje się karuzela, gdy na ekranie jest zbyt wielu walczących.",
+                "choices": {
+                    "hidden": "Ukryty",
+                    "scroll": "Przewijanie",
+                    "autofit": "Zmniejszone portrety"
+                }
+            },
+            "portraitAspect": {
+                "name": "Współczynnik proporcji portretu",
+                "hint": "Współczynnik proporcji portretu. Obraz zostanie przycięty, jeśli nie pasuje do proporcji portretu.",
+                "choices": {
+                    "square": "Kwadrat",
+                    "portrait": "Portret",
+                    "long": "Długi"
+                }
+            },
+            "alignment": { 
+                "name": "Położenie",
+                "hint": "Ustawienie karuzeli.",
+                "choices": {
+                    "left": "Lewo",
+                    "center": "Środek",
+                    "right": "Prawo"
+                }
+            },
+            "direction": {
+                "name": "Kierunek",
+                "hint": "Kierunek karuzeli.",
+                "choices": {
+                    "row": "Poziomo",
+                    "column": "Pionowo"
+                }
+            },
+            "roundness": {
+                "name": "Zaokrąglenie",
+                "hint": "Zaokrąglenie portretów i podpowiedzi.",
+                "choices": {
+                    "sharp": "Ostre",
+                    "soft": "Łagodne",
+                    "round": "Okrągłe"
+                }
+            },
+            "showDispositionColor": {
+                "name": "Pokaż kolor dyspozycji",
+                "hint": "Pokaż dyspozycję w dolnej krawędzi portretu."
+            },
+            "hideDefeated": {
+                "name": "Ukryj pokonanych",
+                "hint": "Ukryj pokonanych bojowników z karuzeli. Będą oni nadal widoczni w zwykłym module śledzenia walki, jeśli zajdzie potrzeba interakcji z nimi."
+            },
+            "showInitiativeOnPortrait": {
+                "name": "Pokaż inicjatywę na Portrecie",
+                "hint": "Pokazuje wartość inicjatywy w lewym górnym rogu portretu. Zawsze możesz zobaczyć inicjatywę w podpowiedzi!"
+            },
+            "portraitImageBorder": {
+                "name": "Obramowanie gracza",
+                "hint": "Specjalne obramowanie, które będzie wyświetlane dla postaci gracza. Pozostaw puste, aby wyłączyć. Jeśli chcesz utworzyć niestandardowy obraz, sugerujemy użycie domyślnego jako odniesienia dla prawidłowego rozmiaru."
+            },
+            "attributeColor": {
+                "name": "Kolor atrybutu",
+                "hint": "Kolor głównego śledzonego tekstu atrybutu i wskaźnika w karuzeli. Można użyć dowolnej prawidłowej wartości koloru CSS (np. #ff0000, red, rgba(255,0,0,0.5), itd.)."
+            },
+            "attributeColor2": {
+                "name": "Kolor atrybutu dodatkowego",
+                "hint": "Kolor dodatkowego śledzonego tekstu atrybutu i wskaźnika w karuzeli. Można użyć dowolnej prawidłowej wartości koloru CSS (np. #ff0000, red, rgba(255,0,0,0.5), itd.)."
+            },
+            "attributeColorPortrait": {
+                "name": "Kolor atrybutu portretu",
+                "hint": "Kolor wskaźnika nakładki śledzonego atrybutu. Można użyć dowolnej prawidłowej wartości koloru CSS (np. #ff0000, red, rgba(255,0,0,0.5), itd.)."
+            },
+            "barsPlacement": {
+                "name": "Rozmieszczenie wskaźników",
+                "hint": "Rozmieszczenie wskaźników śledzonych atrybutów w karuzeli.",
+                "choices": {
+                    "left": "Lewo",
+                    "right": "Prawo",
+                    "twinned": "Podwójny"
+                }
+            },
+            "attributeVisibility": {
+                "name": "Widoczność atrybutów",
+                "hint": "Widoczność śledzonych atrybutów w karuzeli.",
+                "choices": {
+                    "text": "Tylko tekst",
+                    "bars": "Tylko wskaźniki",
+                    "both": "Tekst i wskaźniki"
+                }
+            },
+            "playerPlayerPermission": {
+                "name": "Zawsze pokazuj informacje o graczu",
+                "hint": "Umożliwienie wszystkim graczom wyświetlania śledzonych atrybutów, podpowiedzi i ikon systemowych innych graczy."
+            },
+            "displayDescriptions": {
+                "name": "Wyświetlanie opisów",
+                "hint": "Wyświetlanie opisów aktywnych efektów w podpowiedzi.",
+                "choices": {
+                    "none": "Brak",
+                    "owner": "Właściciel/Obserwator",
+                    "all": "Każdy"
+                }
+            },
+            "tooltipColor": {
+                "name": "Kolor podpowiedzi",
+                "hint": "Schemat kolorów podpowiedzi. Można użyć dowolnej prawidłowej wartości koloru CSS (np. #ff0000, red, rgba(255,0,0,0.5), itp.). Domyślnie #888888."
+            },
+            "portraitImage": {
+                "name": "Obraz portretu",
+                "hint": "Określa, czy jako portret ma zostać użyty wizerunek aktora czy tokena.",
+                "choices": {
+                    "actor": "Aktor",
+                    "token": "Token"
+                }
+            },
+            "portraitImageBackground": {
+                "name": "Tło portretu",
+                "hint": "Obraz tła za portretem, który będzie widoczny, jeśli portret jest przezroczysty lub nie wypełnia przestrzeni."
+            },
+            "showSystemIcons": {
+                "name": "Pokaż ikony systemowe",
+                "hint": "Wyświetlanie ikon systemowych poniżej śledzonego zasobu, podpowiedzi lub obu. Należy pamiętać, że wymaga to implementacji specyficznej dla systemu i będzie działać tylko w wybranych systemach.",
+                "choices": {
+                    "none": "Brak",
+                    "tooltip": "Podpowiedź",
+                    "resource": "Portret",
+                    "both": "Oba"
+                }
+            },
+            "displayName": {
+                "name": "Wyświetlanie nazwy",
+                "hint": "Określa, czy nazwa walczącego ma być wyświetlana w podpowiedzi. 'Na podstawie tokena' wyświetli nazwę tylko wtedy, gdy gracz widzi nazwę tokena.",
+                "choices": {
+                    "default": "Zawsze",
+                    "token": "Na podstawie tokena",
+                    "owner": "Na podstawie własności"
+                }
+            },
+            "hideFirstRound": {
+                "name": "Ukryj do pierwszej tury",
+                "hint": "Ukrywa wrogów, dopóki nie wykonają swojej pierwszej tury w walce. (Wymaga LibWrapper, aby ukryć ich również w głównym module śledzenia walki)."
+            },
+            "hideEnemyInitiative": {
+                "name": "Ukrycie inicjatywy wroga",
+                "hint": "Ukrywa inicjatywę wroga w podpowiedzi i portrecie."
+            },
+            "attributesMenu": {
+                "name": "Atrybuty podpowiedzi",
+                "label": "Konfiguracja atrybutów",
+                "hint": "Konfiguracja niestandardowych atrybutów wyświetlanych w podpowiedzi.",
+                "reset": "Przywróć domyślne",
+                "resetWarning": "Czy na pewno chcesz przywrócić domyślne wartości atrybutów?",
+                "form": {
+                    "attr": {
+                        "name": "Atrybut",
+                        "choose": "Wybierz atrybut"
+                    },
+                    "icon": {
+                        "name": "Ikona"
+                    },
+                    "units": {
+                        "name": "Jednostki"
+                    },
+                    "save": "Zapisz i zamknij",
+                    "add": "Dodaj atrybut",
+                    "reset": "Przywróć domyślne",
+                    "notes": "Pozostaw pole Atrybut puste, aby je usunąć."
+                }
+            },
+            "resource": {
+                "name": "Zasoby dodatkowe",
+                "hint": "Dodatkowy wskaźnik zasobów. Należy to ustawić w konfiguracji walki. Ta opcja jest przeznaczona dla niektórych systemów i doświadczonych użytkowników, którzy mogą ją dostosować ręcznie."
+            },
+            "portraitResource": {
+                "name": "Zasoby portretu",
+                "hint": "Wskaźnik zasobów, który będzie wyświetlany jako nakładka na obraz portretu. Należy to ustawić w konfiguracji walki. Ta opcja jest przeznaczona dla niektórych systemów i doświadczonych użytkowników, którzy mogą ją dostosować ręcznie."
+            }
+        },
+        "hotkeys": {
+            "combatPrev": {
+                "name": "Poprzednia Tura"
+            },
+            "combatNext": {
+                "name": "Następna Tura"
+            }
+        },
+        "add-event": {
+            "title": "Dodaj Wydarzenie",
+            "duration": "Czas trwania wydarzenia (Rundy)",
+            "error": "Błąd: Musisz podać nazwę, obraz i wartość inicjatywy dla wydarzenia.",
+            "expired": "Wydarzenie %n wygasło."
+        },
+        "deleteEffectTitle": "Usuń efekt",
+        "deleteEffectContent": "Czy na pewno chcesz usunąć ten efekt? "
+    }
+}
