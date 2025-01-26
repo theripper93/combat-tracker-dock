@@ -2,6 +2,7 @@ import {registerSettings, registerWrappers, registerHotkeys} from './config.js';
 import {CombatDock} from './App/Tracker.js';
 import {CombatantPortrait} from './App/CombatantPortrait.js';
 import {defaultAttributesConfig, generateDescription} from './systems.js';
+import {showWelcome} from './lib/welcome.js';
 
 export const MODULE_ID = 'combat-tracker-dock';
 
@@ -52,6 +53,7 @@ Hooks.on('ready', () => {
     if(game.combat?.active && !ui.combatDock && game.settings.get("core", "noCanvas")) {
         new CONFIG.combatTrackerDock.CombatDock(game.combat).render(true);
     }
+    showWelcome();
 });
 
 Hooks.on("renderCombatTrackerConfig", (app, html, data) => {
