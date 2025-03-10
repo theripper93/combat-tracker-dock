@@ -40,7 +40,7 @@ export function defaultAttributesConfig() {
                 units: "ft.",
             },
             {
-                attr: "attributes.spelldc",
+                attr: "attributes.spell.dc",
                 icon: "fas fa-hand-holding-magic",
                 units: "Spell DC",
             },

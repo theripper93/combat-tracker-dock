@@ -117,9 +117,7 @@ export class CombatDock extends Application {
         this.portraits.forEach((p) => combatantsContainer.appendChild(p.element));
         const isEven = this.portraits.length % 2 === 0;
         this.element[0].classList.toggle("even", isEven);
-        const separator = document.createElement("div");
-        separator.classList.add("separator");
-        combatantsContainer.appendChild(separator);
+        this.setupSeparator();
         this.updateOrder();
         this.autosize();
         if (!this._combatTrackerRefreshed) {
@@ -134,6 +132,24 @@ export class CombatDock extends Application {
                 this.playIntroAnimation();
             });
         }
+    }
+
+    setupSeparator(){
+        const combatantsContainer = this.element[0].querySelector("#combatants");
+        combatantsContainer.querySelectorAll(".separator").forEach(s => s.remove());
+        const turn = this.combat.turn + 1;
+        const combatantsCount = this.sortedCombatants.length;
+        const afterHalf = turn > Math.floor(combatantsCount / 2) || this.leftAligned ? 1 : 0;
+        const separator = document.createElement("div");
+        separator.classList.add("separator");
+        const line = document.createElement("div");
+        line.classList.add("line");
+        separator.appendChild(line);
+        const round = document.createElement("div");
+        round.classList.add("round", this.isVertical ? "flexrow" : "flexcol");
+        round.innerHTML = this.isVertical ? `<i class="fal fa-angle-down"></i>${this.combat.round + afterHalf}` : `<i class="fal fa-angle-right"></i>${this.combat.round + afterHalf}`;
+        separator.appendChild(round);
+        combatantsContainer.appendChild(separator);
     }
 
     playIntroAnimation(easing = "cubic-bezier(0.22, 1, 0.36, 1)") {
@@ -218,6 +234,7 @@ export class CombatDock extends Application {
     }
 
     updateOrder() {
+        this.setupSeparator();
         const separator = this.element[0].querySelector(".separator");
         const isTrueCarousel = this.trueCarousel;
         separator.style.display = isTrueCarousel ? "" : "none";
