@@ -1,6 +1,6 @@
 import { MODULE_ID } from "../main.js";
 import { AddEvent } from "./AddEvent.js";
-import { DETECTION_LEVELS } from "../const.js";
+import { VISION5E_DETECTION_LEVELS } from "../const.js";
 
 export class CombatDock extends Application {
     constructor(combat) {
@@ -500,7 +500,7 @@ export class CombatDock extends Application {
 
     _onHoverToken(token, hover) {
         const portrait = this.portraits.find((p) => p.token === token);
-        const tokenHasVision = !token.detectionLevel || token.detectionLevel === DETECTION_LEVELS.PRECISE;
+        const tokenHasVision = !token.detectionLevel || token.detectionLevel === VISION5E_DETECTION_LEVELS.PRECISE;
         if (!portrait || !tokenHasVision) return;
         portrait.element.classList.toggle("hovered", hover);
     }
