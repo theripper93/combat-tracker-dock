@@ -1,6 +1,6 @@
 import { MODULE_ID } from "../main.js";
 import { generateDescription, getInitiativeDisplay, getSystemIcons } from "../systems.js";
-import { DETECTION_LEVELS } from "../const.js";
+import { VISION5E_DETECTION_LEVELS } from "../const.js";
 
 export class CombatantPortrait {
     constructor(combatant) {
@@ -146,7 +146,7 @@ export class CombatantPortrait {
 
      _onHoverIn(event) {
         if (!this.token) return;
-        const tokenHasVision = !this.token?.detectionLevel || this.token?.detectionLevel === DETECTION_LEVELS.PRECISE;
+        const tokenHasVision = !this.token?.detectionLevel || this.token?.detectionLevel === VISION5E_DETECTION_LEVELS.PRECISE;
         if ( this.token?.isVisible && !this.token.controlled && tokenHasVision ) this.token._onHoverIn(event);
     }
 
