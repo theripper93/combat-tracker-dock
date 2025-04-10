@@ -146,6 +146,7 @@ export class CombatantPortrait {
 
      _onHoverIn(event) {
         if (!this.token) return;
+        // tokenHasVision is derived from Vision5e module 
         const tokenHasVision = !this.token?.detectionLevel || this.token?.detectionLevel === VISION5E_DETECTION_LEVELS.PRECISE;
         if ( this.token?.isVisible && !this.token.controlled && tokenHasVision ) this.token._onHoverIn(event);
     }
