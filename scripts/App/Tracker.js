@@ -500,6 +500,7 @@ export class CombatDock extends Application {
 
     _onHoverToken(token, hover) {
         const portrait = this.portraits.find((p) => p.token === token);
+        // tokenHasVision is derived from Vision5e module 
         const tokenHasVision = !token.detectionLevel || token.detectionLevel === VISION5E_DETECTION_LEVELS.PRECISE;
         if (!portrait || !tokenHasVision) return;
         portrait.element.classList.toggle("hovered", hover);
