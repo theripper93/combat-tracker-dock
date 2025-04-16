@@ -224,7 +224,7 @@ export class CombatantPortrait {
 
         value = foundry.utils.getProperty(this.actor.system, resource) ?? foundry.utils.getProperty(this.actor.system, resource + ".value");
 
-        if (max !== undefined && value !== undefined && Number.isNumeric(max) && Number.isNumeric(value)) percentage = Math.round((value / max) * 100);
+        if (max !== undefined && value !== undefined && Number.isNumeric(max) && Number.isNumeric(value)) percentage = Math.min(Math.max( Math.round((value / max) * 100) , 0) , 100);
 
         value = this.validateValue(value);
         max = this.validateValue(max);
