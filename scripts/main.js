@@ -30,8 +30,11 @@ Hooks.on('createCombat', (combat) => {
 });
 
 Hooks.on('updateCombat', (combat, updates) => {
-    if(updates.active) {
+    if(updates.active || updates.scene === null) {
         new CONFIG.combatTrackerDock.CombatDock(combat).render(true);
+    }
+    if(updates.scene && combat.scene !== game.scenes.viewed && ui.combatDock?.combat === combat) {
+        ui.combatDock.close();
     }
 });
 
