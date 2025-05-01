@@ -4,12 +4,12 @@
     <div class="portrait-bar" style="height: calc( 100% - {{portraitResource.percentage}}% );"></div>
     {{/if}}
 
-    <i style="{{#if hasRolled}}display: none;{{/if}}"  {{#if
+    <i style="{{#if hasRolled}}display: none;{{/if}}{{#unless owner}}display: none;{{/unless}}"  {{#if
         initiativeData.isRollIconImg}}style="background-image: url('{{initiativeData.rollIcon}}');"
         class="roll-initiative" {{else}}class="{{initiativeData.rollIcon}} roll-initiative" {{/if}}></i>
 
-    <div class="portrait-pass" {{#unless showPass}}style="display: none;" {{/unless}} {{#unless
-        hasRolled}}style="display: none;" {{/unless}}>
+    <div class="portrait-pass" style="{{#unless showPass}}display: none;{{/unless}}{{#unless
+        hasRolled}}display: none;{{/unless}}{{#unless owner}}display: none;{{/unless}}">
         <i data-action="player-pass" class="fa-solid fa-chevrons-right"></i>
     </div>
 
