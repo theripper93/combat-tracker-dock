@@ -6,11 +6,6 @@ export class CombatDock extends Application {
         super();
         ui.combatDock?.close();
         ui.combatDock = this;
-        if (!document.getElementById("navigation").classList.contains("collapsed")) {
-            setTimeout(() => {
-                document.getElementById("nav-toggle").click();
-            }, 1000);
-        }
         this.portraits = [];
         this.combat = combat ?? game.combat;
         this.hooks = [];
@@ -206,7 +201,7 @@ export class CombatDock extends Application {
         const verticalSize = max * aspect;
         if (!this.autoFit) return document.documentElement.style.setProperty("--combatant-portrait-size", max + "px");
         if (this.isVertical) {
-            const maxSpace = document.getElementById("ui-middle").getBoundingClientRect().height * 0.9;
+            const maxSpace = document.getElementById("ui-left").getBoundingClientRect().height * 0.9;
             const combatantCount = this.sortedCombatants.length;
             const portraitSize = Math.min(verticalSize, Math.floor(maxSpace / combatantCount)) / aspect;
 
@@ -281,11 +276,17 @@ export class CombatDock extends Application {
         endButton.style.display = this.combat.started ? "" : "none";
     }
 
+    appendHtml(){
+        if(!this.isVertical) return document.querySelector("#ui-top").prepend(this.element[0]);
+        if(game.settings.get(MODULE_ID, "alignment") == "left") return document.querySelector("#ui-left").prepend(this.element[0]);
+        return document.querySelector("#ui-right").prepend(this.element[0]);
+    }
+
     activateListeners(html) {
         if (this._closed) return this.close();
         super.activateListeners(html);
         this.setupCombatants();
-        document.querySelector("#ui-top").prepend(this.element[0]);
+        this.appendHtml();
         this.element[0].querySelectorAll(".buttons-container i").forEach((i) => {
             i.addEventListener("click", (e) => {
                 const action = e.currentTarget.dataset.action;
@@ -485,11 +486,6 @@ export class CombatDock extends Application {
     _onDeleteCombat(combat) {
         if (combat === this.combat) {
             this.close();
-            if (document.getElementById("navigation").classList.contains("collapsed")) {
-                setTimeout(() => {
-                    document.getElementById("nav-toggle").click();
-                }, 1000);
-            }
         }
     }
 
@@ -505,6 +501,7 @@ export class CombatDock extends Application {
 
     refresh() {
         this.updateCombatants();
+        this.appendHtml();
     }
 
     async close(...args) {

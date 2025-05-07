@@ -334,6 +334,11 @@
   background: linear-gradient(180deg, var(--attribute-bar-primary-color2) 0%, var(--attribute-bar-secondary-color2) 100%);
 }
 
+#ui-left #combat-dock,
+#ui-right #combat-dock {
+  align-self: center;
+}
+
 #combat-dock {
   display: flex !important;
   justify-content: var(--carousel-alignment);

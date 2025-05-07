@@ -39,16 +39,12 @@ Hooks.on('updateCombat', (combat, updates) => {
 });
 
 Hooks.on('canvasReady', () => {
-    let hook;
-    hook = Hooks.on("renderSidebarTab", (tab) => {
-        if (tab instanceof CombatTracker) {
-            Hooks.off("renderSidebarTab", hook);
+    Hooks.once("renderCombatTracker", (tab) => {
             if(game.combat?.active) {
                 new CONFIG.combatTrackerDock.CombatDock(game.combat).render(true);
             } else {
                 ui.combatDock?.close();
             }
-        }
     })
 });
 
@@ -58,6 +54,10 @@ Hooks.on('ready', () => {
     }
     showWelcome();
 });
+
+function getCTFormData(app){
+
+}
 
 Hooks.on("renderCombatTrackerConfig", (app, html, data) => {
     if (!game.user.isGM) return;
@@ -76,22 +76,22 @@ Hooks.on("renderCombatTrackerConfig", (app, html, data) => {
     const fg = document.createElement("div");
     fg.classList.add("form-group");
     fg.innerHTML = `
-    <label>${game.i18n.localize('COMBAT.Resource')} 2</label>
+    <label>${game.i18n.localize('COMBAT.CONFIG.FIELDS.core.combatTrackerConfig.resource.label')} 2</label>
     ${selectResourceHtml}
-    <p class="notes">${game.i18n.localize('COMBAT.ResourceHint')}</p>
+    <p class="hint">${game.i18n.localize('COMBAT.CONFIG.FIELDS.core.combatTrackerConfig.resource.hint')}</p>
     `;
 
-    html[0].querySelector(`select[name="resource"]`).closest(".form-group").appendChild(fg);
+    html.querySelector(`select[name="core.combatTrackerConfig.resource"]`).closest(".form-group").appendChild(fg);
 
     const portraitFg = document.createElement("div");
     portraitFg.classList.add("form-group");
     portraitFg.innerHTML = `
     <label>${game.i18n.localize(`${MODULE_ID}.combatConfig.portraitResource.label`)}</label>
     ${selectPortraitResourceHtml}
-    <p class="notes">${game.i18n.localize(`${MODULE_ID}.combatConfig.portraitResource.hint`)}</p>
+    <p class="hint">${game.i18n.localize(`${MODULE_ID}.combatConfig.portraitResource.hint`)}</p>
     `;
 
-    html[0].querySelector(`select[name="flags.${MODULE_ID}.resource"]`).closest(".form-group").appendChild(portraitFg);
+    html.querySelector(`select[name="flags.${MODULE_ID}.resource"]`).closest(".form-group").appendChild(portraitFg);
 
     const button = document.createElement("button");
     button.innerHTML = `<i class="fa-solid fa-gears"></i> ` + game.i18n.localize(`${MODULE_ID}.configureCarousel`);
@@ -100,21 +100,21 @@ Hooks.on("renderCombatTrackerConfig", (app, html, data) => {
         e.preventDefault();
         new SettingsConfig().render(true)
         Hooks.once("renderSettingsConfig", (app, html, data) => {
-            html[0].querySelector('a[data-tab="combat-tracker-dock"]').click();
+            html.querySelector('button[data-tab="combat-tracker-dock"]').click();
         });
     });
 
     //find last form group
-    const lastFormGroup = html[0].querySelectorAll(".form-group")[html[0].querySelectorAll(".form-group").length - 1];
+    const lastFormGroup = html.querySelectorAll(".form-group")[html.querySelectorAll(".form-group").length - 1];
     lastFormGroup.appendChild(button);
 
-    app.setPosition({height: "auto"});
-});
+    html.querySelector(`select[name="flags.${MODULE_ID}.resource"]`).addEventListener("change", async (event) => {
+        await game.settings.set(MODULE_ID, "resource", event.target.value);
+    });
 
-Hooks.on("closeCombatTrackerConfig", async (app, html, data) => {
-    if (!game.user.isGM) return;
-    const resource = html[0].querySelector(`select[name="flags.${MODULE_ID}.resource"]`).value;
-    await game.settings.set(MODULE_ID, "resource", resource);
-    const portraitResource = html[0].querySelector(`select[name="flags.${MODULE_ID}.portraitResource"]`).value;
-    await game.settings.set(MODULE_ID, "portraitResource", portraitResource);
+    html.querySelector(`select[name="flags.${MODULE_ID}.portraitResource"]`).addEventListener("change", async (event) => {
+        await game.settings.set(MODULE_ID, "portraitResource", event.target.value);
+    });
+
+    app.setPosition({height: "auto"});
 });

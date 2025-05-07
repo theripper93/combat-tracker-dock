@@ -445,7 +445,7 @@ export function registerWrappers() {
 export function registerHotkeys() {
     game.keybindings.register(MODULE_ID, "combatPrev", {
         name: `${MODULE_ID}.hotkeys.combatPrev.name`,
-        editable: [{ key: "KeyN", modifiers: [KeyboardManager.MODIFIER_KEYS.SHIFT] }],
+        editable: [{ key: "KeyN", modifiers: [foundry.helpers.interaction.KeyboardManager.MODIFIER_KEYS.SHIFT] }],
         restricted: false,
         onDown: () => {},
         onUp: () => {
@@ -458,7 +458,7 @@ export function registerHotkeys() {
 
     game.keybindings.register(MODULE_ID, "combatNext", {
         name: `${MODULE_ID}.hotkeys.combatNext.name`,
-        editable: [{ key: "KeyM", modifiers: [KeyboardManager.MODIFIER_KEYS.SHIFT] }],
+        editable: [{ key: "KeyM", modifiers: [foundry.helpers.interaction.KeyboardManager.MODIFIER_KEYS.SHIFT] }],
         restricted: false,
         onDown: () => {},
         onUp: () => {
@@ -603,7 +603,7 @@ export function colorPicker(settingId, html) {
     colorPickerElement.value = game.settings.get(MODULE_ID, settingId);
 
     // Add color picker
-    const stringInputElement = html[0].querySelector(`input[name="${MODULE_ID}.${settingId}"]`);
+    const stringInputElement = html.querySelector(`input[name="${MODULE_ID}.${settingId}"]`);
     stringInputElement.classList.add("color");
     stringInputElement.after(colorPickerElement);
 }

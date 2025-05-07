@@ -1,125 +1,136 @@
-#combat-dock{
+#ui-left,
+#ui-right {
+  & #combat-dock {
+    align-self: center;
+  }
+}
 
-    display: flex !important;
-    justify-content: var(--carousel-alignment);
+#combat-dock {
+  display: flex !important;
+  justify-content: var(--carousel-alignment);
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  max-height: 100vh;
+  overflow-x: visible;
+  overflow-y: visible;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  /*will-change: transform;*/
+
+  &.hidden {
+    display: none !important;
+  }
+
+  & #combatants::-webkit-scrollbar {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  & #combatants {
     pointer-events: none;
-    position: absolute;
-    width: 100%;
-    max-height: 100vh;
-    overflow-x: visible;
-    overflow-y: visible;
-    margin-left: 1rem;
-    padding-left: 1rem;
-    /*will-change: transform;*/
+    display: flex;
+    flex-direction: var(--carousel-direction);
+    align-items: var(--carousel-align-items);
+    padding: 0 0.5rem;
+    max-width: 100%;
+    min-height: calc(
+      var(--combatant-portrait-size) * var(--combatant-portrait-aspect) * 1.2 *
+        1.4
+    );
+    overflow: var(--carousel-overflow);
+  }
 
-    &.hidden{
-        display: none !important;
-    }
-
-    & #combatants::-webkit-scrollbar{
-        transition: opacity 0.2s ease-in-out;
-    }
-
-    & #combatants{
-        pointer-events: none;
-        display: flex;
-        flex-direction: var(--carousel-direction);
-        align-items: var(--carousel-align-items);
-        padding: 0 0.5rem;  
-        max-width: 100%;
-        min-height: calc(var(--combatant-portrait-size)*var(--combatant-portrait-aspect)*1.2*1.4);
-        overflow: var(--carousel-overflow);
-    }
-
-    & .separator{
-        opacity: 0.7;
-        display: flex;
-        align-items: center;
+  & .separator {
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
     gap: 0.4rem;
-        
-    .round{
-            color: white;
-            font-size: 1.0rem;
-            text-shadow: 0 0 5px black;
-            display: flex;
-            align-items: center;
-        }
-        
-        .line{
-            border: 1px solid white;
-        }
 
-        &.horizontal{
-            height: 100%;
-            max-height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect) * 1.2);
-            .line{
-                height: 100%;
-                border-bottom-right-radius: 50%;
-                border-bottom-left-radius: 50%;
-            }
-        }
-        &.vertical{
-            width: 100%;
-            flex-direction: column;
-            max-width: calc(var(--combatant-portrait-size) * 1.2);
-            .line{
-                width: 100%;
-                border-radius: 50%;
-                margin: 0.1rem 0;
-            }
-        }
+    .round {
+      color: white;
+      font-size: 1rem;
+      text-shadow: 0 0 5px black;
+      display: flex;
+      align-items: center;
     }
 
-    &:not(:hover){
-        & #combatants{
-            &::-webkit-scrollbar-thumb{
-                background-color: transparent;
-                border-color: transparent;
-            }
-            &::-webkit-scrollbar-track{
-                display: none;
-            }
-        }
+    .line {
+      border: 1px solid white;
     }
 
-    &:hover{
-        & .buttons-container{
-            opacity: 1;
-        }
+    &.horizontal {
+      height: 100%;
+      max-height: calc(
+        var(--combatant-portrait-size) * var(--combatant-portrait-aspect) * 1.2
+      );
+      .line {
+        height: 100%;
+        border-bottom-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+      }
     }
-
-    & .buttons-container{
-        pointer-events: all;
-        transition: opacity 0.2s ease-in-out;
-        opacity: 0;
-        color: var(--color-text-light-0);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 0.3rem;
-        align-items: center;
-
-        i {
-            color: var(--color-text-light-3);
-            padding: 0.5rem;
-            text-shadow: 0 0 5px var(--color-text-dark-1);
-
-            border: 2px inset var(--carousel-tooltip-color);
-            border-radius: 50%;
-            background: var(--carousel-tooltip-bg-color);
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,.873), inset 0px 0px 10px 0px rgba(0,0,0,.873);
-            width: 1.5rem;
-            height: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: small;
-
-            &:hover{
-                filter: brightness(1.2);
-                cursor: pointer;
-            }
-        }
+    &.vertical {
+      width: 100%;
+      flex-direction: column;
+      max-width: calc(var(--combatant-portrait-size) * 1.2);
+      .line {
+        width: 100%;
+        border-radius: 50%;
+        margin: 0.1rem 0;
+      }
     }
+  }
 
+  &:not(:hover) {
+    & #combatants {
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-color: transparent;
+      }
+      &::-webkit-scrollbar-track {
+        display: none;
+      }
+    }
+  }
+
+  &:hover {
+    & .buttons-container {
+      opacity: 1;
+    }
+  }
+
+  & .buttons-container {
+    pointer-events: all;
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+    color: var(--color-text-light-0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
+    align-items: center;
+
+    i {
+      color: var(--color-text-light-3);
+      padding: 0.5rem;
+      text-shadow: 0 0 5px var(--color-text-dark-1);
+
+      border: 2px inset var(--carousel-tooltip-color);
+      border-radius: 50%;
+      background: var(--carousel-tooltip-bg-color);
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.873),
+        inset 0px 0px 10px 0px rgba(0, 0, 0, 0.873);
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: small;
+
+      &:hover {
+        filter: brightness(1.2);
+        cursor: pointer;
+      }
+    }
+  }
 }
