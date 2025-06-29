@@ -1,7 +1,17 @@
 #ui-left,
-#ui-right {
+#ui-right,
+#ui-left-column-2 {
   & #combat-dock {
     align-self: center;
+  }
+}
+
+#ui-left-column-2:has(#combat-dock) {
+  position: relative;
+  #combat-dock {
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: calc((var(--control-size) * 1.1) / var(--ui-scale))
   }
 }
 

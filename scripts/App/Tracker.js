@@ -201,7 +201,7 @@ export class CombatDock extends Application {
         const verticalSize = max * aspect;
         if (!this.autoFit) return document.documentElement.style.setProperty("--combatant-portrait-size", max + "px");
         if (this.isVertical) {
-            const maxSpace = document.getElementById("ui-left").getBoundingClientRect().height * 0.9;
+            const maxSpace = document.getElementById("ui-left-column-2").getBoundingClientRect().height * 0.9 - document.getElementById("scene-navigation-active").getBoundingClientRect().height;
             const combatantCount = this.sortedCombatants.length;
             const portraitSize = Math.min(verticalSize, Math.floor(maxSpace / combatantCount)) / aspect;
 
@@ -278,7 +278,7 @@ export class CombatDock extends Application {
 
     appendHtml(){
         if(!this.isVertical) return document.querySelector("#ui-top").prepend(this.element[0]);
-        if(game.settings.get(MODULE_ID, "alignment") == "left") return document.querySelector("#ui-left").prepend(this.element[0]);
+        if(game.settings.get(MODULE_ID, "alignment") == "left") return document.querySelector("#ui-left-column-2").prepend(this.element[0]);
         return document.querySelector("#ui-right").prepend(this.element[0]);
     }
 

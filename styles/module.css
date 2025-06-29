@@ -335,8 +335,18 @@
 }
 
 #ui-left #combat-dock,
-#ui-right #combat-dock {
+#ui-right #combat-dock,
+#ui-left-column-2 #combat-dock {
   align-self: center;
+}
+
+#ui-left-column-2:has(#combat-dock) {
+  position: relative;
+}
+#ui-left-column-2:has(#combat-dock) #combat-dock {
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: calc(var(--control-size) * 1.1 / var(--ui-scale));
 }
 
 #combat-dock {
