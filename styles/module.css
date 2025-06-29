@@ -122,7 +122,7 @@
   justify-content: center;
   align-items: center;
   color: var(--color-text-light-0);
-  text-shadow: 0px 0px 2px;
+  text-shadow: 0px 0px 2px, 0 0 3px rgba(0, 0, 0, 0.8);
   transition: text-shadow 0.2s ease-in-out, opacity 0.2s ease-in-out;
   opacity: 0.5;
   z-index: 999;
