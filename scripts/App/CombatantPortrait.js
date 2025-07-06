@@ -161,8 +161,8 @@ export class CombatantPortrait {
             this.element.innerHTML = "";
             return;
         }
-        const template = await renderTemplate("modules/combat-tracker-dock/templates/combatant-portrait.hbs", { ...data });
-        const tooltip = await renderTemplate("modules/combat-tracker-dock/templates/combatant-tooltip.hbs", { ...data });
+        const template = await foundry.applications.handlebars.renderTemplate("modules/combat-tracker-dock/templates/combatant-portrait.hbs", { ...data });
+        const tooltip = await foundry.applications.handlebars.renderTemplate("modules/combat-tracker-dock/templates/combatant-tooltip.hbs", { ...data });
         this.element.innerHTML = template;
         this.element.setAttribute("data-tooltip", tooltip);
         const direction = game.settings.get(MODULE_ID, "direction");
