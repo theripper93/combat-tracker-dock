@@ -1,0 +1,237 @@
+{
+"combat-tracker-dock": {
+        "configureCarousel": "Nastavení kolotoče",
+        "combatConfig": {
+            "portraitResource": {
+                "label": "Lišta portrétu",
+                "hint": "Lišta zdrojů, která bude zobrazena jako překrytí nad portrétem. Chceš-li ji deaktivovat, nastav na 'žádné'."
+            }
+        },
+        "settings": {
+            "systems": {
+                "crucible": {
+                    "alwaysShowActions": {
+                        "name": "Zobrazení akčních bodů nepřátel",
+                        "hint": "Pokud je povolena možnost 'Zobrazení systémových ikon', zobrazí se hráčům akční body bez ohledu na oprávnění. To umožní hráčům vidět celkový počet i zbývající akční body spojenců a nepřátel. Body soustředění však zůstanou pro hráče bez oprávnění je vidět skryté."
+                    }
+                }
+            },
+            "integration": "Integrace",
+            "portraitSize": {
+                "name": "Velikost kolotoče",
+                "hint": "Maximální velikost portrétů v kolotoči. Všimni si, že pokud je na obrazovce příliš mnoho bojovníků, bude velikost portrétů automaticky zmenšena.",
+                "choices": {
+                    "30px": "Drobná",
+                    "50px": "Malá",
+                    "70px": "Normální",
+                    "90px": "Velká",
+                    "110px": "Extra velká",
+                    "150px": "XX-velká",
+                    "180px": "XXX-velká"
+                }
+            },
+            "carouselStyle": {
+                "name": "Styl kolotoče",
+                "hint": "Způsob, jakým jsou portréty umístěny a pohybují se v kolotoči:\n- Kolotoč - na středu: Aktivní bojovník je ve středu kolotoče, ostatní bojovníci se kolem něj otáčejí.\n- Kolotoč - vlevo: Aktivní bojovník je vlevo v kolotoči, ostatní bojovníci se kolem něj otáčejí.\n- Bez kolotoče: Bojovníci jsou vždy zobrazeni podle pořadí iniciativy a aktivní bojovník se pohybuje, zatímco ostatní zůstávají na místě.",
+                "choices": {
+                    "centerCarousel": "Kolotoč - na středu",
+                    "leftCarousel": "Kolotoč - vlevo",
+                    "basic": "Bez kolotoče"
+                }
+            },
+            "overflowStyle": {
+                "name": "Přeplnění",
+                "hint": "Způsob, jakým se kolotoč chová, když je na obrazovce příliš mnoho bojovníků.",
+                "choices": {
+                    "hidden": "Skrývání",
+                    "scroll": "Posouvání",
+                    "autofit": "Zmenšení portrétů"
+                }
+            },
+            "portraitAspect": {
+                "name": "Poměr stran portrétu",
+                "hint": "Poměr stran portrétů. Pokud neodpovídá poměru stran portrétu, bude obrázek oříznut.",
+                "choices": {
+                    "square": "Čtvercový",
+                    "portrait": "Portrét",
+                    "long": "Podlouhlý"
+                }
+            },
+            "alignment": { 
+                "name": "Zarovnání",
+                "hint": "Zarovnání kolotoče na stránce.",
+                "choices": {
+                    "left": "Vlevo",
+                    "center": "Na střed",
+                    "right": "Vpravo"
+                }
+            },
+            "direction": {
+                "name": "Směr",
+                "hint": "Směr pohybu kolotoče.",
+                "choices": {
+                    "row": "Horizontální",
+                    "column": "Vertikální"
+                }
+            },
+            "roundness": {
+                "name": "Zaoblení",
+                "hint": "Zaoblení portrétů a popisků.",
+                "choices": {
+                    "sharp": "Ostré",
+                    "soft": "Měkké",
+                    "round": "Kulaté"
+                }
+            },
+            "showDispositionColor": {
+                "name": "Zobrazovat postoje?",
+                "hint": "Zobrazí v dolním ohraničení portrétu barvu postoje vůči postavě."
+            },
+            "hideDefeated": {
+                "name": "Skrývat poražené?",
+                "hint": "Skryje v kolotoči poražené bojovníky. Pro případ, že by s nimi bylo potřeba interagovat, budou stále viditelní ve standardním sledovači boje."
+            },
+            "showInitiativeOnPortrait": {
+                "name": "Zobrazovat iniciativu na portrétu?",
+                "hint": "Zobrazí v levém horním rohu portrétu hodnotu iniciativy. Iniciativu vždy můžeš vidět v popiscích!"
+            },
+            "portraitImageBorder": {
+                "name": "Ohraničení hráče",
+                "hint": "Speciální ohraničení, které se zobrazí u postav hráčů. Chceš-li deaktivovat, ponech prázdné. Pokud chceš vytvořit vlastní obrázek, doporučuje se pro správné rozměry použít jako referenci výchozí."
+            },
+            "attributeColor": {
+                "name": "Barva atributu",
+                "hint": "Barva hlavního sledovaného atributu (textu a lišty) v kolotoči. Lze použít jakoukoli platnou hodnotu CSS barvy (např. #ff0000, red, rgba(255,0,0,0.5) atd.)."
+            },
+            "attributeColor2": {
+                "name": "Barva sekundárního atributu",
+                "hint": "Barva sekundárního sledovaného atributu (textu a lišty) v kolotoči. Lze použít jakoukoli platnou hodnotu CSS barvy (např. #ff0000, red, rgba(255,0,0,0.5) atd.)."
+            },
+            "attributeColorPortrait": {
+                "name": "Barva atributu portrétu",
+                "hint": "Barva překryvné lišty sledovaného atributu na portrétu. Lze použít jakoukoli platnou hodnotu CSS barvy (např. #ff0000, red, rgba(255,0,0,0.5) atd.)."
+            },
+            "barsPlacement": {
+                "name": "Umístění lišt",
+                "hint": "Umístění lišt sledovaných atributů v kolotoči.",
+                "choices": {
+                    "left": "Vlevo",
+                    "right": "Vpravo",
+                    "twinned": "Zdvojené"
+                }
+            },
+            "attributeVisibility": {
+                "name": "Viditelnost atributů",
+                "hint": "Viditelnost sledovaných atributů v kolotoči.",
+                "choices": {
+                    "text": "Pouze text",
+                    "bars": "Pouze lišty",
+                    "both": "Text a lišty"
+                }
+            },
+            "playerPlayerPermission": {
+                "name": "Zobrazovat informace o hráčích?",
+                "hint": "Umožní všem hráčům vidět sledované atributy, informace v popiscích a systémové ikony ostatních hráčů."
+            },
+            "displayDescriptions": {
+                "name": "Zobrazení popisů",
+                "hint": "Zobrazí popisy aktivních efektů v popiscích.",
+                "choices": {
+                    "none": "Žádné",
+                    "owner": "Vlastník/pozorovatel",
+                    "all": "Všichni"
+                }
+            },
+            "tooltipColor": {
+                "name": "Barva popisků",
+                "hint": "Barevné schéma popisků. Lze použít jakoukoli platnou hodnotu CSS barvy (např. #ff0000, red, rgba(255,0,0,0.5) atd.). Výchozí hodnota: #888888."
+            },
+            "portraitImage": {
+                "name": "Obrázek portrétu",
+                "hint": "Zda jako portrét použít buď obrázek aktéra, nebo tokenu.",
+                "choices": {
+                    "actor": "Aktér",
+                    "token": "Token"
+                }
+            },
+            "portraitImageBackground": {
+                "name": "Pozadí portrétu",
+                "hint": "Obrázek na pozadí za portrétem, který bude viditelný, pokud je portrét průhledný, nebo nevyplňuje celý prostor."
+            },
+            "showSystemIcons": {
+                "name": "Zobrazení systémových ikon",
+                "hint": "Zobrazí systémové ikony pod sledovaným zdrojem, vpopiscích, nebo obojí. Měj na paměti, že to vyžaduje specifickou implementaci systému a bude fungovat pouze v některých systémech.",
+                "choices": {
+                    "none": "Žádné",
+                    "tooltip": "Popisek",
+                    "resource": "Portrét",
+                    "both": "Obojí"
+                }
+            },
+            "displayName": {
+                "name": "Zobrazení jména",
+                "hint": "Zda se má zobrazovat jméno bojovníků v popiscích. 'Podle tokenu' zobrazí jméno pouze tehdy, pokud hráč může vidět jméno tokenu.",
+                "choices": {
+                    "default": "Vždy",
+                    "token": "Podle tokenu",
+                    "owner": "Podle vlastnictví"
+                }
+            },
+            "hideFirstRound": {
+                "name": "Skrývat nepřátele do prvního tahu?",
+                "hint": "Bude skrývat nepřátele, dokud v boji neprovedou svůj první tah. (Vyžaduje LibWrapper k jejich skrytí i ve standardním sledovači boje.)"
+            },
+            "hideEnemyInitiative": {
+                "name": "Skrývat iniciativu nepřátel?",
+                "hint": "Bude skrývat iniciativu nepřátel v popiscích i na portrétu."
+            },
+            "attributesMenu": {
+                "name": "Atributy v popiscích",
+                "label": "Nastavení atributů",
+                "hint": "Nastavení vlastních atributů zobrazených v popiscích.",
+                "reset": "Obnovit výchozí",
+                "resetWarning": "Opravdu chceš obnovit atributy na jejich výchozí hodnoty?",
+                "form": {
+                    "attr": {
+                        "name": "Atribut",
+                        "choose": "Vyber atribut"
+                    },
+                    "icon": {
+                        "name": "Ikona"
+                    },
+                    "units": {
+                        "name": "Jednotky"
+                    },
+                    "save": "Uložit a zavřít",
+                    "add": "Přidat atribut",
+                    "reset": "Obnovit výchozí",
+                    "notes": "Nechat pole atributu prázdné pro jeho odstranění."
+                }
+            },
+            "resource": {
+                "name": "Sekundární zdroj",
+                "hint": "Sekundární lišta zdrojů. Tato možnost by měla být nastavena v nastavení boje. Tato volba je zde pro některé systémy a zkušené uživatele k ručním úpravám."
+            },
+            "portraitResource": {
+                "name": "Zdroj portrétu",
+                "hint": "Lišta zdrojů, která se zobrazí jako překryv na portrétu. Tato možnost by měla být nastavena v nastavení boje. Tato volba je zde pro některé systémy a zkušené uživatele k ručním úpravám."
+            }
+        },
+        "hotkeys": {
+            "combatPrev": {
+                "name": "Předchozí tah"
+            },
+            "combatNext": {
+                "name": "Další tah"
+            }
+        },
+        "add-event": {
+            "title": "Přidat událost",
+            "duration": "Doba trvání události (kola)",
+            "error": "Chyba: Musíš zadat název, obrázek a hodnotu iniciativy události.",
+            "expired": "Událost %n vypršela."
+        },
+        "deleteEffectTitle": "Odstranit efekt",
+        "deleteEffectContent": "Opravdu chceš odstranit efekt "
+    }
+}
