@@ -604,6 +604,7 @@ export function colorPicker(settingId, html) {
 
     // Add color picker
     const stringInputElement = html.querySelector(`input[name="${MODULE_ID}.${settingId}"]`);
+    if (!stringInputElement) return;
     stringInputElement.classList.add("color");
     stringInputElement.after(colorPickerElement);
 }
