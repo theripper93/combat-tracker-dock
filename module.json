@@ -37,7 +37,7 @@
       "path": "languages/es.json"
     },
     {
-      "lang": "pt-br",
+      "lang": "pt-BR",
       "name": "Português (Brasil)",
       "path": "languages/pt-br.json"
     },
@@ -71,3 +71,4 @@
     "verified": "13"
   }
 }
+
