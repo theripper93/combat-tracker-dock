@@ -6,6 +6,10 @@ import {showWelcome} from './lib/welcome.js';
 
 export const MODULE_ID = 'combat-tracker-dock';
 
+export function getCurrentCombat(){
+    return ui.combat.viewed;
+}
+
 Hooks.once('init', function () {
     registerWrappers();
     registerHotkeys();
@@ -40,8 +44,9 @@ Hooks.on('updateCombat', (combat, updates) => {
 
 Hooks.on('canvasReady', () => {
     Hooks.once("renderCombatTracker", (tab) => {
-            if(game.combat?.active) {
-                new CONFIG.combatTrackerDock.CombatDock(game.combat).render(true);
+        const currentCombat = getCurrentCombat();
+            if(currentCombat) {
+                new CONFIG.combatTrackerDock.CombatDock(currentCombat).render(true);
             } else {
                 ui.combatDock?.close();
             }
@@ -49,8 +54,9 @@ Hooks.on('canvasReady', () => {
 });
 
 Hooks.on('ready', () => {
-    if(game.combat?.active && !ui.combatDock && game.settings.get("core", "noCanvas")) {
-        new CONFIG.combatTrackerDock.CombatDock(game.combat).render(true);
+    const currentCombat = getCurrentCombat();
+    if(currentCombat && !ui.combatDock && game.settings.get("core", "noCanvas")) {
+        new CONFIG.combatTrackerDock.CombatDock(currentCombat).render(true);
     }
     showWelcome();
 });
