@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "deepl-node": "^1.22.0",
     "sass": "^1.62.1"
   },
   "scripts": {

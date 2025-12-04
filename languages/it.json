@@ -1,237 +1,241 @@
 {
-    "combat-tracker-dock": {
-        "settings": {
-            "attributeColor": {
-                "hint": "Il colore del testo e della barra dell'attributo tracciato principale nel tracciatore di combattimento. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
-                "name": "Colore attributo"
-            },
-            "attributesMenu": {
-                "form": {
-                    "add": "Aggiungi attributo",
-                    "attr": {
-                        "name": "Attributo",
-                        "choose": "Scegli Attributo"
-                    },
-                    "icon": {
-                        "name": "Icona"
-                    },
-                    "notes": "Lascia vuoto il campo Attributo per rimuoverlo.",
-                    "save": "Salva",
-                    "units": {
-                        "name": "Unità"
-                    },
-                    "reset": "Reimpostazione dei valori iniziali"
-                },
-                "hint": "Configura gli attributi personalizzati da mostrare nella descrizione comando.",
-                "label": "Configura attributi",
-                "name": "Attributi descrizione comando",
-                "reset": "Riportare alle condizioni originali",
-                "resetWarning": "Sei sicuro di voler reimpostare gli attributi sui loro valori predefiniti?"
-            },
-            "portraitImage": {
-                "choices": {
-                    "actor": "Personaggio",
-                    "token": "Token"
-                },
-                "hint": "Se utilizzare l'immagine del personaggio o del token come ritratto.",
-                "name": "Immagine ritratto"
-            },
-            "portraitImageBorder": {
-                "hint": "Bordo speciale che verrà mostrato per i personaggi dei giocatori. \nLascia vuoto per disabilitare. \nSe desideri creare un'immagine personalizzata, ti suggeriamo di utilizzare quella predefinita come riferimento per il corretto dimensionamento.",
-                "name": "Bordo del giocatore"
-            },
-            "portraitSize": {
-                "choices": {
-                    "110px": "Enorme",
-                    "30px": "Minuscolo",
-                    "50px": "Piccolo",
-                    "70px": "Normale",
-                    "90px": "Grande",
-                    "150px": "Gigantesco",
-                    "180px": "Colossale"
-                },
-                "hint": "La dimensione massima del ritratto nell'indicatore di combattimento. \nTieni presente che le dimensioni dei ritratti verranno automaticamente ridotte se ci sono troppi combattenti per adattarsi allo schermo.",
-                "name": "Dimensione verticale"
-            },
-            "showDispositionColor": {
-                "hint": "Mostra la disposizione nel bordo inferiore del ritratto.",
-                "name": "Mostra colore disposizione"
-            },
-            "showInitiativeOnPortrait": {
-                "hint": "Mostra il valore dell'iniziativa nell'angolo in alto a sinistra del ritratto. \nPuoi sempre vedere l'iniziativa nel Tooltip!",
-                "name": "Mostra Iniziativa su Ritratto"
-            },
-            "tooltipColor": {
-                "hint": "La combinazione di colori della descrizione comandi. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
-                "name": "Colore descrizione comandi"
-            },
-            "alignment": {
-                "choices": {
-                    "center": "Centro",
-                    "left": "Sinistra",
-                    "right": "Destra"
-                },
-                "hint": "L'allineamento della giostra. \nSi noti che il carosello deve essere centrato, è necessario utilizzare questa impostazione solo per compatibilità con altri moduli.",
-                "name": "Allineamento"
-            },
-            "portraitAspect": {
-                "choices": {
-                    "long": "Lungo",
-                    "portrait": "Ritratto",
-                    "square": "Quadrato"
-                },
-                "hint": "Le proporzioni del ritratto. \nL'immagine verrà ritagliata se non corrisponde alle proporzioni del ritratto.",
-                "name": "Proporzioni ritratto"
-            },
-            "roundness": {
-                "choices": {
-                    "round": "Arrotondato",
-                    "sharp": "Squadrato",
-                    "soft": "Morbido"
-                },
-                "hint": "La rotondità dei ritratti e dei tooltip.",
-                "name": "Rotondità"
-            },
-            "carouselStyle": {
-                "choices": {
-                    "basic": "Nessun carosello",
-                    "centerCarousel": "Carosello - Centrato",
-                    "leftCarousel": "Carosello - Sinistra"
-                },
-                "hint": "Il modo in cui i ritratti sono posizionati e si muovono nel carosello: Carosello - Centrato: Il Combattente Attivo è al centro del carosello, gli altri combattenti ruotano attorno ad esso.\n\n- Carosello - Sinistra: Il Combattente Attivo è a sinistra del carosello, gli altri combattenti ruotano attorno ad esso.\n\n- Nessun carosello: i combattenti sono sempre visualizzati in ordine di iniziativa e il combattente attivo si sposta mentre i combattenti rimangono nella stessa posizione.",
-                "name": "Stile carosello"
-            },
-            "overflowStyle": {
-                "choices": {
-                    "autofit": "Riduci i ritratti",
-                    "hidden": "Nascosto",
-                    "scroll": "Scorrimento"
-                },
-                "hint": "Il modo in cui si comporta il carosello quando ci sono troppi combattenti per stare sullo schermo.",
-                "name": "Stile overflow"
-            },
-            "attributeColor2": {
-                "hint": "Il colore del testo e della barra dell'attributo tracciato secondario nel carosello. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
-                "name": "Colore attributo secondario"
-            },
-            "attributeVisibility": {
-                "choices": {
-                    "bars": "Solo barre",
-                    "both": "Entrambi",
-                    "text": "Solo testo"
-                },
-                "hint": "La visibilità degli attributi tracciati nel carosello.",
-                "name": "Attributo Visibilità"
-            },
-            "direction": {
-                "choices": {
-                    "column": "Verticale",
-                    "row": "Orizzontale"
-                },
-                "hint": "La direzione della giostra.",
-                "name": "Direzione"
-            },
-            "displayName": {
-                "choices": {
-                    "default": "Sempre",
-                    "owner": "Basato sulla proprietà",
-                    "token": "Basato sul Token"
-                },
-                "hint": "Se visualizzare o meno il nome del combattente nel tooltip. \n'Basato sul token' visualizzerà il nome solo se il giocatore può vedere il nome del token.",
-                "name": "Nome da visualizzare"
-            },
-            "portraitImageBackground": {
-                "hint": "L'immagine di sfondo dietro il ritratto che sarà visibile se il ritratto è trasparente o non riempie lo spazio.",
-                "name": "Sfondo ritratto"
-            },
-            "showSystemIcons": {
-                "choices": {
-                    "both": "Entrambi",
-                    "none": "Nessuno",
-                    "resource": "Ritratto",
-                    "tooltip": "Descrizione comando"
-                },
-                "hint": "Mostra le icone di sistema sotto la risorsa monitorata, il tooltip o entrambi. \nTieni presente che ciò richiede un'implementazione specifica del sistema e funzionerà solo su sistemi selezionati.",
-                "name": "Mostra icone di sistema"
-            },
-            "hideFirstRound": {
-                "hint": "Nascondi i nemici finché non hanno svolto il loro primo turno in combattimento. \n(Richiede LibWrapper per nasconderli anche nel tracker di combattimento principale.)",
-                "name": "Nasconditi fino al primo turno"
-            },
-            "barsPlacement": {
-                "choices": {
-                    "left": "Sinistra",
-                    "right": "Destra",
-                    "twinned": "Gemellata"
-                },
-                "hint": "Il posizionamento delle barre degli attributi tracciati nel carosello.",
-                "name": "Posizionamento delle barre"
-            },
-            "integration": "Integrazione",
-            "systems": {
-                "crucible": {
-                    "alwaysShowActions": {
-                        "hint": "Se \"Mostra icone di sistema\" è abilitato, mostra i punti azione ai giocatori indipendentemente dalle autorizzazioni. \nCiò consentirà ai giocatori di vedere quanti punti azione totali e rimanenti hanno alleati e nemici.",
-                        "name": "Mostra le azioni del nemico"
-                    }
-                }
-            },
-            "displayDescriptions": {
-                "hint": "Mostra le descrizioni degli effetti attivi nel tooltip.",
-                "name": "Mostra descrizioni",
-                "choices": {
-                    "all": "Tutti",
-                    "none": "Nessuno",
-                    "owner": "Proprietario/Osservatore"
-                }
-            },
-            "playerPlayerPermission": {
-                "hint": "Consenti a tutti i giocatori di vedere gli attributi tracciati, le informazioni sui suggerimenti e le icone di sistema degli altri giocatori.",
-                "name": "Mostra sempre informazioni sul giocatore"
-            },
-            "attributeColorPortrait": {
-                "hint": "Il colore della barra di sovrapposizione verticale dell'attributo monitorato. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es.",
-                "name": "Colore attributo ritratto"
-            },
-            "hideDefeated": {
-                "hint": "Nascondi i combattenti sconfitti dalla giostra. \nSaranno comunque visibili nel normale tracker di combattimento nel caso in cui tu abbia bisogno di interagire con loro.",
-                "name": "Nascondi sconfitto"
-            },
-            "hideEnemyInitiative": {
-                "hint": "Nascondi l'iniziativa nemica nel tooltip e nel ritratto.",
-                "name": "Nascondi l'iniziativa nemica"
-            },
-            "portraitResource": {
-                "hint": "La barra delle risorse che verrà visualizzata in sovrapposizione sopra l'immagine del ritratto. \nDovresti impostarlo nella configurazione di combattimento. \nQuesta opzione è disponibile per alcuni sistemi e utenti esperti per la modifica manuale.",
-                "name": "Risorsa per i ritratti"
-            },
-            "resource": {
-                "hint": "La barra delle risorse secondaria. \nDovresti impostarlo nella configurazione di combattimento. \nQuesta opzione è disponibile per alcuni sistemi e utenti esperti per la modifica manuale.",
-                "name": "Risorsa secondaria"
-            }
-        },
-        "configureCarousel": "Configura carosello",
-        "hotkeys": {
-            "combatNext": {
-                "name": "Prossimo Turno"
-            },
-            "combatPrev": {
-                "name": "Turno precedente"
-            }
-        },
-        "combatConfig": {
-            "portraitResource": {
-                "hint": "Barra delle risorse che verrà mostrata come sovrapposizione sopra l'immagine verticale, imposta su \"Nessuno\" per disabilitare.",
-                "label": "Barra dei ritratti"
-            }
-        },
-        "add-event": {
-            "duration": "Durata dell'evento (round)",
-            "error": "Errore: devi fornire un nome, un'immagine e un valore di iniziativa per l'evento.",
-            "expired": "L'evento %n è scaduto.",
-            "title": "Aggiungi evento"
-        },
-        "deleteEffectContent": "Sei sicuro di voler eliminare l'effetto?",
-        "deleteEffectTitle": "Elimina effetto"
-    }
+  "combat-tracker-dock": {
+    "configureCarousel": "Configura carosello",
+    "combatConfig": {
+      "portraitResource": {
+        "label": "Barra dei ritratti",
+        "hint": "Barra delle risorse che verrà mostrata come sovrapposizione sopra l'immagine verticale, imposta su \"Nessuno\" per disabilitare."
+      }
+    },
+    "settings": {
+      "systems": {
+        "crucible": {
+          "alwaysShowActions": {
+            "name": "Mostra le azioni del nemico",
+            "hint": "Se \"Mostra icone di sistema\" è abilitato, mostra i punti azione ai giocatori indipendentemente dalle autorizzazioni. \nCiò consentirà ai giocatori di vedere quanti punti azione totali e rimanenti hanno alleati e nemici."
+          }
+        }
+      },
+      "integration": "Integrazione",
+      "portraitSize": {
+        "name": "Dimensione verticale",
+        "hint": "La dimensione massima del ritratto nell'indicatore di combattimento. \nTieni presente che le dimensioni dei ritratti verranno automaticamente ridotte se ci sono troppi combattenti per adattarsi allo schermo.",
+        "choices": {
+          "30px": "Minuscolo",
+          "50px": "Piccolo",
+          "70px": "Normale",
+          "90px": "Grande",
+          "110px": "Enorme",
+          "150px": "Gigantesco",
+          "180px": "Colossale"
+        }
+      },
+      "carouselStyle": {
+        "name": "Stile carosello",
+        "hint": "Il modo in cui i ritratti sono posizionati e si muovono nel carosello: Carosello - Centrato: Il Combattente Attivo è al centro del carosello, gli altri combattenti ruotano attorno ad esso.\n\n- Carosello - Sinistra: Il Combattente Attivo è a sinistra del carosello, gli altri combattenti ruotano attorno ad esso.\n\n- Nessun carosello: i combattenti sono sempre visualizzati in ordine di iniziativa e il combattente attivo si sposta mentre i combattenti rimangono nella stessa posizione.",
+        "choices": {
+          "centerCarousel": "Carosello - Centrato",
+          "leftCarousel": "Carosello - Sinistra",
+          "basic": "Nessun carosello"
+        }
+      },
+      "overflowStyle": {
+        "name": "Stile overflow",
+        "hint": "Il modo in cui si comporta il carosello quando ci sono troppi combattenti per stare sullo schermo.",
+        "choices": {
+          "hidden": "Nascosto",
+          "scroll": "Scorrimento",
+          "autofit": "Riduci i ritratti"
+        }
+      },
+      "portraitAspect": {
+        "name": "Proporzioni ritratto",
+        "hint": "Le proporzioni del ritratto. \nL'immagine verrà ritagliata se non corrisponde alle proporzioni del ritratto.",
+        "choices": {
+          "square": "Quadrato",
+          "portrait": "Ritratto",
+          "long": "Lungo"
+        }
+      },
+      "alignment": {
+        "name": "Allineamento",
+        "hint": "L'allineamento della giostra. \nSi noti che il carosello deve essere centrato, è necessario utilizzare questa impostazione solo per compatibilità con altri moduli.",
+        "choices": {
+          "left": "Sinistra",
+          "center": "Centro",
+          "right": "Destra"
+        }
+      },
+      "direction": {
+        "name": "Direzione",
+        "hint": "La direzione della giostra.",
+        "choices": {
+          "row": "Orizzontale",
+          "column": "Verticale"
+        }
+      },
+      "roundness": {
+        "name": "Rotondità",
+        "hint": "La rotondità dei ritratti e dei tooltip.",
+        "choices": {
+          "sharp": "Squadrato",
+          "soft": "Morbido",
+          "round": "Arrotondato"
+        }
+      },
+      "showDispositionColor": {
+        "name": "Mostra colore disposizione",
+        "hint": "Mostra la disposizione nel bordo inferiore del ritratto."
+      },
+      "hideDefeated": {
+        "name": "Nascondi sconfitto",
+        "hint": "Nascondi i combattenti sconfitti dalla giostra. \nSaranno comunque visibili nel normale tracker di combattimento nel caso in cui tu abbia bisogno di interagire con loro."
+      },
+      "showInitiativeOnPortrait": {
+        "name": "Mostra Iniziativa su Ritratto",
+        "hint": "Mostra il valore dell'iniziativa nell'angolo in alto a sinistra del ritratto. \nPuoi sempre vedere l'iniziativa nel Tooltip!"
+      },
+      "portraitImageBorder": {
+        "name": "Bordo del giocatore",
+        "hint": "Bordo speciale che verrà mostrato per i personaggi dei giocatori. \nLascia vuoto per disabilitare. \nSe desideri creare un'immagine personalizzata, ti suggeriamo di utilizzare quella predefinita come riferimento per il corretto dimensionamento."
+      },
+      "attributeColor": {
+        "name": "Colore attributo",
+        "hint": "Il colore del testo e della barra dell'attributo tracciato principale nel tracciatore di combattimento. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es."
+      },
+      "attributeColor2": {
+        "name": "Colore attributo secondario",
+        "hint": "Il colore del testo e della barra dell'attributo tracciato secondario nel carosello. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es."
+      },
+      "attributeColorPortrait": {
+        "name": "Colore attributo ritratto",
+        "hint": "Il colore della barra di sovrapposizione verticale dell'attributo monitorato. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es."
+      },
+      "barsPlacement": {
+        "name": "Posizionamento delle barre",
+        "hint": "Il posizionamento delle barre degli attributi tracciati nel carosello.",
+        "choices": {
+          "left": "Sinistra",
+          "right": "Destra",
+          "twinned": "Gemellata"
+        }
+      },
+      "attributeVisibility": {
+        "name": "Attributo Visibilità",
+        "hint": "La visibilità degli attributi tracciati nel carosello.",
+        "choices": {
+          "text": "Solo testo",
+          "bars": "Solo barre",
+          "both": "Entrambi"
+        }
+      },
+      "playerPlayerPermission": {
+        "name": "Mostra sempre informazioni sul giocatore",
+        "hint": "Consenti a tutti i giocatori di vedere gli attributi tracciati, le informazioni sui suggerimenti e le icone di sistema degli altri giocatori."
+      },
+      "displayDescriptions": {
+        "name": "Mostra descrizioni",
+        "hint": "Mostra le descrizioni degli effetti attivi nel tooltip.",
+        "choices": {
+          "none": "Nessuno",
+          "owner": "Proprietario/Osservatore",
+          "all": "Tutti"
+        }
+      },
+      "tooltipColor": {
+        "name": "Colore descrizione comandi",
+        "hint": "La combinazione di colori della descrizione comandi. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es."
+      },
+      "portraitImage": {
+        "name": "Immagine ritratto",
+        "hint": "Se utilizzare l'immagine del personaggio o del token come ritratto.",
+        "choices": {
+          "actor": "Personaggio",
+          "token": "Token"
+        }
+      },
+      "portraitImageBackground": {
+        "name": "Sfondo ritratto",
+        "hint": "L'immagine di sfondo dietro il ritratto che sarà visibile se il ritratto è trasparente o non riempie lo spazio."
+      },
+      "showSystemIcons": {
+        "name": "Mostra icone di sistema",
+        "hint": "Mostra le icone di sistema sotto la risorsa monitorata, il tooltip o entrambi. \nTieni presente che ciò richiede un'implementazione specifica del sistema e funzionerà solo su sistemi selezionati.",
+        "choices": {
+          "none": "Nessuno",
+          "tooltip": "Descrizione comando",
+          "resource": "Ritratto",
+          "both": "Entrambi"
+        }
+      },
+      "hideConflictingUIs": {
+        "name": "Nascondere le interfacce utente in conflitto",
+        "hint": "Nascondere automaticamente le altre UI agganciate alla parte superiore dello schermo quando il Dock di Combat Tracker è visibile per evitare l'ingombro dell'UI."
+      },
+      "displayName": {
+        "name": "Nome da visualizzare",
+        "hint": "Se visualizzare o meno il nome del combattente nel tooltip. \n'Basato sul token' visualizzerà il nome solo se il giocatore può vedere il nome del token.",
+        "choices": {
+          "default": "Sempre",
+          "token": "Basato sul Token",
+          "owner": "Basato sulla proprietà"
+        }
+      },
+      "hideFirstRound": {
+        "name": "Nasconditi fino al primo turno",
+        "hint": "Nascondi i nemici finché non hanno svolto il loro primo turno in combattimento. \n(Richiede LibWrapper per nasconderli anche nel tracker di combattimento principale.)"
+      },
+      "hideEnemyInitiative": {
+        "name": "Nascondi l'iniziativa nemica",
+        "hint": "Nascondi l'iniziativa nemica nel tooltip e nel ritratto."
+      },
+      "attributesMenu": {
+        "name": "Attributi descrizione comando",
+        "label": "Configura attributi",
+        "hint": "Configura gli attributi personalizzati da mostrare nella descrizione comando.",
+        "reset": "Riportare alle condizioni originali",
+        "resetWarning": "Sei sicuro di voler reimpostare gli attributi sui loro valori predefiniti?",
+        "form": {
+          "attr": {
+            "name": "Attributo",
+            "choose": "Scegli Attributo"
+          },
+          "icon": {
+            "name": "Icona"
+          },
+          "units": {
+            "name": "Unità"
+          },
+          "save": "Salva",
+          "add": "Aggiungi attributo",
+          "reset": "Reimpostazione dei valori iniziali",
+          "notes": "Lascia vuoto il campo Attributo per rimuoverlo."
+        }
+      },
+      "resource": {
+        "name": "Risorsa secondaria",
+        "hint": "La barra delle risorse secondaria. \nDovresti impostarlo nella configurazione di combattimento. \nQuesta opzione è disponibile per alcuni sistemi e utenti esperti per la modifica manuale."
+      },
+      "portraitResource": {
+        "name": "Risorsa per i ritratti",
+        "hint": "La barra delle risorse che verrà visualizzata in sovrapposizione sopra l'immagine del ritratto. \nDovresti impostarlo nella configurazione di combattimento. \nQuesta opzione è disponibile per alcuni sistemi e utenti esperti per la modifica manuale."
+      }
+    },
+    "hotkeys": {
+      "combatPrev": {
+        "name": "Turno precedente"
+      },
+      "combatNext": {
+        "name": "Prossimo Turno"
+      }
+    },
+    "add-event": {
+      "title": "Aggiungi evento",
+      "duration": "Durata dell'evento (round)",
+      "error": "Errore: devi fornire un nome, un'immagine e un valore di iniziativa per l'evento.",
+      "expired": "L'evento %n è scaduto."
+    },
+    "deleteEffectTitle": "Elimina effetto",
+    "deleteEffectContent": "Sei sicuro di voler eliminare l'effetto?"
+  }
 }

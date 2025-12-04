@@ -168,6 +168,10 @@
                     "both": "Both"
                 }
             },
+            "hideConflictingUIs": {
+                "name": "Hide Conflicting UIs",
+                "hint": "Automatically hide other UIs docked to the top of the screen when the Combat Tracker Dock is visible to avoid UI clutter."
+            },
             "displayName": {
                 "name": "Display Name",
                 "hint": "Whether or not to display the name of the combatant in the tooltip. 'Based on Token' will display the name only if the player can see the name of the token.",

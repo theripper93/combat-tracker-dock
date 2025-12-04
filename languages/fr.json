@@ -1,237 +1,241 @@
 {
-    "combat-tracker-dock": {
-        "settings": {
-            "attributeColor": {
-                "hint": "La couleur du texte et de la barre des principaux attributs suivis dans le suivi des combats. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
-                "name": "Couleur d'attribut"
-            },
-            "attributesMenu": {
-                "form": {
-                    "add": "Ajouter un attribut",
-                    "attr": {
-                        "name": "Attribut",
-                        "choose": "Choisissez l'attribut"
-                    },
-                    "icon": {
-                        "name": "Icône"
-                    },
-                    "notes": "Laissez le champ Attribut vide pour le supprimer.",
-                    "save": "Sauvegarder",
-                    "units": {
-                        "name": "Unités"
-                    },
-                    "reset": "Réinitialiser par défaut"
-                },
-                "hint": "Configurez les attributs personnalisés à afficher dans l'info-bulle.",
-                "label": "Configurer les attributs",
-                "name": "Attributs d'info-bulle",
-                "reset": "Réinitialiser par défaut",
-                "resetWarning": "Voulez-vous vraiment réinitialiser les attributs à leurs valeurs par défaut ?"
-            },
-            "portraitImage": {
-                "choices": {
-                    "actor": "Acteur",
-                    "token": "Jeton"
-                },
-                "hint": "S'il faut utiliser l'image de l'acteur ou du jeton comme portrait.",
-                "name": "Portrait"
-            },
-            "portraitImageBorder": {
-                "hint": "Bordure spéciale qui sera affichée pour les personnages joueurs. \nLaissez vide pour désactiver. \nSi vous souhaitez créer une image personnalisée, il est suggéré d'utiliser celle par défaut comme référence pour un dimensionnement correct.",
-                "name": "Bordure du joueur"
-            },
-            "portraitSize": {
-                "choices": {
-                    "110px": "Énorme",
-                    "30px": "Minuscule",
-                    "50px": "Petit",
-                    "70px": "Normal",
-                    "90px": "Grand",
-                    "150px": "XX-Grand",
-                    "180px": "XXX-Large"
-                },
-                "hint": "La taille maximale du portrait dans le suivi des combats. \nNotez que la taille des portraits sera automatiquement réduite s'il y a trop de combattants pour tenir sur l'écran.",
-                "name": "Taille du portrait"
-            },
-            "showDispositionColor": {
-                "hint": "Montrez la disposition dans la bordure inférieure du portrait.",
-                "name": "Afficher la couleur de disposition"
-            },
-            "showInitiativeOnPortrait": {
-                "hint": "Affichez la valeur d'initiative dans le coin supérieur gauche du portrait. \nVous pouvez toujours voir l'initiative dans l'info-bulle !",
-                "name": "Afficher l'initiative sur le portrait"
-            },
-            "tooltipColor": {
-                "hint": "Le jeu de couleurs de l'info-bulle. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
-                "name": "Couleur de l'info-bulle"
-            },
-            "alignment": {
-                "choices": {
-                    "center": "Centre",
-                    "left": "Gauche",
-                    "right": "Droite"
-                },
-                "hint": "L'alignement du carrousel. \nNotez que le carrousel est destiné à être centré, vous devez utiliser ce paramètre uniquement pour la compatibilité avec d'autres modules.",
-                "name": "Alignement"
-            },
-            "portraitAspect": {
-                "choices": {
-                    "long": "Long",
-                    "portrait": "Portrait",
-                    "square": "Carré"
-                },
-                "hint": "Le rapport d'aspect du portrait. \nL'image sera recadrée si elle ne correspond pas au format d'image du portrait.",
-                "name": "Format portrait"
-            },
-            "roundness": {
-                "choices": {
-                    "round": "Rond",
-                    "sharp": "Pointu",
-                    "soft": "Doux"
-                },
-                "hint": "La rondeur des portraits et des infobulles.",
-                "name": "Rondeur"
-            },
-            "carouselStyle": {
-                "choices": {
-                    "basic": "Pas de carrousel",
-                    "centerCarousel": "Carrousel - Centré",
-                    "leftCarousel": "Carrousel - Gauche"
-                },
-                "hint": "La façon dont les portraits sont placés et se déplacent dans le carrousel : Carrousel - Centré : Le combattant actif est au centre du carrousel, les autres combattants tournent autour de lui.\n\n- Carrousel - Gauche : Le Combattant Actif est à Gauche du carrousel, les autres combattants tournent autour de lui.\n\n- Pas de carrousel : Les combattants sont toujours affichés dans l'ordre d'initiative et le combattant actif se déplace tandis que les combattants restent dans la même position.",
-                "name": "Style de carrousel"
-            },
-            "overflowStyle": {
-                "choices": {
-                    "autofit": "Réduire les portraits",
-                    "hidden": "Caché",
-                    "scroll": "Faire défiler"
-                },
-                "hint": "La façon dont le carrousel se comporte lorsqu'il y a trop de combattants pour tenir sur l'écran.",
-                "name": "Style de débordement"
-            },
-            "attributeColor2": {
-                "hint": "La couleur du texte et de la barre de l'attribut suivi secondaire dans le carrousel. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
-                "name": "Couleur d'attribut secondaire"
-            },
-            "attributeVisibility": {
-                "choices": {
-                    "bars": "Barres uniquement",
-                    "both": "Texte",
-                    "text": "Texte seulement"
-                },
-                "hint": "La visibilité des attributs suivis dans le carrousel.",
-                "name": "Visibilité des attributs"
-            },
-            "direction": {
-                "choices": {
-                    "column": "Vertical",
-                    "row": "Horizontal"
-                },
-                "hint": "La direction du carrousel.",
-                "name": "Direction"
-            },
-            "displayName": {
-                "choices": {
-                    "default": "Toujours",
-                    "owner": "Basé sur la propriété",
-                    "token": "Basé sur le jeton"
-                },
-                "hint": "Afficher ou non le nom du combattant dans l'infobulle. \n'Basé sur le jeton' n'affichera le nom que si le joueur peut voir le nom du jeton.",
-                "name": "Afficher un nom"
-            },
-            "portraitImageBackground": {
-                "hint": "L'image d'arrière-plan derrière le portrait qui sera visible si le portrait est transparent ou ne remplit pas l'espace.",
-                "name": "Fond d'écran"
-            },
-            "showSystemIcons": {
-                "choices": {
-                    "both": "Les deux",
-                    "none": "Aucun",
-                    "resource": "Portrait",
-                    "tooltip": "Info-bulle"
-                },
-                "hint": "Afficher les icônes système sous la ressource suivie, l'info-bulle ou les deux. \nGardez à l'esprit que cela nécessite une implémentation spécifique au système et ne fonctionnera que sur certains systèmes.",
-                "name": "Afficher les icônes du système"
-            },
-            "hideFirstRound": {
-                "hint": "Cachez les ennemis jusqu'à ce qu'ils aient effectué leur premier tour de combat. \n(Nécessite LibWrapper pour les cacher également dans le tracker de combat principal.)",
-                "name": "Cacher jusqu'au premier tour"
-            },
-            "barsPlacement": {
-                "choices": {
-                    "left": "Gauche",
-                    "right": "Droite",
-                    "twinned": "Jumelée"
-                },
-                "hint": "Le placement des barres d'attributs suivis dans le carrousel.",
-                "name": "Placement des barres"
-            },
-            "integration": "L'intégration",
-            "systems": {
-                "crucible": {
-                    "alwaysShowActions": {
-                        "hint": "Si \"Afficher les icônes du système\" est activé, affichez les points d'action aux joueurs, quelles que soient les autorisations. \nCela permettra aux joueurs de voir combien de points d'action totaux et restants ont les alliés et les ennemis.",
-                        "name": "Afficher les actions ennemies"
-                    }
-                }
-            },
-            "displayDescriptions": {
-                "hint": "Afficher les descriptions des effets actifs dans l'info-bulle.",
-                "name": "Afficher les descriptions",
-                "choices": {
-                    "all": "Tout le monde",
-                    "none": "Aucun",
-                    "owner": "Propriétaire/Observateur"
-                }
-            },
-            "playerPlayerPermission": {
-                "hint": "Autoriser tous les joueurs à voir les attributs suivis, les info-bulles et les icônes système des autres joueurs.",
-                "name": "Toujours afficher les informations sur le joueur"
-            },
-            "attributeColorPortrait": {
-                "hint": "La couleur de la barre de superposition de portrait d'attribut suivi. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex.",
-                "name": "Couleur d'attribut de portrait"
-            },
-            "hideDefeated": {
-                "hint": "Cachez les combattants vaincus du carrousel. \nIls seront toujours visibles dans le suivi de combat habituel au cas où vous auriez besoin d'interagir avec eux.",
-                "name": "Masquer Vaincu"
-            },
-            "hideEnemyInitiative": {
-                "hint": "Masquez l'initiative ennemie dans l'infobulle et le portrait.",
-                "name": "Masquer l'initiative ennemie"
-            },
-            "portraitResource": {
-                "hint": "La barre de ressources qui sera affichée en superposition au-dessus de l'image du portrait. \nVous devez définir cela dans la configuration de combat. \nCette option est là pour que certains systèmes et utilisateurs expérimentés puissent la modifier manuellement.",
-                "name": "Ressource de portrait"
-            },
-            "resource": {
-                "hint": "La barre de ressources secondaire. \nVous devez définir cela dans la configuration de combat. \nCette option est là pour que certains systèmes et utilisateurs expérimentés puissent la modifier manuellement.",
-                "name": "Ressource secondaire"
-            }
-        },
-        "configureCarousel": "Configurer le carrousel",
-        "hotkeys": {
-            "combatNext": {
-                "name": "Tour suivant"
-            },
-            "combatPrev": {
-                "name": "Tour précédent"
-            }
-        },
-        "combatConfig": {
-            "portraitResource": {
-                "hint": "Barre de ressources qui sera affichée en superposition au-dessus de l'image de portrait, définie sur \"Aucune\" pour la désactiver.",
-                "label": "Barre de portraits"
-            }
-        },
-        "add-event": {
-            "duration": "Durée de l'événement (tours)",
-            "error": "Erreur : Vous devez fournir un nom, une image et une valeur d'initiative pour l'événement.",
-            "expired": "L'événement %n a expiré.",
-            "title": "Ajouter un évènement"
-        },
-        "deleteEffectContent": "Etes-vous sûr de vouloir supprimer l'effet",
-        "deleteEffectTitle": "Supprimer l'effet"
-    }
+  "combat-tracker-dock": {
+    "configureCarousel": "Configurer le carrousel",
+    "combatConfig": {
+      "portraitResource": {
+        "label": "Barre de portraits",
+        "hint": "Barre de ressources qui sera affichée en superposition au-dessus de l'image de portrait, définie sur \"Aucune\" pour la désactiver."
+      }
+    },
+    "settings": {
+      "systems": {
+        "crucible": {
+          "alwaysShowActions": {
+            "name": "Afficher les actions ennemies",
+            "hint": "Si \"Afficher les icônes du système\" est activé, affichez les points d'action aux joueurs, quelles que soient les autorisations. \nCela permettra aux joueurs de voir combien de points d'action totaux et restants ont les alliés et les ennemis."
+          }
+        }
+      },
+      "integration": "L'intégration",
+      "portraitSize": {
+        "name": "Taille du portrait",
+        "hint": "La taille maximale du portrait dans le suivi des combats. \nNotez que la taille des portraits sera automatiquement réduite s'il y a trop de combattants pour tenir sur l'écran.",
+        "choices": {
+          "30px": "Minuscule",
+          "50px": "Petit",
+          "70px": "Normal",
+          "90px": "Grand",
+          "110px": "Énorme",
+          "150px": "XX-Grand",
+          "180px": "XXX-Large"
+        }
+      },
+      "carouselStyle": {
+        "name": "Style de carrousel",
+        "hint": "La façon dont les portraits sont placés et se déplacent dans le carrousel : Carrousel - Centré : Le combattant actif est au centre du carrousel, les autres combattants tournent autour de lui.\n\n- Carrousel - Gauche : Le Combattant Actif est à Gauche du carrousel, les autres combattants tournent autour de lui.\n\n- Pas de carrousel : Les combattants sont toujours affichés dans l'ordre d'initiative et le combattant actif se déplace tandis que les combattants restent dans la même position.",
+        "choices": {
+          "centerCarousel": "Carrousel - Centré",
+          "leftCarousel": "Carrousel - Gauche",
+          "basic": "Pas de carrousel"
+        }
+      },
+      "overflowStyle": {
+        "name": "Style de débordement",
+        "hint": "La façon dont le carrousel se comporte lorsqu'il y a trop de combattants pour tenir sur l'écran.",
+        "choices": {
+          "hidden": "Caché",
+          "scroll": "Faire défiler",
+          "autofit": "Réduire les portraits"
+        }
+      },
+      "portraitAspect": {
+        "name": "Format portrait",
+        "hint": "Le rapport d'aspect du portrait. \nL'image sera recadrée si elle ne correspond pas au format d'image du portrait.",
+        "choices": {
+          "square": "Carré",
+          "portrait": "Portrait",
+          "long": "Long"
+        }
+      },
+      "alignment": {
+        "name": "Alignement",
+        "hint": "L'alignement du carrousel. \nNotez que le carrousel est destiné à être centré, vous devez utiliser ce paramètre uniquement pour la compatibilité avec d'autres modules.",
+        "choices": {
+          "left": "Gauche",
+          "center": "Centre",
+          "right": "Droite"
+        }
+      },
+      "direction": {
+        "name": "Direction",
+        "hint": "La direction du carrousel.",
+        "choices": {
+          "row": "Horizontal",
+          "column": "Vertical"
+        }
+      },
+      "roundness": {
+        "name": "Rondeur",
+        "hint": "La rondeur des portraits et des infobulles.",
+        "choices": {
+          "sharp": "Pointu",
+          "soft": "Doux",
+          "round": "Rond"
+        }
+      },
+      "showDispositionColor": {
+        "name": "Afficher la couleur de disposition",
+        "hint": "Montrez la disposition dans la bordure inférieure du portrait."
+      },
+      "hideDefeated": {
+        "name": "Masquer Vaincu",
+        "hint": "Cachez les combattants vaincus du carrousel. \nIls seront toujours visibles dans le suivi de combat habituel au cas où vous auriez besoin d'interagir avec eux."
+      },
+      "showInitiativeOnPortrait": {
+        "name": "Afficher l'initiative sur le portrait",
+        "hint": "Affichez la valeur d'initiative dans le coin supérieur gauche du portrait. \nVous pouvez toujours voir l'initiative dans l'info-bulle !"
+      },
+      "portraitImageBorder": {
+        "name": "Bordure du joueur",
+        "hint": "Bordure spéciale qui sera affichée pour les personnages joueurs. \nLaissez vide pour désactiver. \nSi vous souhaitez créer une image personnalisée, il est suggéré d'utiliser celle par défaut comme référence pour un dimensionnement correct."
+      },
+      "attributeColor": {
+        "name": "Couleur d'attribut",
+        "hint": "La couleur du texte et de la barre des principaux attributs suivis dans le suivi des combats. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex."
+      },
+      "attributeColor2": {
+        "name": "Couleur d'attribut secondaire",
+        "hint": "La couleur du texte et de la barre de l'attribut suivi secondaire dans le carrousel. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex."
+      },
+      "attributeColorPortrait": {
+        "name": "Couleur d'attribut de portrait",
+        "hint": "La couleur de la barre de superposition de portrait d'attribut suivi. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex."
+      },
+      "barsPlacement": {
+        "name": "Placement des barres",
+        "hint": "Le placement des barres d'attributs suivis dans le carrousel.",
+        "choices": {
+          "left": "Gauche",
+          "right": "Droite",
+          "twinned": "Jumelée"
+        }
+      },
+      "attributeVisibility": {
+        "name": "Visibilité des attributs",
+        "hint": "La visibilité des attributs suivis dans le carrousel.",
+        "choices": {
+          "text": "Texte seulement",
+          "bars": "Barres uniquement",
+          "both": "Texte"
+        }
+      },
+      "playerPlayerPermission": {
+        "name": "Toujours afficher les informations sur le joueur",
+        "hint": "Autoriser tous les joueurs à voir les attributs suivis, les info-bulles et les icônes système des autres joueurs."
+      },
+      "displayDescriptions": {
+        "name": "Afficher les descriptions",
+        "hint": "Afficher les descriptions des effets actifs dans l'info-bulle.",
+        "choices": {
+          "none": "Aucun",
+          "owner": "Propriétaire/Observateur",
+          "all": "Tout le monde"
+        }
+      },
+      "tooltipColor": {
+        "name": "Couleur de l'info-bulle",
+        "hint": "Le jeu de couleurs de l'info-bulle. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex."
+      },
+      "portraitImage": {
+        "name": "Portrait",
+        "hint": "S'il faut utiliser l'image de l'acteur ou du jeton comme portrait.",
+        "choices": {
+          "actor": "Acteur",
+          "token": "Jeton"
+        }
+      },
+      "portraitImageBackground": {
+        "name": "Fond d'écran",
+        "hint": "L'image d'arrière-plan derrière le portrait qui sera visible si le portrait est transparent ou ne remplit pas l'espace."
+      },
+      "showSystemIcons": {
+        "name": "Afficher les icônes du système",
+        "hint": "Afficher les icônes système sous la ressource suivie, l'info-bulle ou les deux. \nGardez à l'esprit que cela nécessite une implémentation spécifique au système et ne fonctionnera que sur certains systèmes.",
+        "choices": {
+          "none": "Aucun",
+          "tooltip": "Info-bulle",
+          "resource": "Portrait",
+          "both": "Les deux"
+        }
+      },
+      "hideConflictingUIs": {
+        "name": "Masquer les interfaces utilisateur conflictuelles",
+        "hint": "Masquer automatiquement les autres interfaces utilisateur ancrées en haut de l'écran lorsque le dock du traqueur de combat est visible afin d'éviter l'encombrement de l'interface utilisateur."
+      },
+      "displayName": {
+        "name": "Afficher un nom",
+        "hint": "Afficher ou non le nom du combattant dans l'infobulle. \n'Basé sur le jeton' n'affichera le nom que si le joueur peut voir le nom du jeton.",
+        "choices": {
+          "default": "Toujours",
+          "token": "Basé sur le jeton",
+          "owner": "Basé sur la propriété"
+        }
+      },
+      "hideFirstRound": {
+        "name": "Cacher jusqu'au premier tour",
+        "hint": "Cachez les ennemis jusqu'à ce qu'ils aient effectué leur premier tour de combat. \n(Nécessite LibWrapper pour les cacher également dans le tracker de combat principal.)"
+      },
+      "hideEnemyInitiative": {
+        "name": "Masquer l'initiative ennemie",
+        "hint": "Masquez l'initiative ennemie dans l'infobulle et le portrait."
+      },
+      "attributesMenu": {
+        "name": "Attributs d'info-bulle",
+        "label": "Configurer les attributs",
+        "hint": "Configurez les attributs personnalisés à afficher dans l'info-bulle.",
+        "reset": "Réinitialiser par défaut",
+        "resetWarning": "Voulez-vous vraiment réinitialiser les attributs à leurs valeurs par défaut ?",
+        "form": {
+          "attr": {
+            "name": "Attribut",
+            "choose": "Choisissez l'attribut"
+          },
+          "icon": {
+            "name": "Icône"
+          },
+          "units": {
+            "name": "Unités"
+          },
+          "save": "Sauvegarder",
+          "add": "Ajouter un attribut",
+          "reset": "Réinitialiser par défaut",
+          "notes": "Laissez le champ Attribut vide pour le supprimer."
+        }
+      },
+      "resource": {
+        "name": "Ressource secondaire",
+        "hint": "La barre de ressources secondaire. \nVous devez définir cela dans la configuration de combat. \nCette option est là pour que certains systèmes et utilisateurs expérimentés puissent la modifier manuellement."
+      },
+      "portraitResource": {
+        "name": "Ressource de portrait",
+        "hint": "La barre de ressources qui sera affichée en superposition au-dessus de l'image du portrait. \nVous devez définir cela dans la configuration de combat. \nCette option est là pour que certains systèmes et utilisateurs expérimentés puissent la modifier manuellement."
+      }
+    },
+    "hotkeys": {
+      "combatPrev": {
+        "name": "Tour précédent"
+      },
+      "combatNext": {
+        "name": "Tour suivant"
+      }
+    },
+    "add-event": {
+      "title": "Ajouter un évènement",
+      "duration": "Durée de l'événement (tours)",
+      "error": "Erreur : Vous devez fournir un nom, une image et une valeur d'initiative pour l'événement.",
+      "expired": "L'événement %n a expiré."
+    },
+    "deleteEffectTitle": "Supprimer l'effet",
+    "deleteEffectContent": "Etes-vous sûr de vouloir supprimer l'effet"
+  }
 }

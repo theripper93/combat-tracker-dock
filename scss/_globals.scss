@@ -20,4 +20,9 @@
 }
 #ui-top{
     position: relative;
+    &.ctd-hide-conflicting-uis:has(#combat-dock:not(.hidden)){
+        > *:not(#combat-dock):not(#loading){
+            display: none;
+        }
+    }
 }

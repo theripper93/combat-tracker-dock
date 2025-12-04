@@ -406,6 +406,16 @@ export function registerSettings() {
         onChange: () => ui.combatDock?.refresh(),
     });
 
+    game.settings.register(MODULE_ID, "hideConflictingUIs", {
+        name: "combat-tracker-dock.settings.hideConflictingUIs.name",
+        hint: "combat-tracker-dock.settings.hideConflictingUIs.hint",
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true,
+        onChange: () => setHideConflictingUIs(),
+    });
+
     registerSystemSettings();
 
     setAllSettings();
@@ -482,6 +492,7 @@ function setAllSettings() {
     setTooltipColor();
     setPortraitImageBorder();
     setPortraitImageBackground();
+    setHideConflictingUIs();
 }
 
 function setPortraitSize() {
@@ -508,6 +519,11 @@ function setPortraitImageBorder() {
 function setPortraitImageBackground() {
     let portraitImageBackground = game.settings.get(MODULE_ID, "portraitImageBackground");
     document.documentElement.style.setProperty("--combatant-portrait-image-background", `url('${portraitImageBackground}')`);
+}
+
+function setHideConflictingUIs() {
+    const hideConflictingUIs = game.settings.get(MODULE_ID, "hideConflictingUIs");
+    document.querySelector("#ui-top")?.classList.toggle("ctd-hide-conflicting-uis", hideConflictingUIs);
 }
 
 function setRoundness() {

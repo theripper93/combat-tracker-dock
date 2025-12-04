@@ -22,6 +22,9 @@
 #ui-top {
   position: relative;
 }
+#ui-top.ctd-hide-conflicting-uis:has(#combat-dock:not(.hidden)) > *:not(#combat-dock):not(#loading) {
+  display: none;
+}
 
 #combat-dock .combatant-portrait {
   pointer-events: all;

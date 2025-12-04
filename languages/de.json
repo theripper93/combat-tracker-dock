@@ -1,237 +1,241 @@
 {
-    "combat-tracker-dock": {
-        "settings": {
-            "attributeColor": {
-                "hint": "Die Farbe des Hauptattributtextes und der Leiste im Kampf-Tracker. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
-                "name": "Attributfarbe"
-            },
-            "attributesMenu": {
-                "form": {
-                    "add": "Attribute hinzufügen",
-                    "attr": {
-                        "name": "Attribut",
-                        "choose": "Wählen Sie Attribut"
-                    },
-                    "icon": {
-                        "name": "Symbol"
-                    },
-                    "notes": "Lassen Sie das Feld „Attribut“ leer, um es zu entfernen.",
-                    "save": "Speichern",
-                    "units": {
-                        "name": "Einheiten"
-                    },
-                    "reset": "Standardeinstellungen zurückzusetzen"
-                },
-                "hint": "Konfigurieren Sie benutzerdefinierte Attribute, die im Tooltip angezeigt werden sollen.",
-                "label": "Attribute konfigurieren",
-                "name": "Tooltip-Attribute",
-                "reset": "Zurücksetzen",
-                "resetWarning": "Sind Sie sicher, dass Sie die Attribute auf ihre Standardwerte zurücksetzen möchten?"
-            },
-            "portraitImage": {
-                "choices": {
-                    "actor": "Schauspieler",
-                    "token": "Zeichen"
-                },
-                "hint": "Ob das Schauspieler- oder Token-Bild als Porträt verwendet werden soll.",
-                "name": "Porträtbild"
-            },
-            "portraitImageBorder": {
-                "hint": "Spezieller Rahmen, der für Spielercharaktere angezeigt wird. \nZum Deaktivieren leer lassen. \nWenn Sie ein benutzerdefiniertes Bild erstellen möchten, wird empfohlen, das Standardbild als Referenz für die richtige Größe zu verwenden.",
-                "name": "Spielergrenze"
-            },
-            "portraitSize": {
-                "choices": {
-                    "110px": "Riesig",
-                    "30px": "Winzig",
-                    "50px": "Klein",
-                    "70px": "Normal",
-                    "90px": "Groß",
-                    "150px": "XX-Groß",
-                    "180px": "XXX-Groß"
-                },
-                "hint": "Die maximale Größe des Porträts im Kampf-Tracker. \nBeachten Sie, dass die Größe der Porträts automatisch reduziert wird, wenn zu viele Kämpfer vorhanden sind, um auf den Bildschirm zu passen.",
-                "name": "Porträtgröße"
-            },
-            "showDispositionColor": {
-                "hint": "Zeigen Sie die Disposition am unteren Rand des Porträts an.",
-                "name": "Dispositionsfarbe anzeigen"
-            },
-            "showInitiativeOnPortrait": {
-                "hint": "Zeigen Sie den Initiativewert in der oberen linken Ecke des Porträts an. \nSie können die Initiative immer im Tooltip sehen!",
-                "name": "Zeigen Sie Initiative im Porträt"
-            },
-            "tooltipColor": {
-                "hint": "Das Farbschema des Tooltips. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
-                "name": "Tooltip-Farbe"
-            },
-            "alignment": {
-                "choices": {
-                    "center": "Center",
-                    "left": "Links",
-                    "right": "Rechts"
-                },
-                "hint": "Die Ausrichtung des Karussells. \nBeachten Sie, dass das Karussell zentriert sein soll. Sie sollten diese Einstellung nur aus Kompatibilitätsgründen mit anderen Modulen verwenden.",
-                "name": "Ausrichtung"
-            },
-            "portraitAspect": {
-                "choices": {
-                    "long": "Lang",
-                    "portrait": "Porträt",
-                    "square": "Quadrat"
-                },
-                "hint": "Das Seitenverhältnis des Porträts. \nDas Bild wird zugeschnitten, wenn es nicht dem Seitenverhältnis des Porträts entspricht.",
-                "name": "Porträt-Seitenverhältnis"
-            },
-            "roundness": {
-                "choices": {
-                    "round": "Runden",
-                    "sharp": "Scharf",
-                    "soft": "Weich"
-                },
-                "hint": "Die Rundheit der Porträts und Tooltips.",
-                "name": "Rundheit"
-            },
-            "carouselStyle": {
-                "choices": {
-                    "basic": "Kein Karussell",
-                    "centerCarousel": "Karussell – zentriert",
-                    "leftCarousel": "Karussell – Links"
-                },
-                "hint": "Die Art und Weise, wie Porträts im Karussell platziert und bewegt werden: Karussell – zentriert: Der aktive Kämpfer befindet sich in der Mitte des Karussells, die anderen Kämpfer drehen sich um ihn herum.\n\n- Karussell – Links: Der aktive Kämpfer befindet sich links vom Karussell, die anderen Kämpfer rotieren um ihn herum.\n\n- Kein Karussell: Die Kämpfer werden immer in der Reihenfolge ihrer Initiative angezeigt und der aktive Kämpfer bewegt sich, während die Kämpfer an derselben Position bleiben.",
-                "name": "Karussell-Stil"
-            },
-            "overflowStyle": {
-                "choices": {
-                    "autofit": "Porträts verkleinern",
-                    "hidden": "Versteckt",
-                    "scroll": "Scrollen"
-                },
-                "hint": "Die Art und Weise, wie sich das Karussell verhält, wenn zu viele Kämpfer vorhanden sind, um auf den Bildschirm zu passen.",
-                "name": "Überlaufstil"
-            },
-            "attributeColor2": {
-                "hint": "Die Farbe des sekundären verfolgten Attributtexts und der Leiste im Karussell. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
-                "name": "Sekundäre Attributfarbe"
-            },
-            "attributeVisibility": {
-                "choices": {
-                    "bars": "Nur Bars",
-                    "both": "Text",
-                    "text": "Nur Text"
-                },
-                "hint": "Die Sichtbarkeit der verfolgten Attribute im Karussell.",
-                "name": "Attributsichtbarkeit"
-            },
-            "direction": {
-                "choices": {
-                    "column": "Vertikal",
-                    "row": "Horizontal"
-                },
-                "hint": "Die Richtung des Karussells.",
-                "name": "Richtung"
-            },
-            "displayName": {
-                "choices": {
-                    "default": "Stets",
-                    "owner": "Basierend auf dem Eigentum",
-                    "token": "Basierend auf Token"
-                },
-                "hint": "Ob der Name des Kombattanten im Tooltip angezeigt werden soll oder nicht. \n„Basierend auf Token“ zeigt den Namen nur an, wenn der Spieler den Namen des Tokens sehen kann.",
-                "name": "Anzeigename"
-            },
-            "portraitImageBackground": {
-                "hint": "Das Hintergrundbild hinter dem Porträt, das sichtbar ist, wenn das Porträt transparent ist oder den Raum nicht ausfüllt.",
-                "name": "Porträthintergrund"
-            },
-            "showSystemIcons": {
-                "choices": {
-                    "both": "Beide",
-                    "none": "Keiner",
-                    "resource": "Porträt",
-                    "tooltip": "Tooltip"
-                },
-                "hint": "Zeigen Sie die Systemsymbole unter der verfolgten Ressource, der QuickInfo oder beiden an. \nBeachten Sie, dass dies eine systemspezifische Implementierung erfordert und nur auf ausgewählten Systemen funktioniert.",
-                "name": "Systemsymbole anzeigen"
-            },
-            "hideFirstRound": {
-                "hint": "Verstecke Feinde, bis sie zum ersten Mal im Kampf an der Reihe sind. \n(Erfordert LibWrapper, um sie auch im Kernkampf-Tracker zu verbergen.)",
-                "name": "Bis zur ersten Runde verstecken"
-            },
-            "barsPlacement": {
-                "choices": {
-                    "left": "Links",
-                    "right": "Rechts",
-                    "twinned": "Zwillinge"
-                },
-                "hint": "Die Platzierung der verfolgten Attributleisten im Karussell.",
-                "name": "Platzierung der Stäbe"
-            },
-            "integration": "Integration",
-            "systems": {
-                "crucible": {
-                    "alwaysShowActions": {
-                        "hint": "Wenn „Systemsymbole anzeigen“ aktiviert ist, werden den Spielern unabhängig von ihren Berechtigungen Aktionspunkte angezeigt. \nDadurch können Spieler sehen, wie viele Aktionspunkte ihre Verbündeten und Feinde insgesamt und noch haben.",
-                        "name": "Zeigen Sie feindliche Aktionen an"
-                    }
-                }
-            },
-            "displayDescriptions": {
-                "hint": "Beschreibungen aktiver Effekte im Tooltip anzeigen.",
-                "name": "Beschreibungen anzeigen",
-                "choices": {
-                    "all": "Alle",
-                    "none": "Keiner",
-                    "owner": "Besitzer/Beobachter"
-                }
-            },
-            "playerPlayerPermission": {
-                "hint": "Erlauben Sie allen Spielern, die verfolgten Attribute, Tooltip-Informationen und Systemsymbole anderer Spieler zu sehen.",
-                "name": "Spielerinformationen immer anzeigen"
-            },
-            "attributeColorPortrait": {
-                "hint": "Die Farbe der Überlagerungsleiste für das Porträt des verfolgten Attributs. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B.",
-                "name": "Porträtattributfarbe"
-            },
-            "hideDefeated": {
-                "hint": "Verstecke besiegte Kämpfer vor dem Karussell. \nSie werden weiterhin im regulären Kampf-Tracker sichtbar sein, falls Sie mit ihnen interagieren müssen.",
-                "name": "Besiegt ausblenden"
-            },
-            "hideEnemyInitiative": {
-                "hint": "Verstecken Sie die Initiative des Feindes im Tooltip und im Porträt.",
-                "name": "Feindliche Initiative ausblenden"
-            },
-            "portraitResource": {
-                "hint": "Die Ressourcenleiste, die als Overlay über dem Porträtbild angezeigt wird. \nSie sollten dies in der Kampfkonfiguration festlegen. \nDiese Option steht einigen Systemen und erfahrenen Benutzern zur manuellen Anpassung zur Verfügung.",
-                "name": "Porträtressource"
-            },
-            "resource": {
-                "hint": "Die sekundäre Ressourcenleiste. \nSie sollten dies in der Kampfkonfiguration festlegen. \nDiese Option steht einigen Systemen und erfahrenen Benutzern zur manuellen Anpassung zur Verfügung.",
-                "name": "Sekundäre Ressource"
-            }
-        },
-        "configureCarousel": "Karussell konfigurieren",
-        "hotkeys": {
-            "combatNext": {
-                "name": "Nächste Runde"
-            },
-            "combatPrev": {
-                "name": "Vorheriger Zug"
-            }
-        },
-        "combatConfig": {
-            "portraitResource": {
-                "hint": "Ressourcenleiste, die als Overlay über dem Porträtbild angezeigt wird. Zum Deaktivieren auf „Keine“ setzen.",
-                "label": "Porträtleiste"
-            }
-        },
-        "add-event": {
-            "duration": "Eventdauer (Runden)",
-            "error": "Fehler: Sie müssen einen Namen, ein Bild und einen Initiativewert für die Veranstaltung angeben.",
-            "expired": "Ereignis %n ist abgelaufen.",
-            "title": "Ereignis hinzufügen"
-        },
-        "deleteEffectContent": "Sind Sie sicher, dass Sie den Effekt löschen möchten?",
-        "deleteEffectTitle": "Effekt löschen"
-    }
+  "combat-tracker-dock": {
+    "configureCarousel": "Karussell konfigurieren",
+    "combatConfig": {
+      "portraitResource": {
+        "label": "Porträtleiste",
+        "hint": "Ressourcenleiste, die als Overlay über dem Porträtbild angezeigt wird. Zum Deaktivieren auf „Keine“ setzen."
+      }
+    },
+    "settings": {
+      "systems": {
+        "crucible": {
+          "alwaysShowActions": {
+            "name": "Zeigen Sie feindliche Aktionen an",
+            "hint": "Wenn „Systemsymbole anzeigen“ aktiviert ist, werden den Spielern unabhängig von ihren Berechtigungen Aktionspunkte angezeigt. \nDadurch können Spieler sehen, wie viele Aktionspunkte ihre Verbündeten und Feinde insgesamt und noch haben."
+          }
+        }
+      },
+      "integration": "Integration",
+      "portraitSize": {
+        "name": "Porträtgröße",
+        "hint": "Die maximale Größe des Porträts im Kampf-Tracker. \nBeachten Sie, dass die Größe der Porträts automatisch reduziert wird, wenn zu viele Kämpfer vorhanden sind, um auf den Bildschirm zu passen.",
+        "choices": {
+          "30px": "Winzig",
+          "50px": "Klein",
+          "70px": "Normal",
+          "90px": "Groß",
+          "110px": "Riesig",
+          "150px": "XX-Groß",
+          "180px": "XXX-Groß"
+        }
+      },
+      "carouselStyle": {
+        "name": "Karussell-Stil",
+        "hint": "Die Art und Weise, wie Porträts im Karussell platziert und bewegt werden: Karussell – zentriert: Der aktive Kämpfer befindet sich in der Mitte des Karussells, die anderen Kämpfer drehen sich um ihn herum.\n\n- Karussell – Links: Der aktive Kämpfer befindet sich links vom Karussell, die anderen Kämpfer rotieren um ihn herum.\n\n- Kein Karussell: Die Kämpfer werden immer in der Reihenfolge ihrer Initiative angezeigt und der aktive Kämpfer bewegt sich, während die Kämpfer an derselben Position bleiben.",
+        "choices": {
+          "centerCarousel": "Karussell – zentriert",
+          "leftCarousel": "Karussell – Links",
+          "basic": "Kein Karussell"
+        }
+      },
+      "overflowStyle": {
+        "name": "Überlaufstil",
+        "hint": "Die Art und Weise, wie sich das Karussell verhält, wenn zu viele Kämpfer vorhanden sind, um auf den Bildschirm zu passen.",
+        "choices": {
+          "hidden": "Versteckt",
+          "scroll": "Scrollen",
+          "autofit": "Porträts verkleinern"
+        }
+      },
+      "portraitAspect": {
+        "name": "Porträt-Seitenverhältnis",
+        "hint": "Das Seitenverhältnis des Porträts. \nDas Bild wird zugeschnitten, wenn es nicht dem Seitenverhältnis des Porträts entspricht.",
+        "choices": {
+          "square": "Quadrat",
+          "portrait": "Porträt",
+          "long": "Lang"
+        }
+      },
+      "alignment": {
+        "name": "Ausrichtung",
+        "hint": "Die Ausrichtung des Karussells. \nBeachten Sie, dass das Karussell zentriert sein soll. Sie sollten diese Einstellung nur aus Kompatibilitätsgründen mit anderen Modulen verwenden.",
+        "choices": {
+          "left": "Links",
+          "center": "Center",
+          "right": "Rechts"
+        }
+      },
+      "direction": {
+        "name": "Richtung",
+        "hint": "Die Richtung des Karussells.",
+        "choices": {
+          "row": "Horizontal",
+          "column": "Vertikal"
+        }
+      },
+      "roundness": {
+        "name": "Rundheit",
+        "hint": "Die Rundheit der Porträts und Tooltips.",
+        "choices": {
+          "sharp": "Scharf",
+          "soft": "Weich",
+          "round": "Runden"
+        }
+      },
+      "showDispositionColor": {
+        "name": "Dispositionsfarbe anzeigen",
+        "hint": "Zeigen Sie die Disposition am unteren Rand des Porträts an."
+      },
+      "hideDefeated": {
+        "name": "Besiegt ausblenden",
+        "hint": "Verstecke besiegte Kämpfer vor dem Karussell. \nSie werden weiterhin im regulären Kampf-Tracker sichtbar sein, falls Sie mit ihnen interagieren müssen."
+      },
+      "showInitiativeOnPortrait": {
+        "name": "Zeigen Sie Initiative im Porträt",
+        "hint": "Zeigen Sie den Initiativewert in der oberen linken Ecke des Porträts an. \nSie können die Initiative immer im Tooltip sehen!"
+      },
+      "portraitImageBorder": {
+        "name": "Spielergrenze",
+        "hint": "Spezieller Rahmen, der für Spielercharaktere angezeigt wird. \nZum Deaktivieren leer lassen. \nWenn Sie ein benutzerdefiniertes Bild erstellen möchten, wird empfohlen, das Standardbild als Referenz für die richtige Größe zu verwenden."
+      },
+      "attributeColor": {
+        "name": "Attributfarbe",
+        "hint": "Die Farbe des Hauptattributtextes und der Leiste im Kampf-Tracker. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B."
+      },
+      "attributeColor2": {
+        "name": "Sekundäre Attributfarbe",
+        "hint": "Die Farbe des sekundären verfolgten Attributtexts und der Leiste im Karussell. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B."
+      },
+      "attributeColorPortrait": {
+        "name": "Porträtattributfarbe",
+        "hint": "Die Farbe der Überlagerungsleiste für das Porträt des verfolgten Attributs. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B."
+      },
+      "barsPlacement": {
+        "name": "Platzierung der Stäbe",
+        "hint": "Die Platzierung der verfolgten Attributleisten im Karussell.",
+        "choices": {
+          "left": "Links",
+          "right": "Rechts",
+          "twinned": "Zwillinge"
+        }
+      },
+      "attributeVisibility": {
+        "name": "Attributsichtbarkeit",
+        "hint": "Die Sichtbarkeit der verfolgten Attribute im Karussell.",
+        "choices": {
+          "text": "Nur Text",
+          "bars": "Nur Bars",
+          "both": "Text"
+        }
+      },
+      "playerPlayerPermission": {
+        "name": "Spielerinformationen immer anzeigen",
+        "hint": "Erlauben Sie allen Spielern, die verfolgten Attribute, Tooltip-Informationen und Systemsymbole anderer Spieler zu sehen."
+      },
+      "displayDescriptions": {
+        "name": "Beschreibungen anzeigen",
+        "hint": "Beschreibungen aktiver Effekte im Tooltip anzeigen.",
+        "choices": {
+          "none": "Keiner",
+          "owner": "Besitzer/Beobachter",
+          "all": "Alle"
+        }
+      },
+      "tooltipColor": {
+        "name": "Tooltip-Farbe",
+        "hint": "Das Farbschema des Tooltips. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B."
+      },
+      "portraitImage": {
+        "name": "Porträtbild",
+        "hint": "Ob das Schauspieler- oder Token-Bild als Porträt verwendet werden soll.",
+        "choices": {
+          "actor": "Schauspieler",
+          "token": "Zeichen"
+        }
+      },
+      "portraitImageBackground": {
+        "name": "Porträthintergrund",
+        "hint": "Das Hintergrundbild hinter dem Porträt, das sichtbar ist, wenn das Porträt transparent ist oder den Raum nicht ausfüllt."
+      },
+      "showSystemIcons": {
+        "name": "Systemsymbole anzeigen",
+        "hint": "Zeigen Sie die Systemsymbole unter der verfolgten Ressource, der QuickInfo oder beiden an. \nBeachten Sie, dass dies eine systemspezifische Implementierung erfordert und nur auf ausgewählten Systemen funktioniert.",
+        "choices": {
+          "none": "Keiner",
+          "tooltip": "Tooltip",
+          "resource": "Porträt",
+          "both": "Beide"
+        }
+      },
+      "hideConflictingUIs": {
+        "name": "Widersprüchliche Benutzeroberflächen ausblenden",
+        "hint": "Automatische Ausblendung anderer UIs, die am oberen Rand des Bildschirms angedockt sind, wenn das Combat Tracker Dock sichtbar ist, um UI-Chaos zu vermeiden."
+      },
+      "displayName": {
+        "name": "Anzeigename",
+        "hint": "Ob der Name des Kombattanten im Tooltip angezeigt werden soll oder nicht. \n„Basierend auf Token“ zeigt den Namen nur an, wenn der Spieler den Namen des Tokens sehen kann.",
+        "choices": {
+          "default": "Stets",
+          "token": "Basierend auf Token",
+          "owner": "Basierend auf dem Eigentum"
+        }
+      },
+      "hideFirstRound": {
+        "name": "Bis zur ersten Runde verstecken",
+        "hint": "Verstecke Feinde, bis sie zum ersten Mal im Kampf an der Reihe sind. \n(Erfordert LibWrapper, um sie auch im Kernkampf-Tracker zu verbergen.)"
+      },
+      "hideEnemyInitiative": {
+        "name": "Feindliche Initiative ausblenden",
+        "hint": "Verstecken Sie die Initiative des Feindes im Tooltip und im Porträt."
+      },
+      "attributesMenu": {
+        "name": "Tooltip-Attribute",
+        "label": "Attribute konfigurieren",
+        "hint": "Konfigurieren Sie benutzerdefinierte Attribute, die im Tooltip angezeigt werden sollen.",
+        "reset": "Zurücksetzen",
+        "resetWarning": "Sind Sie sicher, dass Sie die Attribute auf ihre Standardwerte zurücksetzen möchten?",
+        "form": {
+          "attr": {
+            "name": "Attribut",
+            "choose": "Wählen Sie Attribut"
+          },
+          "icon": {
+            "name": "Symbol"
+          },
+          "units": {
+            "name": "Einheiten"
+          },
+          "save": "Speichern",
+          "add": "Attribute hinzufügen",
+          "reset": "Standardeinstellungen zurückzusetzen",
+          "notes": "Lassen Sie das Feld „Attribut“ leer, um es zu entfernen."
+        }
+      },
+      "resource": {
+        "name": "Sekundäre Ressource",
+        "hint": "Die sekundäre Ressourcenleiste. \nSie sollten dies in der Kampfkonfiguration festlegen. \nDiese Option steht einigen Systemen und erfahrenen Benutzern zur manuellen Anpassung zur Verfügung."
+      },
+      "portraitResource": {
+        "name": "Porträtressource",
+        "hint": "Die Ressourcenleiste, die als Overlay über dem Porträtbild angezeigt wird. \nSie sollten dies in der Kampfkonfiguration festlegen. \nDiese Option steht einigen Systemen und erfahrenen Benutzern zur manuellen Anpassung zur Verfügung."
+      }
+    },
+    "hotkeys": {
+      "combatPrev": {
+        "name": "Vorheriger Zug"
+      },
+      "combatNext": {
+        "name": "Nächste Runde"
+      }
+    },
+    "add-event": {
+      "title": "Ereignis hinzufügen",
+      "duration": "Eventdauer (Runden)",
+      "error": "Fehler: Sie müssen einen Namen, ein Bild und einen Initiativewert für die Veranstaltung angeben.",
+      "expired": "Ereignis %n ist abgelaufen."
+    },
+    "deleteEffectTitle": "Effekt löschen",
+    "deleteEffectContent": "Sind Sie sicher, dass Sie den Effekt löschen möchten?"
+  }
 }
