@@ -169,8 +169,8 @@
         }
       },
       "hideConflictingUIs": {
-        "name": "Ocultar UIs conflitantes",
-        "hint": "Oculte automaticamente outras UIs encaixadas na parte superior da tela quando o Combat Tracker Dock estiver visível para evitar a desordem da UI."
+        "name": "Ocultar Interfaces Conflitantes",
+        "hint": "Oculta automaticamente outras interfaces ancoradas na parte superior da tela quando o Rastreador de Combate estiver visível para evitar poluição visual na interface."
       },
       "displayName": {
         "name": "Mostrar Nome",
