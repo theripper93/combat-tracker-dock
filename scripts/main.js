@@ -1,8 +1,9 @@
 import {registerSettings, registerWrappers, registerHotkeys} from './config.js';
-import {CombatDock} from './App/Tracker.js';
-import {CombatantPortrait} from './App/CombatantPortrait.js';
+import {CombatDock} from './app/CombatDock.js';
+import {CombatantPortrait} from './app/CombatantPortrait.js';
 import {defaultAttributesConfig, generateDescription} from './systems.js';
-import {showWelcome} from './lib/welcome.js';
+import { showWelcome } from './lib/welcome.js';
+import "../scss/module.scss";
 
 export const MODULE_ID = 'combat-tracker-dock';
 
@@ -104,7 +105,7 @@ Hooks.on("renderCombatTrackerConfig", (app, html, data) => {
 
     button.addEventListener("click", (e) => {
         e.preventDefault();
-        new SettingsConfig().render(true)
+        new foundry.applications.settings.SettingsConfig().render(true)
         Hooks.once("renderSettingsConfig", (app, html, data) => {
             html.querySelector('button[data-tab="combat-tracker-dock"]').click();
         });

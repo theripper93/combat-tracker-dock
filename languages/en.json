@@ -1,6 +1,10 @@
 {
     "combat-tracker-dock": {
         "configureCarousel": "Configure Carousel",
+        "combat-dock": {
+            "title": "Combat Tracker Dock",
+            "close": "Close"
+        },
         "combatConfig": {
             "portraitResource": {
                 "label": "Portrait Bar",
@@ -57,7 +61,7 @@
                     "long": "Long"
                 }
             },
-            "alignment": { 
+            "alignment": {
                 "name": "Alignment",
                 "hint": "The alignment of the carousel.",
                 "choices": {
@@ -67,11 +71,14 @@
                 }
             },
             "direction": {
-                "name": "Direction",
+                "name": "Position",
                 "hint": "The direction of the carousel.",
                 "choices": {
                     "row": "Horizontal",
-                    "column": "Vertical"
+                    "column": "Vertical",
+                    "rowDocked": "Horizontal (Docked)",
+                    "rowFloat": "Horizontal (Floating)",
+                    "columnFloat": "Vertical (Floating)"
                 }
             },
             "roundness": {

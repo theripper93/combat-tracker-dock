@@ -35,6 +35,28 @@ export function registerSettings() {
         type: AttributesConfig,
     });
 
+    game.settings.register(MODULE_ID, "direction", {
+        name: "combat-tracker-dock.settings.direction.name",
+        hint: "combat-tracker-dock.settings.direction.hint",
+        scope: "world",
+        config: true,
+        type: String,
+        choices: {
+            rowDocked: "combat-tracker-dock.settings.direction.choices.rowDocked",
+            rowFloat: "combat-tracker-dock.settings.direction.choices.rowFloat",
+            columnFloat: "combat-tracker-dock.settings.direction.choices.columnFloat",
+        },
+        default: "rowDocked",
+        onChange: async () => {
+            await ui.combatDock?.restart();
+            setDirection();
+            setOverflowStyle();
+            setFlex();
+            ui.combatDock?.autosize();
+            ui.combatDock?.refresh();
+        },
+    });
+
     game.settings.register(MODULE_ID, "portraitSize", {
         name: "combat-tracker-dock.settings.portraitSize.name",
         hint: "combat-tracker-dock.settings.portraitSize.hint",
@@ -90,26 +112,6 @@ export function registerSettings() {
         },
         default: 0,
         onChange: () => ui.combatDock?.refresh(),
-    });
-
-    game.settings.register(MODULE_ID, "direction", {
-        name: "combat-tracker-dock.settings.direction.name",
-        hint: "combat-tracker-dock.settings.direction.hint",
-        scope: "world",
-        config: true,
-        type: String,
-        choices: {
-            row: "combat-tracker-dock.settings.direction.choices.row",
-            column: "combat-tracker-dock.settings.direction.choices.column",
-        },
-        default: "row",
-        onChange: () => {
-            setDirection();
-            setOverflowStyle();
-            setFlex();
-            ui.combatDock?.autosize();
-            ui.combatDock?.refresh();
-        },
     });
 
     game.settings.register(MODULE_ID, "alignment", {
@@ -258,6 +260,7 @@ export function registerSettings() {
         default: true,
         onChange: () => ui.combatDock?.refresh(),
     });*/
+
     game.settings.register(MODULE_ID, "displayDescriptions", {
         name: "combat-tracker-dock.settings.displayDescriptions.name",
         hint: "combat-tracker-dock.settings.displayDescriptions.hint",
@@ -281,7 +284,7 @@ export function registerSettings() {
         type: Boolean,
         default: false,
         onChange: () => ui.combatDock?.refresh(),
-    });    
+    });
 
     game.settings.register(MODULE_ID, "showDispositionColor", {
         name: "combat-tracker-dock.settings.showDispositionColor.name",
@@ -568,7 +571,7 @@ function setOverflowStyle() {
     if (overflowStyle === "autofit") overflowStyle = "hidden";
     if (overflowStyle === "scroll") {
         const direction = game.settings.get(MODULE_ID, "direction");
-        if (direction === "row") overflowStyle = "visible hidden";
+        if (direction !== "columnFloat") overflowStyle = "visible hidden";
         else overflowStyle = "hidden visible";
     }
     document.documentElement.style.setProperty("--carousel-overflow", overflowStyle);
@@ -576,8 +579,8 @@ function setOverflowStyle() {
 
 function setDirection() {
     const direction = game.settings.get(MODULE_ID, "direction");
-    document.documentElement.style.setProperty("--carousel-direction", direction);
-    document.documentElement.style.setProperty("--combatant-portrait-margin", direction === "row" ? "0 calc(var(--combatant-portrait-size) * 0.1)" : "0");
+    document.documentElement.style.setProperty("--carousel-direction", direction === "columnFloat" ? "column" : "row");
+    document.documentElement.style.setProperty("--combatant-portrait-margin", direction !== "columnFloat" ? "0 calc(var(--combatant-portrait-size) * 0.1)" : "0");
     ui.combatDock?.setControlsOrder();
 }
 
@@ -585,8 +588,8 @@ function setFlex() {
     const alignment = game.settings.get(MODULE_ID, "alignment");
     const direction = game.settings.get(MODULE_ID, "direction");
     let flexD = "flex-start";
-    if (direction == "column" && alignment == "right") flexD = "flex-end";
-    if (direction == "column" && alignment == "center") flexD = "center";
+    if (direction == "columnFloat" && alignment == "right") flexD = "flex-end";
+    if (direction == "columnFloat" && alignment == "center") flexD = "center";
 
     document.documentElement.style.setProperty("--carousel-align-items", flexD);
 }

@@ -1,4 +1,4 @@
-<form autocomplete="off">
+<div autocomplete="off">
 
     <div class="cct-recent-events">
         {{#each recentEvents as |event|}}
@@ -30,8 +30,7 @@
     <div class="form-group">
         <label>{{localize 'Image'}}</label>
         <div class="form-fields">
-            {{filePicker type="image" target="img"}}
-            <input type="text" name="img" placeholder="path/image.png">
+            <file-picker type="image" name="img" data-target="img" placeholder="path/image.png"></file-picker>
         </div>
     </div>
 
@@ -45,4 +44,4 @@
     <button type="submit">
         <i class="fas fa-plus"></i> {{localize 'combat-tracker-dock.add-event.title'}}
     </button>
-</form>
+</div>
