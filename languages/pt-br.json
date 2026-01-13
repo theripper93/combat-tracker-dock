@@ -183,8 +183,8 @@
         }
       },
       "hideConflictingUIs": {
-        "name": "Ocultar UIs conflitantes",
-        "hint": "Oculte automaticamente outras interfaces encaixadas na parte superior da tela quando o Combat Tracker estiver visível para evitar a desordem da interface."
+        "name": "Ocultar Interfaces Conflitantes",
+        "hint": "Oculta automaticamente outras interfaces ancoradas na parte superior da tela quando o Combat Tracker estiver visível para evitar a desordem da interface."
       },
       "displayName": {
         "name": "Mostrar Nome",
