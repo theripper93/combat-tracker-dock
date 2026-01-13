@@ -184,7 +184,7 @@
       },
       "hideConflictingUIs": {
         "name": "Ocultar Interfaces Conflitantes",
-        "hint": "Oculta automaticamente outras interfaces ancoradas na parte superior da tela quando o Combat Tracker estiver visível para evitar a desordem da interface."
+        "hint": "Oculta automaticamente outras interfaces ancoradas na parte superior da tela quando o Combat Tracker estiver visível para evitar poluição visual na interface."
       },
       "displayName": {
         "name": "Mostrar Nome",
