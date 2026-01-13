@@ -2,7 +2,7 @@
   "combat-tracker-dock": {
     "configureCarousel": "Configurar Carrossel",
     "combat-dock": {
-      "title": "Doca do Rastreador de Combate",
+      "title": "Âncora Combat Tracker",
       "close": "Fechar"
     },
     "contextMenu": {
@@ -25,8 +25,8 @@
       },
       "integration": "Integração",
       "floatingSize": {
-        "name": "Tamanho flutuante",
-        "hint": "O tamanho da janela flutuante. Quanto maior o valor, maior será a janela. Isso não afetará o modo Horizontal (ancorado)."
+        "name": "Tamanho Flutuante",
+        "hint": "O tamanho da janela flutuante. Quanto maior o valor, maior será a janela. Isso não afeta o modo Horizontal (Ancorado)."
       },
       "portraitSize": {
         "name": "Tamanho do Carrossel",
@@ -78,14 +78,14 @@
         }
       },
       "direction": {
-        "name": "Direção",
+        "name": "Posição",
         "hint": "A direção do carrossel.",
         "choices": {
           "row": "Horizontal",
           "column": "Vertical",
-          "rowDocked": "Horizontal (ancorado)",
-          "rowFloat": "Horizontal (flutuante)",
-          "columnFloat": "Vertical (flutuante)"
+          "rowDocked": "Horizontal (Ancorado)",
+          "rowFloat": "Horizontal (Flutuante)",
+          "columnFloat": "Vertical (Flutuante)"
         }
       },
       "roundness": {
@@ -184,7 +184,7 @@
       },
       "hideConflictingUIs": {
         "name": "Ocultar Interfaces Conflitantes",
-        "hint": "Oculta automaticamente outras interfaces ancoradas na parte superior da tela quando o Rastreador de Combate estiver visível para evitar poluição visual na interface."
+        "hint": "Oculta automaticamente outras interfaces ancoradas na parte superior da tela quando o Combat Tracker estiver visível para evitar poluição visual na interface."
       },
       "displayName": {
         "name": "Mostrar Nome",
