@@ -28,8 +28,12 @@ export class CombatDock extends HandlebarsApplication {
                 positioned: false,
                 minimizable: false,
                 resizable: false,
-                // savePosition: true,
+                savePosition: true,
             },
+            position: {
+                width: "auto",
+                height: "auto"
+            }
         });
         if (game.settings.get(MODULE_ID, "direction") !== "rowDocked") {
             mergeObject(options, this.WINDOWED_DEFAULT_OPTIONS);
@@ -42,7 +46,8 @@ export class CombatDock extends HandlebarsApplication {
             window: {
                 frame: true,
                 positioned: true,
-                savePosition: true
+                // savePosition: true,
+                preventEscapeClose: true
             }
         }
     }
@@ -119,9 +124,11 @@ export class CombatDock extends HandlebarsApplication {
 
     _prepareContext(options) {
         const scroll = game.settings.get(MODULE_ID, "overflowStyle") === "scroll";
+        const reverseHeaderPosition = !this.isDocked && !this.isVertical;
         return {
             isGM: game.user.isGM,
             scroll,
+            reverseHeaderPosition
         };
     }
 
@@ -221,19 +228,20 @@ export class CombatDock extends HandlebarsApplication {
         };
         const verticalSize = max * aspect;
         if (!this.autoFit) return document.documentElement.style.setProperty("--combatant-portrait-size", max + "px");
+
+        const sizeModifier = game.settings.get(MODULE_ID, "floatingSize");
+        const combatantCount = this.sortedCombatants.length;
+        let maxSpace, portraitSize;
         if (this.isVertical) {
-            const maxSpace = document.getElementById("ui-left-column-2").getBoundingClientRect().height * 0.9 - document.getElementById("scene-navigation-active").getBoundingClientRect().height;
-            const combatantCount = this.sortedCombatants.length;
-            const portraitSize = Math.min(verticalSize, Math.floor(maxSpace / combatantCount)) / aspect;
-
-            document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize + "px");
-        } else if(this.isDocked) {
-            const maxSpace = document.getElementById("ui-top").getBoundingClientRect().width * 0.9;
-            const combatantCount = this.sortedCombatants.length;
-            const portraitSize = Math.min(max, Math.floor(maxSpace / combatantCount));
-
-            document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize / 1.2 + "px");
+            maxSpace = window.innerHeight * sizeModifier / 100;
+        } else if (this.isDocked) {
+            maxSpace = document.getElementById("ui-top").getBoundingClientRect().width * 0.9;
+        } else {
+            maxSpace = window.innerWidth * sizeModifier / 100;
         }
+        portraitSize = this.isVertical ? Math.min(verticalSize, Math.floor(maxSpace / combatantCount)) / aspect : Math.min(max, Math.floor(maxSpace / combatantCount));
+
+        document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize / (this.isVertical ? 1 : 1.2) + "px");
     }
 
     async updateInitiative(combatant, initiative) {
@@ -307,10 +315,6 @@ export class CombatDock extends HandlebarsApplication {
         if (this.isDocked) {
             return document.querySelector("#ui-top").prepend(this.element);
         }
-        // } else if (this.isVertical) {
-        //     if(game.settings.get(MODULE_ID, "alignment") == "left") return document.querySelector("#ui-left-column-2").prepend(this.element);
-        //     return document.querySelector("#ui-right").prepend(this.element);
-        // }
     }
 
     _onRender(context, options) {
@@ -363,7 +367,16 @@ export class CombatDock extends HandlebarsApplication {
         new foundry.applications.ux.ContextMenu(
             this.element.querySelector("#combatants"),
             ".combatant-portrait",
-            game.combats.directory._getEntryContextOptions(),
+            [
+                {
+                    name: `${MODULE_ID}.contextMenu.setAsCurrent`,
+                    icon: `<i class="fas fa-swords"></i>`,
+                    callback: (el) => {
+                        this.combat.update({ turn: this.sortedCombatants.indexOf(this.combat.combatants.get(el.dataset.combatantId)) });
+                    },
+                },
+                ...game.combats.directory._getEntryContextOptions(),
+            ],
             { jQuery: false, fixed: true }
         );
     }
@@ -469,14 +482,14 @@ export class CombatDock extends HandlebarsApplication {
         const carouselStyle = game.settings.get(MODULE_ID, "carouselStyle");
         const combatantsEl = this.element.querySelector("#combatants");
         if (this.trueCarousel) {
-            if (carouselStyle == 2) return;
-
-            if (carouselStyle == 1)close
+            if (carouselStyle == 1) {
                 return combatantsEl.scrollTo({
                     top: 0,
                     left: 0,
                     behavior: "smooth",
                 });
+            }
+
             combatantsEl.scrollTo({
                 top: combatantsEl.scrollHeight / 2 - combatantsEl.offsetHeight / 2 + this._currentPortraitSize.max * this._currentPortraitSize.aspect,
                 left: combatantsEl.scrollWidth / 2 - combatantsEl.offsetWidth / 2 + this._currentPortraitSize.max,
@@ -537,6 +550,7 @@ export class CombatDock extends HandlebarsApplication {
     }
 
     refresh() {
+        this.autosize();
         this.updateCombatants();
         this.appendHtml();
     }

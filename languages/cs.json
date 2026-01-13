@@ -1,6 +1,13 @@
 {
   "combat-tracker-dock": {
     "configureCarousel": "Nastavení kolotoče",
+    "combat-dock": {
+      "title": "Bojový sledovací dok",
+      "close": "Zavřít"
+    },
+    "contextMenu": {
+      "setAsCurrent": "Nastavit jako aktuálního bojovníka"
+    },
     "combatConfig": {
       "portraitResource": {
         "label": "Lišta portrétu",
@@ -17,6 +24,10 @@
         }
       },
       "integration": "Integrace",
+      "floatingSize": {
+        "name": "Velikost plovoucí",
+        "hint": "Velikost plovoucího okna. Čím větší hodnota, tím větší bude okno. To nemá vliv na režim Horizontální (ukotvený)."
+      },
       "portraitSize": {
         "name": "Velikost kolotoče",
         "hint": "Maximální velikost portrétů v kolotoči. Všimni si, že pokud je na obrazovce příliš mnoho bojovníků, bude velikost portrétů automaticky zmenšena.",
@@ -71,7 +82,10 @@
         "hint": "Směr pohybu kolotoče.",
         "choices": {
           "row": "Horizontální",
-          "column": "Vertikální"
+          "column": "Vertikální",
+          "rowDocked": "Vodorovně (ukotvené)",
+          "rowFloat": "Horizontální (plovoucí)",
+          "columnFloat": "Vertikální (plovoucí)"
         }
       },
       "roundness": {

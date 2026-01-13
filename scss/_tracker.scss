@@ -1,14 +1,14 @@
 #ui-left,
 #ui-right,
 #ui-left-column-2 {
-    & #combat-dock {
+    & .combat-dock {
         align-self: center;
     }
 }
 
-#ui-left-column-2:has(#combat-dock) {
+#ui-left-column-2:has(.combat-dock) {
     position: relative;
-    #combat-dock {
+    .combat-dock {
         margin-left: 0;
         padding-left: 0;
         margin-top: calc((var(--control-size) * 1.1) / var(--ui-scale));
@@ -16,19 +16,12 @@
 }
 
 #combat-dock {
-    display: flex !important;
-    justify-content: var(--carousel-alignment);
-    pointer-events: all;
-    /* position: absolute; */
+    max-width: 100%;
     width: auto !important;
     height: auto !important;
-    max-height: 100vh;
     overflow-x: visible;
     overflow-y: visible;
-    /* margin-left: 1rem; */
-    /* padding-left: 1rem; */
-    /* will-change: transform; */
-
+    pointer-events: all;
     background: transparent;
     border: none;
     box-shadow: none;
@@ -44,11 +37,30 @@
         }
     }
 
-    /* &:hover {
-        & .window-header {
-            opacity: 1;
+    &:has(.window-content):not(:has(.reverse-header-position)) {
+        height: var(--carousel-floating-size) !important;
+        min-height: var(--carousel-floating-size);
+    }
+
+    &:has(.reverse-header-position) {
+        flex-direction: row;
+        max-width: var(--carousel-floating-size);
+        min-width: var(--carousel-floating-size);
+
+        .window-title {
+            display: none;
         }
-    } */
+    }
+}
+
+.combat-dock {
+    display: flex !important;
+    justify-content: var(--carousel-alignment);
+    pointer-events: all;
+    width: auto !important;
+    max-height: 100%;
+    overflow-x: visible;
+    overflow-y: visible;
 
     &.hidden {
         display: none !important;
@@ -65,10 +77,11 @@
         align-items: var(--carousel-align-items);
         padding: 0 0.5rem;
         max-width: 100%;
-        /* min-height: calc(
+        width: 100%;
+        min-height: calc(
             var(--combatant-portrait-size) * var(--combatant-portrait-aspect) *
-                1.2 * 1.4
-        ); */
+                1.2 * 1.2
+        );
         overflow: var(--carousel-overflow);
     }
 
@@ -139,8 +152,8 @@
         color: var(--color-text-light-0);
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
-        justify-content: flex-end;
+        padding: 1rem 0;
+        justify-content: flex-start;
         gap: 0.3rem;
         align-items: center;
 

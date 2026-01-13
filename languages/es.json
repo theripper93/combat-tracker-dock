@@ -1,6 +1,13 @@
 {
   "combat-tracker-dock": {
     "configureCarousel": "Configurar carrusel",
+    "combat-dock": {
+      "title": "Muelle de seguimiento de combate",
+      "close": "Cerrar"
+    },
+    "contextMenu": {
+      "setAsCurrent": "Establecer como combatiente actual"
+    },
     "combatConfig": {
       "portraitResource": {
         "label": "Barra retrato",
@@ -17,6 +24,10 @@
         }
       },
       "integration": "Integración",
+      "floatingSize": {
+        "name": "Tamaño flotante",
+        "hint": "El tamaño de la ventana flotante. Cuanto mayor sea el valor, mayor será la ventana. Esto no afectará al modo horizontal (acoplado)."
+      },
       "portraitSize": {
         "name": "Tamaño del carrusel",
         "hint": "El tamaño máximo del retrato en el carrusel. Tenga en cuenta que el tamaño de los retratos se reducirá automáticamente si no caben todos los contendientes en la pantalla",
@@ -71,7 +82,10 @@
         "hint": "La dirección del carrusel",
         "choices": {
           "row": "Horizontal",
-          "column": "Vertical"
+          "column": "Vertical",
+          "rowDocked": "Horizontal (acoplado)",
+          "rowFloat": "Horizontal (flotante)",
+          "columnFloat": "Vertical (flotante)"
         }
       },
       "roundness": {

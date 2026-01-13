@@ -1,6 +1,13 @@
 {
   "combat-tracker-dock": {
     "configureCarousel": "Configura carosello",
+    "combat-dock": {
+      "title": "Dock per tracciatore di combattimento",
+      "close": "Chiudi"
+    },
+    "contextMenu": {
+      "setAsCurrent": "Imposta come combattente attuale"
+    },
     "combatConfig": {
       "portraitResource": {
         "label": "Barra dei ritratti",
@@ -17,6 +24,10 @@
         }
       },
       "integration": "Integrazione",
+      "floatingSize": {
+        "name": "Dimensione fluttuante",
+        "hint": "La dimensione della finestra mobile. Maggiore è il valore, maggiore sarà la finestra. Ciò non influirà sulla modalità Orizzontale (ancorata)."
+      },
       "portraitSize": {
         "name": "Dimensione verticale",
         "hint": "La dimensione massima del ritratto nell'indicatore di combattimento. \nTieni presente che le dimensioni dei ritratti verranno automaticamente ridotte se ci sono troppi combattenti per adattarsi allo schermo.",
@@ -71,7 +82,10 @@
         "hint": "La direzione della giostra.",
         "choices": {
           "row": "Orizzontale",
-          "column": "Verticale"
+          "column": "Verticale",
+          "rowDocked": "Orizzontale (ancorato)",
+          "rowFloat": "Orizzontale (flottante)",
+          "columnFloat": "Verticale (fluttuante)"
         }
       },
       "roundness": {

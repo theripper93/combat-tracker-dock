@@ -26,3 +26,6 @@
         }
     }
 }
+#interface:has(#combat-dock:not(.hidden)) {
+    width: 100%;
+}

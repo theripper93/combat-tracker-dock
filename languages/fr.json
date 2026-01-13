@@ -1,6 +1,13 @@
 {
   "combat-tracker-dock": {
     "configureCarousel": "Configurer le carrousel",
+    "combat-dock": {
+      "title": "Quai de suivi des combats",
+      "close": "Fermer"
+    },
+    "contextMenu": {
+      "setAsCurrent": "Définir comme combattant actuel"
+    },
     "combatConfig": {
       "portraitResource": {
         "label": "Barre de portraits",
@@ -17,6 +24,10 @@
         }
       },
       "integration": "L'intégration",
+      "floatingSize": {
+        "name": "Taille flottante",
+        "hint": "La taille de la fenêtre flottante. Plus la valeur est élevée, plus la fenêtre sera grande. Cela n'affectera pas le mode horizontal (ancré)."
+      },
       "portraitSize": {
         "name": "Taille du portrait",
         "hint": "La taille maximale du portrait dans le suivi des combats. \nNotez que la taille des portraits sera automatiquement réduite s'il y a trop de combattants pour tenir sur l'écran.",
@@ -71,7 +82,10 @@
         "hint": "La direction du carrousel.",
         "choices": {
           "row": "Horizontal",
-          "column": "Vertical"
+          "column": "Vertical",
+          "rowDocked": "Horizontal (ancré)",
+          "rowFloat": "Horizontal (flottant)",
+          "columnFloat": "Vertical (flottant)"
         }
       },
       "roundness": {

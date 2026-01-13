@@ -1,6 +1,13 @@
 {
   "combat-tracker-dock": {
     "configureCarousel": "カルーセルの構成",
+    "combat-dock": {
+      "title": "戦闘トラッカー・ドック",
+      "close": "閉じる"
+    },
+    "contextMenu": {
+      "setAsCurrent": "現在の戦闘員として設定"
+    },
     "combatConfig": {
       "portraitResource": {
         "label": "ポートレートバー",
@@ -17,6 +24,10 @@
         }
       },
       "integration": "統合",
+      "floatingSize": {
+        "name": "フローティングサイズ",
+        "hint": "フローティングウィンドウのサイズ。値が大きいほどウィンドウは大きくなります。水平（ドッキング）モードには影響しません。"
+      },
       "portraitSize": {
         "name": "縦長サイズ",
         "hint": "戦闘トラッカーのポートレートの最大サイズ。\n戦闘員が多すぎて画面に収まらない場合、ポートレートのサイズが自動的に縮小されることに注意してください。",
@@ -71,7 +82,10 @@
         "hint": "カルーセルの方向。",
         "choices": {
           "row": "水平",
-          "column": "垂直"
+          "column": "垂直",
+          "rowDocked": "水平（ドッキング）",
+          "rowFloat": "水平（フローティング）",
+          "columnFloat": "垂直（フローティング）"
         }
       },
       "roundness": {

@@ -1,6 +1,13 @@
 {
   "combat-tracker-dock": {
     "configureCarousel": "Karussell konfigurieren",
+    "combat-dock": {
+      "title": "Kampfverfolgungs-Dock",
+      "close": "Schließen"
+    },
+    "contextMenu": {
+      "setAsCurrent": "Als aktueller Kämpfer festlegen"
+    },
     "combatConfig": {
       "portraitResource": {
         "label": "Porträtleiste",
@@ -17,6 +24,10 @@
         }
       },
       "integration": "Integration",
+      "floatingSize": {
+        "name": "Schwimmende Größe",
+        "hint": "Die Größe des schwebenden Fensters. Je größer der Wert, desto größer ist das Fenster. Dies hat keine Auswirkungen auf den horizontalen (gedockten) Modus."
+      },
       "portraitSize": {
         "name": "Porträtgröße",
         "hint": "Die maximale Größe des Porträts im Kampf-Tracker. \nBeachten Sie, dass die Größe der Porträts automatisch reduziert wird, wenn zu viele Kämpfer vorhanden sind, um auf den Bildschirm zu passen.",
@@ -71,7 +82,10 @@
         "hint": "Die Richtung des Karussells.",
         "choices": {
           "row": "Horizontal",
-          "column": "Vertikal"
+          "column": "Vertikal",
+          "rowDocked": "Horizontal (angedockt)",
+          "rowFloat": "Horizontal (schwimmend)",
+          "columnFloat": "Vertikal (schwimmend)"
         }
       },
       "roundness": {

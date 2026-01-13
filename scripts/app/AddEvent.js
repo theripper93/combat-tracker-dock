@@ -36,9 +36,26 @@ export class AddEvent extends HandlebarsApplication {
         };
     }
 
+    static get PARTS() {
+        return mergeClone(super.PARTS, {
+            content: {
+                classes: ["standard-form"],
+            },
+            footer: {
+                template: "templates/generic/form-footer.hbs",
+            },
+        });
+    }
+
     _prepareContext(options) {
+        const submitButton = {
+            type: "submit",
+            action: "submit",
+            icon: "fas fa-plus",
+            label: "combat-tracker-dock.add-event.title",
+        };
         const recentEvents = game.settings.get(MODULE_ID, "events");
-        return { recentEvents };
+        return { recentEvents, buttons: [submitButton] };
     }
 
     _onRender(context, options) {

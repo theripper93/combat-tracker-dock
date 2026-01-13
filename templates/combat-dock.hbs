@@ -1,18 +1,18 @@
-<div id="combat-dock">
+<div class="combat-dock {{#if reverseHeaderPosition}}reverse-header-position{{/if}}">
     <div class="buttons-container left" {{#unless isGM}}style="display: none;"{{/unless}}>
-        <button class="icon fas fa-users" data-tooltip="COMBAT.RollAll" data-action="roll-all"></button>
-        <button class="icon fas fa-users-cog" data-tooltip="COMBAT.RollNPC" data-action="roll-npc"></button>
-        <button class="icon fas fa-undo" data-tooltip="COMBAT.InitiativeReset" data-action="reset"></button>
-        <button class="icon fas fa-chevron-left" data-tooltip="COMBAT.TurnPrev" data-action="previous-turn"></button>
-        <button class="icon fas fa-chevrons-left" data-tooltip="COMBAT.RoundPrev" data-action="previous-round"></button>
+        <button class="icon ui-control fas fa-users" data-tooltip="COMBAT.RollAll" data-action="roll-all"></button>
+        <button class="icon ui-control fas fa-users-cog" data-tooltip="COMBAT.RollNPC" data-action="roll-npc"></button>
+        <button class="icon ui-control fas fa-undo" data-tooltip="COMBAT.InitiativeReset" data-action="reset"></button>
+        <button class="icon ui-control fas fa-chevron-left" data-tooltip="COMBAT.TurnPrev" data-action="previous-turn"></button>
+        <button class="icon ui-control fas fa-chevrons-left" data-tooltip="COMBAT.RoundPrev" data-action="previous-round"></button>
     </div>
 <div id="combatants" {{#if scroll}}style="pointer-events: all;"{{/if}}></div>
     <div class="buttons-container right" {{#unless isGM}}style="display: none;"{{/unless}}>
-        <button class="icon fa-solid fa-globe" data-tooltip="combat-tracker-dock.add-event.title" data-action="add-event"></button>
-        <button class="icon fas fa-play" data-tooltip="COMBAT.Begin" data-action="start-combat"></button>
-        <button class="icon fas fa-ban" data-tooltip="COMBAT.End" data-action="end-combat"></button>
-        <button class="icon fas fa-cog" data-tooltip="COMBAT.Settings" data-action="configure"></button>
-        <button class="icon fas fa-chevron-right" data-tooltip="COMBAT.TurnNext" data-action="next-turn"></button>
-        <button class="icon fas fa-chevrons-right" data-tooltip="COMBAT.RoundNext" data-action="next-round"></button>
+        <button class="icon ui-control fa-solid fa-globe" data-tooltip="combat-tracker-dock.add-event.title" data-action="add-event"></button>
+        <button class="icon ui-control fas fa-play" data-tooltip="COMBAT.Begin" data-action="start-combat"></button>
+        <button class="icon ui-control fas fa-ban" data-tooltip="COMBAT.End" data-action="end-combat"></button>
+        <button class="icon ui-control fas fa-cog" data-tooltip="COMBAT.Settings" data-action="configure"></button>
+        <button class="icon ui-control fas fa-chevron-right" data-tooltip="COMBAT.TurnNext" data-action="next-turn"></button>
+        <button class="icon ui-control fas fa-chevrons-right" data-tooltip="COMBAT.RoundNext" data-action="next-round"></button>
     </div>
 </div>

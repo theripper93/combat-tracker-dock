@@ -38,12 +38,16 @@ export class HandlebarsApplication extends foundry.applications.api.HandlebarsAp
             width: position.width,
             height: position.height,
         };
-        if (positionToSave.width === "auto") delete positionToSave.width;
-        if (positionToSave.height === "auto") delete positionToSave.height;
+        // if (positionToSave.width === "auto") delete positionToSave.width;
+        // if (positionToSave.height === "auto") delete positionToSave.height
+        if (this.constructor.DEFAULT_OPTIONS.position.width === "auto") delete positionToSave.width;
+        if (this.constructor.DEFAULT_OPTIONS.position.height === "auto") delete positionToSave.height;
         game.settings.set(MODULE_ID, this.APP_ID + "-position", positionToSave);
     }
 
     setPosition(...args) {
+        if (this.constructor.DEFAULT_OPTIONS.position.width === "auto") delete args.width;
+        if (this.constructor.DEFAULT_OPTIONS.position.height === "auto") delete args.height;
         const r = super.setPosition(...args);
         if (this.constructor.POSITION_SETTING_REGISTERED)
             this.savePosition(this.position);
@@ -86,6 +90,7 @@ export class HandlebarsApplication extends foundry.applications.api.HandlebarsAp
                 contentTag: "section",
                 contentClasses: [],
                 savePosition: false,
+                preventEscapeClose: false
             },
             actions: {},
             form: {
@@ -110,6 +115,10 @@ export class HandlebarsApplication extends foundry.applications.api.HandlebarsAp
 
     _onRender(context, options) {
         super._onRender(context, options);
+        if (this.constructor.DEFAULT_OPTIONS.window.preventEscapeClose) {
+            foundry.applications.instances.delete(this.id, this);
+            this.window.close.style.display = "none"
+        }
         const html = this.element;
         if (this.activateListeners) this.activateListeners(html);
     }

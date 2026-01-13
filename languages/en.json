@@ -5,6 +5,9 @@
             "title": "Combat Tracker Dock",
             "close": "Close"
         },
+        "contextMenu": {
+            "setAsCurrent": "Set as current combatant"
+        },
         "combatConfig": {
             "portraitResource": {
                 "label": "Portrait Bar",
@@ -21,6 +24,10 @@
                 }
             },
             "integration": "Integration",
+            "floatingSize": {
+                "name": "Floating Size",
+                "hint": "The size of the floating window. The larger the value, the larger the window will be. This will not affect the Horizontal (Docked) mode."
+            },
             "portraitSize": {
                 "name": "Carousel Size",
                 "hint": "The maximum size of the portraits in the carousel. Note that the size of the portraits will be automatically reduced if there are too many combatants to fit on the screen.",

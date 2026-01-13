@@ -133,6 +133,24 @@ export function registerSettings() {
         },
     });
 
+    game.settings.register(MODULE_ID, "floatingSize", {
+        name: "combat-tracker-dock.settings.floatingSize.name",
+        hint: "combat-tracker-dock.settings.floatingSize.hint",
+        scope: "world",
+        config: true,
+        type: Number,
+        default: 60,
+        range: {
+            min: 30,
+            max: 100,
+            step: 1,
+        },
+        onChange: () => {
+            setFloatingSize();
+            ui.combatDock?.refresh();
+        }
+    });
+
     game.settings.register(MODULE_ID, "portraitAspect", {
         name: "combat-tracker-dock.settings.portraitAspect.name",
         hint: "combat-tracker-dock.settings.portraitAspect.hint",
@@ -496,6 +514,12 @@ function setAllSettings() {
     setPortraitImageBorder();
     setPortraitImageBackground();
     setHideConflictingUIs();
+    setFloatingSize();
+}
+
+function setFloatingSize() {
+    const floatingSize = game.settings.get(MODULE_ID, "floatingSize");
+    document.documentElement.style.setProperty("--carousel-floating-size", floatingSize + "%");
 }
 
 function setPortraitSize() {
@@ -571,8 +595,8 @@ function setOverflowStyle() {
     if (overflowStyle === "autofit") overflowStyle = "hidden";
     if (overflowStyle === "scroll") {
         const direction = game.settings.get(MODULE_ID, "direction");
-        if (direction !== "columnFloat") overflowStyle = "visible hidden";
-        else overflowStyle = "hidden visible";
+        if (direction !== "columnFloat") overflowStyle = "scroll hidden";
+        else overflowStyle = "hidden scroll";
     }
     document.documentElement.style.setProperty("--carousel-overflow", overflowStyle);
 }
