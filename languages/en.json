@@ -156,10 +156,6 @@
                     "all": "Everyone"
                 }
             },
-            "tooltipColor": {
-                "name": "Tooltip Color",
-                "hint": "The color scheme of the tooltip. You can use any valid CSS color value (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Default #888888."
-            },
             "portraitImage": {
                 "name": "Portrait Image",
                 "hint": "Whether to use the Actor or Token image as the portrait.",

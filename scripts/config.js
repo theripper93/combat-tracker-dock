@@ -1,12 +1,6 @@
 import { MODULE_ID } from "./main.js";
 
 export function initConfig() {
-    Hooks.on("renderSettingsConfig", (app, html, data) => {
-        colorPicker("attributeColor", html);
-        colorPicker("attributeColor2", html);
-        colorPicker("attributeColorPortrait", html);
-        colorPicker("tooltipColor", html);
-    });
 
     Hooks.on("renderCombatTrackerConfig", (app, html, data) => {
         if (!game.user.isGM) return;
@@ -68,21 +62,4 @@ export function initConfig() {
         app.setPosition({height: "auto"});
     });
 
-}
-
-//Color Picker by kaelad02
-//License: MIT
-//Documentation: https://github.com/kaelad02/adv-reminder/blob/54207ec1ef0500439e57521f15956c07e4c02af4/src/settings.js#L91-L104
-
-export function colorPicker(settingId, html) {
-    const colorPickerElement = document.createElement("input");
-    colorPickerElement.setAttribute("type", "color");
-    colorPickerElement.setAttribute("data-edit", MODULE_ID + "." + settingId);
-    colorPickerElement.value = game.settings.get(MODULE_ID, settingId);
-
-    // Add color picker
-    const stringInputElement = html.querySelector(`input[name="${MODULE_ID}.${settingId}"]`);
-    if (!stringInputElement) return;
-    stringInputElement.classList.add("color");
-    stringInputElement.after(colorPickerElement);
 }

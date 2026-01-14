@@ -24,6 +24,8 @@ export class CombatDock extends HandlebarsApplication {
         let options = mergeClone(super.DEFAULT_OPTIONS, {
             classes: ["hidden"],
             window: {
+                title: "",
+                icon: "fas fa-arrows-up-down-left-right",
                 frame: false,
                 positioned: false,
                 minimizable: false,
@@ -242,12 +244,6 @@ export class CombatDock extends HandlebarsApplication {
         portraitSize = this.isVertical ? Math.min(verticalSize, Math.floor(maxSpace / combatantCount)) / aspect : Math.min(max, Math.floor(maxSpace / combatantCount));
 
         document.documentElement.style.setProperty("--combatant-portrait-size", portraitSize / (this.isVertical ? 1 : 1.2) + "px");
-    }
-
-    async updateInitiative(combatant, initiative) {
-        combatant.initiative = initiative;
-        await this.refresh();
-        this.updateOrder();
     }
 
     updateCombatant(combatant, updates = {}) {
@@ -479,8 +475,8 @@ export class CombatDock extends HandlebarsApplication {
     }
 
     centerCurrentCombatant() {
-        const carouselStyle = game.settings.get(MODULE_ID, "carouselStyle");
         if(!this.element) return;
+        const carouselStyle = game.settings.get(MODULE_ID, "carouselStyle");
         const combatantsEl = this.element.querySelector("#combatants");
         if (this.trueCarousel) {
             if (carouselStyle == 1) {

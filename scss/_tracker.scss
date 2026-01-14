@@ -29,12 +29,21 @@
         backdrop-filter: none;
     }
 
+    &:hover {
+        .window-header {
+            opacity: 0.3;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
     & .window-header {
         opacity: 0;
-
-        &:hover {
-            opacity: 1;
-        }
+        border: 1px solid;
+        transition: all 0.2s ease-in-out;
+        max-width: fit-content;
+        aspect-ratio: 1;
     }
 
     &:has(.window-content):not(:has(.reverse-header-position)) {
@@ -46,9 +55,8 @@
         flex-direction: row;
         max-width: var(--carousel-floating-size);
         min-width: var(--carousel-floating-size);
-
-        .window-title {
-            display: none;
+        & .window-header {
+            max-height: fit-content;
         }
     }
 }

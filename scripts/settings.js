@@ -185,7 +185,7 @@ export function registerSettings() {
         hint: "combat-tracker-dock.settings.attributeColor.hint",
         scope: "world",
         config: true,
-        type: String,
+        type: new foundry.data.fields.ColorField(),
         default: "#41AA7D",
         onChange: () => {
             setAttributeColor();
@@ -198,7 +198,7 @@ export function registerSettings() {
         hint: "combat-tracker-dock.settings.attributeColor2.hint",
         scope: "world",
         config: true,
-        type: String,
+        type: new foundry.data.fields.ColorField(),
         default: "#ffcd00",
         onChange: () => {
             setAttributeColor();
@@ -211,7 +211,7 @@ export function registerSettings() {
         hint: "combat-tracker-dock.settings.attributeColorPortrait.hint",
         scope: "world",
         config: true,
-        type: String,
+        type: new foundry.data.fields.ColorField(),
         default: "#e62121",
         onChange: () => {
             setAttributeColor();
@@ -247,19 +247,6 @@ export function registerSettings() {
         },
         default: "both",
         onChange: () => ui.combatDock?.refresh(),
-    });
-
-    game.settings.register(MODULE_ID, "tooltipColor", {
-        name: "combat-tracker-dock.settings.tooltipColor.name",
-        hint: "combat-tracker-dock.settings.tooltipColor.hint",
-        scope: "world",
-        config: true,
-        type: String,
-        default: "#888888",
-        onChange: () => {
-            setTooltipColor();
-            ui.combatDock?.refresh();
-        },
     });
 
     game.settings.register(MODULE_ID, "displayDescriptions", {
@@ -371,9 +358,8 @@ export function registerSettings() {
         hint: "combat-tracker-dock.settings.portraitImageBorder.hint",
         scope: "world",
         config: true,
-        type: String,
+        type: new foundry.data.fields.FilePathField({categories: ["IMAGE"]}),
         default: "modules/combat-tracker-dock/assets/border.png",
-        filePicker: "imagevideo",
         onChange: function () {
             setPortraitImageBorder();
             ui.combatDock?.refresh();
@@ -385,9 +371,8 @@ export function registerSettings() {
         hint: "combat-tracker-dock.settings.portraitImageBackground.hint",
         scope: "world",
         config: true,
-        type: String,
+        type: new foundry.data.fields.FilePathField({categories: ["IMAGE"]}),
         default: "ui/denim075.png",
-        filePicker: "imagevideo",
         onChange: function () {
             setPortraitImageBackground();
             ui.combatDock?.refresh();
@@ -453,7 +438,6 @@ function setAllSettings() {
     setPortraitAspect();
     setRoundness();
     setAttributeColor();
-    setTooltipColor();
     setPortraitImageBorder();
     setPortraitImageBackground();
     setHideConflictingUIs();
@@ -523,16 +507,6 @@ function setAttributeColor() {
 
 }
 
-function setTooltipColor() {
-    const tooltipColor = game.settings.get(MODULE_ID, "tooltipColor") || "#888888";
-    document.documentElement.style.setProperty("--carousel-tooltip-color", tooltipColor);
-
-    const color = Color.from(tooltipColor);
-    const darkened = color.mix(Color.from("#000"), 0.65);
-
-    document.documentElement.style.setProperty("--carousel-tooltip-bg-color", darkened.toString());
-}
-
 function setOverflowStyle() {
     let overflowStyle = game.settings.get(MODULE_ID, "overflowStyle");
     if (overflowStyle === "autofit") overflowStyle = "hidden";
@@ -546,7 +520,7 @@ function setOverflowStyle() {
 
 function setDirection() {
     let direction = game.settings.get(MODULE_ID, "direction");
-    if(!(direction in game.settings.settings.get(`${MODULE_ID}.direction`))) {
+    if(!(direction in game.settings.settings.get(`${MODULE_ID}.direction`).choices)) {
         direction = direction.includes("column") ? "columnFloat" : "rowDocked"; 
         game.settings.set(MODULE_ID, "direction", direction);
     }
