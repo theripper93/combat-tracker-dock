@@ -480,6 +480,7 @@ export class CombatDock extends HandlebarsApplication {
 
     centerCurrentCombatant() {
         const carouselStyle = game.settings.get(MODULE_ID, "carouselStyle");
+        if(!this.element) return;
         const combatantsEl = this.element.querySelector("#combatants");
         if (this.trueCarousel) {
             if (carouselStyle == 1) {

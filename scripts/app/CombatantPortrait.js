@@ -168,7 +168,7 @@ export class CombatantPortrait {
         const direction = game.settings.get(MODULE_ID, "direction");
         if (direction == "column") {
             const alignment = game.settings.get(MODULE_ID, "alignment");
-            this.element.setAttribute("data-tooltip-direction", alignment == "left" ? TooltipManager.TOOLTIP_DIRECTIONS.RIGHT : TooltipManager.TOOLTIP_DIRECTIONS.LEFT);
+            this.element.setAttribute("data-tooltip-direction", alignment == "left" ? foundry.helpers.interaction.TooltipManager.implementation.TOOLTIP_DIRECTIONS.RIGHT : foundry.helpers.interaction.TooltipManager.implementation.TOOLTIP_DIRECTIONS.LEFT);
         } else {
             this.element.setAttribute("data-tooltip-direction", "");
         }
