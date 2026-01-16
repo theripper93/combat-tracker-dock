@@ -156,10 +156,6 @@
           "all": "Todos"
         }
       },
-      "tooltipColor": {
-        "name": "Cor da Dica",
-        "hint": "O esquema de cores da dica de ferramenta. Você pode usar qualquer valor de cor válida de CSS (eg. #ff0000, red, rgba(255,0,0,0.5), etc). Padrão #888888."
-      },
       "portraitImage": {
         "name": "Imagem do Retrato",
         "hint": "Se deve usar a imagem do ator ou do token como retrato.",
