@@ -1,4 +1,4 @@
-import { AttributesConfig } from "./attributesConfig.js";
+import { AttributesConfig } from "./app/AttributesConfig.js";
 import {registerSystemSettings} from "./systems.js";
 import { MODULE_ID } from "./main.js";
 

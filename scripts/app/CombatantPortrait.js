@@ -97,13 +97,10 @@ export class CombatantPortrait {
                 const effect = await fromUuid(uuid);
                 const statusEffect = CONFIG.statusEffects.find((s) => s.img === effect.img);
 
-                const response = await Dialog.confirm({
-                    title: game.i18n.localize(`${MODULE_ID}.deleteEffectTitle`),
+                const response = await foundry.applications.api.DialogV2.confirm({
+                    window: { title: `${MODULE_ID}.deleteEffectTitle` },
                     content: game.i18n.localize(`${MODULE_ID}.deleteEffectContent`) + game.i18n.localize(effect?.label ?? statusEffect?.name ?? "") + "?",
-                    yes: () => true,
-                    no: () => false,
                     defaultYes: false,
-                    close: () => false,
                 });
                 if(!response) return;
                 if (!effect) {
