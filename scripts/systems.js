@@ -13,7 +13,7 @@
  */
 
 import { MODULE_ID } from "./main.js";
-import { registerSystemSetting, getSystemSetting } from "./config.js";
+import { registerSystemSetting, getSystemSetting } from "./settings.js";
 
 /**
  * Returns the default attributes configuration for different game systems.
