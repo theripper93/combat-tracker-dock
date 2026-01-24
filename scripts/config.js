@@ -48,8 +48,8 @@ export function initConfig() {
         });
 
         //find last form group
-        const lastFormGroup = html.querySelectorAll(".form-group")[html.querySelectorAll(".form-group").length - 1];
-        lastFormGroup.appendChild(button);
+        const lastFormGroup = Array.from(html.querySelectorAll(".form-group")).pop();
+        lastFormGroup.after(button);
 
         html.querySelector(`select[name="flags.${MODULE_ID}.resource"]`).addEventListener("change", async (event) => {
             await game.settings.set(MODULE_ID, "resource", event.target.value);

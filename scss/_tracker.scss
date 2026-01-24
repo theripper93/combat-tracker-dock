@@ -21,12 +21,13 @@
     height: auto !important;
     overflow-x: visible;
     overflow-y: visible;
-    pointer-events: all;
+    pointer-events: none;
     background: transparent;
     border: none;
     box-shadow: none;
     .window-content {
         backdrop-filter: none;
+        padding: 0;
     }
 
     &:hover {
@@ -44,6 +45,7 @@
         transition: all 0.2s ease-in-out;
         max-width: fit-content;
         aspect-ratio: 1;
+        pointer-events: all;
     }
 
     &:has(.window-content):not(:has(.reverse-header-position)) {
@@ -64,7 +66,7 @@
 .combat-dock {
     display: flex !important;
     justify-content: var(--carousel-alignment);
-    pointer-events: all;
+    pointer-events: none;
     width: auto !important;
     max-height: 100%;
     overflow-x: visible;
