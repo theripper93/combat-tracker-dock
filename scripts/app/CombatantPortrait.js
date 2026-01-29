@@ -357,7 +357,7 @@ export class CombatantPortrait {
                     const duration = parseInt(effect.duration?.label ?? "");
                     const percent = effect.duration?.remaining / effect.duration?.duration;
                     const uuid = effect.uuid;
-                    turn.effects.add({ uuid, img: effect.img, label: effect.name, description: description, duration: duration, percent: isNaN(percent) ? null : percent*100, hasDuration: !isNaN(duration) });
+                    turn.effects.add({ uuid, img: effect.img, name: effect.name, description: description, duration: duration, percent: isNaN(percent) ? null : percent*100, hasDuration: !isNaN(duration) });
                 }
             }
         }

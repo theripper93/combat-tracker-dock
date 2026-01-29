@@ -365,6 +365,7 @@ export class CombatDock extends HandlebarsApplication {
             ".combatant-portrait",
             [
                 {
+                    condition: game?.user?.isGM,
                     name: `${MODULE_ID}.contextMenu.setAsCurrent`,
                     icon: `<i class="fas fa-swords"></i>`,
                     callback: (el) => {
