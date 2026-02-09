@@ -56,7 +56,6 @@
     &:has(.reverse-header-position) {
         flex-direction: row;
         max-width: var(--carousel-floating-size);
-        min-width: var(--carousel-floating-size);
         & .window-header {
             max-height: fit-content;
         }
