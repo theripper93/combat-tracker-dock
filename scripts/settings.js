@@ -73,6 +73,16 @@ export function registerSettings() {
         },
     });
 
+    game.settings.register(MODULE_ID, "lessButtons", {
+        name: "combat-tracker-dock.settings.lessButtons.name",
+        hint: "combat-tracker-dock.settings.lessButtons.hint",
+        scope: "client",
+        config: true,
+        type: Boolean,
+        default: false,
+        onChange: () => ui.combatDock?.render(),
+    });
+
     game.settings.register(MODULE_ID, "overflowStyle", {
         name: "combat-tracker-dock.settings.overflowStyle.name",
         hint: "combat-tracker-dock.settings.overflowStyle.hint",
@@ -89,6 +99,7 @@ export function registerSettings() {
             setOverflowStyle();
             ui.combatDock?.autosize();
             ui.combatDock?.refresh();
+            ui.combatDock?.render();
         },
     });
 

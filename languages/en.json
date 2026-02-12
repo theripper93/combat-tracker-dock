@@ -41,6 +41,10 @@
                     "180px": "XXX-Large"
                 }
             },
+            "lessButtons": {
+                "name": "Less Buttons",
+                "hint": "Show less buttons in the combat tracker. Hides Reset Initiative, Settings, Previous Round, Next Round."
+            },
             "carouselStyle": {
                 "name": "Carousel Style",
                 "hint": "The way portraits are placed and move in the carousel: Carousel - Centered: The Active Combatant is at the Center of the carousel, the other combatants rotate around it.\n- Carousel - Left: The Active Combatant is at the Left of the carousel, the other combatants rotate around it.\n- No Carousel: Combatants are always displayed in initiative order and the active combatant moves around while combatants remain in the same position.",

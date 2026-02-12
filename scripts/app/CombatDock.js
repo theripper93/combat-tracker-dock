@@ -126,10 +126,12 @@ export class CombatDock extends HandlebarsApplication {
 
     _prepareContext(options) {
         const scroll = game.settings.get(MODULE_ID, "overflowStyle") === "scroll";
+        const lessButtons = game.settings.get(MODULE_ID, "lessButtons");
         const reverseHeaderPosition = !this.isDocked && !this.isVertical;
         return {
             isGM: game.user.isGM,
             scroll,
+            lessButtons,
             reverseHeaderPosition
         };
     }

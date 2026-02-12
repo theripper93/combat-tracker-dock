@@ -41,6 +41,10 @@
           "180px": "Grande-XXX"
         }
       },
+      "lessButtons": {
+        "name": "Menos botões",
+        "hint": "Mostrar menos botões no rastreador de combate. Oculta Reiniciar Iniciativa, Configurações, Rodada Anterior, Próxima Rodada."
+      },
       "carouselStyle": {
         "name": "Estilo do Carrossel",
         "hint": "A forma como os retratos são colocados e se movem no carrossel: Carrossel - Centralizado: O combatente ativo está no centro do carrossel, os outros combatentes giram em torno dele.\n- Carrossel - Esquerda: O combatente ativo está à esquerda do carrossel, os outros combatentes giram em torno dele.\n- Sem Carrossel: Os combatentes são sempre exibidos em ordem de iniciativa e o combatente ativo se move enquanto os combatentes permanecem na mesma posição.",

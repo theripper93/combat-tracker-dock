@@ -41,6 +41,10 @@
           "180px": "Colossale"
         }
       },
+      "lessButtons": {
+        "name": "Meno pulsanti",
+        "hint": "Mostra meno pulsanti nel tracker di combattimento. Nasconde Ripristina iniziativa, Impostazioni, Round precedente, Round successivo."
+      },
       "carouselStyle": {
         "name": "Stile carosello",
         "hint": "Il modo in cui i ritratti sono posizionati e si muovono nel carosello: Carosello - Centrato: Il Combattente Attivo è al centro del carosello, gli altri combattenti ruotano attorno ad esso.\n\n- Carosello - Sinistra: Il Combattente Attivo è a sinistra del carosello, gli altri combattenti ruotano attorno ad esso.\n\n- Nessun carosello: i combattenti sono sempre visualizzati in ordine di iniziativa e il combattente attivo si sposta mentre i combattenti rimangono nella stessa posizione.",
@@ -155,10 +159,6 @@
           "owner": "Proprietario/Osservatore",
           "all": "Tutti"
         }
-      },
-      "tooltipColor": {
-        "name": "Colore descrizione comandi",
-        "hint": "La combinazione di colori della descrizione comandi. \nPuoi utilizzare qualsiasi valore di colore CSS valido (ad es."
       },
       "portraitImage": {
         "name": "Immagine ritratto",

@@ -41,6 +41,10 @@
           "180px": "XXX-Groß"
         }
       },
+      "lessButtons": {
+        "name": "Weniger Schaltflächen",
+        "hint": "Weniger Schaltflächen im Kampf-Tracker anzeigen. Blendet „Initiative zurücksetzen“, „Einstellungen“, „Vorherige Runde“ und „Nächste Runde“ aus."
+      },
       "carouselStyle": {
         "name": "Karussell-Stil",
         "hint": "Die Art und Weise, wie Porträts im Karussell platziert und bewegt werden: Karussell – zentriert: Der aktive Kämpfer befindet sich in der Mitte des Karussells, die anderen Kämpfer drehen sich um ihn herum.\n\n- Karussell – Links: Der aktive Kämpfer befindet sich links vom Karussell, die anderen Kämpfer rotieren um ihn herum.\n\n- Kein Karussell: Die Kämpfer werden immer in der Reihenfolge ihrer Initiative angezeigt und der aktive Kämpfer bewegt sich, während die Kämpfer an derselben Position bleiben.",
@@ -155,10 +159,6 @@
           "owner": "Besitzer/Beobachter",
           "all": "Alle"
         }
-      },
-      "tooltipColor": {
-        "name": "Tooltip-Farbe",
-        "hint": "Das Farbschema des Tooltips. \nSie können jeden gültigen CSS-Farbwert verwenden (z. B."
       },
       "portraitImage": {
         "name": "Porträtbild",

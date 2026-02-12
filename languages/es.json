@@ -41,6 +41,10 @@
           "180px": "Gargantuesco"
         }
       },
+      "lessButtons": {
+        "name": "Menos botones",
+        "hint": "Mostrar menos botones en el rastreador de combate. Oculta Reiniciar iniciativa, Configuración, Ronda anterior, Ronda siguiente."
+      },
       "carouselStyle": {
         "name": "Estilo del carrusel",
         "hint": "La forma en que se colocan los retratos y se mueven en el carrusel: Carrusel - Centrado: El contendiente activo está en el centro del carrusel, los otros contendientes giran a su alrededor.\n- Carrusel - Izquierda: El contendiente activo está a la izquierda del carrusel, los otros contendientes rotan a su alrededor.\n- Sin carrusel: los contendientes siempre se muestran en orden de iniciativa y el contendiente activo se mueve mientras los contendientes permanecen en la misma posición",
@@ -155,10 +159,6 @@
           "owner": "Propietario/observador",
           "all": "Todos"
         }
-      },
-      "tooltipColor": {
-        "name": "Color de información del globo",
-        "hint": "El esquema de color de el globo de información. Puede usar cualquier valor de color CSS válido (p.e. #ff0000, red, rgba(255,0,0,0.5), etc.)"
       },
       "portraitImage": {
         "name": "Imagen de retrato",

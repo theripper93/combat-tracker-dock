@@ -41,6 +41,10 @@
           "180px": "XXX-velká"
         }
       },
+      "lessButtons": {
+        "name": "Méně tlačítek",
+        "hint": "Zobrazit méně tlačítek v bojovém trackeru. Skryje tlačítka Resetovat iniciativu, Nastavení, Předchozí kolo, Další kolo."
+      },
       "carouselStyle": {
         "name": "Styl kolotoče",
         "hint": "Způsob, jakým jsou portréty umístěny a pohybují se v kolotoči:\n- Kolotoč - na středu: Aktivní bojovník je ve středu kolotoče, ostatní bojovníci se kolem něj otáčejí.\n- Kolotoč - vlevo: Aktivní bojovník je vlevo v kolotoči, ostatní bojovníci se kolem něj otáčejí.\n- Bez kolotoče: Bojovníci jsou vždy zobrazeni podle pořadí iniciativy a aktivní bojovník se pohybuje, zatímco ostatní zůstávají na místě.",
@@ -155,10 +159,6 @@
           "owner": "Vlastník/pozorovatel",
           "all": "Všichni"
         }
-      },
-      "tooltipColor": {
-        "name": "Barva popisků",
-        "hint": "Barevné schéma popisků. Lze použít jakoukoli platnou hodnotu CSS barvy (např. #ff0000, red, rgba(255,0,0,0.5) atd.). Výchozí hodnota: #888888."
       },
       "portraitImage": {
         "name": "Obrázek portrétu",

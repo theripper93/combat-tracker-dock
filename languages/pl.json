@@ -41,6 +41,10 @@
           "180px": "XXX-Duży"
         }
       },
+      "lessButtons": {
+        "name": "Mniej przycisków",
+        "hint": "Pokaż mniej przycisków w trackerze walki. Ukrywa opcje Resetuj inicjatywę, Ustawienia, Poprzednia runda, Następna runda."
+      },
       "carouselStyle": {
         "name": "Styl karuzeli",
         "hint": "Sposób umieszczania i przesuwania portretów w karuzeli: Karuzela - Wyśrodkowana: Aktywny bojownik znajduje się na środku karuzeli, a pozostali bojownicy obracają się wokół niego.\n- Karuzela - Lewa: Aktywny gracz znajduje się po lewej stronie karuzeli, a pozostali gracze obracają się wokół niego.\n- Brak karuzeli: Walczący są zawsze wyświetlani w kolejności inicjatywy, a aktywny walczący porusza się, podczas gdy walczący pozostają w tej samej pozycji.",
@@ -155,10 +159,6 @@
           "owner": "Właściciel/Obserwator",
           "all": "Każdy"
         }
-      },
-      "tooltipColor": {
-        "name": "Kolor podpowiedzi",
-        "hint": "Schemat kolorów podpowiedzi. Można użyć dowolnej prawidłowej wartości koloru CSS (np. #ff0000, red, rgba(255,0,0,0.5), itp.). Domyślnie #888888."
       },
       "portraitImage": {
         "name": "Obraz portretu",

@@ -41,6 +41,10 @@
           "180px": "XXX-Large"
         }
       },
+      "lessButtons": {
+        "name": "Moins de boutons",
+        "hint": "Afficher moins de boutons dans le suivi de combat. Masque les boutons Réinitialiser l'initiative, Paramètres, Tour précédent, Tour suivant."
+      },
       "carouselStyle": {
         "name": "Style de carrousel",
         "hint": "La façon dont les portraits sont placés et se déplacent dans le carrousel : Carrousel - Centré : Le combattant actif est au centre du carrousel, les autres combattants tournent autour de lui.\n\n- Carrousel - Gauche : Le Combattant Actif est à Gauche du carrousel, les autres combattants tournent autour de lui.\n\n- Pas de carrousel : Les combattants sont toujours affichés dans l'ordre d'initiative et le combattant actif se déplace tandis que les combattants restent dans la même position.",
@@ -155,10 +159,6 @@
           "owner": "Propriétaire/Observateur",
           "all": "Tout le monde"
         }
-      },
-      "tooltipColor": {
-        "name": "Couleur de l'info-bulle",
-        "hint": "Le jeu de couleurs de l'info-bulle. \nVous pouvez utiliser n'importe quelle valeur de couleur CSS valide (par ex."
       },
       "portraitImage": {
         "name": "Portrait",
