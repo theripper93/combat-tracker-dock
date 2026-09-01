@@ -6,16 +6,12 @@
     }
 }
 
-#ui-left-column-2:has(.combat-dock) {
-    position: relative;
-    .combat-dock {
-        margin-left: 0;
-        padding-left: 0;
-        margin-top: calc((var(--control-size) * 1.1) / var(--ui-scale));
-    }
-}
+// body:not(.combat-dock-docked) #combat-dock {
+//     contain: layout style;
+// }
 
 #combat-dock {
+    contain: layout style;
     max-width: 100%;
     width: auto !important;
     height: auto !important;

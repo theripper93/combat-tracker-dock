@@ -18,14 +18,29 @@
     --combatant-portrait-image-border: url("/modules/combat-tracker-dock/assets/border.png");
     --combatant-portrait-image-background: url("/ui/denim075.png");
 }
-#ui-top{
-    position: relative;
-    &.ctd-hide-conflicting-uis:has(#combat-dock:not(.hidden)){
-        > *:not(#combat-dock):not(#loading){
+
+.combat-dock-docked {
+    #ui-top {
+        position: relative;
+        &.ctd-hide-conflicting-uis > *:not(#combat-dock):not(#loading) {
             display: none;
         }
     }
+
+    #interface {
+        width: 100%;
+    }
 }
-#interface:has(#combat-dock:not(.hidden)) {
-    width: 100%;
-}
+
+// #ui-top{
+//     position: relative;
+//     &.ctd-hide-conflicting-uis:has(#combat-dock:not(.hidden)){
+//         > *:not(#combat-dock):not(#loading){
+//             display: none;
+//         }
+//     }
+// }
+
+// #interface:has(#combat-dock:not(.hidden)) {
+//     width: 100%;
+// }

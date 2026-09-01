@@ -316,6 +316,7 @@ export class CombatDock extends HandlebarsApplication {
     }
 
     appendHtml(){
+        document.body.classList.toggle("combat-dock-docked", this.isDocked);
         if (this.isDocked) {
             return document.querySelector("#ui-top").prepend(this.element);
         }
@@ -570,6 +571,7 @@ export class CombatDock extends HandlebarsApplication {
         this.removeHooks();
         window.removeEventListener("resize", this.autosize.bind(this));
         if (this.element) this.element.remove();
+        document.body.classList.remove("combat-dock-docked");
         this._closed = true;
         return super.close(...args);
     }
