@@ -274,7 +274,7 @@ export class CombatantPortrait {
         if (isActive && this.combat.started) this._hasTakenTurn = true;
         const hasPermission = this.hasPermission;
         if (!hasPermission && !this._hasTakenTurn) return null;
-        if (!combatant.visible && !game.user.isGM) return null;
+        if (!combatant.visible) return null;
         const trackedAttributes = game.settings
             .get(MODULE_ID, "attributes")
             .map((a) => {
