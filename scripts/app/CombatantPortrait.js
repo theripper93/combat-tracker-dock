@@ -355,7 +355,7 @@ export class CombatantPortrait {
                 else if (effect.img) {
                     const description = effect.description ? await foundry.applications.ux.TextEditor.implementation.enrichHTML(effect.description) : "";
                     const duration = parseInt(effect.duration?.label ?? "");
-                    const percent = effect.duration?.remaining / effect.duration?.duration;
+                    const percent = effect.duration?.remaining / effect.duration?.seconds;
                     const uuid = effect.uuid;
                     turn.effects.add({ uuid, img: effect.img, name: effect.name, description: description, duration: duration, percent: isNaN(percent) ? null : percent*100, hasDuration: !isNaN(duration) });
                 }

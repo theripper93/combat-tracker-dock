@@ -1,0 +1,28 @@
+.combat-dock {
+    & #combatants {
+        position: relative;
+
+        &.flip-measure > * {
+            transition: none !important;
+        }
+
+        &.reordering .combatant-portrait:not(.dragging) {
+            pointer-events: none;
+        }
+    }
+
+    & .combatant-portrait {
+        &.dragging {
+            z-index: 10;
+            cursor: grabbing;
+            transition: none;
+            opacity: 0.85;
+        }
+
+        &.flip-ghost {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+        }
+    }
+}

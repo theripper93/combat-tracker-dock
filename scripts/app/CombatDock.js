@@ -1,5 +1,7 @@
 import { MODULE_ID } from "../main.js";
 import { AddEvent } from "./AddEvent.js";
+import { animateLayout } from "./DockAnimator.js";
+import { DockDragReorder } from "./DockDragReorder.js";
 import { HandlebarsApplication, mergeClone, mergeObject } from "../lib/utils.js";
 
 export class CombatDock extends HandlebarsApplication {
@@ -16,7 +18,8 @@ export class CombatDock extends HandlebarsApplication {
             aspect: game.settings.get(MODULE_ID, "portraitAspect"),
         };
         this.setHooks();
-        window.addEventListener("resize", this.autosize.bind(this));
+        this._onResize = () => this.autosize();
+        window.addEventListener("resize", this._onResize);
         this._combatTrackerRefreshed = false;
     }
 
@@ -90,11 +93,11 @@ export class CombatDock extends HandlebarsApplication {
             },
             {
                 hook: "createCombatant",
-                fn: this.setupCombatants.bind(this),
+                fn: () => this.reconcileCombatants(),
             },
             {
                 hook: "deleteCombatant",
-                fn: this.setupCombatants.bind(this),
+                fn: () => this.reconcileCombatants(),
             },
             {
                 hook: "updateCombatant",
@@ -165,22 +168,65 @@ export class CombatDock extends HandlebarsApplication {
         }
     }
 
+    reconcileCombatants(include = null) {
+        if (!this.element) return;
+        if (!this.portraits.length) return this.setupCombatants();
+        const combatantsContainer = this.element.querySelector("#combatants");
+        const combatants = this.sortedCombatants;
+        if (include && !combatants.includes(include)) combatants.push(include);
+        combatants.sort(this.combat._sortCombatants);
+        const existing = new Map(this.portraits.map((p) => [p.combatant.id, p]));
+        const portraits = combatants.map((c) => existing.get(c.id) ?? new CONFIG.combatTrackerDock.CombatantPortrait(c));
+        const exiting = this.portraits.filter((p) => !portraits.includes(p));
+        this.portraits = portraits;
+        this.animateOrder(
+            () => {
+                exiting.forEach((p) => p.destroy());
+                portraits.forEach((p) => p.element.isConnected || combatantsContainer.appendChild(p.element));
+                this.element.classList.toggle("even", portraits.length % 2 === 0);
+                this.autosize();
+            },
+            { exiting: exiting.map((p) => p.element) },
+        );
+    }
+
+    animateOrder(mutate = () => {}, options = {}) {
+        const combatantsContainer = this.element?.querySelector("#combatants");
+        if (!combatantsContainer) return;
+        return animateLayout(
+            combatantsContainer,
+            () => {
+                mutate();
+                this.updateActiveClasses();
+                this.updateOrder();
+            },
+            { duration: CONFIG.combatTrackerDock.REORDER_ANIMATION_DURATION, vertical: this.isVertical, ...options },
+        );
+    }
+
+    updateActiveClasses() {
+        const current = this.combat.combatant;
+        this.portraits.forEach((p) => p.element.classList.toggle("active", p.combatant === current));
+    }
+
     setupSeparator(){
         const combatantsContainer = this.element.querySelector("#combatants");
-        combatantsContainer.querySelectorAll(".separator").forEach(s => s.remove());
         const turn = this.combat.turn + 1;
         const combatantsCount = this.sortedCombatants.length;
         const afterHalf = turn > Math.floor(combatantsCount / 2) || this.leftAligned ? 1 : 0;
-        const separator = document.createElement("div");
-        separator.classList.add("separator");
-        const line = document.createElement("div");
-        line.classList.add("line");
-        separator.appendChild(line);
-        const round = document.createElement("div");
-        round.classList.add("round", this.isVertical ? "flexrow" : "flexcol");
+        let separator = combatantsContainer.querySelector(":scope > .separator");
+        if (!separator) {
+            separator = document.createElement("div");
+            separator.classList.add("separator");
+            const line = document.createElement("div");
+            line.classList.add("line");
+            separator.appendChild(line);
+            separator.appendChild(document.createElement("div"));
+            combatantsContainer.appendChild(separator);
+        }
+        const round = separator.lastElementChild;
+        round.className = `round ${this.isVertical ? "flexrow" : "flexcol"}`;
         round.innerHTML = this.isVertical ? `<i class="fal fa-angle-down"></i>${this.combat.round + afterHalf}` : `<i class="fal fa-angle-right"></i>${this.combat.round + afterHalf}`;
-        separator.appendChild(round);
-        combatantsContainer.appendChild(separator);
     }
 
     playIntroAnimation(easing = "cubic-bezier(0.22, 1, 0.36, 1)") {
@@ -227,7 +273,7 @@ export class CombatDock extends HandlebarsApplication {
         }, 10);
     }
 
-    autosize(combatantRevived = false) {
+    autosize() {
         const max = parseInt(game.settings.get(MODULE_ID, "portraitSize"));
         const aspect = game.settings.get(MODULE_ID, "portraitAspect");
         this._currentPortraitSize = {
@@ -238,7 +284,7 @@ export class CombatDock extends HandlebarsApplication {
         if (!this.autoFit) return document.documentElement.style.setProperty("--combatant-portrait-size", max + "px");
 
         const sizeModifier = game.settings.get(MODULE_ID, "floatingSize");
-        const combatantCount = this.sortedCombatants.length + (combatantRevived ? 1 : 0);
+        const combatantCount = this.portraits.length || this.sortedCombatants.length;
         let maxSpace, portraitSize;
         if (this.isVertical) {
             maxSpace = window.innerHeight * sizeModifier / 100;
@@ -253,14 +299,10 @@ export class CombatDock extends HandlebarsApplication {
     }
 
     updateCombatant(combatant, updates = {}) {
-        if ("initiative" in updates) {
-            this.setupCombatants();
-            return;
-        }
+        if (combatant.combat !== this.combat) return;
         const portrait = this.portraits.find((p) => p.combatant === combatant);
         if (portrait) portrait.renderInner();
-        const combatantRevived = updates.defeated === false;
-        this.autosize(combatantRevived);
+        if ("initiative" in updates || "defeated" in updates) this.reconcileCombatants(updates.defeated === false ? combatant : null);
     }
 
     updateCombatants() {
@@ -278,8 +320,7 @@ export class CombatDock extends HandlebarsApplication {
         separator.classList.remove("vertical", "horizontal");
         separator.classList.add(this.isVertical ? "vertical" : "horizontal");
 
-        const combatants = this.sortedCombatants;
-
+        const combatants = this.portraits.map((p) => p.combatant);
 
         if (!this.trueCarousel) return this.portraits.forEach((p) => p.element.style.setProperty("order", combatants.indexOf(p.combatant)));
 
@@ -292,7 +333,7 @@ export class CombatDock extends HandlebarsApplication {
         const halfLength = isLeftAligned ? combatants.length : Math.floor(combatants.length / 2);
         const orderedCombatants = tempCombatantList.slice(currentCombatantIndex - halfLength, currentCombatantIndex + halfLength + 1);
 
-        const lastCombatant = this.sortedCombatants[this.sortedCombatants.length - 1];
+        const lastCombatant = combatants[combatants.length - 1];
 
         this.portraits.forEach((p) => {
             const combatant = orderedCombatants.find((c) => c === p.combatant);
@@ -369,6 +410,8 @@ export class CombatDock extends HandlebarsApplication {
         });
         this.autosize();
         this.setControlsOrder();
+        this.dragReorder?.destroy();
+        if (game.user.isGM) this.dragReorder = new DockDragReorder(this);
         new foundry.applications.ux.ContextMenu(
             this.element.querySelector("#combatants"),
             ".combatant-portrait",
@@ -392,45 +435,10 @@ export class CombatDock extends HandlebarsApplication {
         this.updateStartEndButtons();
     }
 
-    _onCombatTurn(combat, updates, update) {
+    _onCombatTurn(combat, updates) {
+        if (combat !== this.combat) return;
         if (!("turn" in updates) && !("round" in updates)) return;
         if ("round" in updates) this._onRoundChange();
-        const combatantsContainer = this.element.querySelector("#combatants");
-        const filteredChildren = Array.from(combatantsContainer.children).filter((c) => !c.classList.contains("separator"));
-        const currentSize = combatantsContainer.getBoundingClientRect();
-        combatantsContainer.style.minWidth = currentSize.width + "px";
-        combatantsContainer.style.minHeight = currentSize.height + "px";
-        //find combatant with lowest order
-
-        const childrenByHighestOrder = [...filteredChildren].sort((a, b) => b.style.order - a.style.order);
-        const childrenByLowestOrder = [...filteredChildren].sort((a, b) => a.style.order - b.style.order);
-
-        const currentCombatant = this.combat.combatant;
-        const currentIndex = this.sortedCombatants.findIndex((c) => c === currentCombatant);
-        let nextDefeatedCount = 0;
-        let previousDefeatedCount = 0;
-        const sortedCombatants = this.sortedCombatants;
-        for (let i = 0 + 1; i < sortedCombatants.length; i++) {
-            const index = (currentIndex + i) % sortedCombatants.length;
-            const combatant = sortedCombatants[index];
-            if (combatant.defeated) previousDefeatedCount++;
-            else break;
-        }
-
-        for (let i = 0 + 1; i < sortedCombatants.length; i++) {
-            const index = (currentIndex - i + sortedCombatants.length) % sortedCombatants.length;
-            const combatant = sortedCombatants[index];
-            if (combatant.defeated) nextDefeatedCount++;
-            else break;
-        }
-
-        const nextDefeatedCombatants = childrenByLowestOrder.slice(0, nextDefeatedCount + 1);
-        const previousDefeatedCombatants = childrenByHighestOrder.slice(0, previousDefeatedCount + 1);
-
-        const first = nextDefeatedCount != 0 ? nextDefeatedCombatants : [[...filteredChildren].reduce((a, b) => (a.style.order < b.style.order ? a : b), combatantsContainer.children[0])];
-        const last = previousDefeatedCount != 0 ? previousDefeatedCombatants : [[...filteredChildren].reduce((a, b) => (a.style.order > b.style.order ? a : b), combatantsContainer.children[0])];
-
-        const els = update.direction === 1 ? first : last;
 
         if (this._playAnimation && this.sortedCombatants.length > 0) {
             this._playAnimation = false;
@@ -439,25 +447,8 @@ export class CombatDock extends HandlebarsApplication {
             return;
         }
 
-        setTimeout(() => this.updateOrder(), 200);
-
-        if (!this.trueCarousel) {
-            combatantsContainer.style.minWidth = "";
-            combatantsContainer.style.minHeight = "";
-            return this.centerCurrentCombatant();
-        }
-
-        for (const el of els) {
-            el.classList.add(`collapsed-${this.isVertical ? "vertical" : "horizontal"}`);
-            setTimeout(() => {
-                el.classList.remove(`collapsed-${this.isVertical ? "vertical" : "horizontal"}`);
-                setTimeout(() => {
-                    combatantsContainer.style.minWidth = "";
-                    combatantsContainer.style.minHeight = "";
-                }, 200);
-                this.centerCurrentCombatant();
-            }, 200);
-        }
+        this.animateOrder();
+        this.centerCurrentCombatant();
     }
 
     async _onRoundChange() {
@@ -569,7 +560,8 @@ export class CombatDock extends HandlebarsApplication {
 
     async close(...args) {
         this.removeHooks();
-        window.removeEventListener("resize", this.autosize.bind(this));
+        this.dragReorder?.destroy();
+        window.removeEventListener("resize", this._onResize);
         if (this.element) this.element.remove();
         document.body.classList.remove("combat-dock-docked");
         this._closed = true;
