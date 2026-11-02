@@ -268,7 +268,9 @@ export class CombatDock extends HandlebarsApplication {
         }, totalAnimationTime + duration);
 
         setTimeout(() => {
+            if (this._closed) return;
             this.element.classList.remove("hidden");
+            document.body.classList.add("ctd-dock-visible");
             if (!isVertical) this.centerCurrentCombatant();
         }, 10);
     }
@@ -548,6 +550,7 @@ export class CombatDock extends HandlebarsApplication {
     }
 
     refresh() {
+        if (this._closed) return;
         this.autosize();
         this.updateCombatants();
         this.appendHtml();
@@ -555,6 +558,7 @@ export class CombatDock extends HandlebarsApplication {
 
     async restart() {
         await this.close();
+        if (!game.combat) return;
         await new CombatDock().render({ force: true });
     }
 
@@ -563,8 +567,9 @@ export class CombatDock extends HandlebarsApplication {
         this.dragReorder?.destroy();
         window.removeEventListener("resize", this._onResize);
         if (this.element) this.element.remove();
-        document.body.classList.remove("combat-dock-docked");
+        document.body.classList.remove("combat-dock-docked", "ctd-dock-visible");
         this._closed = true;
+        if (ui.combatDock === this) ui.combatDock = null;
         return super.close(...args);
     }
 }

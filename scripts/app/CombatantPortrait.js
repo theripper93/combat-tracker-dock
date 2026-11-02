@@ -178,7 +178,7 @@ export class CombatantPortrait {
         this.element.querySelector(".roll-initiative").addEventListener("click", async (event) => {
             event.preventDefault();
             Hooks.once("renderCombatTracker", () => {
-                ui.combatDock.updateOrder();
+                ui.combatDock?.updateOrder();
             });
             await this.combatant.combat.rollInitiative([this.combatant.id],{event});
         });

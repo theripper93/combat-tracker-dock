@@ -22,9 +22,10 @@
 .combat-dock-docked {
     #ui-top {
         position: relative;
-        &.ctd-hide-conflicting-uis > *:not(#combat-dock):not(#loading) {
-            display: none;
-        }
+    }
+
+    &.ctd-dock-visible #ui-top.ctd-hide-conflicting-uis > *:not(#combat-dock):not(#loading) {
+        display: none;
     }
 
     #interface {
