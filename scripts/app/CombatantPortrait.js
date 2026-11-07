@@ -1,5 +1,6 @@
 import { MODULE_ID } from "../main.js";
 import { generateDescription, getInitiativeDisplay, getSystemIcons } from "../systems.js";
+import { getPortraitThumbnail } from "../lib/thumbnails.js";
 
 export class CombatantPortrait {
     constructor(combatant) {
@@ -10,6 +11,10 @@ export class CombatantPortrait {
         this.element.setAttribute("data-combatant-id", combatant.id);
         this.element.setAttribute("data-tooltip-class", "combat-dock-tooltip");
         this.element.style.backgroundImage = `url("${game.settings.get(MODULE_ID, "portraitImageBackground")}")`;
+        this.wrapper = document.createElement("div");
+        this.wrapper.classList.add("combatant-wrapper");
+        this.element.appendChild(this.wrapper);
+        this._renderId = 0;
         this.resolve = null;
         this.ready = new Promise((res) => (this.resolve = res));
         this._hasTakenTurn = this.combat.round ?? 0 <= 1;
@@ -70,10 +75,9 @@ export class CombatantPortrait {
     activateCoreListeners() {
         this.element.addEventListener("mouseenter", this._onHoverIn.bind(this));
         this.element.addEventListener("mouseleave", this._onHoverOut.bind(this));
+        this.wrapper.addEventListener("click", this._onCombatantMouseDown.bind(this));
     }
     activateListeners() {
-        this.element.querySelector(".combatant-wrapper").addEventListener("click", this._onCombatantMouseDown.bind(this));
-
         (this.element.querySelectorAll(".system-icon") ?? []).forEach((iconEl, index) => {
             const systemIcons = this._systemIcons;
             const icon = systemIcons[index];
@@ -150,17 +154,28 @@ export class CombatantPortrait {
         if (this.token.hover) this.token._onHoverOut(event);
     }
 
+    setPortraitImage(img) {
+        if (this._img === img) return;
+        this._img = img;
+        this.wrapper.style.backgroundImage = img ? `url("${img}")` : "";
+    }
+
     async renderInner() {
+        const renderId = ++this._renderId;
         const data = await this.getData();
+        if (renderId !== this._renderId) return;
         this.element.classList.toggle("hidden", !data);
         if (!data) {
             this.resolve(true);
-            this.element.innerHTML = "";
+            this.wrapper.innerHTML = "";
             return;
         }
         const template = await foundry.applications.handlebars.renderTemplate("modules/combat-tracker-dock/templates/combatant-portrait.hbs", { ...data });
         const tooltip = await foundry.applications.handlebars.renderTemplate("modules/combat-tracker-dock/templates/combatant-tooltip.hbs", { ...data });
-        this.element.innerHTML = template;
+        if (renderId !== this._renderId) return;
+        this.wrapper.innerHTML = template;
+        this.setPortraitImage(data.img);
+        this.wrapper.style.filter = data.defeated ? "grayscale(1)" : "";
         this.element.setAttribute("data-tooltip", tooltip);
         const direction = game.settings.get(MODULE_ID, "direction");
         let tooltipDirection = "";
@@ -311,7 +326,7 @@ export class CombatantPortrait {
         const turn = {
             id: combatant.id,
             name: this.name,
-            img: this.img,
+            img: await getPortraitThumbnail(this.img),
             active: this.combat.turns.indexOf(combatant) === this.combat.turn,
             owner: combatant.isOwner,
             isGM: game.user.isGM,

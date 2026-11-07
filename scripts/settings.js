@@ -319,6 +319,16 @@ export function registerSettings() {
         onChange: () => ui.combatDock?.refresh(),
     });
 
+    game.settings.register(MODULE_ID, "portraitThumbnails", {
+        name: "combat-tracker-dock.settings.portraitThumbnails.name",
+        hint: "combat-tracker-dock.settings.portraitThumbnails.hint",
+        scope: "client",
+        config: true,
+        type: Boolean,
+        default: true,
+        onChange: () => ui.combatDock?.refresh(),
+    });
+
     game.settings.register(MODULE_ID, "displayName", {
         name: "combat-tracker-dock.settings.displayName.name",
         hint: "combat-tracker-dock.settings.displayName.hint",

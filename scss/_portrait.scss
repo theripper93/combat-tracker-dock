@@ -36,18 +36,29 @@
 
         @keyframes border-blink {
             0% {
-                border-color: rgba(255, 255, 255, 0.179);
+                opacity: 0.29;
             }
 
             100% {
-                border-color: rgba(255, 255, 255, 0.616);
+                opacity: 1;
             }
         }
 
         &.active {
             width: calc(var(--combatant-portrait-size) * 1.2);
             height: calc(var(--combatant-portrait-size) * var(--combatant-portrait-aspect) * 1.2);
-            animation: border-blink 0.5s ease-in-out infinite alternate;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 0 -1px -1px -1px;
+                border: 1px solid rgba(255, 255, 255, 0.616);
+                border-top-width: 0;
+                border-radius: inherit;
+                pointer-events: none;
+                will-change: opacity;
+                animation: border-blink 0.5s ease-in-out infinite alternate;
+            }
 
             & .combatant-title {
                 display: flex;
@@ -60,13 +71,13 @@
 
         &.collapsed-horizontal {
             width: 0px;
-            opacity: 0px;
+            opacity: 0;
             margin: 0;
         }
 
         &.collapsed-vertical {
             height: 0px;
-            opacity: 0px;
+            opacity: 0;
             margin: 0;
         }
     }

@@ -168,6 +168,10 @@
                     "token": "Token"
                 }
             },
+            "portraitThumbnails": {
+                "name": "Optimize Portrait Images",
+                "hint": "Generate downscaled copies of portrait images sized for the carousel. Greatly improves performance with high resolution portraits. Disable to always display the original image."
+            },
             "portraitImageBackground": {
                 "name": "Portrait Background",
                 "hint": "The background image behind the portrait that will be visible if the portrait is transparent or doesn't fill the space."
